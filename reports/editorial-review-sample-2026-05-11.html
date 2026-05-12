@@ -1,0 +1,1535 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AI Brief Editorial Review</title>
+  <style>
+    :root {
+      --ink: #111827;
+      --text: #334155;
+      --muted: #64748b;
+      --line: #d9e2ee;
+      --soft: #f6f8fb;
+      --panel: #ffffff;
+      --blue: #2563eb;
+      --teal: #0f9f9a;
+      --orange: #f97316;
+      --green: #22a35a;
+      --purple: #6d5bd0;
+      --red: #df4b4b;
+      --shadow: 0 14px 34px rgba(15, 23, 42, .08);
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: #eef3f8;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.4;
+    }
+
+    a { color: var(--blue); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    button, input, textarea { font: inherit; }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(255, 255, 255, .92);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(16px);
+    }
+
+    .wrap {
+      width: min(1440px, calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    .topbar {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 20px;
+      align-items: center;
+      padding: 18px 0;
+    }
+
+    h1 {
+      margin: 0 0 4px;
+      font-size: 30px;
+      letter-spacing: 0;
+    }
+
+    .subtitle {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: flex-end;
+      align-items: center;
+    }
+
+    .btn {
+      border: 1px solid var(--line);
+      background: #fff;
+      color: var(--ink);
+      border-radius: 8px;
+      padding: 9px 12px;
+      font-size: 13px;
+      font-weight: 800;
+      cursor: pointer;
+      box-shadow: 0 6px 15px rgba(15, 23, 42, .06);
+    }
+
+    .btn.primary {
+      color: #fff;
+      border-color: var(--blue);
+      background: var(--blue);
+    }
+
+    .advanced {
+      position: relative;
+    }
+
+    .advanced summary {
+      list-style: none;
+      border: 1px solid var(--line);
+      background: #fff;
+      color: var(--ink);
+      border-radius: 8px;
+      padding: 9px 12px;
+      font-size: 13px;
+      font-weight: 800;
+      cursor: pointer;
+      box-shadow: 0 6px 15px rgba(15, 23, 42, .06);
+    }
+
+    .advanced summary::-webkit-details-marker { display: none; }
+
+    .advanced-menu {
+      position: absolute;
+      right: 0;
+      top: calc(100% + 6px);
+      display: grid;
+      gap: 6px;
+      width: 260px;
+      padding: 10px;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      box-shadow: var(--shadow);
+    }
+
+    .advanced-menu p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.35;
+    }
+
+    .btn.green {
+      color: #fff;
+      border-color: var(--green);
+      background: var(--green);
+    }
+
+    main {
+      padding: 18px 0 88px;
+    }
+
+    .metrics {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .metric {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 13px 14px;
+      box-shadow: var(--shadow);
+    }
+
+    .metric b {
+      display: block;
+      font-size: 28px;
+      line-height: 1;
+      margin-bottom: 5px;
+    }
+
+    .metric span {
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .audience-panel {
+      margin: 0 0 18px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 16px;
+      align-items: center;
+      border: 1px solid var(--line);
+      background: var(--panel);
+      border-radius: 8px;
+      padding: 14px;
+      box-shadow: var(--shadow);
+    }
+
+    .audience-panel h2 {
+      margin: 0 0 3px;
+      font-size: 18px;
+      letter-spacing: 0;
+    }
+
+    .audience-panel p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 650;
+    }
+
+    .audience-toggle {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6px;
+      min-width: 430px;
+      border: 1px solid #dce5f0;
+      background: #f8fafc;
+      border-radius: 8px;
+      padding: 5px;
+    }
+
+    .audience-toggle label {
+      display: grid;
+      gap: 2px;
+      border: 1px solid transparent;
+      border-radius: 7px;
+      padding: 9px 10px;
+      cursor: pointer;
+      color: var(--text);
+    }
+
+    .audience-toggle input {
+      position: absolute;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .audience-toggle label:has(input:checked) {
+      border-color: rgba(37, 99, 235, .35);
+      background: #fff;
+      color: var(--ink);
+      box-shadow: 0 7px 16px rgba(15, 23, 42, .08);
+    }
+
+    .audience-toggle b {
+      font-size: 13px;
+      line-height: 1.2;
+    }
+
+    .audience-toggle span {
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.25;
+      font-weight: 650;
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: minmax(520px, 1.08fr) minmax(420px, .92fr);
+      gap: 16px;
+      align-items: start;
+    }
+
+    .column {
+      display: grid;
+      gap: 12px;
+    }
+
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 12px;
+      margin: 3px 0 2px;
+    }
+
+    h2 {
+      margin: 0;
+      font-size: 20px;
+    }
+
+    .hint {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .candidate-head {
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      gap: 12px;
+      padding: 14px;
+      align-items: start;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .source-kind {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 42px;
+      height: 42px;
+      border-radius: 9px;
+      color: #fff;
+      font-weight: 900;
+      background: #ff0033;
+      font-size: 0;
+    }
+
+    .source-kind::before {
+      content: "";
+      width: 0;
+      height: 0;
+      border-top: 8px solid transparent;
+      border-bottom: 8px solid transparent;
+      border-left: 13px solid #fff;
+      margin-left: 3px;
+    }
+
+    .source-kind.mail { background: var(--teal); }
+    .source-kind.mail::before {
+      content: "@";
+      border: 0;
+      width: auto;
+      height: auto;
+      margin-left: 0;
+      font-size: 20px;
+    }
+
+    .source-kind.podcast,
+    .source-kind.news,
+    .source-kind.video,
+    .source-kind.youtube { background: #ff0033; }
+
+    .candidate h3, .theme h3 {
+      margin: 0 0 4px;
+      font-size: 17px;
+      letter-spacing: 0;
+    }
+
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      align-items: center;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 700;
+      line-height: 1.2;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      border-radius: 999px;
+      border: 1px solid #dce5f0;
+      background: #f8fafc;
+      padding: 3px 7px;
+      color: #475569;
+      line-height: 1.15;
+    }
+
+    .score {
+      min-width: 72px;
+      text-align: right;
+      font-weight: 900;
+      color: var(--blue);
+    }
+
+    .candidate-body {
+      padding: 14px;
+    }
+
+    .candidate.excluded {
+      opacity: .68;
+    }
+
+    .candidate.excluded .segments {
+      display: none;
+    }
+
+    .excluded-note {
+      display: none;
+      border: 1px dashed #b8c7dc;
+      background: #f8fafc;
+      color: var(--muted);
+      border-radius: 8px;
+      padding: 10px;
+      font-size: 13px;
+      font-weight: 700;
+      margin-top: 10px;
+    }
+
+    .candidate.excluded .excluded-note {
+      display: block;
+    }
+
+    .summary {
+      margin: 0 0 12px;
+      color: var(--text);
+      font-size: 14px;
+    }
+
+    .segments {
+      display: grid;
+      gap: 8px;
+    }
+
+    .segment {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 9px;
+      border: 1px solid #e1e8f2;
+      border-radius: 8px;
+      padding: 10px;
+      background: #fbfdff;
+    }
+
+    .segment.selected {
+      border-color: rgba(37, 99, 235, .5);
+      background: #f3f7ff;
+    }
+
+    .segment h4 {
+      margin: 0 0 4px;
+      font-size: 14px;
+    }
+
+    .segment p {
+      margin: 0 0 7px;
+      color: var(--text);
+      font-size: 13px;
+    }
+
+    .segment-footer {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      align-items: center;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      accent-color: var(--blue);
+      cursor: pointer;
+    }
+
+    .theme {
+      padding: 12px;
+    }
+
+    .theme.dragging {
+      opacity: .55;
+      outline: 2px solid rgba(37, 99, 235, .35);
+    }
+
+    .theme-head {
+      display: grid;
+      grid-template-columns: auto auto 1fr auto;
+      gap: 10px;
+      align-items: start;
+      margin-bottom: 10px;
+    }
+
+    .drag-handle {
+      border: 1px solid #dce5f0;
+      background: #f8fafc;
+      border-radius: 7px;
+      width: 32px;
+      height: 32px;
+      cursor: grab;
+      color: #64748b;
+      font-weight: 900;
+      line-height: 1;
+    }
+
+    .drag-handle:active { cursor: grabbing; }
+
+    .theme-title-row {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 8px;
+      align-items: start;
+    }
+
+    .theme-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      margin-bottom: 7px;
+    }
+
+    .theme-badges .pill {
+      font-size: 11px;
+      padding: 2px 6px;
+    }
+
+    .theme-count {
+      white-space: nowrap;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 800;
+      padding-top: 9px;
+    }
+
+    .theme-title,
+    .theme-summary,
+    .new-input,
+    .new-textarea {
+      width: 100%;
+      border: 1px solid #dce5f0;
+      border-radius: 8px;
+      padding: 8px 9px;
+      color: var(--ink);
+      background: #fff;
+      font-size: 14px;
+    }
+
+    .theme-title {
+      font-weight: 900;
+      font-size: 16px;
+      margin-bottom: 7px;
+      min-height: 42px;
+      resize: none;
+      overflow: hidden;
+      line-height: 1.25;
+    }
+
+    .theme-summary,
+    .new-textarea {
+      min-height: 86px;
+      resize: vertical;
+      color: var(--text);
+      overflow: hidden;
+    }
+
+    .mini-actions {
+      display: grid;
+      gap: 5px;
+    }
+
+    .icon-btn {
+      border: 1px solid #dce5f0;
+      background: #fff;
+      border-radius: 7px;
+      width: 32px;
+      height: 28px;
+      cursor: pointer;
+      font-weight: 900;
+      color: #42526a;
+    }
+
+    .theme.collapsed .theme-details {
+      display: none;
+    }
+
+    .theme.collapsed .theme-title {
+      margin-bottom: 0;
+    }
+
+    .evidence-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      margin: 8px 0 10px;
+    }
+
+    .micro-btn {
+      border: 1px solid #dce5f0;
+      background: #fff;
+      border-radius: 7px;
+      padding: 6px 8px;
+      color: var(--text);
+      cursor: pointer;
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .supporting {
+      border-top: 1px solid #edf2f7;
+      padding-top: 10px;
+      display: grid;
+      gap: 7px;
+    }
+
+    .supporting-row {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 8px;
+      align-items: start;
+      border: 1px solid #e1e8f2;
+      background: #fbfdff;
+      border-radius: 8px;
+      padding: 8px;
+      font-size: 12px;
+      color: var(--text);
+    }
+
+    .supporting-row b {
+      display: block;
+      font-size: 13px;
+      margin-bottom: 2px;
+      color: var(--ink);
+    }
+
+    .timestamp-list {
+      display: none;
+      margin-top: 10px;
+      border: 1px solid #e1e8f2;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .timestamp-list.open { display: block; }
+
+    .timestamp-item {
+      display: grid;
+      grid-template-columns: 62px 1fr auto;
+      gap: 8px;
+      align-items: center;
+      padding: 8px 10px;
+      border-bottom: 1px solid #edf2f7;
+      background: #fff;
+      font-size: 12px;
+    }
+
+    .timestamp-item:last-child { border-bottom: 0; }
+
+    .timestamp-time {
+      color: var(--blue);
+      font-weight: 900;
+    }
+
+    .timestamp-topic {
+      color: var(--text);
+      font-weight: 800;
+    }
+
+    .tiny-btn {
+      border: 1px solid #dce5f0;
+      background: #fff;
+      color: var(--blue);
+      border-radius: 7px;
+      padding: 5px 8px;
+      font-size: 12px;
+      font-weight: 900;
+      cursor: pointer;
+    }
+
+    .empty {
+      color: var(--muted);
+      font-size: 13px;
+      border: 1px dashed #cbd5e1;
+      border-radius: 8px;
+      padding: 10px;
+      background: #f8fafc;
+    }
+
+    .add-theme {
+      padding: 14px;
+      display: grid;
+      gap: 9px;
+    }
+
+    .export-panel {
+      display: none;
+      margin-top: 16px;
+    }
+
+    .export-panel.open {
+      display: block;
+    }
+
+    .export-box {
+      width: 100%;
+      min-height: 260px;
+      resize: vertical;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 12px;
+      font-family: ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", monospace;
+      font-size: 12px;
+      background: #0f172a;
+      color: #dbeafe;
+    }
+
+    .brief-link-wrap {
+      display: none;
+      margin: 0 0 12px;
+    }
+
+    .brief-link-wrap.open {
+      display: block;
+    }
+
+    .brief-link {
+      display: inline-flex;
+      align-items: center;
+      border: 1px solid rgba(34, 163, 90, .35);
+      border-radius: 8px;
+      background: #f0fdf5;
+      color: #166534;
+      padding: 9px 11px;
+      font-size: 13px;
+      font-weight: 900;
+    }
+
+    .sticky-footer {
+      position: fixed;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(255, 255, 255, .94);
+      border-top: 1px solid var(--line);
+      backdrop-filter: blur(16px);
+      z-index: 30;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 0;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    @media (max-width: 1050px) {
+      .layout { grid-template-columns: 1fr; }
+      .metrics { grid-template-columns: repeat(2, 1fr); }
+      .topbar { grid-template-columns: 1fr; }
+      .actions { justify-content: flex-start; }
+      .audience-panel { grid-template-columns: 1fr; }
+      .audience-toggle { min-width: 0; }
+    }
+
+    @media (max-width: 620px) {
+      .wrap { width: min(100% - 20px, 1440px); }
+      .metrics { grid-template-columns: 1fr; }
+      .audience-toggle { grid-template-columns: 1fr; }
+      .candidate-head { grid-template-columns: auto 1fr; }
+      .score { grid-column: 2; text-align: left; }
+      .footer-inner { align-items: flex-start; flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap topbar">
+      <div>
+        <h1>Editorial Review Gate</h1>
+        <p class="subtitle">Review candidate sources, select the useful segments inside each one, then approve or adjust the proposed final themes.</p>
+      </div>
+      <div class="actions">
+        <button class="btn" id="select-strong">Select Strong Segments</button>
+        <button class="btn" id="regenerate-themes">Rebucket Evidence Into Themes</button>
+        <details class="advanced">
+          <summary>Advanced</summary>
+          <div class="advanced-menu">
+            <button class="btn" id="export-json">Export Review JSON</button>
+            <p>Developer handoff only. For normal use, review the checks below and click Approve and Build Brief.</p>
+          </div>
+        </details>
+        <button class="btn green" id="approve">Approve and Build Brief</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="metrics" aria-label="Review metrics">
+      <div class="metric"><b id="metric-candidates">0</b><span>candidate sources</span></div>
+      <div class="metric"><b id="metric-segments">0</b><span>selected segments</span></div>
+      <div class="metric"><b id="metric-themes">0</b><span>approved themes</span></div>
+      <div class="metric"><b id="metric-sources">0</b><span>source types represented</span></div>
+    </section>
+
+    <section class="audience-panel" aria-label="Target audience">
+      <div>
+        <h2>Target Audience</h2>
+        <p>Choose the lens before approval so the final brief uses the right examples, depth, and calls to action.</p>
+      </div>
+      <div class="audience-toggle" id="audience-toggle">
+        <label>
+          <input type="radio" name="audience" value="c_suite" checked>
+          <b>C-suite executives</b>
+          <span>Business impact, risk, budget, competitive moves</span>
+        </label>
+        <label>
+          <input type="radio" name="audience" value="operators">
+          <b>Operators and implementers</b>
+          <span>Architecture, tools, workflows, build decisions</span>
+        </label>
+      </div>
+    </section>
+
+    <section class="layout">
+      <div class="column">
+        <div class="section-head">
+          <div>
+            <h2>1. Candidate Items</h2>
+            <p class="hint">Check the source, then choose the specific segments that should drive the final brief.</p>
+          </div>
+        </div>
+        <div id="candidate-list" class="column"></div>
+      </div>
+
+      <div class="column">
+        <div class="section-head">
+          <div>
+            <h2>2. Proposed Themes</h2>
+            <p class="hint">Approve, edit, reorder, or add themes. Selected segments are mapped automatically.</p>
+          </div>
+        </div>
+        <div id="theme-list" class="column"></div>
+        <div class="card add-theme">
+          <h3>Add Theme</h3>
+          <input class="new-input" id="new-theme-title" placeholder="Theme title">
+          <textarea class="new-textarea" id="new-theme-summary" placeholder="Why this theme matters"></textarea>
+          <button class="btn primary" id="add-theme">Add Theme</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="export-panel" id="export-panel">
+      <div class="section-head">
+        <div>
+          <h2>Review JSON</h2>
+          <p class="hint">This is the handoff object the final brief generator would read.</p>
+        </div>
+      </div>
+      <div class="brief-link-wrap" id="brief-link-wrap">
+        <a class="brief-link" href="ai-weekly-brief-generated-2026-05-11.html">Open generated weekly brief</a>
+      </div>
+      <textarea class="export-box" id="export-box" spellcheck="false"></textarea>
+    </section>
+  </main>
+
+  <div class="sticky-footer">
+    <div class="wrap footer-inner">
+      <div id="review-status">Ready for editorial review.</div>
+      <div>Local sample · no data leaves this page · choices are browser state only</div>
+    </div>
+  </div>
+
+  <script>
+    const candidates = [
+      {
+        id: 'diamandis-demis',
+        kind: 'podcast',
+        label: 'Podcast',
+        source: 'Peter H. Diamandis / Moonshots',
+        title: 'Demis Hassabis on AGI, Robots Scale Production, and Elon’s $1T Mars-Shot Comp',
+        url: 'https://youtu.be/Jg2jJH1K0o8',
+        date: '2026-05-11',
+        score: 96,
+        included: true,
+        summary: 'Long-form frontier AI discussion touching AGI timelines, robotics scale, infrastructure, energy, and big-company strategy.',
+        segments: [
+          { id: 'moonshots-intro', selected: false, strength: 'weak', time: '00:00-06:50', theme: 'Editorial context', title: 'Introduction and panel welcoming', summary: 'Context-setting only; useful for orientation but unlikely to become a newsletter signal.' },
+          { id: 'mars-colony', selected: false, strength: 'medium', time: '06:50-15:54', theme: 'AI-adjacent business strategy', title: "Elon Musk's ambitious Mars colony plans", summary: 'Space ambition and capital allocation context, but only include if the week needs a broader founder-strategy angle.' },
+          { id: 'musk-altman-trial', selected: false, strength: 'medium', time: '15:54-27:50', theme: 'AI governance and competition', title: 'The Elon Musk vs. Sam Altman trial', summary: 'Legal conflict around OpenAI governance and competitive positioning could matter if the week has an AI power-structure theme.' },
+          { id: 'ai-writing-models', selected: true, strength: 'medium', time: '27:50-35:30', theme: 'Specialized model race', title: 'The evolution of AI writing models', summary: 'Writing models are becoming a clearer specialized capability lane rather than just generic chatbot output.' },
+          { id: 'figure-scales-production', selected: true, strength: 'strong', time: '35:30-43:00', theme: 'Robotics commercialization', title: 'Figure scales humanoid production', summary: 'Figure AI production scale points toward humanoid robotics moving from demos to manufacturing.' },
+          { id: 'optimus-production', selected: true, strength: 'medium', time: '43:00-48:30', theme: 'Robotics commercialization', title: 'Elon predicts 1M+ Optimus production by 2030', summary: 'A major production claim that supports the robotics commercialization theme, even if it should be treated as a forecast.' },
+          { id: 'china-ai-layoffs', selected: true, strength: 'medium', time: '48:30-57:00', theme: 'AI workplace impact', title: 'Chinese courts rule AI is not a legal reason to lay off workers', summary: 'AI labor impact is becoming a policy and management issue, not just a productivity story.' },
+          { id: 'demis-agi', selected: true, strength: 'strong', time: '57:00-01:05:30', theme: 'AGI timelines', title: 'Demis Hassabis says AGI may not need major breakthroughs', summary: 'Demis Hassabis frames AGI progress as potentially achievable through continued scaling, system integration, and refinement rather than one missing invention.' },
+          { id: 'bluebuck-resurrection', selected: false, strength: 'weak', time: '01:05:30-01:10:30', theme: 'Biotech-adjacent AI', title: 'Colossal announces project to resurrect the Bluebuck', summary: 'Interesting adjacent science story, but likely outside the core team brief unless biotech becomes a theme.' },
+          { id: 'glp1-vs-ai-revenue', selected: false, strength: 'medium', time: '01:10:30-01:18:40', theme: 'AI-adjacent business strategy', title: 'GLP-1 revenue exceeded OpenAI + Anthropic in 2025', summary: 'Useful market comparison that can calibrate AI hype, but it may distract from the main AI work brief.' },
+          { id: 'ai-2028-feel', selected: true, strength: 'medium', time: '01:18:40-end', theme: 'AI product/application layer', title: 'What will AI feel like by 2028?', summary: 'A forward-looking segment about how AI may become experienced through products, workflows, and ambient interfaces.' }
+        ]
+      },
+      {
+        id: 'limitless-capex',
+        kind: 'podcast',
+        label: 'Podcast',
+        source: 'Limitless Podcast',
+        title: 'Where is AI Going Next?',
+        url: 'https://youtu.be/_6O19bEZgMc',
+        date: '2026-05-07',
+        score: 93,
+        included: true,
+        summary: 'A market-structure look at where AI capex flows across chips, memory, cloud, infrastructure, and agentic application layers.',
+        segments: [
+          { id: 'capex-stack', selected: true, strength: 'strong', time: '00:00-06:00', theme: 'AI infrastructure economics', title: 'AI capex trickles down the stack', summary: 'Large platform spending flows into semiconductors, memory, data centers, power, networking, and other layers below the frontier labs.' },
+          { id: 'agentic-layer', selected: true, strength: 'strong', time: '09:47-12:29', theme: 'Agentic workflows', title: 'Agentic AI creates the next application layer', summary: 'The episode frames agents as a new demand driver that could push more compute and infrastructure consumption.' },
+          { id: 'memory-demand', selected: true, strength: 'medium', time: '14:33-20:54', theme: 'AI infrastructure economics', title: 'Memory supply becomes a bottleneck', summary: 'Memory and storage demand are highlighted as underappreciated AI infrastructure constraints.' },
+          { id: 'market-navigation', selected: false, strength: 'weak', time: '24:19-30:00', theme: 'Investment angle', title: 'Navigating the AI market cycle', summary: 'Useful context, but too market-investing oriented for the team brief unless the week’s theme is AI economics.' }
+        ]
+      },
+      {
+        id: 'matt-wolfe-weekly',
+        kind: 'news',
+        label: 'AI News',
+        source: 'Matt Wolfe',
+        title: 'AI News: Huge Updates From Anthropic, OpenAI and Google',
+        url: 'https://www.youtube.com/watch?v=bIrzOQtnp8w',
+        date: '2026-04-17',
+        score: 91,
+        included: true,
+        summary: 'Broad AI news roundup covering Codex, Claude Code, Google desktop/Gemini, Chrome AI, Canva AI, model releases, robotics, and more.',
+        segments: [
+          { id: 'codex-everything', selected: true, strength: 'strong', time: '00:40-07:03', theme: 'Agentic workflows', title: 'Codex for Everything', summary: 'Codex is framed as a practical workspace for coding, browser use, documents, slide decks, spreadsheets, and other knowledge work.' },
+          { id: 'claude-code-update', selected: true, strength: 'strong', time: '07:03-09:01', theme: 'Agentic workflows', title: 'Claude Code Update', summary: 'Claude Code keeps the coding-agent lane active and competitive as practical developer workflows mature.' },
+          { id: 'crusoe-capex', selected: false, strength: 'medium', time: '09:01-10:26', theme: 'AI infrastructure economics', title: 'Crusoe', summary: 'Infrastructure and compute providers remain part of the AI buildout story, but this may be secondary unless economics is a main theme.' },
+          { id: 'google-desktop', selected: true, strength: 'strong', time: '10:26-11:08', theme: 'Google AI distribution', title: 'Google Desktop App', summary: 'Google is pushing AI into desktop workflows rather than only browser or mobile surfaces.' },
+          { id: 'gemini-mac', selected: true, strength: 'strong', time: '11:08-12:08', theme: 'Google AI distribution', title: 'Gemini for Mac', summary: 'Gemini on Mac points to AI becoming a persistent operating-layer assistant.' },
+          { id: 'chrome-ai-update', selected: true, strength: 'strong', time: '12:08-13:54', theme: 'Google AI distribution', title: 'Chrome AI Update', summary: 'Chrome remains a major distribution channel for AI features embedded in everyday browsing.' },
+          { id: 'google-tts', selected: false, strength: 'medium', time: '13:54-16:03', theme: 'Google AI distribution', title: 'Google Text-To-Speech', summary: 'Voice and media generation deepen Google’s broader AI utility layer.' },
+          { id: 'nano-banana', selected: true, strength: 'medium', time: '16:03-17:23', theme: 'Google AI distribution', title: 'Nano Banana Update', summary: 'A named Google-side update worth preserving in the review list so it does not disappear inside the broad Gemini theme.' },
+          { id: 'perplexity-computer', selected: false, strength: 'medium', time: '17:23-19:52', theme: 'AI product/application layer', title: 'Perplexity Personal Computer', summary: 'Perplexity’s direction suggests search and personal-computing experiences may converge around AI agents.' },
+          { id: 'canva-ai-updates', selected: true, strength: 'medium', time: '19:52-21:45', theme: 'AI product/application layer', title: 'Canva AI Updates', summary: 'Creative-work platforms are continuing to package AI into familiar productivity surfaces.' },
+          { id: 'claude-opus-47', selected: true, strength: 'medium', time: '21:45-24:24', theme: 'Specialized model race', title: 'Claude Opus 4.7', summary: 'Anthropic remains prominent in frontier and enterprise model positioning.' },
+          { id: 'minimax-m27', selected: true, strength: 'medium', time: '24:24-25:16', theme: 'Specialized model race', title: 'MiniMax M2.7', summary: 'MiniMax adds another specialized model signal outside the dominant US platform names.' },
+          { id: 'qwen36', selected: true, strength: 'medium', time: '25:16-26:17', theme: 'Specialized model race', title: 'Qwen3.6-35B-A3B', summary: 'Qwen continues the open and efficient model competition story.' },
+          { id: 'gpt-rosalind', selected: true, strength: 'medium', time: '26:17-27:52', theme: 'Specialized model race', title: 'GPT-Rosalind', summary: 'Science-oriented model work belongs in a separate lane from general chat and coding models.' },
+          { id: 'microsoft-image', selected: true, strength: 'medium', time: '27:52-28:44', theme: 'Specialized model race', title: 'Microsoft MAI-Image-2-Efficient', summary: 'Efficient image generation shows the model race includes cost and deployment constraints, not just raw quality.' },
+          { id: 'midjourney-v81', selected: false, strength: 'medium', time: '28:44-29:31', theme: 'Specialized model race', title: 'Midjourney V8.1', summary: 'Useful creative-model update, but likely supporting context rather than a lead theme.' },
+          { id: 'davinci-resolve-ai', selected: false, strength: 'medium', time: '29:31-31:03', theme: 'AI product/application layer', title: 'Davinci Resolve AI Updates', summary: 'AI continues moving into specialist creative tools.' },
+          { id: 'allbirds-ai', selected: false, strength: 'medium', time: '31:03-32:11', theme: 'AI workplace impact', title: 'Allbirds Switches to AI', summary: 'A business adoption signal that may matter if the brief emphasizes organizational impact.' },
+          { id: 'task-robot', selected: false, strength: 'medium', time: '32:11-33:32', theme: 'Robotics commercialization', title: 'Cool New Task-Doing Robot', summary: 'Interesting robotics signal, but less central unless paired with the Diamandis/Demis robotics segment.' }
+        ]
+      },
+      {
+        id: 'openclaw-memory',
+        kind: 'video',
+        label: 'YouTube',
+        source: 'Openclaw Labs',
+        title: "OpenClaw Agents: What You've Been Getting Wrong About Memory",
+        url: 'https://www.youtube.com/watch?v=wzADqzsm6pI',
+        date: '2026-04-11',
+        score: 88,
+        included: true,
+        summary: 'Practical agent architecture explainer arguing that many memory problems are really workflow, role, artifact, and orchestration problems.',
+        segments: [
+          { id: 'memory-myth', selected: true, strength: 'strong', time: '00:00-03:29', theme: 'Agentic workflows', title: 'Memory is not the fix for broken workflows', summary: 'Agent failures often come from unclear architecture rather than missing memory.' },
+          { id: 'workflow-roles-artifacts', selected: true, strength: 'strong', time: '03:29-08:04', theme: 'Agentic workflows', title: 'Workflow → Roles → Artifacts → Rules', summary: 'A clean operating model for designing agent systems that can be governed and reviewed.' },
+          { id: 'memory-last', selected: true, strength: 'medium', time: '10:35-15:05', theme: 'Agentic workflows', title: 'Architecture first, memory last', summary: 'Memory becomes powerful only after the workflow has clear boundaries and retrieval targets.' }
+        ]
+      },
+      {
+        id: 'tldr-ai',
+        kind: 'mail',
+        label: 'Newsletter',
+        source: 'TLDR / TLDR AI',
+        title: 'AirPod cameras, GPT-Realtime-2, Cloudflare AI layoffs',
+        url: '#',
+        date: '2026-05-08',
+        score: 82,
+        included: true,
+        summary: 'Concise newsletter signal with AI hardware, realtime models, and labor impact themes.',
+        segments: [
+          { id: 'gpt-realtime', selected: true, strength: 'strong', time: 'newsletter', theme: 'Specialized model race', title: 'GPT-Realtime-2 moves audio/realtime into its own model lane', summary: 'Realtime speech and translation models should be treated as a distinct capability category.' },
+          { id: 'airpod-cameras', selected: false, strength: 'medium', time: 'newsletter', theme: 'AI hardware interfaces', title: 'AirPod cameras point to ambient AI interfaces', summary: 'Potential signal for AI hardware, but not enough on its own for a main theme this week.' },
+          { id: 'ai-layoffs', selected: true, strength: 'medium', time: 'newsletter', theme: 'AI workplace impact', title: 'Cloudflare AI layoffs highlight organizational impact', summary: 'AI’s impact is showing up as operating model and workforce strategy, not just tooling.' }
+        ]
+      },
+      {
+        id: 'maven-ai-work',
+        kind: 'mail',
+        label: 'Newsletter',
+        source: 'Maven',
+        title: 'AI product strategy, AI as a team, Claude Design, AI-native careers',
+        url: '#',
+        date: '2026-05-07',
+        score: 76,
+        included: true,
+        summary: 'Course/newsletter roundup showing demand for practical AI work, product strategy, and career adaptation.',
+        segments: [
+          { id: 'ai-as-team', selected: true, strength: 'strong', time: 'newsletter', theme: 'AI-native work practices', title: 'AI as a team practice', summary: 'Professional training is shifting from individual prompting toward collaborative AI operating models.' },
+          { id: 'ai-product-strategy', selected: true, strength: 'medium', time: 'newsletter', theme: 'AI-native work practices', title: 'AI product strategy is becoming a teachable discipline', summary: 'AI-native product management is emerging as a repeatable professional skill.' },
+          { id: 'career-ai-proof', selected: false, strength: 'weak', time: 'newsletter', theme: 'AI career impact', title: 'AI-proof career framing', summary: 'Useful but more professional-development oriented than team news.' }
+        ]
+      }
+    ];
+
+    let themes = [
+      { id: 'theme-models', approved: true, recurring: true, collapsed: true, title: 'Model News', summary: 'A standing section for new models, capability jumps, pricing shifts, benchmarks, and specialized model lanes.', aliases: ['Specialized model race'], segmentIds: ['ai-writing-models', 'claude-opus-47', 'minimax-m27', 'qwen36', 'gpt-rosalind', 'microsoft-image', 'gpt-realtime'] },
+      { id: 'theme-agents', approved: true, recurring: true, collapsed: true, title: 'All Things Agents', summary: 'A standing section for agents, agentic workflows, agent OS ideas, orchestration, tools, roles, artifacts, validation, and practical automation.', aliases: ['Agentic workflows'], segmentIds: ['codex-everything', 'claude-code-update', 'memory-myth', 'workflow-roles-artifacts', 'memory-last', 'agentic-layer'] },
+      { id: 'theme-platforms', approved: true, recurring: true, collapsed: true, title: 'Platform Plays', summary: 'A standing section for Google, Microsoft, OpenAI, Anthropic, Canva, Perplexity, and other platforms pushing AI into everyday work surfaces.', aliases: ['Google AI distribution', 'AI product/application layer'], segmentIds: ['google-desktop', 'gemini-mac', 'chrome-ai-update', 'nano-banana', 'canva-ai-updates', 'ai-2028-feel'] },
+      { id: 'theme-infra', approved: true, recurring: true, collapsed: true, title: 'Economics and Infrastructure', summary: 'A standing section for compute, capex, memory, data centers, routing, power, latency, and cost pressures shaping AI adoption.', aliases: ['AI infrastructure economics'], segmentIds: ['capex-stack', 'memory-demand'] },
+      { id: 'theme-power', approved: true, recurring: true, collapsed: true, title: 'Power Moves', summary: 'A standing section for founder drama, lawsuits, acquisitions, surprise partnerships, platform politics, and industry titan maneuvering.', aliases: ['AI governance and competition', 'AI-adjacent business strategy'], segmentIds: ['musk-altman-trial'] },
+      { id: 'theme-robotics', approved: true, collapsed: true, title: 'Robotics commercialization is moving from demo to scale', summary: 'Humanoid production targets and frontier-lab robotics discussion suggest physical AI may become a credible near-term enterprise topic.', aliases: ['Robotics commercialization'], segmentIds: ['figure-scales-production', 'optimus-production'] },
+      { id: 'theme-work', approved: false, collapsed: true, title: 'AI-native work practices are becoming management work', summary: 'Newsletters, labor rulings, and course demand suggest teams need shared practices for AI collaboration, not just individual prompting tips.', aliases: ['AI-native work practices', 'AI workplace impact'], segmentIds: ['china-ai-layoffs', 'ai-as-team', 'ai-product-strategy', 'ai-layoffs'] }
+    ];
+
+    const state = {
+      candidates: structuredClone(candidates),
+      themes: structuredClone(themes),
+      rejectedThemeNames: new Set(themes.filter(theme => !theme.approved).map(theme => theme.title.toLowerCase())),
+      audience: 'c_suite',
+      draggedThemeId: null,
+      approved: false
+    };
+
+    const candidateList = document.getElementById('candidate-list');
+    const themeList = document.getElementById('theme-list');
+    const statusEl = document.getElementById('review-status');
+
+    function allSegments() {
+      return state.candidates.flatMap(candidate => candidate.segments.map(segment => ({
+        ...segment,
+        candidateId: candidate.id,
+        candidateTitle: candidate.title,
+        candidateIncluded: candidate.included,
+        source: candidate.source,
+        sourceUrl: candidate.url
+      })));
+    }
+
+    function selectedSegments() {
+      return allSegments().filter(segment => segment.candidateIncluded && segment.selected);
+    }
+
+    function segmentById(id) {
+      return allSegments().find(segment => segment.id === id && segment.candidateIncluded && segment.selected);
+    }
+
+    function sourceKindClass(kind) {
+      return kind === 'mail' ? 'mail' : 'youtube';
+    }
+
+    function sourceLabel(candidate) {
+      if (candidate.kind === 'mail') return `Email - ${candidate.source}`;
+      return `YouTube - ${candidate.source}`;
+    }
+
+    function autoGrow(element) {
+      element.style.height = 'auto';
+      element.style.height = `${element.scrollHeight}px`;
+    }
+
+    function autoGrowTextareas() {
+      document.querySelectorAll('.theme-title, .theme-summary, .new-textarea').forEach(autoGrow);
+    }
+
+    function normalizeText(value) {
+      return value.toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim();
+    }
+
+    function themeSignature(theme) {
+      return normalizeText(`${theme.title} ${theme.summary || ''}`);
+    }
+
+    function segmentSignature(segment) {
+      return normalizeText(`${segment.theme} ${segment.title} ${segment.summary}`);
+    }
+
+    function tokenOverlap(theme, segment) {
+      const themeTokens = new Set(themeSignature(theme).split(/\s+/).filter(token => token.length > 3));
+      const segmentTokens = segmentSignature(segment).split(/\s+/).filter(token => token.length > 3);
+      return segmentTokens.reduce((score, token) => score + (themeTokens.has(token) ? 1 : 0), 0);
+    }
+
+    function customThemeMatch(theme, segment) {
+      return tokenOverlap(theme, segment) >= 2;
+    }
+
+    function suggestedSummary(themeName, segments) {
+      const sourceCount = new Set(segments.map(segment => segment.source)).size;
+      const examples = segments.slice(0, 3).map(segment => segment.title).join('; ');
+      if (themeName === 'Other signals to consider') {
+        return `Selected items that did not fit the approved theme set cleanly. Review these before final publishing: ${examples}.`;
+      }
+      return `Selected evidence from ${sourceCount} source(s): ${examples}.`;
+    }
+
+    function existingThemeForName(name) {
+      const normalized = name.toLowerCase();
+      return state.themes.find(theme => theme.title.toLowerCase() === normalized);
+    }
+
+    function bestApprovedThemeForSegment(segment, approvedThemes) {
+      const matches = approvedThemes
+        .filter(theme => theme.approved && !state.rejectedThemeNames.has(theme.title.toLowerCase()))
+        .map(theme => ({
+          theme,
+          score: (theme.aliases || []).includes(segment.theme) ? 100 : tokenOverlap(theme, segment)
+        }))
+        .filter(match => match.score > 0)
+        .sort((a, b) => b.score - a.score);
+      return matches[0]?.theme || null;
+    }
+
+    function findMatchingSegments(theme) {
+      return selectedSegments().filter(segment => {
+        if ((theme.aliases || []).includes(segment.theme)) return true;
+        return customThemeMatch(theme, segment);
+      });
+    }
+
+    function renderCandidates() {
+      candidateList.innerHTML = '';
+      state.candidates.forEach(candidate => {
+        const article = document.createElement('article');
+        article.className = `card candidate ${candidate.included ? '' : 'excluded'}`;
+        article.innerHTML = `
+          <div class="candidate-head">
+            <div class="source-kind ${sourceKindClass(candidate.kind)}" title="${candidate.kind === 'mail' ? 'Email' : 'YouTube'}"></div>
+            <div>
+              <h3>${candidate.title}</h3>
+              <div class="meta">
+                <span class="pill">${sourceLabel(candidate)}</span>
+                <span>${candidate.date}</span>
+                ${candidate.url !== '#' ? `<a href="${candidate.url}">Open source</a>` : ''}
+              </div>
+            </div>
+            <div class="score">${candidate.score}%</div>
+          </div>
+          <div class="candidate-body">
+            <label class="meta" style="margin-bottom:10px;">
+              <input type="checkbox" data-candidate="${candidate.id}" ${candidate.included ? 'checked' : ''}>
+              Include this source and its selected segments
+            </label>
+            <p class="summary">${candidate.summary}</p>
+            <div class="excluded-note">Source excluded. Its segment choices are saved here, but they will not count on the right unless you include the source again.</div>
+            <div class="segments"></div>
+          </div>
+        `;
+        const segmentWrap = article.querySelector('.segments');
+        candidate.segments.forEach(segment => {
+          const row = document.createElement('label');
+          row.className = `segment ${segment.selected ? 'selected' : ''}`;
+          row.innerHTML = `
+            <input type="checkbox" data-segment="${segment.id}" ${segment.selected ? 'checked' : ''}>
+            <div>
+              <h4>${segment.title}</h4>
+              <p>${segment.summary}</p>
+              <div class="segment-footer">
+                <span class="pill">${segment.strength}</span>
+                <span>${segment.time}</span>
+                <span>Suggested theme: <b>${segment.theme}</b></span>
+              </div>
+            </div>
+          `;
+          segmentWrap.appendChild(row);
+        });
+        candidateList.appendChild(article);
+      });
+    }
+
+    function renderThemes() {
+      themeList.innerHTML = '';
+      state.themes.forEach((theme, index) => {
+        const article = document.createElement('article');
+        article.className = 'card theme';
+        const rows = theme.segmentIds
+          .map(id => segmentById(id))
+          .filter(Boolean)
+          .map(segment => `
+            <div class="supporting-row">
+              <b>${segment.title}</b>
+              ${segment.source} · ${segment.time}
+            </div>
+          `).join('');
+        article.innerHTML = `
+          <div class="theme-head">
+            <input type="checkbox" data-theme-approved="${theme.id}" ${theme.approved ? 'checked' : ''}>
+            <div>
+              <textarea class="theme-title" data-theme-title="${theme.id}">${theme.title}</textarea>
+              <textarea class="theme-summary" data-theme-summary="${theme.id}">${theme.summary}</textarea>
+            </div>
+            <div class="mini-actions">
+              <button class="icon-btn" data-theme-up="${theme.id}" ${index === 0 ? 'disabled' : ''}>↑</button>
+              <button class="icon-btn" data-theme-down="${theme.id}" ${index === state.themes.length - 1 ? 'disabled' : ''}>↓</button>
+              <button class="icon-btn" data-theme-delete="${theme.id}">×</button>
+            </div>
+          </div>
+          <div class="supporting">
+            ${rows || '<div class="empty">No supporting segments mapped yet. Add selected segments through regeneration or later editor controls.</div>'}
+          </div>
+        `;
+        themeList.appendChild(article);
+      });
+      autoGrowTextareas();
+    }
+
+    function renderThemes() {
+      themeList.innerHTML = '';
+      state.themes.forEach(theme => {
+        const article = document.createElement('article');
+        article.className = `card theme ${theme.collapsed ? 'collapsed' : ''}`;
+        article.dataset.themeCard = theme.id;
+        const visibleSegments = theme.segmentIds.map(id => segmentById(id)).filter(Boolean);
+        const rows = visibleSegments.map(segment => `
+          <div class="supporting-row">
+            <div>
+              <b>${segment.title}</b>
+              ${segment.source} · ${segment.time}
+            </div>
+            <button class="icon-btn" data-remove-segment="${theme.id}:${segment.id}" title="Remove evidence">×</button>
+          </div>
+        `).join('');
+        const badges = [
+          theme.recurring ? '<span class="pill">default lane</span>' : '',
+          theme.custom ? '<span class="pill">custom</span>' : '',
+          theme.collapsed ? '<span class="pill">collapsed</span>' : ''
+        ].filter(Boolean).join('');
+        article.innerHTML = `
+          <div class="theme-head">
+            <button class="drag-handle" draggable="true" data-drag-theme="${theme.id}" title="Drag to reorder">⋮⋮</button>
+            <input type="checkbox" data-theme-approved="${theme.id}" ${theme.approved ? 'checked' : ''}>
+            <div>
+              <div class="theme-badges">${badges}</div>
+              <div class="theme-title-row">
+                <textarea class="theme-title" data-theme-title="${theme.id}">${theme.title}</textarea>
+                <span class="theme-count">${visibleSegments.length} items</span>
+              </div>
+            </div>
+            <div class="mini-actions">
+              <button class="icon-btn" data-theme-collapse="${theme.id}" title="${theme.collapsed ? 'Expand' : 'Collapse'}">${theme.collapsed ? '+' : '-'}</button>
+              <button class="icon-btn" data-theme-delete="${theme.id}" title="Delete theme">×</button>
+            </div>
+          </div>
+          <div class="theme-details">
+            <textarea class="theme-summary" data-theme-summary="${theme.id}">${theme.summary}</textarea>
+            <div class="evidence-actions">
+              <button class="micro-btn" data-find-evidence="${theme.id}">Find Matching Evidence</button>
+            </div>
+            <div class="supporting">
+              ${rows || '<div class="empty">No supporting evidence mapped yet. Select segments on the left or click Find Matching Evidence.</div>'}
+            </div>
+          </div>
+        `;
+        themeList.appendChild(article);
+      });
+      autoGrowTextareas();
+    }
+
+    function updateMetrics() {
+      const selected = selectedSegments();
+      const approvedThemes = state.themes.filter(theme => theme.approved);
+      const sourceKinds = new Set(state.candidates.filter(c => c.included).map(c => sourceKindClass(c.kind)));
+      const audienceLabel = state.audience === 'c_suite' ? 'C-suite' : 'operators';
+      document.getElementById('metric-candidates').textContent = state.candidates.filter(c => c.included).length;
+      document.getElementById('metric-segments').textContent = selected.length;
+      document.getElementById('metric-themes').textContent = approvedThemes.length;
+      document.getElementById('metric-sources').textContent = sourceKinds.size;
+      statusEl.textContent = `${selected.length} segments selected · ${approvedThemes.length} themes approved · ${audienceLabel} lens`;
+    }
+
+    function render() {
+      renderCandidates();
+      renderThemes();
+      updateMetrics();
+    }
+
+    function regenerateThemes() {
+      const selected = selectedSegments();
+      const approvedThemes = state.themes.filter(theme => theme.approved);
+      const keptThemes = approvedThemes.map(theme => ({
+        ...theme,
+        segmentIds: theme.recurring || theme.custom ? [] : [...theme.segmentIds]
+      }));
+      const otherTheme = {
+        id: `theme-other-${Date.now()}`,
+        approved: true,
+        collapsed: false,
+        title: 'Other signals to consider',
+        summary: 'Selected items that did not fit the approved theme set cleanly. Review these before final publishing.',
+        segmentIds: []
+      };
+
+      selected.forEach(segment => {
+        const customMatch = keptThemes.find(theme => theme.custom && customThemeMatch(theme, segment));
+        const theme = customMatch || bestApprovedThemeForSegment(segment, keptThemes);
+        if (theme) {
+          if (!theme.segmentIds.includes(segment.id)) theme.segmentIds.push(segment.id);
+          return;
+        }
+        otherTheme.segmentIds.push(segment.id);
+      });
+
+      state.themes = keptThemes.filter(theme => {
+        if (theme.recurring || theme.custom) return true;
+        return theme.segmentIds.length > 0;
+      });
+      if (otherTheme.segmentIds.length) state.themes.push(otherTheme);
+      statusEl.textContent = 'Evidence rebucketed into the current approved theme structure.';
+      render();
+    }
+
+    function buildReviewObject() {
+      return {
+        run_date: '2026-05-11',
+        status: state.approved ? 'approved' : 'draft',
+        target_audience: state.audience,
+        audience_guidance: state.audience === 'c_suite'
+          ? 'Write for executives: emphasize strategic implications, business risk, vendor/platform movement, budget/ROI, and decisions leaders should watch.'
+          : 'Write for operators and AI implementers: emphasize technical architecture, workflow design, tool choices, model behavior, integration patterns, and practical next actions.',
+        selected_candidates: state.candidates.filter(c => c.included).map(c => ({
+          id: c.id,
+          title: c.title,
+          source: c.source,
+          url: c.url,
+          selected_segments: c.segments.filter(s => s.selected).map(s => s.id)
+        })),
+        selected_segments: selectedSegments().map(segment => ({
+          id: segment.id,
+          source: segment.source,
+          candidate: segment.candidateTitle,
+          title: segment.title,
+          summary: segment.summary,
+          time: segment.time,
+          suggested_theme: segment.theme,
+          strength: segment.strength
+        })),
+        approved_themes: state.themes.filter(t => t.approved).map((theme, index) => ({
+          order: index + 1,
+          id: theme.id,
+          title: theme.title,
+          summary: theme.summary,
+        supporting_segments: theme.segmentIds
+            .map(id => segmentById(id))
+            .filter(Boolean)
+            .map(segment => segment.id)
+      }))
+      };
+    }
+
+    function showExport() {
+      const panel = document.getElementById('export-panel');
+      const box = document.getElementById('export-box');
+      box.value = JSON.stringify(buildReviewObject(), null, 2);
+      panel.classList.add('open');
+      panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    document.addEventListener('change', event => {
+      const candidateId = event.target.dataset.candidate;
+      if (candidateId) {
+        const candidate = state.candidates.find(c => c.id === candidateId);
+        candidate.included = event.target.checked;
+        render();
+        return;
+      }
+
+      const segmentId = event.target.dataset.segment;
+      if (segmentId) {
+        const candidate = state.candidates.find(c => c.segments.some(s => s.id === segmentId));
+        const segment = candidate.segments.find(s => s.id === segmentId);
+        segment.selected = event.target.checked;
+        render();
+        return;
+      }
+
+      const themeId = event.target.dataset.themeApproved;
+      if (themeId) {
+        const theme = state.themes.find(t => t.id === themeId);
+        theme.approved = event.target.checked;
+        if (theme.approved) {
+          state.rejectedThemeNames.delete(theme.title.toLowerCase());
+        } else {
+          state.rejectedThemeNames.add(theme.title.toLowerCase());
+        }
+        updateMetrics();
+      }
+
+      if (event.target.name === 'audience') {
+        state.audience = event.target.value;
+        updateMetrics();
+      }
+    });
+
+    document.addEventListener('input', event => {
+      const titleId = event.target.dataset.themeTitle;
+      if (titleId) {
+        const theme = state.themes.find(t => t.id === titleId);
+        theme.title = event.target.value;
+        autoGrow(event.target);
+      }
+      const summaryId = event.target.dataset.themeSummary;
+      if (summaryId) {
+        const theme = state.themes.find(t => t.id === summaryId);
+        theme.summary = event.target.value;
+        autoGrow(event.target);
+      }
+      if (event.target.classList.contains('new-textarea')) autoGrow(event.target);
+    });
+
+    document.addEventListener('click', event => {
+      const collapseId = event.target.dataset.themeCollapse;
+      if (collapseId) {
+        const theme = state.themes.find(t => t.id === collapseId);
+        theme.collapsed = !theme.collapsed;
+        render();
+        return;
+      }
+
+      const removeSegment = event.target.dataset.removeSegment;
+      if (removeSegment) {
+        const [themeId, segmentId] = removeSegment.split(':');
+        const theme = state.themes.find(t => t.id === themeId);
+        theme.segmentIds = theme.segmentIds.filter(id => id !== segmentId);
+        render();
+        return;
+      }
+
+      const findEvidenceId = event.target.dataset.findEvidence;
+      if (findEvidenceId) {
+        const theme = state.themes.find(t => t.id === findEvidenceId);
+        const matches = findMatchingSegments(theme).map(segment => segment.id);
+        const merged = new Set([...theme.segmentIds, ...matches]);
+        theme.segmentIds = [...merged];
+        theme.collapsed = false;
+        statusEl.textContent = matches.length
+          ? `Mapped ${matches.length} matching selected segment(s) to ${theme.title}.`
+          : `No matching selected evidence found for ${theme.title}.`;
+        render();
+        return;
+      }
+
+      const upId = event.target.dataset.themeUp;
+      if (upId) {
+        const index = state.themes.findIndex(t => t.id === upId);
+        if (index > 0) {
+          const [theme] = state.themes.splice(index, 1);
+          state.themes.splice(index - 1, 0, theme);
+          render();
+        }
+      }
+
+      const downId = event.target.dataset.themeDown;
+      if (downId) {
+        const index = state.themes.findIndex(t => t.id === downId);
+        if (index < state.themes.length - 1) {
+          const [theme] = state.themes.splice(index, 1);
+          state.themes.splice(index + 1, 0, theme);
+          render();
+        }
+      }
+
+      const deleteId = event.target.dataset.themeDelete;
+      if (deleteId) {
+        const theme = state.themes.find(t => t.id === deleteId);
+        if (theme) state.rejectedThemeNames.add(theme.title.toLowerCase());
+        state.themes = state.themes.filter(t => t.id !== deleteId);
+        render();
+      }
+    });
+
+    document.addEventListener('dragstart', event => {
+      if (!event.target.closest('[data-drag-theme]')) {
+        event.preventDefault();
+        return;
+      }
+      const card = event.target.closest('[data-theme-card]');
+      if (!card) return;
+      state.draggedThemeId = card.dataset.themeCard;
+      card.classList.add('dragging');
+      event.dataTransfer.effectAllowed = 'move';
+    });
+
+    document.addEventListener('dragend', event => {
+      const card = event.target.closest('[data-theme-card]');
+      if (card) card.classList.remove('dragging');
+      state.draggedThemeId = null;
+    });
+
+    document.addEventListener('dragover', event => {
+      if (!event.target.closest('[data-theme-card]')) return;
+      event.preventDefault();
+      event.dataTransfer.dropEffect = 'move';
+    });
+
+    document.addEventListener('drop', event => {
+      const targetCard = event.target.closest('[data-theme-card]');
+      if (!targetCard || !state.draggedThemeId) return;
+      event.preventDefault();
+      const fromIndex = state.themes.findIndex(theme => theme.id === state.draggedThemeId);
+      const toIndex = state.themes.findIndex(theme => theme.id === targetCard.dataset.themeCard);
+      if (fromIndex < 0 || toIndex < 0 || fromIndex === toIndex) return;
+      const [theme] = state.themes.splice(fromIndex, 1);
+      state.themes.splice(toIndex, 0, theme);
+      render();
+    });
+
+    document.getElementById('select-strong').addEventListener('click', () => {
+      state.candidates.forEach(candidate => {
+        candidate.included = true;
+        candidate.segments.forEach(segment => {
+          segment.selected = segment.strength === 'strong';
+        });
+      });
+      render();
+    });
+
+    document.getElementById('regenerate-themes').addEventListener('click', regenerateThemes);
+    document.getElementById('export-json').addEventListener('click', showExport);
+    document.getElementById('approve').addEventListener('click', () => {
+      state.approved = true;
+      showExport();
+      document.getElementById('brief-link-wrap').classList.add('open');
+      const audienceLabel = state.audience === 'c_suite' ? 'C-suite executives' : 'operators and implementers';
+      statusEl.textContent = `Approved for ${audienceLabel}. Generated brief link is ready.`;
+    });
+
+    document.getElementById('add-theme').addEventListener('click', () => {
+      const title = document.getElementById('new-theme-title').value.trim();
+      const summary = document.getElementById('new-theme-summary').value.trim();
+      if (!title) return;
+      const selected = selectedSegments();
+      const pendingTheme = {
+        id: `theme-custom-${Date.now()}`,
+        approved: true,
+        title,
+        summary: summary || 'New editorial theme added by reviewer.',
+        custom: true,
+        collapsed: false,
+        segmentIds: []
+      };
+      pendingTheme.segmentIds = selected
+        .filter(segment => customThemeMatch(pendingTheme, segment))
+        .map(segment => segment.id);
+      const matched = new Set(pendingTheme.segmentIds);
+      state.themes.forEach(theme => {
+        theme.segmentIds = theme.segmentIds.filter(id => !matched.has(id));
+      });
+      state.themes.push({
+        ...pendingTheme
+      });
+      document.getElementById('new-theme-title').value = '';
+      document.getElementById('new-theme-summary').value = '';
+      render();
+      statusEl.textContent = matched.size
+        ? `Added theme and mapped ${matched.size} matching selected segment(s).`
+        : 'Added theme with no matching selected segments yet. Select supporting segments or refine the theme text, then regenerate.';
+    });
+
+    render();
+  </script>
+</body>
+</html>

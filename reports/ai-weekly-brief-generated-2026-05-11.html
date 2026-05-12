@@ -1,0 +1,550 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AI Weekly Brief - Executive Signal Map</title>
+  <style>
+    :root {
+      --ink:#0d1424;
+      --text:#28364d;
+      --muted:#66758f;
+      --line:#d9e2ef;
+      --soft:#f4f7fb;
+      --panel:#ffffff;
+      --blue:#1463ff;
+      --cyan:#05a6c8;
+      --green:#1b9f6a;
+      --amber:#f59e0b;
+      --red:#dc3f53;
+      --violet:#6d5bd0;
+      --navy:#111b2f;
+      --shadow:0 18px 45px rgba(15,23,42,.09);
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      color:var(--ink);
+      background:#eef3f8;
+      font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      line-height:1.45;
+    }
+    a{color:var(--blue);text-decoration:none}
+    a:hover{text-decoration:underline}
+    .wrap{width:min(1280px,calc(100% - 34px));margin:0 auto}
+
+    header{
+      background:
+        radial-gradient(circle at 82% 8%,rgba(20,99,255,.16),transparent 30%),
+        linear-gradient(180deg,#fff 0%,#f5f8fc 100%);
+      border-bottom:1px solid var(--line);
+    }
+    .hero{padding:34px 0 24px}
+    .hero-top{display:grid;grid-template-columns:minmax(0,1fr) 360px;gap:28px;align-items:end}
+    .date-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:13px}
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      border:1px solid #dce5f0;
+      border-radius:999px;
+      background:#fff;
+      color:#485872;
+      padding:4px 9px;
+      font-size:12px;
+      font-weight:850;
+      line-height:1.1;
+    }
+    h1{font-size:clamp(42px,7vw,86px);line-height:.92;margin:0 0 12px;letter-spacing:0}
+    .dek{max-width:860px;margin:0;color:var(--text);font-size:19px}
+    .brief-card{
+      border:1px solid var(--line);
+      border-radius:8px;
+      background:#fff;
+      box-shadow:var(--shadow);
+      padding:17px;
+    }
+    .brief-card h2{font-size:17px;margin:0 0 10px}
+    .brief-card ol{margin:0;padding-left:20px;color:var(--text);font-size:14px}
+    .brief-card li{margin:0 0 7px}
+
+    .nav-strip{
+      display:grid;
+      grid-template-columns:repeat(5,1fr);
+      gap:10px;
+      padding:18px 0 0;
+    }
+    .nav-card{
+      border:1px solid var(--line);
+      border-radius:8px;
+      background:#fff;
+      padding:12px;
+      min-height:104px;
+      box-shadow:0 10px 24px rgba(15,23,42,.05);
+      transition:transform .22s ease,box-shadow .22s ease,border-color .22s ease;
+    }
+    .nav-card:hover{transform:translateY(-4px);box-shadow:0 18px 38px rgba(15,23,42,.12);text-decoration:none;border-color:#b8c8dd}
+    .nav-card b{display:block;font-size:15px;margin-bottom:6px}
+    .nav-card span{display:block;color:var(--muted);font-size:12px;font-weight:700}
+    .nav-card:nth-child(1){border-top:5px solid var(--blue)}
+    .nav-card:nth-child(2){border-top:5px solid var(--green)}
+    .nav-card:nth-child(3){border-top:5px solid var(--violet)}
+    .nav-card:nth-child(4){border-top:5px solid var(--amber)}
+    .nav-card:nth-child(5){border-top:5px solid var(--red)}
+
+    main{padding:22px 0 70px}
+    .signal{margin-bottom:22px;border:1px solid var(--line);border-radius:8px;background:#fff;box-shadow:var(--shadow);overflow:hidden}
+    .signal-head{display:grid;grid-template-columns:1fr auto;gap:18px;align-items:start;padding:20px 22px;border-bottom:1px solid var(--line)}
+    .signal h2{font-size:31px;line-height:1.05;margin:0 0 7px;letter-spacing:0}
+    .signal-head p{margin:0;color:var(--text);font-size:16px;max-width:850px}
+    .signal-num{font-size:46px;line-height:1;font-weight:950;color:#dbe7f7}
+    .signal-body{display:grid;grid-template-columns:minmax(0,1fr) 360px;gap:18px;padding:18px 22px 22px}
+    .story{display:grid;gap:14px}
+    .story-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+    .fact{
+      border:1px solid #e2e9f3;
+      border-radius:8px;
+      background:#fbfdff;
+      padding:12px;
+    }
+    .fact:nth-child(1){background:#f5f9ff}
+    .fact:nth-child(2){background:#f1fbf7}
+    .fact:nth-child(3){background:#fff8ed}
+    .fact b{display:block;font-size:14px;margin-bottom:5px}
+    .fact p{margin:0;color:var(--text);font-size:13px}
+    .callout{
+      border-left:5px solid var(--blue);
+      background:linear-gradient(90deg,#10203a,#1d355c);
+      border-radius:8px;
+      padding:13px 14px;
+      color:#dbeafe;
+      font-size:15px;
+    }
+    .callout b{color:#fff}
+    .side-panel{display:grid;gap:12px}
+    .action-box{
+      border:1px solid #dce5f0;
+      border-radius:8px;
+      background:#f8fafc;
+      padding:14px;
+    }
+    .action-box h3{font-size:15px;margin:0 0 8px}
+    .action-box ul{margin:0;padding-left:18px;color:var(--text);font-size:13px}
+    .action-box li{margin-bottom:6px}
+
+    .infographic{
+      border:1px solid #dce5f0;
+      border-radius:8px;
+      background:
+        linear-gradient(#e8edf5 1px,transparent 1px),
+        linear-gradient(90deg,#e8edf5 1px,transparent 1px),
+        #fbfdff;
+      background-size:28px 28px;
+      padding:16px;
+      overflow:hidden;
+      cursor:zoom-in;
+      transition:transform .22s ease,box-shadow .22s ease,border-color .22s ease;
+    }
+    .infographic:hover{transform:translateY(-2px);box-shadow:0 16px 34px rgba(15,23,42,.13);border-color:#9fb7d6}
+    .infographic::after{content:"Click to expand";display:block;margin-top:10px;color:var(--muted);font-size:11px;font-weight:850;text-align:right}
+    .info-title{font-size:15px;font-weight:950;margin:0 0 12px;color:var(--ink)}
+    .lane-map{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
+    .lane{
+      min-height:118px;
+      border:2px solid #d4deeb;
+      border-radius:8px;
+      background:rgba(255,255,255,.84);
+      padding:10px;
+      display:grid;
+      align-content:start;
+      gap:7px;
+    }
+    .lane b{font-size:13px}
+    .lane small{color:var(--muted);font-size:11px;font-weight:750}
+    .lane .metric{font-size:24px;font-weight:950;color:var(--blue)}
+
+    .agent-stack{display:grid;grid-template-columns:1fr;gap:9px}
+    .stack-row{display:grid;grid-template-columns:150px 1fr;gap:9px;align-items:center}
+    .stack-row b{font-size:13px}
+    .stack-row div:last-child{height:34px;border-radius:8px;background:#e9f2ff;border:1px solid #cfe0ff;display:flex;align-items:center;padding:0 10px;color:#1d4ed8;font-size:12px;font-weight:850}
+    .stack-row:nth-child(2) div:last-child{background:#ecfdf5;border-color:#bdebd4;color:#047857}
+    .stack-row:nth-child(3) div:last-child{background:#f5f3ff;border-color:#ddd6fe;color:#5b21b6}
+    .stack-row:nth-child(4) div:last-child{background:#fff7ed;border-color:#fed7aa;color:#9a3412}
+
+    .power-line{display:grid;gap:9px}
+    .axis{display:grid;grid-template-columns:88px repeat(4,1fr);gap:10px;margin:0 0 4px;color:var(--muted);font-size:10px;font-weight:900;text-transform:uppercase}
+    .axis span:not(:first-child){text-align:right}
+    .power-item{display:grid;grid-template-columns:88px 1fr;gap:10px;align-items:center}
+    .power-item span{font-size:12px;font-weight:900;color:var(--muted)}
+    .power-bar{height:18px;border-radius:999px;background:#e6edf7;overflow:hidden}
+    .power-fill{height:100%;border-radius:inherit;background:linear-gradient(90deg,var(--cyan),var(--amber))}
+
+    .battlefield{display:grid;grid-template-columns:1fr 42px 1fr;gap:10px;align-items:stretch}
+    .battle-card{border:1px solid #dce5f0;border-radius:8px;background:#fff;padding:12px}
+    .battle-card h4{margin:0 0 8px;font-size:14px}
+    .battle-card p{margin:0;color:var(--text);font-size:12px}
+    .vs{display:flex;align-items:center;justify-content:center;font-weight:950;color:var(--muted)}
+
+    .power-map{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+    .move-node{border:1px solid #dce5f0;border-radius:8px;background:#fff;padding:11px;min-height:94px}
+    .move-node b{display:block;font-size:13px;margin-bottom:5px}
+    .move-node p{margin:0;color:var(--text);font-size:12px}
+    .move-node:nth-child(1){border-left:5px solid var(--red)}
+    .move-node:nth-child(2){border-left:5px solid var(--amber)}
+    .move-node:nth-child(3){border-left:5px solid var(--blue)}
+    .move-node:nth-child(4){border-left:5px solid var(--green)}
+
+    details.sources{border-top:1px solid #e7edf5;margin:0 22px 18px;padding-top:10px}
+    details.sources summary{cursor:pointer;color:var(--muted);font-size:12px;font-weight:900}
+    .source-list{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-top:10px}
+    .source-list a,.source-list span{border:1px solid #e1e8f2;border-radius:8px;background:#fbfdff;padding:8px;color:var(--text);font-size:12px;font-weight:750}
+
+    .footer-note{color:var(--muted);font-size:12px;margin-top:18px}
+
+    .lightbox{position:fixed;inset:0;background:rgba(7,13,24,.72);display:none;z-index:50;padding:28px;align-items:center;justify-content:center}
+    .lightbox.open{display:flex}
+    .lightbox-inner{width:min(1180px,100%);max-height:90vh;overflow:auto;border-radius:10px;background:#fff;padding:18px;box-shadow:0 28px 80px rgba(0,0,0,.35)}
+    .lightbox-bar{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:12px}
+    .lightbox-bar b{font-size:18px}
+    .lightbox-close{border:1px solid #dce5f0;background:#fff;border-radius:8px;padding:8px 10px;font-weight:900;cursor:pointer}
+    .lightbox-content .infographic{cursor:default;transform:none;box-shadow:none}
+    .lightbox-content .infographic::after{display:none}
+
+    @media(max-width:1040px){
+      .hero-top,.signal-body{grid-template-columns:1fr}
+      .nav-strip{grid-template-columns:repeat(2,1fr)}
+      .story-grid{grid-template-columns:1fr}
+    }
+    @media(max-width:660px){
+      .wrap{width:min(100% - 22px,1280px)}
+      .nav-strip,.source-list,.lane-map,.battlefield{grid-template-columns:1fr}
+      .vs{padding:4px}
+      .stack-row,.power-item{grid-template-columns:1fr}
+      .signal-head{grid-template-columns:1fr}
+      .signal-num{display:none}
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap hero">
+      <div class="hero-top">
+        <div>
+          <div class="date-row">
+            <span class="pill">AI Weekly Brief</span>
+            <span class="pill">Week of May 11, 2026</span>
+            <span class="pill">Executive edition</span>
+          </div>
+          <h1>The Week AI Became Infrastructure</h1>
+          <p class="dek">The useful story this week is not “more AI news.” It is that AI is reorganizing into infrastructure layers: model portfolios, agent operating systems, distribution surfaces, compute supply chains, and power politics.</p>
+        </div>
+        <aside class="brief-card">
+          <h2>Read This First</h2>
+          <ol>
+            <li>Model releases are now a portfolio problem, not a single-vendor race.</li>
+            <li>Agents are moving from assistants to execution layers.</li>
+            <li>Distribution is shifting into search, desktop, browser, and creative tools.</li>
+            <li>Compute access is becoming strategic leverage.</li>
+          </ol>
+        </aside>
+      </div>
+      <nav class="nav-strip" aria-label="Top signals">
+        <a class="nav-card" href="#model-news"><b>Model News</b><span>The race is splitting into lanes: coding, realtime, open, image, science, and efficient deployment.</span></a>
+        <a class="nav-card" href="#agents"><b>All Things Agents</b><span>Claude Code, Codex, and local agents point to a new operating layer for work.</span></a>
+        <a class="nav-card" href="#platforms"><b>Platform Plays</b><span>AI is being embedded where users already work, search, design, and decide.</span></a>
+        <a class="nav-card" href="#infrastructure"><b>Economics & Infrastructure</b><span>Compute, memory, power, and data center access are now business constraints.</span></a>
+        <a class="nav-card" href="#power-moves"><b>Power Moves</b><span>Founders, lawsuits, alliances, and governance fights now shape AI market structure.</span></a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="signal" id="model-news">
+      <div class="signal-head">
+        <div>
+          <h2>Model News: The Race Is Splitting Into Lanes</h2>
+          <p>The old question was “who has the best model?” The better question is now “which model lane matters for this workflow?” Coding, realtime voice, open weights, image generation, and scientific reasoning are becoming separate competitive arenas.</p>
+        </div>
+        <div class="signal-num">01</div>
+      </div>
+      <div class="signal-body">
+        <div class="story">
+          <div class="infographic" data-infographic="Model Portfolio Map">
+            <p class="info-title">Model Portfolio Map</p>
+            <div class="lane-map">
+              <div class="lane"><b>Coding Agents</b><span class="metric">High</span><small>Claude Code, Codex, developer workflows</small></div>
+              <div class="lane"><b>Realtime Voice</b><span class="metric">Rising</span><small>GPT-Realtime-2, support/call products</small></div>
+              <div class="lane"><b>Open Models</b><span class="metric">Tense</span><small>Qwen, MiniMax, licensing pressure</small></div>
+              <div class="lane"><b>Image/Media</b><span class="metric">Active</span><small>Microsoft image, Midjourney, DaVinci</small></div>
+              <div class="lane"><b>Science</b><span class="metric">Niche</span><small>GPT-Rosalind and specialized research models</small></div>
+            </div>
+          </div>
+          <div class="story-grid">
+            <div class="fact"><b>What happened</b><p>A cluster of model updates landed across Claude, MiniMax, Qwen, GPT-Rosalind, Microsoft image, Midjourney, and realtime audio.</p></div>
+            <div class="fact"><b>Why it matters</b><p>The winner may not be a single model. The winner may be the organization that routes work to the right model lane.</p></div>
+            <div class="fact"><b>Executive move</b><p>Build a model portfolio rubric: capability, cost, privacy, latency, vendor risk, and workflow fit.</p></div>
+          </div>
+          <div class="callout"><b>Business Insight:</b> model strategy is starting to look like cloud strategy. You will not use one provider for every workload forever.</div>
+        </div>
+        <aside class="side-panel">
+          <div class="action-box">
+            <h3>Decision Questions</h3>
+            <ul>
+              <li>Which workflows require frontier reasoning?</li>
+              <li>Where is a cheaper specialized model good enough?</li>
+              <li>Which use cases need realtime audio or image-native models?</li>
+            </ul>
+          </div>
+          <div class="action-box">
+            <h3>Watch Next</h3>
+            <ul>
+              <li>Open-weight licensing restrictions.</li>
+              <li>Realtime API pricing and quality.</li>
+              <li>Whether coding-agent gains translate outside engineering.</li>
+            </ul>
+          </div>
+        </aside>
+      </div>
+      <details class="sources"><summary>References</summary><div class="source-list"><a href="https://www.youtube.com/watch?v=bIrzOQtnp8w">Matt Wolfe model roundup</a><a href="https://martinalderson.com/posts/open-weights-are-quietly-closing-up/">Open weights are quietly closing up</a></div></details>
+    </section>
+
+    <section class="signal" id="agents">
+      <div class="signal-head">
+        <div>
+          <h2>All Things Agents: From Chatbot to Operating Layer</h2>
+          <p>The agent story is no longer “AI writes text.” The interesting move is AI operating across files, folders, tools, browsers, documents, code, and workflows with enough context to complete multi-step work.</p>
+        </div>
+        <div class="signal-num">02</div>
+      </div>
+      <div class="signal-body">
+        <div class="story">
+          <div class="infographic" data-infographic="The Agent OS Stack">
+            <p class="info-title">The Agent OS Stack</p>
+            <div class="agent-stack">
+              <div class="stack-row"><b>Interface</b><div>Chat, terminal, browser, desktop, IDE</div></div>
+              <div class="stack-row"><b>Context</b><div>Files, meetings, transcripts, tasks, CRM, docs</div></div>
+              <div class="stack-row"><b>Execution</b><div>Tools, APIs, scripts, browser actions, code changes</div></div>
+              <div class="stack-row"><b>Governance</b><div>Permissions, review gates, audit trail, cost telemetry</div></div>
+            </div>
+          </div>
+          <div class="story-grid">
+            <div class="fact"><b>What happened</b><p>Claude Code and Codex are being framed less as coding tools and more as local operators that can execute across workflows.</p></div>
+            <div class="fact"><b>Why it matters</b><p>The adoption bottleneck shifts from prompting skill to workflow architecture: roles, artifacts, tools, validation, and permissions.</p></div>
+            <div class="fact"><b>Executive move</b><p>Pick one repeatable workflow and redesign it for agent delegation, not chatbot assistance.</p></div>
+          </div>
+          <div class="callout"><b>Business Insight:</b> agents fail when the workflow is vague. They get useful when the job has boundaries, tools, and a review loop.</div>
+        </div>
+        <aside class="side-panel">
+          <div class="action-box">
+            <h3>Practical Pilot</h3>
+            <ul>
+              <li>Choose one annoying weekly workflow.</li>
+              <li>Define inputs, outputs, allowed tools, and review gate.</li>
+              <li>Measure time saved and error rate, not novelty.</li>
+            </ul>
+          </div>
+          <div class="action-box">
+            <h3>Risk</h3>
+            <ul>
+              <li>Too much permission too early.</li>
+              <li>No audit trail for generated work.</li>
+              <li>No cost ceiling for long-running tasks.</li>
+            </ul>
+          </div>
+        </aside>
+      </div>
+      <details class="sources"><summary>References</summary><div class="source-list"><a href="https://drstorm.substack.com/p/why-claude-code-changes-more-than">Digital Storm: Why Claude Code Changes More Than Software Development</a><a href="https://www.youtube.com/watch?v=wzADqzsm6pI">Openclaw Labs: workflow before memory</a><a href="https://youtu.be/_6O19bEZgMc">Limitless: agentic application layer</a></div></details>
+    </section>
+
+    <section class="signal" id="platforms">
+      <div class="signal-head">
+        <div>
+          <h2>Platform Plays: AI Is Moving Into Existing Surfaces</h2>
+          <p>Google, OpenAI, Canva, Perplexity, and others are fighting for distribution through the places work already happens: search, desktop, browser, creative tools, and decision journeys.</p>
+        </div>
+        <div class="signal-num">03</div>
+      </div>
+      <div class="signal-body">
+        <div class="story">
+          <div class="infographic" data-infographic="The New Distribution Map">
+            <p class="info-title">The New Distribution Map</p>
+            <div class="battlefield">
+              <div class="battle-card"><h4>Old Surface</h4><p>Search query, app launcher, browser tab, design tool, spreadsheet, help desk.</p></div>
+              <div class="vs">></div>
+              <div class="battle-card"><h4>AI-Native Surface</h4><p>Conversational intent, AI Mode, desktop agent, generated asset, workflow automation, embedded recommendations.</p></div>
+            </div>
+          </div>
+          <div class="story-grid">
+            <div class="fact"><b>What happened</b><p>Google pushed AI deeper into Search AI Mode, Chrome/Desktop/Gemini surfaces; OpenAI expanded ChatGPT ad buying; Canva and others keep embedding AI into creation workflows.</p></div>
+            <div class="fact"><b>Why it matters</b><p>The next distribution advantage may come from owning the moment of intent, not the best standalone app.</p></div>
+            <div class="fact"><b>Executive move</b><p>Audit customer and employee journeys where AI answers could replace search, clicks, or handoffs.</p></div>
+          </div>
+          <div class="callout"><b>Business Insight:</b> AI platforms are not just selling tools. They are trying to own the doorway where decisions begin.</div>
+        </div>
+        <aside class="side-panel">
+          <div class="action-box">
+            <h3>Business Implication</h3>
+            <ul>
+              <li>SEO and paid search may become answer-surface strategy.</li>
+              <li>Internal adoption follows tools already in the flow of work.</li>
+              <li>Creative and knowledge-work platforms can become AI command centers.</li>
+            </ul>
+          </div>
+          <div class="action-box">
+            <h3>Links</h3>
+            <ul>
+              <li><a href="https://openai.com/index/new-ways-to-buy-chatgpt-ads/">OpenAI ChatGPT ads update</a></li>
+              <li><a href="https://www.macrumors.com/2026/05/06/google-search-ai-mode-expert-advice/">Google AI Search changes</a></li>
+            </ul>
+          </div>
+        </aside>
+      </div>
+      <details class="sources"><summary>References</summary><div class="source-list"><a href="https://openai.com/index/new-ways-to-buy-chatgpt-ads/">OpenAI: self-serve ChatGPT ads, CPC bidding, measurement</a><a href="https://www.macrumors.com/2026/05/06/google-search-ai-mode-expert-advice/">Google AI Mode: expert/community perspectives and link previews</a><a href="https://www.youtube.com/watch?v=bIrzOQtnp8w">Matt Wolfe: Google desktop, Gemini, Chrome AI, Canva AI</a></div></details>
+    </section>
+
+    <section class="signal" id="infrastructure">
+      <div class="signal-head">
+        <div>
+          <h2>Economics & Infrastructure: Compute Is the Strategy</h2>
+          <p>AI economics are becoming physical: GPUs, memory, power, cooling, data centers, and strategic access to compute. This is no longer just a technical constraint; it is market leverage.</p>
+        </div>
+        <div class="signal-num">04</div>
+      </div>
+      <div class="signal-body">
+        <div class="story">
+          <div class="infographic" data-infographic="Compute Constraint Chain">
+            <p class="info-title">Compute Constraint Chain</p>
+            <div class="power-line">
+              <div class="axis"><span></span><span>low</span><span>medium</span><span>high</span><span>critical</span></div>
+              <div class="power-item"><span>Capital</span><div class="power-bar"><div class="power-fill" style="width:88%"></div></div></div>
+              <div class="power-item"><span>Power</span><div class="power-bar"><div class="power-fill" style="width:76%"></div></div></div>
+              <div class="power-item"><span>Memory</span><div class="power-bar"><div class="power-fill" style="width:69%"></div></div></div>
+              <div class="power-item"><span>Latency</span><div class="power-bar"><div class="power-fill" style="width:54%"></div></div></div>
+              <div class="power-item"><span>Cost/Token</span><div class="power-bar"><div class="power-fill" style="width:81%"></div></div></div>
+            </div>
+          </div>
+          <div class="story-grid">
+            <div class="fact"><b>What happened</b><p>Anthropic reportedly gained access to SpaceX/xAI Colossus-scale compute, while newsletters highlighted memory and capex as practical bottlenecks.</p></div>
+            <div class="fact"><b>Why it matters</b><p>Compute access can determine product velocity, model availability, pricing, and vendor reliability.</p></div>
+            <div class="fact"><b>Executive move</b><p>Ask vendors about capacity, rate limits, data residency, failover, and cost controls before betting workflows on them.</p></div>
+          </div>
+          <div class="callout"><b>Business Insight:</b> in AI, infrastructure is not back office. It is product strategy.</div>
+        </div>
+        <aside class="side-panel">
+          <div class="action-box">
+            <h3>Budget Lens</h3>
+            <ul>
+              <li>Separate experimentation spend from production AI spend.</li>
+              <li>Track token cost by workflow, not just by vendor.</li>
+              <li>Use routing and caching where quality does not require frontier models.</li>
+            </ul>
+          </div>
+          <div class="action-box">
+            <h3>Vendor Questions</h3>
+            <ul>
+              <li>What happens during peak usage?</li>
+              <li>Can we cap spend by team or workflow?</li>
+              <li>Do we have a fallback model path?</li>
+            </ul>
+          </div>
+        </aside>
+      </div>
+      <details class="sources"><summary>References</summary><div class="source-list"><a href="https://timesofindia.indiatimes.com/technology/tech-news/anthropic-takes-on-openai-expands-ai-infrastructure-with-spacex-deal-joining-google-broadcom-microsoft-nvidia-and-amazon/articleshow/130868969.cms">Report: Anthropic / SpaceX Colossus compute access</a><a href="https://youtu.be/_6O19bEZgMc">Limitless: AI capex and memory bottlenecks</a><a href="https://www.teslarati.com/spacexai-signs-agreement-anthropic-massive-ai-supercomputer-access/">Teslarati: SpaceXAI signs agreement with Anthropic</a></div></details>
+    </section>
+
+    <section class="signal" id="power-moves">
+      <div class="signal-head">
+        <div>
+          <h2>Power Moves: The Drama Is Sometimes the Signal</h2>
+          <p>Founder fights, lawsuits, surprise alliances, and platform politics can feel like gossip. But in AI, they often reveal who controls compute, distribution, governance, and customer trust.</p>
+        </div>
+        <div class="signal-num">05</div>
+      </div>
+      <div class="signal-body">
+        <div class="story">
+          <div class="infographic" data-infographic="Power-Move Decoder">
+            <p class="info-title">Power-Move Decoder</p>
+            <div class="power-map">
+              <div class="move-node"><b>Founder / Governance</b><p>Musk vs. Altman reveals control, incentives, and trust risk.</p></div>
+              <div class="move-node"><b>Compute Leverage</b><p>SpaceX/xAI + Anthropic shows capacity as bargaining power.</p></div>
+              <div class="move-node"><b>Monetization Pressure</b><p>ChatGPT ads turn conversations into a new intent market.</p></div>
+              <div class="move-node"><b>Distribution Control</b><p>Google AI Search changes who gets traffic and authority.</p></div>
+            </div>
+          </div>
+          <div class="story-grid">
+            <div class="fact"><b>What happened</b><p>Moonshots covered Musk/Altman legal dynamics; newsletters flagged Anthropic compute deals and OpenAI monetization moves.</p></div>
+            <div class="fact"><b>Why it matters</b><p>AI vendor choice is increasingly tied to ownership structures, partnership webs, and incentives.</p></div>
+            <div class="fact"><b>Executive move</b><p>Track “who depends on whom” across compute, cloud, models, data, advertising, and enterprise distribution.</p></div>
+          </div>
+          <div class="callout"><b>Business Insight:</b> the soap opera matters when the actors also control the rails.</div>
+        </div>
+        <aside class="side-panel">
+          <div class="action-box">
+            <h3>What to Monitor</h3>
+            <ul>
+              <li>Compute partnerships that change vendor capacity.</li>
+              <li>Governance fights that affect enterprise trust.</li>
+              <li>Advertising and monetization moves inside AI assistants.</li>
+            </ul>
+          </div>
+          <div class="action-box">
+            <h3>Board-Level Translation</h3>
+            <ul>
+              <li>This is not gossip if it changes vendor risk.</li>
+              <li>This is not strategy if it cannot affect spend, access, trust, or distribution.</li>
+            </ul>
+          </div>
+        </aside>
+      </div>
+      <details class="sources"><summary>References</summary><div class="source-list"><a href="https://youtu.be/Jg2jJH1K0o8">Moonshots: Musk / Altman trial segment</a><a href="https://openai.com/index/new-ways-to-buy-chatgpt-ads/">OpenAI: ChatGPT ads buying</a><a href="https://timesofindia.indiatimes.com/technology/tech-news/anthropic-takes-on-openai-expands-ai-infrastructure-with-spacex-deal-joining-google-broadcom-microsoft-nvidia-and-amazon/articleshow/130868969.cms">Anthropic / SpaceX compute report</a></div></details>
+    </section>
+
+    <p class="footer-note">Draft generated from the local editorial review prototype, selected YouTube segments, recent Gmail newsletters, and spot-checked public links. References are intentionally tucked into each section so the page reads as a newsletter, not a source index.</p>
+  </main>
+  <div class="lightbox" id="lightbox" aria-hidden="true">
+    <div class="lightbox-inner">
+      <div class="lightbox-bar">
+        <b id="lightbox-title">Infographic</b>
+        <button class="lightbox-close" id="lightbox-close">Close</button>
+      </div>
+      <div class="lightbox-content" id="lightbox-content"></div>
+    </div>
+  </div>
+  <script>
+    const lightbox = document.getElementById('lightbox');
+    const lightboxTitle = document.getElementById('lightbox-title');
+    const lightboxContent = document.getElementById('lightbox-content');
+    document.querySelectorAll('.infographic').forEach(panel => {
+      panel.setAttribute('role', 'button');
+      panel.setAttribute('tabindex', '0');
+      const openPanel = () => {
+        lightboxTitle.textContent = panel.dataset.infographic || 'Infographic';
+        lightboxContent.innerHTML = '';
+        lightboxContent.appendChild(panel.cloneNode(true));
+        lightbox.classList.add('open');
+        lightbox.setAttribute('aria-hidden', 'false');
+      };
+      panel.addEventListener('click', openPanel);
+      panel.addEventListener('keydown', event => {
+        if (event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault();
+          openPanel();
+        }
+      });
+    });
+    function closeLightbox() {
+      lightbox.classList.remove('open');
+      lightbox.setAttribute('aria-hidden', 'true');
+      lightboxContent.innerHTML = '';
+    }
+    document.getElementById('lightbox-close').addEventListener('click', closeLightbox);
+    lightbox.addEventListener('click', event => {
+      if (event.target === lightbox) closeLightbox();
+    });
+    document.addEventListener('keydown', event => {
+      if (event.key === 'Escape' && lightbox.classList.contains('open')) closeLightbox();
+    });
+  </script>
+</body>
+</html>

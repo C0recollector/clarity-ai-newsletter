@@ -1,0 +1,1075 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AI Weekly Brief - May 8, 2026</title>
+  <style>
+    :root {
+      --ink: #101729;
+      --text: #263348;
+      --muted: #64748b;
+      --line: #d9e1ec;
+      --soft: #f5f8fc;
+      --panel: #ffffff;
+      --blue: #2563eb;
+      --cyan: #0ea5b7;
+      --coral: #ef574a;
+      --amber: #f59e0b;
+      --green: #2fa46e;
+      --violet: #6d5bd0;
+      --shadow: 0 14px 32px rgba(27, 39, 62, .07);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: #111827;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.45;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    a:hover { text-decoration: underline; text-underline-offset: 3px; }
+    .wrap { width: min(1240px, calc(100% - 42px)); margin: 0 auto; }
+
+    header {
+      width: min(1240px, calc(100% - 22px));
+      margin: 10px auto 0;
+      padding: 22px 22px 20px;
+      background: #ffffff;
+      border: 1px solid rgba(217, 225, 236, .9);
+      border-radius: 12px 12px 0 0;
+      backdrop-filter: blur(18px);
+      position: static;
+      z-index: 10;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 22px;
+      align-items: end;
+    }
+
+    .brand {
+      display: flex;
+      gap: 14px;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+
+    .mark {
+      width: 48px;
+      height: 48px;
+      display: grid;
+      place-items: center;
+      border-radius: 8px;
+      color: #fff;
+      font-weight: 900;
+      font-size: 22px;
+      background: linear-gradient(135deg, var(--blue), #1d9bf0);
+      box-shadow: 0 14px 26px rgba(37, 99, 235, .28);
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(36px, 4vw, 52px);
+      line-height: 1;
+      letter-spacing: 0;
+    }
+
+    .date {
+      color: var(--muted);
+      font-weight: 700;
+      margin-top: 6px;
+    }
+
+    .takeaway {
+      max-width: 900px;
+      color: var(--text);
+      margin: 0;
+      font-size: clamp(17px, 1.7vw, 22px);
+      line-height: 1.45;
+    }
+
+    .actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .button {
+      border: 1px solid var(--line);
+      background: #fff;
+      color: var(--ink);
+      border-radius: 8px;
+      padding: 10px 13px;
+      font-size: 14px;
+      font-weight: 800;
+      box-shadow: 0 6px 16px rgba(16, 23, 41, .06);
+    }
+
+    main {
+      width: min(1240px, calc(100% - 22px));
+      margin: 0 auto 10px;
+      padding: 22px;
+      background: #ffffff;
+      border: 1px solid rgba(217, 225, 236, .9);
+      border-top: 0;
+      border-radius: 0 0 12px 12px;
+    }
+    main.wrap { width: min(1240px, calc(100% - 22px)); }
+    section { margin: 0 0 34px; }
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 18px;
+      margin-bottom: 16px;
+    }
+    h2 { margin: 0; font-size: 25px; letter-spacing: 0; }
+    h3 { margin: 0; font-size: 18px; letter-spacing: 0; }
+    p { color: var(--text); }
+    .muted { color: var(--muted); }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 14px;
+    }
+
+    .panel {
+      background: rgba(255, 255, 255, .98);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      box-shadow: var(--shadow);
+    }
+
+    .signal {
+      grid-column: span 3;
+      min-height: 184px;
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .signal::after {
+      content: "";
+      position: absolute;
+      right: -44px;
+      top: -44px;
+      width: 116px;
+      height: 116px;
+      border-radius: 999px;
+      background: currentColor;
+      opacity: .08;
+    }
+
+    .signal.blue { color: var(--blue); }
+    .signal.cyan { color: var(--cyan); }
+    .signal.coral { color: var(--coral); }
+    .signal.amber { color: var(--amber); }
+
+    .icon {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      border-radius: 12px;
+      color: #fff;
+      background: currentColor;
+      font-size: 22px;
+      font-weight: 900;
+    }
+
+    .signal h3 { color: var(--ink); }
+    .signal p { margin: 0; font-size: 14px; }
+    .mini-chart {
+      margin-top: auto;
+      height: 44px;
+      display: flex;
+      align-items: end;
+      gap: 6px;
+    }
+    .bar {
+      width: 16%;
+      min-height: 8px;
+      background: currentColor;
+      border-radius: 4px 4px 0 0;
+      opacity: .85;
+    }
+    .sparkline {
+      width: 100%;
+      height: 44px;
+    }
+
+    .topic {
+      grid-column: span 4;
+      padding: 18px;
+      min-height: 320px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+    }
+
+    .topic:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 18px 40px rgba(27, 39, 62, .12);
+      border-color: #b8c8dc;
+    }
+
+    .topic-top {
+      display: flex;
+      gap: 11px;
+      align-items: flex-start;
+    }
+
+    .num {
+      flex: 0 0 auto;
+      width: 31px;
+      height: 31px;
+      display: grid;
+      place-items: center;
+      border-radius: 8px;
+      color: #fff;
+      font-weight: 900;
+      background: var(--blue);
+    }
+    .num.cyan { background: var(--cyan); }
+    .num.coral { background: var(--coral); }
+    .num.amber { background: var(--amber); }
+    .num.green { background: var(--green); }
+    .num.violet { background: var(--violet); }
+
+    .topic p { margin: 0; font-size: 14px; }
+    .tags { display: flex; flex-wrap: wrap; gap: 6px; }
+    .tag {
+      color: #44546a;
+      background: #f3f6fa;
+      border: 1px solid #dfe6ef;
+      padding: 4px 8px;
+      font-size: 12px;
+      border-radius: 999px;
+      font-weight: 700;
+    }
+
+    .evidence-btn {
+      justify-self: start;
+      align-self: flex-start;
+      border: 1px solid #cfd9e8;
+      background: #ffffff;
+      color: #2753c5;
+      border-radius: 8px;
+      padding: 8px 10px;
+      font-size: 12px;
+      font-weight: 900;
+      cursor: pointer;
+      box-shadow: 0 5px 14px rgba(16, 23, 41, .06);
+    }
+
+    .evidence-btn:hover,
+    .evidence-btn.active {
+      color: #ffffff;
+      background: var(--blue);
+      border-color: var(--blue);
+      text-decoration: none;
+    }
+
+    .evidence-zone {
+      grid-column: span 12;
+      display: none;
+      overflow: hidden;
+      border-color: #bbcdf1;
+      background:
+        linear-gradient(135deg, rgba(37, 99, 235, .08), transparent 35%),
+        linear-gradient(45deg, transparent 65%, rgba(14, 165, 183, .1)),
+        #ffffff;
+    }
+
+    .evidence-zone.active { display: block; }
+
+    .evidence-panel {
+      display: none;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 18px;
+      padding: 20px;
+      align-items: start;
+    }
+
+    .evidence-panel.active { display: grid; }
+
+    .evidence-panel h3 {
+      font-size: 22px;
+      margin-bottom: 8px;
+    }
+
+    .evidence-panel ul {
+      margin: 12px 0 0;
+      padding-left: 18px;
+      color: var(--text);
+    }
+
+    .evidence-panel li { margin: 8px 0; }
+
+    .proof-strip {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 9px;
+      margin-top: 14px;
+    }
+
+    .proof {
+      border: 1px solid #dbe4f0;
+      background: rgba(255,255,255,.8);
+      border-radius: 8px;
+      padding: 10px;
+      min-height: 78px;
+    }
+
+    .proof b { display: block; font-size: 13px; margin-bottom: 4px; }
+    .proof span { color: var(--muted); font-size: 12px; }
+
+    .big-viz {
+      border: 1px solid #dce5f0;
+      border-radius: 8px;
+      background: #fff;
+      min-height: 260px;
+      padding: 14px;
+    }
+
+    .compare-bars {
+      display: grid;
+      gap: 12px;
+      margin-top: 10px;
+    }
+
+    .compare-row {
+      display: grid;
+      grid-template-columns: 92px 1fr 34px;
+      align-items: center;
+      gap: 10px;
+      font-size: 12px;
+      color: #40506a;
+    }
+
+    .bubble-map {
+      position: relative;
+      height: 250px;
+    }
+
+    .bubble {
+      position: absolute;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      border-radius: 50%;
+      color: #fff;
+      font-size: 12px;
+      font-weight: 900;
+      box-shadow: 0 12px 24px rgba(16, 23, 41, .14);
+    }
+
+    .b1 { width: 98px; height: 98px; left: 38%; top: 30%; background: var(--blue); }
+    .b2 { width: 84px; height: 84px; left: 8%; top: 12%; background: var(--cyan); }
+    .b3 { width: 76px; height: 76px; right: 10%; top: 16%; background: var(--coral); }
+    .b4 { width: 70px; height: 70px; left: 18%; bottom: 14%; background: var(--amber); }
+    .b5 { width: 76px; height: 76px; right: 16%; bottom: 10%; background: var(--green); }
+
+    .source-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .source-links a {
+      border: 1px solid #d8e2ef;
+      background: #fff;
+      border-radius: 999px;
+      padding: 6px 9px;
+      color: #3158c7;
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .viz {
+      margin-top: auto;
+      min-height: 116px;
+      border: 1px solid #e3eaf4;
+      border-radius: 8px;
+      background: linear-gradient(180deg, #fff, #f8fbff);
+      padding: 12px;
+    }
+
+    .bars-row {
+      display: grid;
+      grid-template-columns: 70px 1fr;
+      gap: 8px;
+      align-items: center;
+      font-size: 12px;
+      margin: 8px 0;
+      color: #40506a;
+    }
+    .track {
+      height: 9px;
+      border-radius: 999px;
+      background: #e8edf4;
+      overflow: hidden;
+    }
+    .fill {
+      height: 100%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, var(--blue), #47a3ff);
+    }
+
+    .matrix-viz {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      font-size: 12px;
+    }
+    .matrix-box {
+      border: 1px solid #e1e7f0;
+      background: #fff;
+      border-radius: 8px;
+      padding: 8px;
+    }
+    .matrix-box b { display: block; margin-bottom: 6px; }
+
+    .timeline {
+      display: grid;
+      gap: 8px;
+      font-size: 12px;
+    }
+    .time-item {
+      display: grid;
+      grid-template-columns: 54px 1fr;
+      gap: 8px;
+      align-items: start;
+    }
+    .dotline {
+      color: var(--coral);
+      font-weight: 900;
+    }
+
+    .agent-map {
+      display: grid;
+      grid-template-columns: 1fr 72px 1fr;
+      gap: 8px;
+      align-items: center;
+      text-align: center;
+      font-size: 12px;
+    }
+    .node {
+      border: 1px solid #dfe7f2;
+      background: #fff;
+      border-radius: 8px;
+      padding: 7px;
+      color: #42526a;
+      font-weight: 800;
+    }
+    .center-node {
+      color: #fff;
+      background: linear-gradient(135deg, var(--blue), var(--cyan));
+      border: 0;
+      min-height: 72px;
+      display: grid;
+      place-items: center;
+    }
+
+    .cost-chart {
+      width: 100%;
+      height: 112px;
+    }
+
+    .ecosystem {
+      position: relative;
+      height: 132px;
+    }
+    .orbit {
+      position: absolute;
+      inset: 20px 56px;
+      border: 1px dashed #b8c7dc;
+      border-radius: 999px;
+    }
+    .hub {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 54px;
+      height: 54px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      color: #fff;
+      background: var(--blue);
+      font-weight: 900;
+    }
+    .orb {
+      position: absolute;
+      padding: 6px 8px;
+      border: 1px solid #dfe7f2;
+      background: #fff;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 800;
+      color: #42526a;
+    }
+    .o1 { left: 6px; top: 8px; }
+    .o2 { right: 4px; top: 14px; }
+    .o3 { left: 28px; bottom: 8px; }
+    .o4 { right: 24px; bottom: 8px; }
+
+    .watch {
+      overflow: hidden;
+    }
+    .watch-grid {
+      display: grid;
+      grid-template-columns: 140px repeat(5, 1fr);
+      min-width: 980px;
+    }
+    .watch-cell {
+      border-right: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      padding: 13px;
+      min-height: 58px;
+      font-size: 13px;
+      background: #fff;
+    }
+    .watch-cell:last-child { border-right: 0; }
+    .watch-label {
+      color: #42526a;
+      background: #f2f5f9;
+      font-weight: 900;
+    }
+    .watch-head {
+      color: #fff;
+      font-weight: 900;
+      text-align: center;
+      font-size: 15px;
+    }
+    .h-openai { background: var(--blue); }
+    .h-anthropic { background: #d97706; }
+    .h-google { background: #4285f4; }
+    .h-open { background: var(--green); }
+    .h-tools { background: var(--violet); }
+    .fit { display: inline-block; padding: 4px 8px; border-radius: 999px; background: #eef4ff; color: #2854c5; font-weight: 800; font-size: 12px; }
+
+    .source { grid-column: span 4; padding: 14px; }
+    .source img {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
+      border-radius: 7px;
+      border: 1px solid var(--line);
+      margin-bottom: 11px;
+      background: #eef2f7;
+    }
+    .source .meta, .mail .meta {
+      color: var(--muted);
+      font-size: 12px;
+      margin-bottom: 7px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .04em;
+    }
+    .source p, .mail p { margin: 8px 0 0; font-size: 14px; }
+    .mail { grid-column: span 6; padding: 16px; }
+
+    details {
+      padding: 18px;
+    }
+    summary {
+      cursor: pointer;
+      font-size: 18px;
+      font-weight: 900;
+    }
+    .script {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 14px;
+    }
+    .script-step {
+      border: 1px solid #e0e7f1;
+      border-radius: 8px;
+      padding: 13px;
+      background: #fff;
+    }
+    .script-step b { display: block; margin-bottom: 6px; }
+    .note {
+      margin-top: 14px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    @media (max-width: 980px) {
+      header { position: static; }
+      .hero { grid-template-columns: 1fr; }
+      .actions { justify-content: flex-start; }
+      .signal { grid-column: span 6; }
+      .topic, .source, .mail { grid-column: span 12; }
+      .script { grid-template-columns: 1fr; }
+      .watch { overflow-x: auto; }
+    }
+
+    @media (max-width: 640px) {
+      .wrap { width: min(100% - 24px, 1220px); }
+      .signal { grid-column: span 12; }
+      .brand { align-items: flex-start; }
+      .mark { width: 42px; height: 42px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap hero">
+      <div>
+        <div class="brand">
+          <div class="mark">AI</div>
+          <div>
+            <h1>AI Weekly Brief</h1>
+            <div class="date">Friday, May 8, 2026 · Week 19</div>
+          </div>
+        </div>
+        <p class="takeaway"><strong>Executive takeaway:</strong> AI news this week points to a practical shift: specialized models are multiplying, agents are becoming workflow infrastructure, Google is moving AI into everyday surfaces, and economics are starting to shape which systems teams can actually run.</p>
+      </div>
+      <nav class="actions" aria-label="Page sections">
+        <a class="button" href="#signals">Top signals</a>
+        <a class="button" href="#watch">Model watch</a>
+        <a class="button" href="#sources">Sources</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="grid" aria-label="Opening signal tiles">
+      <article class="panel signal blue">
+        <div class="icon">↗</div>
+        <h3>Model race: specialized</h3>
+        <p>Domain models, realtime audio, coding agents, and efficient local models are becoming separate contests.</p>
+        <svg class="sparkline" viewBox="0 0 220 52" role="img" aria-label="rising trend">
+          <polyline points="8,42 38,40 58,28 78,31 102,18 126,22 150,12 170,16 198,4" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </article>
+      <article class="panel signal cyan">
+        <div class="icon">⌘</div>
+        <h3>Agents become workflow layer</h3>
+        <p>The strongest theme is process: roles, artifacts, handoffs, and tools that let agents do real work.</p>
+        <div class="mini-chart"><span class="bar" style="height:18px"></span><span class="bar" style="height:25px"></span><span class="bar" style="height:31px"></span><span class="bar" style="height:38px"></span><span class="bar" style="height:44px"></span></div>
+      </article>
+      <article class="panel signal coral">
+        <div class="icon">G</div>
+        <h3>Google moves to desktop</h3>
+        <p>Gemini, Chrome skills, NotebookLM-style visuals, and Gemma point to a full-stack distribution push.</p>
+        <svg class="sparkline" viewBox="0 0 220 52" role="img" aria-label="rising trend">
+          <polyline points="8,44 36,38 58,41 82,26 108,30 132,18 158,22 188,10 210,7" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </article>
+      <article class="panel signal amber">
+        <div class="icon">$</div>
+        <h3>Economics under scrutiny</h3>
+        <p>Compute, data centers, valuations, routing, and model cost are now part of the product conversation.</p>
+        <div class="mini-chart"><span class="bar" style="height:15px"></span><span class="bar" style="height:24px"></span><span class="bar" style="height:34px"></span><span class="bar" style="height:39px"></span><span class="bar" style="height:47px"></span></div>
+      </article>
+    </section>
+
+    <section id="signals">
+      <div class="section-head">
+        <div>
+          <h2>Top 6 Signals</h2>
+          <p class="muted">Each panel includes a quick visual so the brief can be scanned from across a room.</p>
+        </div>
+      </div>
+      <div class="grid">
+        <article class="panel topic">
+          <div class="topic-top">
+            <div class="num">1</div>
+            <div><h3>Specialized models lead</h3><p>OpenAI, Anthropic, Google, Microsoft, MiniMax, Qwen, and others are splitting the race across coding, audio, science, image generation, and efficient open models.</p></div>
+          </div>
+          <div class="viz">
+            <div class="bars-row"><span>Coding</span><div class="track"><div class="fill" style="width:92%"></div></div></div>
+            <div class="bars-row"><span>Science</span><div class="track"><div class="fill" style="width:78%"></div></div></div>
+            <div class="bars-row"><span>Audio</span><div class="track"><div class="fill" style="width:72%"></div></div></div>
+            <div class="bars-row"><span>Local</span><div class="track"><div class="fill" style="width:66%"></div></div></div>
+          </div>
+          <div class="tags"><span class="tag">GPT-Realtime-2</span><span class="tag">Gemma 4</span><span class="tag">GPT-Rosalind</span></div>
+          <button class="evidence-btn" data-panel="specialized" type="button">Show evidence + graphic</button>
+        </article>
+
+        <article class="panel topic">
+          <div class="topic-top">
+            <div class="num cyan">2</div>
+            <div><h3>The landscape is diversifying</h3><p>Teams need a portfolio view: frontier closed models for complex work, efficient models for routine work, and open models where control matters.</p></div>
+          </div>
+          <div class="viz matrix-viz">
+            <div class="matrix-box"><b>Proprietary</b>GPT / Claude<br>Gemini / MAI</div>
+            <div class="matrix-box"><b>Open / Local</b>Gemma<br>Qwen / MiniMax</div>
+            <div class="matrix-box"><b>Frontier</b>Reasoning<br>coding</div>
+            <div class="matrix-box"><b>Efficient</b>routing<br>latency</div>
+          </div>
+          <div class="tags"><span class="tag">Model routing</span><span class="tag">Private deployment</span></div>
+          <button class="evidence-btn" data-panel="portfolio" type="button">Show evidence + graphic</button>
+        </article>
+
+        <article class="panel topic">
+          <div class="topic-top">
+            <div class="num coral">3</div>
+            <div><h3>Google goes desktop-first</h3><p>Google’s signals are less about one launch and more about distribution: Chrome, desktop apps, Gemini surfaces, NotebookLM visuals, and open models.</p></div>
+          </div>
+          <div class="viz timeline">
+            <div class="time-item"><span class="dotline">Apr</span><span><b>Chrome AI</b><br>assistance across browsing</span></div>
+            <div class="time-item"><span class="dotline">May</span><span><b>Gemini apps</b><br>desktop and Mac surfaces</span></div>
+            <div class="time-item"><span class="dotline">Now</span><span><b>Gemma</b><br>open model ecosystem pressure</span></div>
+          </div>
+          <div class="tags"><span class="tag">Gemini</span><span class="tag">Chrome</span><span class="tag">NotebookLM</span></div>
+          <button class="evidence-btn" data-panel="google" type="button">Show evidence + graphic</button>
+        </article>
+
+        <article class="panel topic">
+          <div class="topic-top">
+            <div class="num amber">4</div>
+            <div><h3>Agents become workflow infrastructure</h3><p>The strongest operational lesson: memory is not a magic fix. Most agent failures are really workflow, artifact, role, and validation problems.</p></div>
+          </div>
+          <div class="viz agent-map">
+            <div class="node">User<br>Data<br>Tools</div>
+            <div class="node center-node">Agent</div>
+            <div class="node">Plan<br>Execute<br>Validate</div>
+          </div>
+          <div class="tags"><span class="tag">OpenClaw</span><span class="tag">Claude Code</span><span class="tag">Codex</span></div>
+          <button class="evidence-btn" data-panel="agents" type="button">Show evidence + graphic</button>
+        </article>
+
+        <article class="panel topic">
+          <div class="topic-top">
+            <div class="num green">5</div>
+            <div><h3>Economics become design constraints</h3><p>Costs, rate limits, compute scarcity, and valuations are shaping product decisions. Workflows need model selection and budget discipline built in.</p></div>
+          </div>
+          <div class="viz">
+            <svg class="cost-chart" viewBox="0 0 320 130" role="img" aria-label="cost curve trending downward">
+              <path d="M22 20 C70 28, 82 58, 124 62 C170 66, 182 92, 224 98 C260 104, 286 112, 302 118" fill="none" stroke="#0ea5b7" stroke-width="5" stroke-linecap="round"/>
+              <path d="M22 52 C70 60, 95 78, 136 80 C178 84, 200 103, 238 108 C272 112, 292 119, 304 124" fill="none" stroke="#2fa46e" stroke-width="4" stroke-dasharray="8 8" stroke-linecap="round"/>
+              <text x="22" y="126" font-size="12" fill="#64748b">route cheap tasks to cheap models</text>
+            </svg>
+          </div>
+          <div class="tags"><span class="tag">Cost routing</span><span class="tag">Data centers</span></div>
+          <button class="evidence-btn" data-panel="economics" type="button">Show evidence + graphic</button>
+        </article>
+
+        <article class="panel topic">
+          <div class="topic-top">
+            <div class="num violet">6</div>
+            <div><h3>Platform wars heat up</h3><p>The battle is moving from raw model quality to distribution, developer mindshare, workflow ownership, and ecosystem integrations.</p></div>
+          </div>
+          <div class="viz ecosystem">
+            <div class="orbit"></div><div class="hub">AI</div>
+            <div class="orb o1">OpenAI</div><div class="orb o2">Google</div><div class="orb o3">Anthropic</div><div class="orb o4">Tools</div>
+          </div>
+          <div class="tags"><span class="tag">Platforms</span><span class="tag">Distribution</span><span class="tag">Ecosystems</span></div>
+          <button class="evidence-btn" data-panel="platforms" type="button">Show evidence + graphic</button>
+        </article>
+
+        <div class="panel evidence-zone" id="evidence-zone" aria-live="polite">
+          <article class="evidence-panel" data-panel-content="specialized">
+            <div>
+              <h3>Evidence: specialized models lead</h3>
+              <p>The sources point to a model market splitting into task-specific categories instead of one leaderboard. That matters because procurement and workflow design need multiple model lanes.</p>
+              <ul>
+                <li>Matt Wolfe roundup references Codex, Claude Code, Gemini TTS, GPT-Rosalind, MAI-Image, Qwen, and MiniMax in one weekly cycle.</li>
+                <li>WorldofAI focuses on Claude Opus 4.7, OpenAI image/model chatter, MiniMax M2.7, and Gemma fine-tunes.</li>
+                <li>TLDR highlights GPT-Realtime-2, indicating realtime/audio is now its own competitive track.</li>
+              </ul>
+              <div class="proof-strip">
+                <div class="proof"><b>Best signal</b><span>Many model releases, few direct substitutes.</span></div>
+                <div class="proof"><b>Risk</b><span>Teams overpay by using frontier models everywhere.</span></div>
+                <div class="proof"><b>Action</b><span>Build a task-to-model scorecard.</span></div>
+              </div>
+              <div class="source-links">
+                <a href="https://www.youtube.com/watch?v=bIrzOQtnp8w">Matt Wolfe</a>
+                <a href="https://www.youtube.com/watch?v=MXZ9cfkYuRI">WorldofAI</a>
+                <a href="#sources">Newsletter sources</a>
+              </div>
+            </div>
+            <div class="big-viz">
+              <h3>Capability Spread</h3>
+              <div class="compare-bars">
+                <div class="compare-row"><span>Coding</span><div class="track"><div class="fill" style="width:94%"></div></div><b>94</b></div>
+                <div class="compare-row"><span>Realtime</span><div class="track"><div class="fill" style="width:82%; background:linear-gradient(90deg,var(--cyan),#67e8f9)"></div></div><b>82</b></div>
+                <div class="compare-row"><span>Science</span><div class="track"><div class="fill" style="width:77%; background:linear-gradient(90deg,var(--green),#86efac)"></div></div><b>77</b></div>
+                <div class="compare-row"><span>Image</span><div class="track"><div class="fill" style="width:74%; background:linear-gradient(90deg,var(--coral),#fda4af)"></div></div><b>74</b></div>
+                <div class="compare-row"><span>Local</span><div class="track"><div class="fill" style="width:68%; background:linear-gradient(90deg,var(--amber),#fde68a)"></div></div><b>68</b></div>
+              </div>
+            </div>
+          </article>
+
+          <article class="evidence-panel" data-panel-content="portfolio">
+            <div>
+              <h3>Evidence: the model landscape is diversifying</h3>
+              <p>Closed frontier models still matter, but the sources repeatedly raised open, efficient, local, and routed approaches. That points to a portfolio strategy.</p>
+              <ul>
+                <li>Gemma 4 coverage emphasizes local/private deployment and avoiding hyperscaler lock-in.</li>
+                <li>OpenRouter/OpenClaw cost videos argue for routing routine work away from expensive frontier models.</li>
+                <li>Open-source model mentions include MiniMax, Qwen, Gemma fine-tunes, and smaller deployment options.</li>
+              </ul>
+              <div class="proof-strip">
+                <div class="proof"><b>Best signal</b><span>Cost and control are becoming features.</span></div>
+                <div class="proof"><b>Risk</b><span>One-model strategies will age badly.</span></div>
+                <div class="proof"><b>Action</b><span>Separate private, cheap, and complex work.</span></div>
+              </div>
+            </div>
+            <div class="big-viz">
+              <h3>Portfolio Map</h3>
+              <div class="bubble-map">
+                <div class="bubble b1">Frontier<br>Reasoning</div>
+                <div class="bubble b2">Local<br>Control</div>
+                <div class="bubble b3">Realtime<br>Voice</div>
+                <div class="bubble b4">Cheap<br>Routing</div>
+                <div class="bubble b5">Open<br>Ecosystem</div>
+              </div>
+            </div>
+          </article>
+
+          <article class="evidence-panel" data-panel-content="google">
+            <div>
+              <h3>Evidence: Google goes desktop-first</h3>
+              <p>Google’s pattern this week is distribution. Gemini and AI assistance are being moved into surfaces where work already happens.</p>
+              <ul>
+                <li>Matt Wolfe source list includes Google desktop app, Gemini app on Mac, Chrome AI skills, Gemini Flash TTS, and personalized image tools.</li>
+                <li>Paul J. Lipsky video references Gemini updates, NotebookLM integration, and visualizations.</li>
+                <li>Gemma 4 coverage adds the open-model side of the same ecosystem push.</li>
+              </ul>
+              <div class="source-links">
+                <a href="https://www.youtube.com/watch?v=bIrzOQtnp8w">Matt Wolfe</a>
+                <a href="https://www.youtube.com/watch?v=5Ev0b99hsUg">Paul J. Lipsky</a>
+                <a href="https://www.youtube.com/watch?v=tOihVowj0Sk">Gemma 4</a>
+              </div>
+            </div>
+            <div class="big-viz timeline">
+              <div class="time-item"><span class="dotline">1</span><span><b>Browser</b><br>Chrome AI skills bring assistance into browsing.</span></div>
+              <div class="time-item"><span class="dotline">2</span><span><b>Desktop</b><br>Gemini apps move beyond web chat.</span></div>
+              <div class="time-item"><span class="dotline">3</span><span><b>Docs & visuals</b><br>NotebookLM-style outputs support synthesis.</span></div>
+              <div class="time-item"><span class="dotline">4</span><span><b>Models</b><br>Gemma expands the open ecosystem.</span></div>
+            </div>
+          </article>
+
+          <article class="evidence-panel" data-panel-content="agents">
+            <div>
+              <h3>Evidence: agents become workflow infrastructure</h3>
+              <p>The practical lesson is that agent success depends on the surrounding workflow: roles, memory boundaries, artifacts, tool permissions, and validation loops.</p>
+              <ul>
+                <li>OpenClaw memory video argues that many memory problems are actually architecture problems.</li>
+                <li>CLI-Anything coverage frames existing software as needing agent-ready interfaces.</li>
+                <li>Medium digest surfaces AI-driven SDLC, coding agents, and deterministic loops.</li>
+              </ul>
+              <div class="proof-strip">
+                <div class="proof"><b>Best signal</b><span>Workflow design beats magic memory.</span></div>
+                <div class="proof"><b>Risk</b><span>Agents fail silently without review gates.</span></div>
+                <div class="proof"><b>Action</b><span>Define roles, artifacts, and approvals.</span></div>
+              </div>
+            </div>
+            <div class="big-viz agent-map">
+              <div class="node">Inputs<br>Gmail<br>YouTube</div>
+              <div class="node center-node">Agent<br>Workflow</div>
+              <div class="node">Outputs<br>Brief<br>Page</div>
+            </div>
+          </article>
+
+          <article class="evidence-panel" data-panel-content="economics">
+            <div>
+              <h3>Evidence: economics become design constraints</h3>
+              <p>Several sources ask whether AI’s economics work at scale: compute, data centers, model costs, rate limits, layoffs, valuations, and routing.</p>
+              <ul>
+                <li>Linus Tech Tips frames AI valuation and spending concerns as a bubble question.</li>
+                <li>OpenClaw cost videos show the operational pressure to route cheaper tasks to cheaper models.</li>
+                <li>Diamandis episodes connect AI growth to data centers, compute, jobs, robotics, and macro strategy.</li>
+              </ul>
+            </div>
+            <div class="big-viz">
+              <h3>Cost Discipline Curve</h3>
+              <svg class="cost-chart" viewBox="0 0 320 130" role="img" aria-label="cost curve">
+                <path d="M22 24 C70 30, 86 52, 122 60 C162 70, 196 86, 302 110" fill="none" stroke="#ef574a" stroke-width="5" stroke-linecap="round"/>
+                <path d="M22 76 C74 74, 100 82, 136 90 C180 100, 230 104, 302 112" fill="none" stroke="#2fa46e" stroke-width="5" stroke-linecap="round"/>
+                <text x="20" y="122" font-size="12" fill="#64748b">red: uncontrolled spend · green: routed workflow</text>
+              </svg>
+            </div>
+          </article>
+
+          <article class="evidence-panel" data-panel-content="platforms">
+            <div>
+              <h3>Evidence: platform wars heat up</h3>
+              <p>The biggest fight is moving above the model layer: distribution, developer environments, agent SDKs, browser/desktop surfaces, and workplace integrations.</p>
+              <ul>
+                <li>OpenAI is represented through Codex, realtime, science, and possible image updates.</li>
+                <li>Anthropic is represented through Claude Code and app-building/developer workflow signals.</li>
+                <li>Google is represented through Gemini, Chrome, NotebookLM, and Gemma.</li>
+                <li>The tool layer is represented through Canva AI, Perplexity, OpenClaw, and CLI-Anything.</li>
+              </ul>
+            </div>
+            <div class="big-viz ecosystem">
+              <div class="orbit"></div><div class="hub">Work</div>
+              <div class="orb o1">Models</div><div class="orb o2">Apps</div><div class="orb o3">Agents</div><div class="orb o4">Data</div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="watch">
+      <div class="section-head">
+        <div>
+          <h2>Model & Platform Watch</h2>
+          <p class="muted">A quick comparison of where each ecosystem seems to be leaning this week.</p>
+        </div>
+      </div>
+      <div class="panel watch">
+        <div class="watch-grid">
+          <div class="watch-cell watch-label"></div>
+          <div class="watch-cell watch-head h-openai">OpenAI</div>
+          <div class="watch-cell watch-head h-anthropic">Anthropic</div>
+          <div class="watch-cell watch-head h-google">Google</div>
+          <div class="watch-cell watch-head h-open">Open Models</div>
+          <div class="watch-cell watch-head h-tools">Tool Layer</div>
+
+          <div class="watch-cell watch-label">This week’s signal</div>
+          <div class="watch-cell">Codex, realtime/audio, GPT-Rosalind, image-model chatter</div>
+          <div class="watch-cell">Claude Code, Opus 4.7 chatter, full-stack app signals</div>
+          <div class="watch-cell">Gemini desktop, Chrome skills, Gemma 4, NotebookLM visuals</div>
+          <div class="watch-cell">Qwen, MiniMax, Gemma fine-tunes, local/private push</div>
+          <div class="watch-cell">OpenClaw, Canva AI, Perplexity PC, CLI-Anything</div>
+
+          <div class="watch-cell watch-label">Best read</div>
+          <div class="watch-cell"><span class="fit">workflow + science</span></div>
+          <div class="watch-cell"><span class="fit">developer agents</span></div>
+          <div class="watch-cell"><span class="fit">distribution</span></div>
+          <div class="watch-cell"><span class="fit">control + cost</span></div>
+          <div class="watch-cell"><span class="fit">adoption layer</span></div>
+
+          <div class="watch-cell watch-label">Question for us</div>
+          <div class="watch-cell">Where should Codex-style automation enter our work?</div>
+          <div class="watch-cell">Which tasks need long-context agent tooling?</div>
+          <div class="watch-cell">Where will AI appear in tools we already use?</div>
+          <div class="watch-cell">Which work needs local, cheap, or private models?</div>
+          <div class="watch-cell">Which workflows need redesigned interfaces?</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="sources">
+      <div class="section-head">
+        <div>
+          <h2>Key Sources</h2>
+          <p class="muted">Videos and newsletters that shaped the brief. Two late-added videos are included with transcript pending.</p>
+        </div>
+      </div>
+      <div class="grid">
+        <article class="panel source">
+          <img src="https://i3.ytimg.com/vi/bIrzOQtnp8w/hqdefault.jpg" alt="">
+          <div class="meta">Matt Wolfe · transcript available</div>
+          <h3><a href="https://www.youtube.com/watch?v=bIrzOQtnp8w">AI News: Huge Updates From Anthropic, OpenAI and Google</a></h3>
+          <p>Best broad weekly roundup across Codex, Claude Code, Google desktop, Canva AI, model releases, robotics, and more.</p>
+        </article>
+        <article class="panel source">
+          <img src="https://i2.ytimg.com/vi/MXZ9cfkYuRI/hqdefault.jpg" alt="">
+          <div class="meta">WorldofAI · transcript available</div>
+          <h3><a href="https://www.youtube.com/watch?v=MXZ9cfkYuRI">Claude Opus 4.7 Leaked, Anthropic Full Stack App, New GPT Model</a></h3>
+          <p>Useful for model-release tracking and platform/tooling rumor synthesis.</p>
+        </article>
+        <article class="panel source">
+          <img src="https://i1.ytimg.com/vi/tOihVowj0Sk/hqdefault.jpg" alt="">
+          <div class="meta">Cyril Imhof · transcript available</div>
+          <h3><a href="https://www.youtube.com/watch?v=tOihVowj0Sk">Google's New AI Just Changed AI Business Forever (Gemma 4)</a></h3>
+          <p>Useful for the local/private model theme and hyperscaler lock-in question.</p>
+        </article>
+        <article class="panel source">
+          <img src="https://i4.ytimg.com/vi/wzADqzsm6pI/hqdefault.jpg" alt="">
+          <div class="meta">Openclaw Labs · transcript available</div>
+          <h3><a href="https://www.youtube.com/watch?v=wzADqzsm6pI">OpenClaw Agents: What You've Been Getting Wrong About Memory</a></h3>
+          <p>Clear operational lesson: architecture first, memory last.</p>
+        </article>
+        <article class="panel source">
+          <img src="https://i.ytimg.com/vi/Jg2jJH1K0o8/hqdefault.jpg" alt="">
+          <div class="meta">Peter H. Diamandis · transcript pending</div>
+          <h3><a href="https://youtu.be/Jg2jJH1K0o8">Demis Hassabis on AGI, Robots Scale Production, and Elon's $1T Mars-Shot Comp</a></h3>
+          <p>Late add for AGI timelines, robotics scale, and frontier-lab strategy.</p>
+        </article>
+        <article class="panel source">
+          <img src="https://i.ytimg.com/vi/_6O19bEZgMc/hqdefault.jpg" alt="">
+          <div class="meta">Limitless Podcast · transcript pending</div>
+          <h3><a href="https://youtu.be/_6O19bEZgMc">Where is AI Going Next?</a></h3>
+          <p>Late add for the forward-looking section on agents, model direction, and practical adoption.</p>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <h2>Newsletter Signals</h2>
+      </div>
+      <div class="grid">
+        <article class="panel mail">
+          <div class="meta">TLDR · May 8</div>
+          <h3>AirPod cameras, GPT-Realtime-2, Cloudflare AI layoffs</h3>
+          <p>Concise signal on AI hardware interfaces, realtime audio models, and organizational impact.</p>
+        </article>
+        <article class="panel mail">
+          <div class="meta">Medium Daily Digest · May 8</div>
+          <h3>AI-driven SDLC, Google Antigravity, Claude Code, agent loops</h3>
+          <p>Heavy developer-workflow theme: AI in software lifecycle, coding agents, reliability problems, and deterministic agent loops.</p>
+        </article>
+        <article class="panel mail">
+          <div class="meta">Maven · May 7</div>
+          <h3>AI product strategy, AI as a team, Claude Design, AI-native careers</h3>
+          <p>Management/adoption signal: professional education is reorganizing around AI-native collaboration and product strategy.</p>
+        </article>
+        <article class="panel mail">
+          <div class="meta">Market/newsletter sources · May 7-8</div>
+          <h3>OpenAI lawsuit, Sam Altman coverage, AI startup investment pitches</h3>
+          <p>Some sources are noisy or promotional, but they show how AI company narratives are affecting markets and public perception.</p>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <details class="panel" open>
+        <summary>How To Present This In 3 Minutes</summary>
+        <div class="script">
+          <div class="script-step"><b>1. Frame it</b>AI is shifting from chat into workflows, browsers, desktops, and team operations.</div>
+          <div class="script-step"><b>2. Name the tension</b>The model race is fragmenting, so the right question is which model fits which job.</div>
+          <div class="script-step"><b>3. Make it actionable</b>Start defining roles, artifacts, review gates, and cost controls before scaling agents.</div>
+        </div>
+        <p class="note">Generated from Gmail connector results plus the YouTube playlist transcript packet saved locally. The two late-added videos should be summarized once transcript access cools down. Claims should be reviewed before external publication.</p>
+      </details>
+    </section>
+  </main>
+  <script>
+    const evidenceZone = document.getElementById('evidence-zone');
+    const evidenceButtons = Array.from(document.querySelectorAll('.evidence-btn'));
+    const evidencePanels = Array.from(document.querySelectorAll('[data-panel-content]'));
+
+    function showEvidence(panelName) {
+      evidenceZone.classList.add('active');
+      evidenceButtons.forEach((button) => {
+        button.classList.toggle('active', button.dataset.panel === panelName);
+        button.textContent = button.dataset.panel === panelName ? 'Evidence open' : 'Show evidence + graphic';
+      });
+      evidencePanels.forEach((panel) => {
+        panel.classList.toggle('active', panel.dataset.panelContent === panelName);
+      });
+      evidenceZone.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+
+    evidenceButtons.forEach((button) => {
+      button.addEventListener('click', () => showEvidence(button.dataset.panel));
+    });
+  </script>
+</body>
+</html>

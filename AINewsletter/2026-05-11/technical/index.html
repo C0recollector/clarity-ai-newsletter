@@ -1,0 +1,299 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AI Weekly Brief - Technical Edition | May 11, 2026</title>
+  <style>
+    :root{--ink:#111827;--text:#334155;--muted:#64748b;--line:#d8e0eb;--soft:#f4f7fb;--panel:#fff;--blue:#1457d9;--teal:#0f766e;--green:#16874f;--amber:#b45309;--red:#be123c;--shadow:0 16px 34px rgba(15,23,42,.08)}
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;background:#edf2f7;color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.48}
+    a{color:var(--blue);text-decoration:none}
+    a:hover{text-decoration:underline}
+    .wrap{width:min(1220px,calc(100% - 34px));margin:0 auto}
+    header{background:#fff;border-bottom:1px solid var(--line)}
+    .hero{padding:34px 0 24px}
+    .top{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:26px;align-items:end}
+    .pills{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+    .pill{display:inline-flex;border:1px solid var(--line);border-radius:999px;background:#fff;padding:4px 9px;color:var(--muted);font-size:12px;font-weight:850}
+    a.pill:hover{text-decoration:none;border-color:#b8c8dd;box-shadow:0 8px 18px rgba(15,23,42,.08)}
+    h1{font-size:clamp(40px,6vw,76px);line-height:.94;margin:0 0 12px;letter-spacing:0}
+    .dek{max-width:850px;margin:0;color:var(--text);font-size:18px}
+    .card{border:1px solid var(--line);border-radius:8px;background:var(--panel);box-shadow:var(--shadow);padding:16px}
+    .card h2{font-size:17px;margin:0 0 10px}
+    .card ul{margin:0;padding-left:18px;color:var(--text);font-size:14px}
+    nav{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-top:20px}
+    nav a{display:block;border:1px solid var(--line);border-radius:8px;background:#fff;padding:12px;color:var(--ink);min-height:112px}
+    nav b{display:block;margin-bottom:6px}
+    nav span{display:block;color:var(--muted);font-size:13px}
+    nav a:nth-child(1){border-top:5px solid var(--blue)}
+    nav a:nth-child(2){border-top:5px solid var(--green)}
+    nav a:nth-child(3){border-top:5px solid var(--teal)}
+    nav a:nth-child(4){border-top:5px solid var(--amber)}
+    nav a:nth-child(5){border-top:5px solid var(--red)}
+    main{padding:24px 0 50px}
+    .edition-nav{display:flex;justify-content:space-between;gap:16px;align-items:center;margin:24px 0 0;background:#fff;border:1px solid var(--line);border-radius:8px;padding:14px 16px;color:var(--muted);font-size:14px}
+    .edition-nav strong{display:block;color:var(--ink);font-size:15px}
+    .edition-nav span{display:block}
+    .edition-links{display:flex;gap:14px;flex-wrap:wrap;justify-content:flex-end}
+    .edition-links a,.edition-current{font-weight:650}
+    .edition-current{color:var(--ink)}
+    .signal{background:#fff;border:1px solid var(--line);border-radius:8px;margin:0 0 18px;box-shadow:var(--shadow);overflow:hidden}
+    .signal-head{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:18px;border-bottom:1px solid var(--line);padding:22px}
+    .signal h2{margin:0 0 8px;font-size:28px}
+    .signal p{margin:0;color:var(--text)}
+    .num{color:#cbd5e1;font-size:44px;font-weight:900;line-height:1}
+    .body{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(280px,.65fr);gap:0}
+    .maincol{padding:22px}
+    .side{border-left:1px solid var(--line);background:#f8fafc;padding:22px}
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:16px 0}
+    .fact{border:1px solid var(--line);border-radius:8px;background:#fff;padding:13px}
+    .fact:nth-child(1){background:#f5f9ff}
+    .fact:nth-child(2){background:#f1fbf7}
+    .fact:nth-child(3){background:#fff8ed}
+    .fact b{display:block;margin-bottom:6px}
+    .callout{border-left:4px solid var(--blue);background:#eff6ff;padding:13px 14px;margin-top:14px;color:#1e3a8a}
+    .checklist{margin:0;padding-left:18px;color:var(--text)}
+    .checklist li{margin-bottom:8px}
+    .matrix{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:16px}
+    .box{border:1px solid var(--line);border-radius:8px;padding:13px;background:#fff}
+    .box b{display:block;margin-bottom:5px}
+    .side h3{font-size:15px;margin:0 0 10px}
+    .mini-card{border:1px solid var(--line);border-radius:8px;background:#fff;padding:12px;margin-bottom:12px}
+    .mini-card b{display:block;margin-bottom:5px}
+    .mini-card p{font-size:13px}
+    .infographic{border:1px solid var(--line);border-radius:8px;background:linear-gradient(180deg,#fbfdff,#f4f8fd);padding:15px;margin-bottom:16px}
+    .infographic img{display:block;width:100%;height:auto;border-radius:7px}
+    .info-title{font-size:13px;font-weight:900;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin:0 0 12px}
+    .route-map{display:grid;grid-template-columns:1fr 1.15fr 1fr;gap:10px;align-items:stretch}
+    .route-col{display:grid;gap:8px}
+    .route-node,.surface-node,.risk-node{border:1px solid #dbe5f1;border-radius:8px;background:#fff;padding:10px;min-height:70px}
+    .route-node b,.surface-node b,.risk-node b{display:block;font-size:13px;margin-bottom:5px}
+    .route-node span,.surface-node span,.risk-node span{display:block;color:var(--muted);font-size:12px}
+    .router-core{display:flex;align-items:center;justify-content:center;text-align:center;border:1px solid #b9cff7;border-radius:8px;background:#eaf1ff;color:#174ea6;padding:16px;font-weight:900}
+    .agent-flow{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+    .flow-step{position:relative;border:1px solid #dbe5f1;border-radius:8px;background:#fff;padding:12px;min-height:92px}
+    .flow-step strong{display:block;font-size:13px;margin-bottom:6px}
+    .flow-step span{display:block;color:var(--muted);font-size:12px}
+    .flow-step:not(:last-child)::after{content:">";position:absolute;right:-10px;top:36px;color:#94a3b8;font-weight:900}
+    .surface-map{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+    .compute-bars{display:grid;gap:9px}
+    .bar-row{display:grid;grid-template-columns:96px 1fr;gap:10px;align-items:center;font-size:13px;font-weight:850}
+    .bar{height:16px;border-radius:999px;background:#e5edf7;overflow:hidden}
+    .fill{height:100%;border-radius:inherit;background:linear-gradient(90deg,var(--teal),var(--amber))}
+    .risk-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+    details{border-top:1px solid var(--line);padding:12px 22px;background:#fbfdff}
+    summary{cursor:pointer;font-weight:850;color:var(--ink)}
+    .sources{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-top:10px}
+    .sources a{border:1px solid var(--line);border-radius:8px;background:#fff;padding:9px;font-size:13px}
+    .footer{color:var(--muted);font-size:13px;margin-top:22px}
+    @media (max-width:900px){.top,.body,.grid,.matrix,.route-map,.agent-flow,.surface-map,.risk-grid{grid-template-columns:1fr}nav{grid-template-columns:1fr}.side{border-left:0;border-top:1px solid var(--line)}.edition-nav{align-items:flex-start;flex-direction:column}.edition-links{justify-content:flex-start}.flow-step::after{display:none}}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap hero">
+      <div class="top">
+        <div>
+          <div class="pills">
+            <a class="pill" href="../../index.html">AI Weekly Brief</a>
+            <span class="pill">Week of May 11, 2026</span>
+            <span class="pill">Technical edition</span>
+          </div>
+          <h1>The Week AI Became Infrastructure</h1>
+          <p class="dek">Operator notes for turning this week's AI signals into architecture decisions, workflow pilots, vendor questions, and implementation guardrails.</p>
+        </div>
+        <aside class="card">
+          <h2>Implementation Lens</h2>
+          <ul>
+            <li>Route work by model lane, not brand loyalty.</li>
+            <li>Design agent workflows before adding memory.</li>
+            <li>Treat distribution surfaces as integration targets.</li>
+            <li>Model compute limits as product risk.</li>
+          </ul>
+        </aside>
+      </div>
+      <nav aria-label="Technical signals">
+        <a href="#model-routing"><b>Model Routing</b><span>Portfolio design, evals, cost tiers, fallback paths.</span></a>
+        <a href="#agent-architecture"><b>Agent Architecture</b><span>Roles, artifacts, permissions, validation, review gates.</span></a>
+        <a href="#platform-integrations"><b>Platform Integrations</b><span>Search, browser, desktop, creative, and workflow surfaces.</span></a>
+        <a href="#compute-ops"><b>Compute Ops</b><span>Capacity, latency, token cost, resilience, data boundaries.</span></a>
+        <a href="#vendor-risk"><b>Vendor Risk</b><span>Governance, incentives, ads, partnerships, lock-in.</span></a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="signal" id="model-routing">
+      <div class="signal-head"><div><h2>Model Routing: Stop Asking for One Best Model</h2><p>The model market is splitting into specialized lanes: coding, realtime voice, open/efficient models, image/media, and science-oriented systems.</p></div><div class="num">01</div></div>
+      <div class="body">
+        <div class="maincol">
+          <div class="infographic">
+            <p class="info-title">Model Routing Map</p>
+            <div class="route-map">
+              <div class="route-col">
+                <div class="route-node"><b>Coding</b><span>repair, refactor, tests</span></div>
+                <div class="route-node"><b>Realtime</b><span>voice, support, translation</span></div>
+                <div class="route-node"><b>Media</b><span>image, video, creative</span></div>
+              </div>
+              <div class="router-core">Policy Router<br>cost + privacy + latency + quality</div>
+              <div class="route-col">
+                <div class="route-node"><b>Frontier</b><span>planning and hard reasoning</span></div>
+                <div class="route-node"><b>Efficient</b><span>classification and formatting</span></div>
+                <div class="route-node"><b>Open</b><span>local or controlled workloads</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="grid">
+            <div class="fact"><b>Architecture move</b><p>Create a routing layer that chooses model class by task, sensitivity, latency, and price.</p></div>
+            <div class="fact"><b>Eval move</b><p>Keep a small regression set for each workflow instead of relying on public benchmarks.</p></div>
+            <div class="fact"><b>Cost move</b><p>Use frontier models for planning and hard reasoning; use cheaper models for extraction, formatting, and classification.</p></div>
+          </div>
+          <div class="callout"><b>Technical takeaway:</b> the durable asset is the routing/evaluation harness, not whichever model wins the week.</div>
+        </div>
+        <aside class="side">
+          <h3>Routing Checklist</h3>
+          <ul class="checklist">
+            <li>Inventory the top 10 AI workflows by volume and business risk.</li>
+            <li>Tag each workflow with latency, privacy, reasoning depth, and quality requirements.</li>
+            <li>Run two vendors and one lower-cost model against the same task set.</li>
+          </ul>
+        </aside>
+      </div>
+      <details><summary>References</summary><div class="sources"><a href="https://www.youtube.com/watch?v=bIrzOQtnp8w">Matt Wolfe model roundup</a><a href="https://martinalderson.com/posts/open-weights-are-quietly-closing-up/">Open weights are quietly closing up</a><a href="https://openai.com/">OpenAI product home</a><a href="https://www.anthropic.com/claude-code">Claude Code product home</a></div></details>
+    </section>
+
+    <section class="signal" id="agent-architecture">
+      <div class="signal-head"><div><h2>Agent Architecture: Workflow First, Memory Later</h2><p>The agent signal is that tools like Codex and Claude Code are becoming execution surfaces across files, apps, browsers, docs, and code.</p></div><div class="num">02</div></div>
+      <div class="body">
+        <div class="maincol">
+          <div class="infographic">
+            <p class="info-title">Agent Workflow Architecture</p>
+            <div class="agent-flow">
+              <div class="flow-step"><strong>Job Contract</strong><span>goal, inputs, done criteria</span></div>
+              <div class="flow-step"><strong>Tool Boundary</strong><span>files, apps, APIs, browser</span></div>
+              <div class="flow-step"><strong>Artifact Trail</strong><span>drafts, diffs, sources, logs</span></div>
+              <div class="flow-step"><strong>Review Gate</strong><span>approve, publish, archive</span></div>
+            </div>
+          </div>
+          <div class="grid">
+            <div class="fact"><b>Design unit</b><p>Define the job as input -> allowed actions -> output artifact -> review gate.</p></div>
+            <div class="fact"><b>State model</b><p>Use explicit files, tickets, docs, and run logs as durable state before relying on generic memory.</p></div>
+            <div class="fact"><b>Permission model</b><p>Separate read, draft, edit, publish, spend, and external-send permissions.</p></div>
+          </div>
+          <div class="callout"><b>Technical takeaway:</b> agents need an operating procedure more than they need a personality.</div>
+        </div>
+        <aside class="side">
+          <div class="mini-card"><b>First Pilot</b><p>Newsletter production: gather sources, build review, approve themes, generate pages, publish.</p></div>
+          <div class="mini-card"><b>Failure Mode</b><p>Vague goals create long-running loops. Strong artifacts keep the work inspectable.</p></div>
+          <h3>Operating Notes</h3>
+          <ul class="checklist">
+            <li>Write the workflow contract in one page.</li>
+            <li>Add a review gate before public publishing.</li>
+            <li>Record sources, generated outputs, and final URL in the issue folder.</li>
+          </ul>
+        </aside>
+      </div>
+      <details><summary>References</summary><div class="sources"><a href="https://drstorm.substack.com/p/why-claude-code-changes-more-than">Why Claude Code changes more than software development</a><a href="https://www.youtube.com/watch?v=wzADqzsm6pI">Openclaw Labs on agent memory</a><a href="https://youtu.be/_6O19bEZgMc">Limitless: agentic application layer</a><a href="https://openai.com/codex/">OpenAI Codex product home</a></div></details>
+    </section>
+
+    <section class="signal" id="platform-integrations">
+      <div class="signal-head"><div><h2>Platform Integrations: AI Is Moving to the Point of Work</h2><p>Search, desktop, browser, creative tools, and ad systems are becoming AI surfaces. Integration strategy should follow where users already make decisions.</p></div><div class="num">03</div></div>
+      <div class="body">
+        <div class="maincol">
+          <div class="infographic">
+            <img src="../../assets/platform-distribution-map-gpt-image-2.png" alt="AI Platform Distribution Map: from apps to intent surfaces">
+          </div>
+          <div class="grid">
+            <div class="fact"><b>UX move</b><p>Map where users currently ask, search, copy/paste, summarize, or hand work across systems.</p></div>
+            <div class="fact"><b>Integration move</b><p>Prioritize extensions, APIs, and embedded actions inside existing work surfaces.</p></div>
+            <div class="fact"><b>Measurement move</b><p>Track answer quality, task completion, conversion, and handoff reduction.</p></div>
+          </div>
+          <div class="callout"><b>Technical takeaway:</b> AI adoption is easier when the assistant lives where the work already happens.</div>
+        </div>
+        <aside class="side">
+          <h3>Integration Scan</h3>
+          <ul class="checklist">
+            <li>Review search journeys that may become AI answer journeys.</li>
+            <li>Identify internal workflows where browser or document agents can remove handoffs.</li>
+            <li>Prepare attribution changes if AI answers reduce normal web traffic.</li>
+          </ul>
+        </aside>
+      </div>
+      <details><summary>References</summary><div class="sources"><a href="https://openai.com/index/new-ways-to-buy-chatgpt-ads/">OpenAI ChatGPT ads update</a><a href="https://www.macrumors.com/2026/05/06/google-search-ai-mode-expert-advice/">Google AI Search changes</a><a href="https://www.canva.com/ai/">Canva AI product home</a><a href="https://www.perplexity.ai/">Perplexity product home</a></div></details>
+    </section>
+
+    <section class="signal" id="compute-ops">
+      <div class="signal-head"><div><h2>Compute Ops: Capacity Is Now a Product Dependency</h2><p>Capex, memory, power, latency, and vendor capacity are now part of AI application design, not only infrastructure procurement.</p></div><div class="num">04</div></div>
+      <div class="body">
+        <div class="maincol">
+          <div class="infographic">
+            <img src="../../assets/compute-economics-gpt-image-2.png" alt="AI Compute Economics: capacity becomes strategy">
+          </div>
+          <div class="grid">
+            <div class="fact"><b>Reliability move</b><p>Define fallback behavior for rate limits, vendor degradation, or budget caps.</p></div>
+            <div class="fact"><b>Data move</b><p>Document where prompts, files, logs, and derived outputs can be stored.</p></div>
+            <div class="fact"><b>FinOps move</b><p>Report cost per workflow, not just total AI subscription spend.</p></div>
+          </div>
+          <div class="callout"><b>Technical takeaway:</b> production AI needs the same discipline as cloud operations: capacity, observability, incident plans, and cost controls.</div>
+        </div>
+        <aside class="side">
+          <h3>Production Controls</h3>
+          <ul class="checklist">
+            <li>Set max tokens, max runtime, and max spend per workflow.</li>
+            <li>Cache repeatable retrieval and generated reference material.</li>
+            <li>Keep a vendor capacity and data-residency questionnaire.</li>
+          </ul>
+        </aside>
+      </div>
+      <details><summary>References</summary><div class="sources"><a href="https://timesofindia.indiatimes.com/technology/tech-news/anthropic-takes-on-openai-expands-ai-infrastructure-with-spacex-deal-joining-google-broadcom-microsoft-nvidia-and-amazon/articleshow/130868969.cms">Report: Anthropic / SpaceX compute access</a><a href="https://www.teslarati.com/spacexai-signs-agreement-anthropic-massive-ai-supercomputer-access/">Teslarati: SpaceXAI and Anthropic report</a><a href="https://youtu.be/_6O19bEZgMc">Limitless: AI capex and memory bottlenecks</a></div></details>
+    </section>
+
+    <section class="signal" id="vendor-risk">
+      <div class="signal-head"><div><h2>Vendor Risk: Governance, Ads, and Compute Deals Matter</h2><p>Power moves can affect enterprise trust, roadmaps, product pricing, and who gets access to the best capacity.</p></div><div class="num">05</div></div>
+      <div class="body">
+        <div class="maincol">
+          <div class="infographic">
+            <p class="info-title">Vendor Risk Decoder</p>
+            <div class="risk-grid">
+              <div class="risk-node"><b>Governance</b><span>control, litigation, incentives</span></div>
+              <div class="risk-node"><b>Compute</b><span>capacity partners and constraints</span></div>
+              <div class="risk-node"><b>Monetization</b><span>ads, sponsored answers, trust</span></div>
+              <div class="risk-node"><b>Lock-In</b><span>data, workflow, integration depth</span></div>
+            </div>
+          </div>
+          <div class="grid">
+            <div class="fact"><b>Governance move</b><p>Track ownership structure, litigation risk, and enterprise data commitments for critical AI vendors.</p></div>
+            <div class="fact"><b>Monetization move</b><p>Watch whether ads or sponsored answers change user trust in assistant surfaces.</p></div>
+            <div class="fact"><b>Dependency move</b><p>Map which vendors depend on which clouds, chips, compute partners, and distribution channels.</p></div>
+          </div>
+          <div class="callout"><b>Technical takeaway:</b> vendor risk is not just legal review. It is architecture review.</div>
+        </div>
+        <aside class="side">
+          <h3>Risk Review</h3>
+          <ul class="checklist">
+            <li>Classify AI vendors by business criticality.</li>
+            <li>Document exit paths for critical workflows.</li>
+            <li>Keep public-source references with each weekly vendor-risk note.</li>
+          </ul>
+        </aside>
+      </div>
+      <details><summary>References</summary><div class="sources"><a href="https://youtu.be/Jg2jJH1K0o8">Moonshots: Musk / Altman trial segment</a><a href="https://openai.com/index/new-ways-to-buy-chatgpt-ads/">OpenAI ChatGPT ads buying</a><a href="https://www.anthropic.com/">Anthropic product home</a><a href="https://x.ai/">xAI product home</a></div></details>
+    </section>
+
+    <div class="edition-nav" aria-label="Newsletter edition navigation">
+      <div>
+        <strong>Technical edition</strong>
+        <span>Use the executive edition when you want the business summary.</span>
+      </div>
+      <div class="edition-links">
+        <a href="../../index.html">Newsletter archive</a>
+        <a href="../index.html">Executive brief</a>
+        <span class="edition-current" aria-current="page">Technical brief</span>
+      </div>
+    </div>
+    <p class="footer">Technical edition generated from the local editorial review prototype and the latest May 11 executive brief. Admin/review workflow remains local until login/auth is added.</p>
+  </main>
+</body>
+</html>

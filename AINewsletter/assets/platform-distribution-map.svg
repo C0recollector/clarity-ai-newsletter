@@ -1,0 +1,173 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1000" viewBox="0 0 1800 1000" role="img" aria-labelledby="title desc">
+  <title id="title">AI Platform Distribution Map</title>
+  <desc id="desc">Dense infographic showing how search, desktop, browser, creative tools, ads, and knowledge work are becoming AI-native distribution surfaces.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#071427"/>
+      <stop offset=".48" stop-color="#0e2546"/>
+      <stop offset="1" stop-color="#12341f"/>
+    </linearGradient>
+    <linearGradient id="blue" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#42a5ff"/>
+      <stop offset="1" stop-color="#66e3ff"/>
+    </linearGradient>
+    <linearGradient id="green" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#7bd957"/>
+      <stop offset="1" stop-color="#d5ff78"/>
+    </linearGradient>
+    <filter id="glow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="5" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <pattern id="grid" width="44" height="44" patternUnits="userSpaceOnUse">
+      <path d="M44 0H0v44" fill="none" stroke="#284c72" stroke-width="1" opacity=".42"/>
+    </pattern>
+    <style>
+      .title{font:900 54px Inter,Arial,sans-serif;fill:#f8fbff;letter-spacing:.2px}
+      .subtitle{font:600 25px Inter,Arial,sans-serif;fill:#8ed8ff}
+      .panel-title{font:900 25px Inter,Arial,sans-serif;fill:#fff}
+      .label{font:800 20px Inter,Arial,sans-serif;fill:#ecf7ff}
+      .small{font:600 16px Inter,Arial,sans-serif;fill:#bfd3e8}
+      .tiny{font:700 13px Inter,Arial,sans-serif;fill:#a9bed4}
+      .metric{font:900 48px Inter,Arial,sans-serif;fill:#65e5ff}
+      .greenmetric{font:900 48px Inter,Arial,sans-serif;fill:#a4ef66}
+      .box{fill:rgba(7,20,39,.68);stroke:#4c86bd;stroke-width:2}
+      .box2{fill:rgba(15,47,35,.68);stroke:#83c65a;stroke-width:2}
+      .chip{fill:rgba(255,255,255,.06);stroke:#6fa6d4;stroke-width:1.5}
+      .arrow{stroke:#73d7ff;stroke-width:4;fill:none;marker-end:url(#arrow)}
+      .greenarrow{stroke:#a6ef71;stroke-width:4;fill:none;marker-end:url(#garrow)}
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0l10 5-10 5z" fill="#73d7ff"/>
+    </marker>
+    <marker id="garrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0l10 5-10 5z" fill="#a6ef71"/>
+    </marker>
+  </defs>
+
+  <rect width="1800" height="1000" fill="url(#bg)"/>
+  <rect width="1800" height="1000" fill="url(#grid)" opacity=".55"/>
+
+  <text x="70" y="78" class="title">The AI Distribution Shift: From Apps to Intent Surfaces</text>
+  <text x="70" y="120" class="subtitle">Platforms are racing to own the moment before a user clicks, searches, designs, buys, or delegates.</text>
+
+  <rect x="42" y="155" width="520" height="800" rx="22" class="box"/>
+  <text x="70" y="202" class="panel-title">1. Old Surface: User Pulls the Tool</text>
+  <text x="70" y="236" class="small">Traditional interfaces wait for the user to search, launch, paste,</text>
+  <text x="70" y="260" class="small">upload, compare, and hand work across applications.</text>
+
+  <g transform="translate(82 315)">
+    <rect width="190" height="112" rx="16" class="chip"/>
+    <text x="24" y="42" class="label">Search Query</text>
+    <text x="24" y="72" class="small">keyword intent</text>
+    <circle cx="156" cy="58" r="22" fill="none" stroke="#73d7ff" stroke-width="5"/>
+    <path d="M171 74l26 26" stroke="#73d7ff" stroke-width="6" stroke-linecap="round"/>
+  </g>
+  <g transform="translate(315 315)">
+    <rect width="190" height="112" rx="16" class="chip"/>
+    <text x="24" y="42" class="label">App Launcher</text>
+    <text x="24" y="72" class="small">manual context</text>
+    <rect x="136" y="31" width="45" height="45" rx="8" fill="none" stroke="#73d7ff" stroke-width="5"/>
+    <path d="M148 88h22" stroke="#73d7ff" stroke-width="5" stroke-linecap="round"/>
+  </g>
+  <g transform="translate(82 465)">
+    <rect width="190" height="112" rx="16" class="chip"/>
+    <text x="24" y="42" class="label">Browser Tab</text>
+    <text x="24" y="72" class="small">copy / paste work</text>
+    <rect x="132" y="30" width="52" height="46" rx="7" fill="none" stroke="#73d7ff" stroke-width="5"/>
+    <path d="M132 44h52" stroke="#73d7ff" stroke-width="5"/>
+  </g>
+  <g transform="translate(315 465)">
+    <rect width="190" height="112" rx="16" class="chip"/>
+    <text x="24" y="42" class="label">Design Tool</text>
+    <text x="24" y="72" class="small">asset assembly</text>
+    <path d="M139 79l17-48 17 48z" fill="none" stroke="#73d7ff" stroke-width="5"/>
+    <circle cx="156" cy="54" r="7" fill="#73d7ff"/>
+  </g>
+  <g transform="translate(82 615)">
+    <rect width="423" height="96" rx="16" class="chip"/>
+    <text x="24" y="38" class="label">Knowledge Work</text>
+    <text x="24" y="68" class="small">docs, sheets, slides, email, CRM, help desk</text>
+    <path d="M332 25h60v50h-60zM345 39h34M345 52h34M345 65h22" fill="none" stroke="#73d7ff" stroke-width="4"/>
+  </g>
+  <rect x="82" y="766" width="423" height="92" rx="18" fill="rgba(115,215,255,.12)" stroke="#73d7ff" stroke-width="2"/>
+  <text x="112" y="808" class="label">Friction Tax</text>
+  <text x="112" y="838" class="small">Every handoff leaks context, intent, and attribution.</text>
+
+  <rect x="640" y="155" width="520" height="800" rx="22" class="box"/>
+  <text x="668" y="202" class="panel-title">2. New Surface: AI Captures Intent</text>
+  <text x="668" y="236" class="small">Assistants move upstream and translate intent into answers,</text>
+  <text x="668" y="260" class="small">workflows, generated assets, purchases, or delegated actions.</text>
+
+  <g transform="translate(690 318)" filter="url(#glow)">
+    <circle cx="210" cy="210" r="160" fill="rgba(66,165,255,.1)" stroke="url(#blue)" stroke-width="9"/>
+    <circle cx="210" cy="210" r="95" fill="rgba(123,217,87,.11)" stroke="url(#green)" stroke-width="7"/>
+    <text x="210" y="196" text-anchor="middle" class="metric">INTENT</text>
+    <text x="210" y="232" text-anchor="middle" class="label">router</text>
+  </g>
+  <g>
+    <path d="M900 318 C900 278 760 285 710 312" class="arrow"/>
+    <path d="M1045 378 C1110 350 1120 285 1088 246" class="arrow"/>
+    <path d="M1057 585 C1125 640 1100 735 1030 772" class="greenarrow"/>
+    <path d="M742 616 C662 670 667 768 746 812" class="greenarrow"/>
+  </g>
+  <g transform="translate(673 286)">
+    <rect width="185" height="74" rx="15" class="chip"/>
+    <text x="22" y="32" class="label">AI Search</text>
+    <text x="22" y="58" class="tiny">answers before clicks</text>
+  </g>
+  <g transform="translate(966 225)">
+    <rect width="170" height="74" rx="15" class="chip"/>
+    <text x="22" y="32" class="label">Desktop</text>
+    <text x="22" y="58" class="tiny">always available</text>
+  </g>
+  <g transform="translate(962 760)">
+    <rect width="175" height="74" rx="15" class="chip"/>
+    <text x="22" y="32" class="label">Agent Tools</text>
+    <text x="22" y="58" class="tiny">work gets executed</text>
+  </g>
+  <g transform="translate(673 797)">
+    <rect width="185" height="74" rx="15" class="chip"/>
+    <text x="22" y="32" class="label">Creative Apps</text>
+    <text x="22" y="58" class="tiny">assets from prompts</text>
+  </g>
+  <rect x="700" y="672" width="400" height="72" rx="18" fill="rgba(255,255,255,.07)" stroke="#83c65a" stroke-width="2"/>
+  <text x="730" y="703" class="label">Strategic Question</text>
+  <text x="730" y="730" class="small">Who owns the answer surface when the user never visits the old page?</text>
+
+  <rect x="1238" y="155" width="520" height="800" rx="22" class="box2"/>
+  <text x="1266" y="202" class="panel-title">3. Business Impact: Distribution Becomes AI Strategy</text>
+  <text x="1266" y="236" class="small">The fight is not only model quality. It is where the platform sits</text>
+  <text x="1266" y="260" class="small">in the decision path and what it can monetize or automate.</text>
+
+  <g transform="translate(1282 318)">
+    <rect width="190" height="126" rx="16" fill="rgba(255,255,255,.07)" stroke="#83c65a" stroke-width="2"/>
+    <text x="24" y="42" class="greenmetric">SEO</text>
+    <text x="24" y="72" class="label">becomes</text>
+    <text x="24" y="100" class="small">answer-surface strategy</text>
+  </g>
+  <g transform="translate(1520 318)">
+    <rect width="190" height="126" rx="16" fill="rgba(255,255,255,.07)" stroke="#83c65a" stroke-width="2"/>
+    <text x="24" y="42" class="greenmetric">Ads</text>
+    <text x="24" y="72" class="label">move into</text>
+    <text x="24" y="100" class="small">assistant intent</text>
+  </g>
+  <g transform="translate(1282 486)">
+    <rect width="428" height="116" rx="16" fill="rgba(255,255,255,.07)" stroke="#83c65a" stroke-width="2"/>
+    <text x="28" y="42" class="label">Workflow Ownership</text>
+    <text x="28" y="72" class="small">The tool closest to the task can see context, suggest next steps,</text>
+    <text x="28" y="96" class="small">and capture the handoff that used to happen between apps.</text>
+  </g>
+  <g transform="translate(1282 645)">
+    <rect width="428" height="164" rx="16" fill="rgba(255,255,255,.07)" stroke="#83c65a" stroke-width="2"/>
+    <text x="28" y="44" class="label">Watchlist for Operators</text>
+    <text x="48" y="82" class="small">• Where do customers now ask before buying?</text>
+    <text x="48" y="112" class="small">• Which internal tools can become agent surfaces?</text>
+    <text x="48" y="142" class="small">• Which vendor owns the final answer?</text>
+  </g>
+  <rect x="1282" y="850" width="428" height="54" rx="16" fill="rgba(123,217,87,.18)" stroke="#b5ff70" stroke-width="2"/>
+  <text x="1496" y="885" text-anchor="middle" class="label">Distribution advantage = intent + context + execution</text>
+</svg>

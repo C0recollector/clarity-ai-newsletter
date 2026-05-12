@@ -1,0 +1,113 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1000" viewBox="0 0 1800 1000" role="img" aria-labelledby="title desc">
+  <title id="title">AI Compute Economics Map</title>
+  <desc id="desc">Infographic showing why compute access, memory, power, latency, and cost controls become strategic constraints for production AI.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#081324"/>
+      <stop offset=".52" stop-color="#10243d"/>
+      <stop offset="1" stop-color="#2b2710"/>
+    </linearGradient>
+    <linearGradient id="hot" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#29d3ff"/>
+      <stop offset=".55" stop-color="#78e08f"/>
+      <stop offset="1" stop-color="#f4b23d"/>
+    </linearGradient>
+    <pattern id="grid" width="44" height="44" patternUnits="userSpaceOnUse">
+      <path d="M44 0H0v44" fill="none" stroke="#355573" stroke-width="1" opacity=".36"/>
+    </pattern>
+    <style>
+      .title{font:900 54px Inter,Arial,sans-serif;fill:#fff}
+      .sub{font:650 25px Inter,Arial,sans-serif;fill:#9fdcff}
+      .panel{fill:rgba(8,19,36,.7);stroke:#547fa8;stroke-width:2}
+      .panel2{fill:rgba(44,35,14,.58);stroke:#d39b32;stroke-width:2}
+      .h{font:900 26px Inter,Arial,sans-serif;fill:#fff}
+      .label{font:850 19px Inter,Arial,sans-serif;fill:#edf8ff}
+      .small{font:650 16px Inter,Arial,sans-serif;fill:#bed2e7}
+      .tiny{font:700 13px Inter,Arial,sans-serif;fill:#a8bdd3}
+      .metric{font:950 50px Inter,Arial,sans-serif;fill:#74e6ff}
+      .amber{fill:#ffcf65}
+      .green{fill:#a5ef7d}
+      .barbg{fill:#18304d}
+      .chip{fill:rgba(255,255,255,.065);stroke:#75a6ce;stroke-width:1.5}
+    </style>
+  </defs>
+  <rect width="1800" height="1000" fill="url(#bg)"/>
+  <rect width="1800" height="1000" fill="url(#grid)"/>
+  <text x="64" y="78" class="title">AI Compute Economics: The Constraint Behind the Strategy</text>
+  <text x="64" y="120" class="sub">Production AI moves the bottleneck from demos to capacity, power, memory, latency, and cost governance.</text>
+
+  <rect x="44" y="158" width="520" height="790" rx="22" class="panel"/>
+  <text x="72" y="205" class="h">1. The Bottleneck Stack</text>
+  <text x="72" y="238" class="small">Every serious workflow eventually hits a physical or operational limit.</text>
+  <g transform="translate(82 302)">
+    <text x="0" y="0" class="label">Capital</text><rect x="120" y="-18" width="330" height="20" rx="10" class="barbg"/><rect x="120" y="-18" width="300" height="20" rx="10" fill="url(#hot)"/>
+    <text x="0" y="68" class="label">Power</text><rect x="120" y="50" width="330" height="20" rx="10" class="barbg"/><rect x="120" y="50" width="258" height="20" rx="10" fill="url(#hot)"/>
+    <text x="0" y="136" class="label">Memory</text><rect x="120" y="118" width="330" height="20" rx="10" class="barbg"/><rect x="120" y="118" width="235" height="20" rx="10" fill="url(#hot)"/>
+    <text x="0" y="204" class="label">Latency</text><rect x="120" y="186" width="330" height="20" rx="10" class="barbg"/><rect x="120" y="186" width="190" height="20" rx="10" fill="url(#hot)"/>
+    <text x="0" y="272" class="label">Cost</text><rect x="120" y="254" width="330" height="20" rx="10" class="barbg"/><rect x="120" y="254" width="280" height="20" rx="10" fill="url(#hot)"/>
+  </g>
+  <rect x="82" y="650" width="430" height="116" rx="18" class="chip"/>
+  <text x="112" y="694" class="metric">5</text>
+  <text x="178" y="690" class="label">questions before rollout</text>
+  <text x="112" y="724" class="small">capacity, rate limits, residency, failover, spend caps</text>
+  <rect x="82" y="800" width="430" height="82" rx="18" fill="rgba(116,230,255,.1)" stroke="#74e6ff" stroke-width="2"/>
+  <text x="112" y="835" class="label">Board translation</text>
+  <text x="112" y="864" class="small">Compute is now product strategy, not back office.</text>
+
+  <rect x="640" y="158" width="520" height="790" rx="22" class="panel"/>
+  <text x="668" y="205" class="h">2. Production Cost Loop</text>
+  <text x="668" y="238" class="small">Costs compound when agents call tools, retry work, and generate long chains.</text>
+  <g transform="translate(900 505)">
+    <circle r="190" fill="rgba(116,230,255,.08)" stroke="#74e6ff" stroke-width="8"/>
+    <circle r="105" fill="rgba(165,239,125,.09)" stroke="#a5ef7d" stroke-width="6"/>
+    <text y="-10" text-anchor="middle" class="metric">AI</text>
+    <text y="32" text-anchor="middle" class="label">workflow</text>
+  </g>
+  <g>
+    <path d="M900 285 C1050 300 1110 430 1082 560" fill="none" stroke="#74e6ff" stroke-width="5"/>
+    <path d="M1080 558 l20-14 l6 24 z" fill="#74e6ff"/>
+    <path d="M900 725 C748 704 690 570 724 444" fill="none" stroke="#a5ef7d" stroke-width="5"/>
+    <path d="M724 444 l-20 14 l-6-24 z" fill="#a5ef7d"/>
+  </g>
+  <g transform="translate(694 310)">
+    <rect width="170" height="86" rx="16" class="chip"/><text x="22" y="36" class="label">Prompt</text><text x="22" y="63" class="tiny">context tokens</text>
+  </g>
+  <g transform="translate(936 310)">
+    <rect width="170" height="86" rx="16" class="chip"/><text x="22" y="36" class="label">Reason</text><text x="22" y="63" class="tiny">frontier model</text>
+  </g>
+  <g transform="translate(936 646)">
+    <rect width="170" height="86" rx="16" class="chip"/><text x="22" y="36" class="label">Act</text><text x="22" y="63" class="tiny">tools + retries</text>
+  </g>
+  <g transform="translate(694 646)">
+    <rect width="170" height="86" rx="16" class="chip"/><text x="22" y="36" class="label">Verify</text><text x="22" y="63" class="tiny">tests + review</text>
+  </g>
+  <rect x="700" y="805" width="400" height="72" rx="18" fill="rgba(255,207,101,.13)" stroke="#ffcf65" stroke-width="2"/>
+  <text x="730" y="836" class="label">Control point</text>
+  <text x="730" y="862" class="small">Route, cache, cap, and fall back by workflow.</text>
+
+  <rect x="1238" y="158" width="520" height="790" rx="22" class="panel2"/>
+  <text x="1266" y="205" class="h">3. Vendor Leverage Questions</text>
+  <text x="1266" y="238" class="small">Compute access changes reliability, roadmap speed, pricing, and trust.</text>
+  <g transform="translate(1284 318)">
+    <rect width="420" height="102" rx="16" class="chip"/>
+    <text x="28" y="40" class="label">Capacity</text>
+    <text x="28" y="70" class="small">What happens during peak usage or regional failures?</text>
+  </g>
+  <g transform="translate(1284 454)">
+    <rect width="420" height="102" rx="16" class="chip"/>
+    <text x="28" y="40" class="label">Cost Governance</text>
+    <text x="28" y="70" class="small">Can spend be capped by team, workflow, or agent?</text>
+  </g>
+  <g transform="translate(1284 590)">
+    <rect width="420" height="102" rx="16" class="chip"/>
+    <text x="28" y="40" class="label">Fallback Path</text>
+    <text x="28" y="70" class="small">Can the workflow route to another model safely?</text>
+  </g>
+  <g transform="translate(1284 726)">
+    <rect width="420" height="102" rx="16" class="chip"/>
+    <text x="28" y="40" class="label">Data Boundary</text>
+    <text x="28" y="70" class="small">Where do prompts, files, logs, and outputs live?</text>
+  </g>
+  <rect x="1284" y="864" width="420" height="44" rx="14" fill="rgba(255,207,101,.18)" stroke="#ffcf65" stroke-width="2"/>
+  <text x="1494" y="893" text-anchor="middle" class="label">Compute access = strategic leverage</text>
+</svg>
