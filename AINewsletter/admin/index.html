@@ -760,7 +760,9 @@
         <details class="advanced">
           <summary>Advanced</summary>
           <div class="advanced-menu">
-            <button class="btn" id="export-json">Export Review JSON</button>
+            <button class="btn" id="export-issue-json">Export Issue JSON</button>
+            <button class="btn" id="export-review-json">Export Review JSON</button>
+            <button class="btn" id="download-issue-json">Download Issue Model</button>
             <p>Developer handoff only. For normal use, review the checks below and click Approve and Build Brief.</p>
           </div>
         </details>
@@ -827,8 +829,8 @@
     <section class="export-panel" id="export-panel">
       <div class="section-head">
         <div>
-          <h2>Review JSON</h2>
-          <p class="hint">This is the handoff object the final brief generator would read.</p>
+          <h2 id="export-title">Structured Issue JSON</h2>
+          <p class="hint" id="export-hint">This is the issue content model the final brief generator would read.</p>
         </div>
       </div>
       <div class="brief-link-wrap" id="brief-link-wrap">
@@ -998,6 +1000,39 @@
     const candidateList = document.getElementById('candidate-list');
     const themeList = document.getElementById('theme-list');
     const statusEl = document.getElementById('review-status');
+    const issueModelSeed = {
+      schema_version: '0.1',
+      issue: {
+        id: '2026-05-11',
+        week_of: '2026-05-11',
+        title: 'The Week AI Became Infrastructure',
+        dek: 'The useful story this week is not "more AI news." It is that AI is reorganizing into infrastructure layers: model portfolios, agent operating systems, distribution surfaces, compute supply chains, and power politics.',
+        status: 'draft',
+        default_audience: 'c_suite',
+        editions: [
+          { id: 'executive', label: 'Executive brief', path: 'AINewsletter/2026-05-11/index.html' },
+          { id: 'technical', label: 'Technical brief', path: 'AINewsletter/2026-05-11/technical/index.html' }
+        ]
+      },
+      assets: {
+        hero: 'AINewsletter/assets/ai-infrastructure-hero.png',
+        platform_distribution: 'AINewsletter/assets/platform-distribution-map-gpt-image-2.png',
+        compute_economics: 'AINewsletter/assets/compute-economics-gpt-image-2.png'
+      },
+      sections: [
+        { id: 'model-news', order: 1, title: 'Model News', headline: 'Model News: The Race Is Splitting Into Lanes', theme_id: 'theme-models' },
+        { id: 'agents', order: 2, title: 'All Things Agents', headline: 'All Things Agents: From Chatbot to Operating Layer', theme_id: 'theme-agents' },
+        { id: 'platforms', order: 3, title: 'Platform Plays', headline: 'Platform Plays: AI Is Moving Into Existing Surfaces', theme_id: 'theme-platforms' },
+        { id: 'infrastructure', order: 4, title: 'Economics & Infrastructure', headline: 'Economics & Infrastructure: Compute Is the Strategy', theme_id: 'theme-infra' },
+        { id: 'power-moves', order: 5, title: 'Power Moves', headline: 'Power Moves: The Drama Is Sometimes the Signal', theme_id: 'theme-power' }
+      ],
+      review: {
+        source: 'AINewsletter/admin/index.html',
+        status: 'draft',
+        approved_at: null,
+        approved_review: null
+      }
+    };
 
     function allSegments() {
       return state.candidates.flatMap(candidate => candidate.segments.map(segment => ({
@@ -1320,12 +1355,78 @@
       };
     }
 
-    function showExport() {
+    function buildIssueModel() {
+      const review = buildReviewObject();
+      const approvedThemes = review.approved_themes;
+      const model = structuredClone(issueModelSeed);
+      model.issue.status = review.status;
+      model.issue.default_audience = review.target_audience;
+      model.sections = model.sections.map(section => {
+        const theme = approvedThemes.find(item => item.id === section.theme_id);
+        return {
+          ...section,
+          approved_theme_title: theme?.title || section.title,
+          summary: theme?.summary || '',
+          evidence_segment_ids: theme?.supporting_segments || []
+        };
+      });
+      approvedThemes
+        .filter(theme => !model.sections.some(section => section.theme_id === theme.id))
+        .forEach(theme => {
+          model.sections.push({
+            id: theme.id.replace(/^theme-/, ''),
+            order: model.sections.length + 1,
+            title: theme.title,
+            headline: theme.title,
+            theme_id: theme.id,
+            approved_theme_title: theme.title,
+            summary: theme.summary,
+            evidence_segment_ids: theme.supporting_segments
+          });
+        });
+      model.review = {
+        ...model.review,
+        status: review.status,
+        approved_at: state.approved ? new Date().toISOString() : null,
+        approved_review: review
+      };
+      return model;
+    }
+
+    function setExportContent(title, hint, object) {
       const panel = document.getElementById('export-panel');
       const box = document.getElementById('export-box');
-      box.value = JSON.stringify(buildReviewObject(), null, 2);
+      document.getElementById('export-title').textContent = title;
+      document.getElementById('export-hint').textContent = hint;
+      box.value = JSON.stringify(object, null, 2);
       panel.classList.add('open');
       panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    function showIssueExport() {
+      setExportContent(
+        'Structured Issue JSON',
+        'This is the issue content model the final brief generator would read.',
+        buildIssueModel()
+      );
+    }
+
+    function showReviewExport() {
+      setExportContent(
+        'Review JSON',
+        'This is the lower-level editorial review object nested inside the issue model.',
+        buildReviewObject()
+      );
+    }
+
+    function downloadIssueModel() {
+      const json = JSON.stringify(buildIssueModel(), null, 2);
+      const blob = new Blob([json], { type: 'application/json' });
+      const link = document.createElement('a');
+      link.href = URL.createObjectURL(blob);
+      link.download = '2026-05-11.json';
+      link.click();
+      URL.revokeObjectURL(link.href);
     }
 
     document.addEventListener('change', event => {
@@ -1488,13 +1589,15 @@
     });
 
     document.getElementById('regenerate-themes').addEventListener('click', regenerateThemes);
-    document.getElementById('export-json').addEventListener('click', showExport);
+    document.getElementById('export-issue-json').addEventListener('click', showIssueExport);
+    document.getElementById('export-review-json').addEventListener('click', showReviewExport);
+    document.getElementById('download-issue-json').addEventListener('click', downloadIssueModel);
     document.getElementById('approve').addEventListener('click', () => {
       state.approved = true;
-      showExport();
+      showIssueExport();
       document.getElementById('brief-link-wrap').classList.add('open');
       const audienceLabel = state.audience === 'c_suite' ? 'C-suite executives' : 'operators and implementers';
-      statusEl.textContent = `Approved for ${audienceLabel}. Generated brief link is ready.`;
+      statusEl.textContent = `Approved for ${audienceLabel}. Structured issue JSON is ready.`;
     });
 
     document.getElementById('add-theme').addEventListener('click', () => {

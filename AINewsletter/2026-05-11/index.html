@@ -36,13 +36,31 @@
     .wrap{width:min(1280px,calc(100% - 34px));margin:0 auto}
 
     header{
-      background:
-        radial-gradient(circle at 82% 8%,rgba(20,99,255,.16),transparent 30%),
-        linear-gradient(180deg,#fff 0%,#f5f8fc 100%);
+      position:relative;
+      overflow:hidden;
+      background:#fff;
       border-bottom:1px solid var(--line);
     }
-    .hero{padding:34px 0 24px}
-    .hero-top{display:grid;grid-template-columns:minmax(0,1fr) 360px;gap:28px;align-items:end}
+    header::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:
+        linear-gradient(90deg,#fff 0%,rgba(255,255,255,.98) 29%,rgba(255,255,255,.72) 52%,rgba(255,255,255,.2) 76%,rgba(255,255,255,.06) 100%),
+        url("../assets/ai-infrastructure-hero.png") right center/auto 100% no-repeat;
+      opacity:.9;
+      pointer-events:none;
+    }
+    header::after{
+      content:"";
+      position:absolute;
+      inset:auto 0 0;
+      height:42%;
+      background:linear-gradient(180deg,rgba(255,255,255,0),#f5f8fc 72%,#eef3f8 100%);
+      pointer-events:none;
+    }
+    .hero{position:relative;z-index:1;padding:34px 0 24px}
+    .hero-top{display:grid;grid-template-columns:minmax(0,1fr) minmax(280px,360px);gap:28px;align-items:end;min-height:300px}
     .date-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:13px}
     .pill{
       display:inline-flex;
@@ -59,15 +77,8 @@
     a.pill:hover{text-decoration:none;border-color:#b8c8dd;box-shadow:0 8px 18px rgba(15,23,42,.08)}
     h1{font-size:clamp(42px,7vw,86px);line-height:.92;margin:0 0 12px;letter-spacing:0}
     .dek{max-width:860px;margin:0;color:var(--text);font-size:19px}
-    .hero-art{
-      border:1px solid var(--line);
-      border-radius:8px;
-      background:#fff;
-      box-shadow:var(--shadow);
-      overflow:hidden;
-      min-height:242px;
-    }
-    .hero-art img{display:block;width:100%;height:100%;min-height:242px;object-fit:cover;object-position:center}
+    .hero-art{min-height:242px}
+    .hero-art img{display:none}
 
     .nav-strip{
       display:grid;
@@ -270,7 +281,15 @@
     .lightbox-content .infographic::after{display:none}
 
     @media(max-width:1040px){
+      header::before{
+        background:
+          linear-gradient(180deg,#fff 0%,rgba(255,255,255,.95) 38%,rgba(255,255,255,.62) 72%,rgba(255,255,255,.9) 100%),
+          url("../assets/ai-infrastructure-hero.png") center top/cover no-repeat;
+        opacity:.55;
+      }
       .hero-top,.signal-body,.media-layout{grid-template-columns:1fr}
+      .hero-top{min-height:0}
+      .hero-art{display:none}
       .nav-strip{grid-template-columns:repeat(2,1fr)}
       .story-grid{grid-template-columns:1fr}
     }

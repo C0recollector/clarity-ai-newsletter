@@ -1,0 +1,108 @@
+{
+  "schema_version": "0.1",
+  "issue": {
+    "id": "2026-05-11",
+    "week_of": "2026-05-11",
+    "title": "The Week AI Became Infrastructure",
+    "dek": "The useful story this week is not \"more AI news.\" It is that AI is reorganizing into infrastructure layers: model portfolios, agent operating systems, distribution surfaces, compute supply chains, and power politics.",
+    "status": "draft",
+    "default_audience": "c_suite",
+    "editions": [
+      {
+        "id": "executive",
+        "label": "Executive brief",
+        "path": "AINewsletter/2026-05-11/index.html"
+      },
+      {
+        "id": "technical",
+        "label": "Technical brief",
+        "path": "AINewsletter/2026-05-11/technical/index.html"
+      }
+    ]
+  },
+  "assets": {
+    "hero": "AINewsletter/assets/ai-infrastructure-hero.png",
+    "platform_distribution": "AINewsletter/assets/platform-distribution-map-gpt-image-2.png",
+    "compute_economics": "AINewsletter/assets/compute-economics-gpt-image-2.png"
+  },
+  "sections": [
+    {
+      "id": "model-news",
+      "order": 1,
+      "title": "Model News",
+      "headline": "Model News: The Race Is Splitting Into Lanes",
+      "summary": "The model market is splitting into specialized lanes: coding, realtime voice, open and efficient models, image/media, and science-oriented systems.",
+      "theme_id": "theme-models",
+      "evidence_segment_ids": [
+        "ai-writing-models",
+        "claude-opus-47",
+        "minimax-m27",
+        "qwen36",
+        "gpt-rosalind",
+        "microsoft-image",
+        "gpt-realtime"
+      ]
+    },
+    {
+      "id": "agents",
+      "order": 2,
+      "title": "All Things Agents",
+      "headline": "All Things Agents: From Chatbot to Operating Layer",
+      "summary": "Agents are becoming execution surfaces across files, folders, tools, browsers, documents, code, and workflows.",
+      "theme_id": "theme-agents",
+      "evidence_segment_ids": [
+        "codex-everything",
+        "claude-code-update",
+        "memory-myth",
+        "workflow-roles-artifacts",
+        "memory-last",
+        "agentic-layer"
+      ]
+    },
+    {
+      "id": "platforms",
+      "order": 3,
+      "title": "Platform Plays",
+      "headline": "Platform Plays: AI Is Moving Into Existing Surfaces",
+      "summary": "AI is being embedded where users already work, search, design, and decide.",
+      "theme_id": "theme-platforms",
+      "evidence_segment_ids": [
+        "google-desktop",
+        "gemini-mac",
+        "chrome-ai-update",
+        "nano-banana",
+        "canva-ai-updates",
+        "ai-2028-feel"
+      ]
+    },
+    {
+      "id": "infrastructure",
+      "order": 4,
+      "title": "Economics & Infrastructure",
+      "headline": "Economics & Infrastructure: Compute Is the Strategy",
+      "summary": "Compute, memory, power, cooling, data centers, and strategic access to capacity are becoming business constraints.",
+      "theme_id": "theme-infra",
+      "evidence_segment_ids": [
+        "capex-stack",
+        "memory-demand"
+      ]
+    },
+    {
+      "id": "power-moves",
+      "order": 5,
+      "title": "Power Moves",
+      "headline": "Power Moves: The Drama Is Sometimes the Signal",
+      "summary": "Founder fights, lawsuits, surprise alliances, and platform politics reveal who controls compute, distribution, governance, and customer trust.",
+      "theme_id": "theme-power",
+      "evidence_segment_ids": [
+        "musk-altman-trial"
+      ]
+    }
+  ],
+  "review": {
+    "source": "AINewsletter/admin/index.html",
+    "status": "draft",
+    "approved_at": null,
+    "approved_review": null
+  }
+}
