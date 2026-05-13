@@ -17,6 +17,7 @@
 - Added admin controls for `Export Issue JSON`, `Export Review JSON`, and `Download Issue Model`.
 - Validation completed with local static checks: `data/issues/2026-05-11.json` parses, and the extracted admin page script passes Node syntax check.
 - Browser automation is still blocked by `windows sandbox failed: setup refresh failed with status exit code: 1`; validate visually in the in-app browser manually until that runtime is healthy.
+- Updated the technical edition hero to match the executive edition: removed the old `Implementation Lens` card and used `ai-infrastructure-hero.png` as a faded right-side hero background.
 
 ## Next step
 
