@@ -253,7 +253,7 @@
       <div class="actions">
         <a class="btn" href="../admin/index.html">Review Sources</a>
         <a class="btn" id="open-newsletter" href="../2026-05-11/index.html">Open Newsletter</a>
-        <button class="btn green" id="publish">Publish to Hostinger</button>
+        <button class="btn green" id="publish">Publish to Cloudflare</button>
       </div>
     </div>
   </header>
@@ -443,9 +443,9 @@
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ issue_id: issueId, block_id: block.id, instruction })
       });
-      draftEl.value = result.draft || block.value || '';
+      draftEl.value = result.mode === 'queued_for_codex' ? '' : (result.draft || block.value || '');
       autoGrow(draftEl);
-      editorNoteEl.textContent = `Queued for Codex. Request saved to ${result.request_file || 'data/rewrite_requests'}. Tell Codex to process the pending request.`;
+      editorNoteEl.textContent = `Queued for Codex. Request saved to ${result.request_file || 'data/rewrite_requests'}. No rewrite is generated inside this page; tell Codex to process the pending request.`;
       statusEl.textContent = 'Codex request queued.';
     }
 
@@ -484,14 +484,15 @@
     }
 
     async function publish() {
-      editorNoteEl.textContent = 'Preparing Hostinger publish package...';
+      editorNoteEl.textContent = 'Preparing Cloudflare publish note...';
       const result = await fetchJson('/api/publish', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ issue_id: issueId })
       });
-      editorNoteEl.textContent = `${result.message} Package: ${result.manifest?.zip || 'dist/hostinger package'}.`;
-      statusEl.textContent = result.next_step || 'Publish package prepared.';
+      const issueLink = result.issue_url ? ` Issue: ${result.issue_url}` : '';
+      editorNoteEl.textContent = `${result.message}${issueLink}`;
+      statusEl.textContent = result.next_step || 'Push to GitHub when the newsletter is ready.';
     }
 
     blockSelectEl.addEventListener('change', syncSelectedBlock);

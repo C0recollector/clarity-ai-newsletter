@@ -32,7 +32,6 @@ from fetch_youtube_playlist_transcripts import (  # noqa: E402
     write_markdown,
 )
 from generate_issue_pages import generate as generate_issue_pages  # noqa: E402
-from package_publish import package_for_hostinger  # noqa: E402
 from youtube_transcript_api import YouTubeTranscriptApi  # noqa: E402
 
 
@@ -280,7 +279,7 @@ def queue_codex_request(block: dict, instruction: str, prompt: str, issue_id: st
         ),
         encoding="utf-8",
     )
-    return block["value"], "queued_for_codex", str(path.relative_to(ROOT))
+    return "", "queued_for_codex", str(path.relative_to(ROOT))
 
 
 def rewrite_block(request: dict) -> dict:
@@ -322,13 +321,14 @@ def apply_block(request: dict) -> dict:
 
 def publish_newsletter(request: dict) -> dict:
     issue_id = safe_issue_id(request.get("issue_id", "2026-05-11"))
-    manifest = package_for_hostinger(issue_id, include_admin=False)
     return {
         "ok": True,
-        "message": "Publish package prepared. Direct Hostinger upload is not available from the current local runner.",
-        "mode": "package_only",
-        "manifest": manifest,
-        "next_step": "Upload the zip to Hostinger and extract it at public_html/ so AINewsletter/ lands at https://clarityinnovation.ai/AINewsletter/.",
+        "message": "Cloudflare publishes from GitHub after the newsletter files are committed and pushed.",
+        "mode": "cloudflare_git",
+        "issue_id": issue_id,
+        "public_url": "https://clarity-ai-newsletter.gregboss.workers.dev/",
+        "issue_url": f"https://clarity-ai-newsletter.gregboss.workers.dev/{issue_id}/",
+        "next_step": "Ask Codex to commit and push the newsletter changes to GitHub; Cloudflare will deploy the pushed commit automatically.",
     }
 
 
