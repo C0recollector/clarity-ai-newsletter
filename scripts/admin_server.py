@@ -304,6 +304,12 @@ def source_url(source: str | dict) -> str:
     return source.get("url", "") if isinstance(source, dict) else ""
 
 
+def is_youtube_url(url: str) -> bool:
+    host = urlparse(url).hostname or ""
+    host = host.lower().removeprefix("www.")
+    return host == "youtu.be" or host == "youtube.com" or host.endswith(".youtube.com")
+
+
 def source_items(value: object) -> list[str | dict]:
     return value if isinstance(value, list) else []
 
@@ -559,6 +565,12 @@ def refresh_youtube_watchlist(request: dict) -> dict:
             channel_result = {"name": name, "url": url, "tier": tier_name}
             if not url:
                 channel_result["status"] = "needs_url"
+                report["summary"]["channels_need_url"] += 1
+                report["channels"].append(channel_result)
+                continue
+            if not is_youtube_url(url):
+                channel_result["status"] = "needs_youtube_url"
+                channel_result["note"] = "This watchlist lane only accepts YouTube channel URLs. Move newsletter or website URLs to Newsletter sources."
                 report["summary"]["channels_need_url"] += 1
                 report["channels"].append(channel_result)
                 continue

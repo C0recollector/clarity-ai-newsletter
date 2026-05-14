@@ -13,7 +13,8 @@
           "url": "https://www.youtube.com/channel/UChpleBmo18P08aKCIgti38g"
         },
         {
-          "name": "Matthew Berman"
+          "name": "Matthew Berman",
+          "url": "https://www.youtube.com/@matthew_berman"
         },
         {
           "name": "Peter Diamandis / Moonshots",
@@ -22,18 +23,6 @@
         {
           "name": "Limitless Podcast",
           "url": "https://www.youtube.com/channel/UCCRxYlYOmLE2l5wxs3ckJtg"
-        },
-        {
-          "name": "World of AI"
-        },
-        {
-          "name": "TLDR AI"
-        },
-        {
-          "name": "Superhuman AI"
-        },
-        {
-          "name": "Metatrends"
         }
       ],
       "tier_2": [
@@ -46,20 +35,12 @@
           "url": "https://www.youtube.com/channel/UCMcoud_ZW7cfxeIugBflSBw"
         },
         {
-          "name": "Greg Isenberg"
+          "name": "Greg Isenberg",
+          "url": "https://www.youtube.com/@GregIsenberg"
         },
         {
           "name": "All-In Podcast",
           "url": "https://www.youtube.com/channel/UCESLZhusAkFfsNsApnjF_Cg"
-        },
-        {
-          "name": "BitBiased AI"
-        },
-        {
-          "name": "Digital Storm"
-        },
-        {
-          "name": "TLDR general"
         }
       ],
       "tier_3": [
@@ -68,23 +49,28 @@
           "url": "https://www.youtube.com/channel/UCA-mWX9CvCTVFWRMb9bKc9w"
         },
         {
-          "name": "Alex Finn"
+          "name": "Alex Finn",
+          "url": "https://www.youtube.com/@AlexFinnOfficial"
         },
         {
-          "name": "Vaibhav Sisinty"
+          "name": "Vaibhav Sisinty",
+          "url": "https://www.youtube.com/@vaibhavsisinty"
         },
         {
           "name": "AI Daily Brief",
           "url": "https://www.youtube.com/channel/UCKelCK4ZaO6HeEI1KQjqzWA"
         },
         {
-          "name": "Julian Goldie SEO"
+          "name": "Julian Goldie SEO",
+          "url": "https://www.youtube.com/@JulianGoldieSEO"
         },
         {
-          "name": "Universe of AI"
+          "name": "Universe of AI",
+          "url": "https://www.youtube.com/@UniverseofAIz"
         },
         {
-          "name": "ByteMonk"
+          "name": "ByteMonk",
+          "url": "https://www.youtube.com/@ByteMonk"
         }
       ]
     }
@@ -92,16 +78,36 @@
   "newsletters": {
     "sources": [
       {
-        "name": "TLDR AI"
+        "name": "TLDR AI",
+        "url": "https://tldr.tech/ai"
       },
       {
-        "name": "Superhuman AI"
+        "name": "Superhuman AI",
+        "url": "https://www.superhuman.ai/"
       },
       {
-        "name": "Metatrends"
+        "name": "Metatrends",
+        "url": "https://qr.diamandis.com/metatrends"
       },
       {
-        "name": "Maven"
+        "name": "World of AI newsletter",
+        "url": "https://intheworldofai.com/"
+      },
+      {
+        "name": "BitBiased AI",
+        "url": "https://bitbiased.ai/"
+      },
+      {
+        "name": "Digital Storm",
+        "url": "https://drstorm.substack.com/"
+      },
+      {
+        "name": "TLDR general",
+        "url": "https://tldr.tech/"
+      },
+      {
+        "name": "Maven",
+        "url": "https://maven.com/"
       }
     ]
   }

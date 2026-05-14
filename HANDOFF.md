@@ -178,3 +178,5 @@ Current source-refresh status:
 - Wired `AINewsletter/admin/index.html` to load the rebuilt candidate pool automatically when opened through the local runner. The hard-coded sample candidates remain as the fallback for `file://` mode or when no candidate pool exists.
 - Candidate-pool items are normalized into review candidates with one selectable signal each, inferred suggested themes, transcript-status notes, and source-lane/priority badges. `Refresh All Sources` now reloads the candidate pool into the review UI after the backend rebuilds it.
 - Restarted the local admin runner on `http://127.0.0.1:8765/AINewsletter/admin/index.html`; `GET /api/candidate-pool?issue_id=2026-05-11` returned 91 candidates.
+- Cleaned up Source Settings: YouTube watchlist rows now have YouTube URLs, newsletter-only sources were moved to the Newsletter list with source URLs/search labels, and the admin UI now explains that YouTube refresh needs channel URLs while newsletter names can act as Gmail search labels.
+- Added backend validation so non-YouTube URLs pasted into YouTube tiers are marked `needs_youtube_url` instead of breaking the watchlist refresh.

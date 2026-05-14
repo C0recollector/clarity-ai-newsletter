@@ -1070,26 +1070,26 @@
           <input class="new-input" id="config-playlist-id" placeholder="PL...">
         </label>
         <label class="field wide">
-          <span>Tier 1 YouTube channels, one per line as Name | URL</span>
+          <span>Tier 1 YouTube channels, one per line as Name | YouTube URL</span>
           <textarea class="new-textarea" id="config-youtube-tier-1" placeholder="Matt Wolfe | https://www.youtube.com/@mreflow"></textarea>
         </label>
         <label class="field wide">
-          <span>Tier 2 YouTube channels, one per line as Name | URL</span>
+          <span>Tier 2 YouTube channels, one per line as Name | YouTube URL</span>
           <textarea class="new-textarea" id="config-youtube-tier-2" placeholder="Channel name | https://www.youtube.com/@channelhandle"></textarea>
         </label>
         <label class="field wide">
-          <span>Tier 3 YouTube channels, one per line as Name | URL</span>
+          <span>Tier 3 YouTube channels, one per line as Name | YouTube URL</span>
           <textarea class="new-textarea" id="config-youtube-tier-3" placeholder="Channel name | https://www.youtube.com/channel/CHANNEL_ID"></textarea>
         </label>
         <label class="field wide">
-          <span>Newsletters, one per line as Name | URL or search label</span>
+          <span>Newsletters, one per line as Name | URL or Gmail search label</span>
           <textarea class="new-textarea" id="config-newsletters" placeholder="TLDR AI | https://tldr.tech/ai"></textarea>
         </label>
       </div>
       <div class="manual-source-actions">
         <button class="btn primary" id="save-source-config">Save Source Settings</button>
         <button class="btn" id="reload-source-config">Reload Settings</button>
-        <span class="manual-source-note" id="source-config-note">Settings save to data/source_config.json through the local runner.</span>
+        <span class="manual-source-note" id="source-config-note">YouTube refresh needs channel URLs. Newsletter names can be Gmail search labels; URLs help identify the source but do not connect Gmail by themselves.</span>
       </div>
     </details>
 
@@ -1747,7 +1747,7 @@
       const result = await response.json();
       if (!response.ok || !result.ok) throw new Error(result.error || 'Could not load source settings.');
       populateSourceConfig(result.config);
-      sourceConfigNoteEl.textContent = 'Source settings loaded.';
+      sourceConfigNoteEl.textContent = 'Source settings loaded. YouTube rows need channel URLs; newsletter rows can use names/search labels, with URLs optional.';
     }
 
     async function saveSourceConfig() {
@@ -1764,7 +1764,7 @@
       const result = await response.json();
       if (!response.ok || !result.ok) throw new Error(result.error || 'Could not save source settings.');
       populateSourceConfig(result.config);
-      sourceConfigNoteEl.textContent = 'Source settings saved.';
+      sourceConfigNoteEl.textContent = 'Source settings saved. YouTube rows need channel URLs; newsletter rows can use names/search labels, with URLs optional.';
     }
 
     function describeRefreshResult(result) {
