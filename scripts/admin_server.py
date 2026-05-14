@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import re
 import sys
 import time
@@ -41,6 +42,21 @@ YOUTUBE_DIR = ROOT / "data" / "youtube"
 NEWSLETTER_DIR = ROOT / "data" / "newsletters"
 CANDIDATE_DIR = ROOT / "data" / "candidates"
 TRANSCRIPT_BLOCK_ERRORS = {"IpBlocked", "RequestBlocked", "TooManyRequests"}
+
+
+def load_local_env() -> None:
+    path = ROOT / ".env"
+    if not path.exists():
+        return
+    for line in path.read_text(encoding="utf-8").splitlines():
+        stripped = line.strip()
+        if not stripped or stripped.startswith("#") or "=" not in stripped:
+            continue
+        key, value = stripped.split("=", 1)
+        os.environ.setdefault(key.strip(), value.strip().strip('"').strip("'"))
+
+
+load_local_env()
 
 
 def utc_now() -> str:
@@ -244,6 +260,39 @@ def local_ai_rewrite(prompt: str) -> tuple[str, str]:
     return text, "local_lm_studio"
 
 
+def openai_rewrite(prompt: str) -> tuple[str, str]:
+    api_key = os.environ.get("OPENAI_API_KEY", "").strip()
+    if not api_key:
+        raise RuntimeError("OPENAI_API_KEY is not set.")
+    model = os.environ.get("OPENAI_REWRITE_MODEL", "gpt-5-mini").strip() or "gpt-5-mini"
+    body = json.dumps(
+        {
+            "model": model,
+            "messages": [
+                {
+                    "role": "system",
+                    "content": "You are a precise newsletter editor. Return only the replacement text.",
+                },
+                {"role": "user", "content": prompt},
+            ],
+            "max_completion_tokens": 700,
+        }
+    ).encode("utf-8")
+    request = Request(
+        "https://api.openai.com/v1/chat/completions",
+        data=body,
+        headers={
+            "Authorization": f"Bearer {api_key}",
+            "Content-Type": "application/json",
+        },
+        method="POST",
+    )
+    with urlopen(request, timeout=45) as response:
+        data = json.loads(response.read().decode("utf-8"))
+    text = data["choices"][0]["message"]["content"].strip()
+    return text, f"openai:{model}"
+
+
 def prompt_only_rewrite(block: dict, prompt: str, issue_id: str) -> tuple[str, str, str]:
     output_dir = ROOT / "data" / "rewrite_requests"
     output_dir.mkdir(parents=True, exist_ok=True)
@@ -264,10 +313,16 @@ def rewrite_block(request: dict) -> dict:
     request_file = ""
     note = ""
     try:
-        draft, mode = local_ai_rewrite(prompt)
-    except Exception as exc:
-        draft, mode, request_file = prompt_only_rewrite(block, prompt, issue_id)
-        note = f"Local AI was not available ({type(exc).__name__}). Edit the draft manually or use the saved prompt."
+        draft, mode = openai_rewrite(prompt)
+    except Exception as openai_exc:
+        try:
+            draft, mode = local_ai_rewrite(prompt)
+        except Exception as local_exc:
+            draft, mode, request_file = prompt_only_rewrite(block, prompt, issue_id)
+            note = (
+                f"AI rewrite is not configured. OpenAI: {type(openai_exc).__name__}; "
+                f"local AI: {type(local_exc).__name__}. Edit the draft manually or use the saved prompt."
+            )
     return {
         "ok": True,
         "mode": mode,

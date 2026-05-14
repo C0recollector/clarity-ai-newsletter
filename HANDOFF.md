@@ -15,6 +15,8 @@
 - Newsletter editor labels were simplified: `Issue intro/dek` is now `Issue intro`; the rewrite button is `Suggest Rewrite`; the save button is `Save This Block`; and stale instructions clear when switching selected blocks.
 - Newsletter editor preview clicks now target specific editable text areas such as issue title, issue intro, section title, section intro, and headline rather than treating an entire section as one vague block.
 - If local AI is unavailable during a block rewrite, the editor now says that LM Studio/local AI is not running and loads the current text into the replacement box for manual editing instead of looking like nothing happened.
+- Block rewrites now prefer the OpenAI API when `OPENAI_API_KEY` is available in `.env` or the process environment. Default rewrite model is `gpt-5-mini`; override with `OPENAI_REWRITE_MODEL`. LM Studio remains a fallback only.
+- The local workflow label is now `Newsletter Studio` instead of `Editorial Review Gate`, with a top `Edit Generated Newsletter` action so Greg does not need to scroll to the export JSON panel to open the editor.
 - Moved active work to local repo at `C:\Users\Greg\Codex\AI News`; do not edit the old Google Drive copy.
 - Connected GitHub remote `https://github.com/C0recollector/clarity-ai-newsletter.git` and pushed `main`.
 - Fixed five annotations.
