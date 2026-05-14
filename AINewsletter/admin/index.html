@@ -1626,17 +1626,114 @@
       return match ? match[0] : 'Other signals to consider';
     }
 
+    function extractChapters(value) {
+      const text = String(value || '');
+      const chapters = [];
+      const pattern = /(?:^|\n)\s*((?:\d{1,2}:)?\d{1,2}:\d{2})\s*(?:[-–—]\s*)?(.+?)(?=\n|$)/g;
+      let match;
+      while ((match = pattern.exec(text)) !== null) {
+        const title = match[2].trim().replace(/\s+/g, ' ');
+        if (!title || /^https?:\/\//i.test(title)) continue;
+        chapters.push({
+          time: match[1],
+          title
+        });
+      }
+      return chapters;
+    }
+
+    function isLowValueChapter(title) {
+      return /\b(intro|outro|final thoughts?|closing|recommended videos?|sponsor|ad break|meme of the week|question of the week|wtf)\b/i.test(title);
+    }
+
+    function conciseChapterTitle(titles) {
+      const unique = [...new Set(titles.map(title => title.trim()).filter(Boolean))];
+      if (unique.length <= 3) return unique.join('; ');
+      return `${unique.slice(0, 3).join('; ')} + ${unique.length - 3} more`;
+    }
+
+    function chapterToSegment(item, chapter, index, idBase, strength) {
+      const theme = inferCandidateTheme({
+        title: chapter.title,
+        summary: `${item.title || ''} ${chapter.title}`,
+        source: item.source || ''
+      });
+      return {
+        id: `${idBase}-chapter-${index + 1}`,
+        selected: strength !== 'weak',
+        strength,
+        time: chapter.time,
+        theme,
+        title: chapter.title,
+        summary: `Chapter from ${item.title || 'this source'}: ${chapter.title}.`
+      };
+    }
+
+    function mergeChapterSegments(segments) {
+      if (segments.length <= 8) return segments;
+      const merged = [];
+      segments.forEach(segment => {
+        const previous = merged[merged.length - 1];
+        if (previous && previous.theme === segment.theme) {
+          previous.items.push(segment);
+          previous.endTime = segment.time;
+          return;
+        }
+        merged.push({
+          theme: segment.theme,
+          startTime: segment.time,
+          endTime: segment.time,
+          items: [segment]
+        });
+      });
+      return merged.map((group, index) => {
+        const titles = group.items.map(item => item.title);
+        const title = conciseChapterTitle(titles);
+        return {
+          id: `${group.items[0].id}-group-${index + 1}`,
+          selected: group.items.some(item => item.selected),
+          strength: group.items.some(item => item.strength === 'strong') ? 'strong' : 'medium',
+          time: group.startTime === group.endTime ? group.startTime : `${group.startTime}-${group.endTime}`,
+          theme: group.theme,
+          title,
+          summary: `Grouped related chapters: ${titles.join('; ')}.`
+        };
+      });
+    }
+
+    function poolCandidateSegments(item, idBase, strength, fallbackSummary) {
+      const chapters = extractChapters(item.summary);
+      const usefulChapters = chapters.filter(chapter => !isLowValueChapter(chapter.title));
+      if (usefulChapters.length >= 2) {
+        const chapterSegments = usefulChapters.map((chapter, index) => chapterToSegment(item, chapter, index, idBase, strength));
+        return mergeChapterSegments(chapterSegments);
+      }
+      const theme = inferCandidateTheme(item);
+      return [
+        {
+          id: `${idBase}-signal`,
+          selected: strength !== 'weak',
+          strength,
+          time: item.transcript_status === 'ok' ? 'transcript' : 'metadata',
+          theme,
+          title: item.title || 'Candidate signal',
+          summary: fallbackSummary
+        }
+      ];
+    }
+
     function normalizePoolCandidate(item, index) {
       const id = item.id || `pool-${index}`;
-      const theme = inferCandidateTheme(item);
+      const idBase = `pool-${slugify(id)}`;
       const score = Number(item.score || 70);
       const strength = score >= 92 ? 'strong' : score >= 82 ? 'medium' : 'weak';
       const transcriptStatus = item.transcript_status && item.transcript_status !== 'ok'
         ? ` Transcript: ${item.transcript_error_type || item.transcript_status}.`
         : '';
       const summary = firstUsefulSentence(item.summary);
+      const included = score >= 82 || item.priority === 'editorial_override';
       return {
-        id: `pool-${slugify(id)}`,
+        id: idBase,
         kind: item.kind || 'youtube',
         label: item.kind === 'mail' ? 'Newsletter' : 'YouTube',
         source: item.source || 'Candidate pool',
@@ -1644,22 +1741,12 @@
         url: item.url || '#',
         date: item.date || refreshIssueDateEl.value || todayIsoDate(),
         score,
-        included: score >= 82 || item.priority === 'editorial_override',
+        included,
         priority: item.priority || 'standard',
         summary: `${summary}${transcriptStatus}`,
         sourceLane: item.source_lane || '',
         transcriptStatus: item.transcript_status || 'unknown',
-        segments: [
-          {
-            id: `pool-${slugify(id)}-signal`,
-            selected: score >= 82 || item.priority === 'editorial_override',
-            strength,
-            time: item.transcript_status === 'ok' ? 'transcript' : 'metadata',
-            theme,
-            title: item.title || 'Candidate signal',
-            summary
-          }
-        ]
+        segments: poolCandidateSegments(item, idBase, strength, summary)
       };
     }
 

@@ -180,3 +180,4 @@ Current source-refresh status:
 - Restarted the local admin runner on `http://127.0.0.1:8765/AINewsletter/admin/index.html`; `GET /api/candidate-pool?issue_id=2026-05-11` returned 91 candidates.
 - Cleaned up Source Settings: YouTube watchlist rows now have YouTube URLs, newsletter-only sources were moved to the Newsletter list with source URLs/search labels, and the admin UI now explains that YouTube refresh needs channel URLs while newsletter names can act as Gmail search labels.
 - Added backend validation so non-YouTube URLs pasted into YouTube tiers are marked `needs_youtube_url` instead of breaking the watchlist refresh.
+- Restored chapter-level review segments for candidate-pool videos in `AINewsletter/admin/index.html`. The admin page now extracts YouTube timestamp chapters from video descriptions, drops low-value intro/outro/sponsor rows, and groups adjacent chapters with the same inferred theme when a video has many chapters.
