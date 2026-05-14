@@ -2,14 +2,8 @@
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "clarity-ai-newsletter",
   "compatibility_date": "2026-05-14",
-  "observability": {
-    "enabled": true
-  },
   "assets": {
     "directory": "./AINewsletter",
     "not_found_handling": "404-page"
-  },
-  "compatibility_flags": [
-    "nodejs_compat"
-  ]
+  }
 }
