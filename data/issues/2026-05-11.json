@@ -3,9 +3,9 @@
   "issue": {
     "id": "2026-05-11",
     "week_of": "2026-05-11",
-    "title": "The Week AI Became Infrastructure",
-    "dek": "The useful story this week is not \"more AI news.\" It is that AI is reorganizing into infrastructure layers: model portfolios, agent operating systems, distribution surfaces, compute supply chains, and power politics.",
-    "status": "draft",
+    "title": "AI's Power Map Is Being Redrawn",
+    "dek": "This week's AI news points to a bigger shift: new models, agent workflows, platform moves, compute economics, and industry power plays are starting to decide where AI value will land.",
+    "status": "approved",
     "default_audience": "c_suite",
     "editions": [
       {
@@ -30,79 +30,2032 @@
       "id": "model-news",
       "order": 1,
       "title": "Model News",
-      "headline": "Model News: The Race Is Splitting Into Lanes",
-      "summary": "The model market is splitting into specialized lanes: coding, realtime voice, open and efficient models, image/media, and science-oriented systems.",
+      "headline": "Model News",
       "theme_id": "theme-models",
-      "evidence_segment_ids": [
-        "ai-writing-models",
-        "claude-opus-47",
-        "minimax-m27",
-        "qwen36",
-        "gpt-rosalind",
-        "microsoft-image",
-        "gpt-realtime"
-      ]
+      "approved_theme_title": "Model News",
+      "summary": "A standing section for new models, capability jumps, pricing shifts, benchmarks, and specialized model lanes.",
+      "evidence_segment_ids": []
     },
     {
       "id": "agents",
       "order": 2,
-      "title": "All Things Agents",
-      "headline": "All Things Agents: From Chatbot to Operating Layer",
-      "summary": "Agents are becoming execution surfaces across files, folders, tools, browsers, documents, code, and workflows.",
+      "title": "Agents",
+      "headline": "Agents",
       "theme_id": "theme-agents",
-      "evidence_segment_ids": [
-        "codex-everything",
-        "claude-code-update",
-        "memory-myth",
-        "workflow-roles-artifacts",
-        "memory-last",
-        "agentic-layer"
-      ]
+      "approved_theme_title": "Agents",
+      "summary": "A standing section for agents, agentic workflows, agent OS ideas, orchestration, tools, roles, artifacts, validation, and practical automation.",
+      "evidence_segment_ids": []
     },
     {
       "id": "platforms",
       "order": 3,
       "title": "Platform Plays",
-      "headline": "Platform Plays: AI Is Moving Into Existing Surfaces",
-      "summary": "AI is being embedded where users already work, search, design, and decide.",
+      "headline": "Platform Plays",
       "theme_id": "theme-platforms",
-      "evidence_segment_ids": [
-        "google-desktop",
-        "gemini-mac",
-        "chrome-ai-update",
-        "nano-banana",
-        "canva-ai-updates",
-        "ai-2028-feel"
-      ]
+      "approved_theme_title": "Platform Plays",
+      "summary": "A standing section for Google, Microsoft, OpenAI, Anthropic, Canva, Perplexity, and other platforms pushing AI into everyday work surfaces.",
+      "evidence_segment_ids": []
     },
     {
       "id": "infrastructure",
       "order": 4,
-      "title": "Economics & Infrastructure",
-      "headline": "Economics & Infrastructure: Compute Is the Strategy",
-      "summary": "Compute, memory, power, cooling, data centers, and strategic access to capacity are becoming business constraints.",
+      "title": "Economics",
+      "headline": "Economics",
       "theme_id": "theme-infra",
-      "evidence_segment_ids": [
-        "capex-stack",
-        "memory-demand"
-      ]
+      "approved_theme_title": "Economics",
+      "summary": "A standing section for compute, capex, memory, data centers, routing, power, latency, and cost pressures shaping AI adoption.",
+      "evidence_segment_ids": []
     },
     {
       "id": "power-moves",
       "order": 5,
       "title": "Power Moves",
-      "headline": "Power Moves: The Drama Is Sometimes the Signal",
-      "summary": "Founder fights, lawsuits, surprise alliances, and platform politics reveal who controls compute, distribution, governance, and customer trust.",
+      "headline": "Power Moves",
       "theme_id": "theme-power",
-      "evidence_segment_ids": [
-        "musk-altman-trial"
-      ]
+      "approved_theme_title": "Power Moves",
+      "summary": "A standing section for founder drama, lawsuits, acquisitions, surprise partnerships, platform politics, and industry titan maneuvering.",
+      "evidence_segment_ids": []
+    },
+    {
+      "id": "robotics",
+      "order": 6,
+      "title": "Robotics commercialization is moving from demo to scale",
+      "headline": "Robotics commercialization is moving from demo to scale",
+      "theme_id": "theme-robotics",
+      "approved_theme_title": "Robotics commercialization is moving from demo to scale",
+      "summary": "Humanoid production targets and frontier-lab robotics discussion suggest physical AI may become a credible near-term enterprise topic.",
+      "evidence_segment_ids": []
     }
   ],
   "review": {
     "source": "AINewsletter/admin/index.html",
-    "status": "draft",
-    "approved_at": null,
-    "approved_review": null
+    "status": "approved",
+    "approved_at": "2026-05-14T13:21:57.095Z",
+    "approved_review": {
+      "run_date": "2026-05-11",
+      "status": "approved",
+      "target_audience": "c_suite",
+      "audience_guidance": "Write for executives: emphasize strategic implications, business risk, vendor/platform movement, budget/ROI, and decisions leaders should watch.",
+      "selected_candidates": [
+        {
+          "id": "pool-yt-kcupzl-5fgw",
+          "title": "Nobody Understands How Big This Is (Cerebras IPO)",
+          "source": "Limitless Podcast",
+          "url": "https://www.youtube.com/watch?v=kCupZL_5Fgw",
+          "manual": false,
+          "priority": "editorial_override",
+          "selected_segments": [
+            "pool-yt-kcupzl-5fgw-chapter-1-group-1"
+          ]
+        },
+        {
+          "id": "pool-yt-i-ioltvb19o",
+          "title": "Claude Mythos Just Crossed A Dangerous Line... AGAIN!",
+          "source": "AI Revolution",
+          "url": "https://www.youtube.com/watch?v=i-ioLtvb19o",
+          "manual": false,
+          "priority": "editorial_override",
+          "selected_segments": [
+            "pool-yt-i-ioltvb19o-signal"
+          ]
+        },
+        {
+          "id": "pool-yt-mhdwmcgmoqq",
+          "title": "Anthropic combines with SPACEXAI!",
+          "source": "DigitalMada",
+          "url": "https://www.youtube.com/watch?v=mhDwmcgMoQQ",
+          "manual": false,
+          "priority": "editorial_override",
+          "selected_segments": [
+            "pool-yt-mhdwmcgmoqq-signal"
+          ]
+        },
+        {
+          "id": "pool-yt-zdaqvqhdvgu",
+          "title": "Google's Record Quarter, the White House Intervenes, and GPT 5.5 Silently Matches Mythos | EP 254",
+          "source": "Peter H. Diamandis",
+          "url": "https://www.youtube.com/watch?v=zdAqvqhdVgU",
+          "manual": false,
+          "priority": "editorial_override",
+          "selected_segments": [
+            "pool-yt-zdaqvqhdvgu-chapter-1-group-1",
+            "pool-yt-zdaqvqhdvgu-chapter-4-group-2",
+            "pool-yt-zdaqvqhdvgu-chapter-5-group-3",
+            "pool-yt-zdaqvqhdvgu-chapter-9-group-4",
+            "pool-yt-zdaqvqhdvgu-chapter-10-group-5"
+          ]
+        },
+        {
+          "id": "pool-yt-myj2ivhofri",
+          "title": "AI News: ChatGPT Is Back, NotebookLM Update, Google AI Health Coach, New Pomelli Feature...",
+          "source": "Paul J Lipsky",
+          "url": "https://www.youtube.com/watch?v=myJ2IVHOfrI",
+          "manual": false,
+          "priority": "editorial_override",
+          "selected_segments": [
+            "pool-yt-myj2ivhofri-chapter-1-group-1",
+            "pool-yt-myj2ivhofri-chapter-4-group-2",
+            "pool-yt-myj2ivhofri-chapter-5-group-3",
+            "pool-yt-myj2ivhofri-chapter-12-group-4",
+            "pool-yt-myj2ivhofri-chapter-13-group-5",
+            "pool-yt-myj2ivhofri-chapter-14-group-6",
+            "pool-yt-myj2ivhofri-chapter-15-group-7"
+          ]
+        },
+        {
+          "id": "pool-yt-10mdovk-ag4",
+          "title": "Elon’s Anthropic Deal, The Next AI Monopoly?, “FDA for AI” Panic, Trading the AI Boom",
+          "source": "All-In Podcast",
+          "url": "https://www.youtube.com/watch?v=10MdOvK-aG4",
+          "manual": false,
+          "priority": "editorial_override",
+          "selected_segments": [
+            "pool-yt-10mdovk-ag4-chapter-1",
+            "pool-yt-10mdovk-ag4-chapter-2",
+            "pool-yt-10mdovk-ag4-chapter-3",
+            "pool-yt-10mdovk-ag4-chapter-4",
+            "pool-yt-10mdovk-ag4-chapter-5",
+            "pool-yt-10mdovk-ag4-chapter-6"
+          ]
+        },
+        {
+          "id": "pool-yt-sxnez3brko4",
+          "title": "AI News: OpenAI Absolutely Cooked This Week!",
+          "source": "Matt Wolfe",
+          "url": "https://www.youtube.com/watch?v=SXneZ3bRKO4",
+          "manual": false,
+          "priority": "editorial_override",
+          "selected_segments": [
+            "pool-yt-sxnez3brko4-chapter-1-group-1",
+            "pool-yt-sxnez3brko4-chapter-3-group-2",
+            "pool-yt-sxnez3brko4-chapter-5-group-3",
+            "pool-yt-sxnez3brko4-chapter-6-group-4",
+            "pool-yt-sxnez3brko4-chapter-7-group-5",
+            "pool-yt-sxnez3brko4-chapter-8-group-6",
+            "pool-yt-sxnez3brko4-chapter-9-group-7",
+            "pool-yt-sxnez3brko4-chapter-10-group-8",
+            "pool-yt-sxnez3brko4-chapter-12-group-9",
+            "pool-yt-sxnez3brko4-chapter-13-group-10",
+            "pool-yt-sxnez3brko4-chapter-14-group-11",
+            "pool-yt-sxnez3brko4-chapter-16-group-12"
+          ]
+        },
+        {
+          "id": "pool-yt-q9svnvfohm",
+          "title": "The Real Reason Elon Made a Deal with Anthropic",
+          "source": "Limitless Podcast",
+          "url": "https://www.youtube.com/watch?v=-q9SvNvfOHM",
+          "manual": false,
+          "priority": "editorial_override",
+          "selected_segments": [
+            "pool-yt-q9svnvfohm-chapter-1",
+            "pool-yt-q9svnvfohm-chapter-2",
+            "pool-yt-q9svnvfohm-chapter-3",
+            "pool-yt-q9svnvfohm-chapter-4",
+            "pool-yt-q9svnvfohm-chapter-5",
+            "pool-yt-q9svnvfohm-chapter-6",
+            "pool-yt-q9svnvfohm-chapter-7"
+          ]
+        },
+        {
+          "id": "pool-yt-rnqexgcwg-g",
+          "title": "Surprise Elon-Anthropic Team Up Reshapes AI Race",
+          "source": "The AI Daily Brief: Artificial Intelligence News",
+          "url": "https://www.youtube.com/watch?v=RnqEXgcwg-g",
+          "manual": false,
+          "priority": "editorial_override",
+          "selected_segments": [
+            "pool-yt-rnqexgcwg-g-signal"
+          ]
+        },
+        {
+          "id": "pool-yt-jg2jjh1k0o8",
+          "title": "Demis Hassabis on AGI, Robots Scale Production, and Elon’s $1T Mars-Shot Comp | EP 253",
+          "source": "Peter H. Diamandis",
+          "url": "https://www.youtube.com/watch?v=Jg2jJH1K0o8",
+          "manual": false,
+          "priority": "editorial_override",
+          "selected_segments": [
+            "pool-yt-jg2jjh1k0o8-topic-1",
+            "pool-yt-jg2jjh1k0o8-topic-2",
+            "pool-yt-jg2jjh1k0o8-topic-3"
+          ]
+        },
+        {
+          "id": "pool-yt-kdljbpi-qwy",
+          "title": "Why Elon Musk is even more powerful than you think | The Global Story",
+          "source": "BBC News",
+          "url": "https://www.youtube.com/watch?v=KdLJbpi-QwY",
+          "manual": false,
+          "priority": "editorial_override",
+          "selected_segments": [
+            "pool-yt-kdljbpi-qwy-chapter-1",
+            "pool-yt-kdljbpi-qwy-chapter-2",
+            "pool-yt-kdljbpi-qwy-chapter-3",
+            "pool-yt-kdljbpi-qwy-chapter-4",
+            "pool-yt-kdljbpi-qwy-chapter-5",
+            "pool-yt-kdljbpi-qwy-chapter-6",
+            "pool-yt-kdljbpi-qwy-chapter-7",
+            "pool-yt-kdljbpi-qwy-chapter-8"
+          ]
+        },
+        {
+          "id": "pool-yt-6o19bezgmc",
+          "title": "Where is AI Going Next?",
+          "source": "Limitless Podcast",
+          "url": "https://www.youtube.com/watch?v=_6O19bEZgMc",
+          "manual": false,
+          "priority": "editorial_override",
+          "selected_segments": [
+            "pool-yt-6o19bezgmc-signal"
+          ]
+        },
+        {
+          "id": "pool-yt-np6cwvtytam",
+          "title": "I Tested 500+ AI Tools, These Will Make You Rich",
+          "source": "Dan Martell",
+          "url": "https://www.youtube.com/watch?v=np6CwvTYTAM",
+          "manual": false,
+          "priority": "editorial_override",
+          "selected_segments": [
+            "pool-yt-np6cwvtytam-topic-1",
+            "pool-yt-np6cwvtytam-topic-2"
+          ]
+        },
+        {
+          "id": "pool-yt-nov9uoiqt6g",
+          "title": "Google’s New AI Is The OpenClaw Killer",
+          "source": "AI Revolution",
+          "url": "https://www.youtube.com/watch?v=nov9uoIQt6g",
+          "manual": false,
+          "priority": "editorial_override",
+          "selected_segments": [
+            "pool-yt-nov9uoiqt6g-chapter-1",
+            "pool-yt-nov9uoiqt6g-chapter-2",
+            "pool-yt-nov9uoiqt6g-chapter-3",
+            "pool-yt-nov9uoiqt6g-chapter-4",
+            "pool-yt-nov9uoiqt6g-chapter-5",
+            "pool-yt-nov9uoiqt6g-chapter-6"
+          ]
+        },
+        {
+          "id": "pool-yt-rxziezfeede",
+          "title": "Claude’s New Integration Is Surprisingly Powerful",
+          "source": "Matt Wolfe",
+          "url": "https://www.youtube.com/shorts/RXzIezfeEdE",
+          "manual": false,
+          "priority": "watchlist",
+          "selected_segments": [
+            "pool-yt-rxziezfeede-signal"
+          ]
+        },
+        {
+          "id": "pool-yt-wefrl6cnfua",
+          "title": "Claude Users FINALLY Get More Usage",
+          "source": "Matt Wolfe",
+          "url": "https://www.youtube.com/shorts/wefrL6CnfUA",
+          "manual": false,
+          "priority": "watchlist",
+          "selected_segments": [
+            "pool-yt-wefrl6cnfua-signal"
+          ]
+        },
+        {
+          "id": "pool-yt-c4nxmax27w0",
+          "title": "AI Is Being Built Into New Homes",
+          "source": "Matt Wolfe",
+          "url": "https://www.youtube.com/shorts/C4nXMAX27W0",
+          "manual": false,
+          "priority": "watchlist",
+          "selected_segments": [
+            "pool-yt-c4nxmax27w0-signal"
+          ]
+        },
+        {
+          "id": "pool-yt-b8v8bdmc8oq",
+          "title": "Codex Now Has \"AI Pets\"",
+          "source": "Matt Wolfe",
+          "url": "https://www.youtube.com/shorts/b8V8bDmc8oQ",
+          "manual": false,
+          "priority": "watchlist",
+          "selected_segments": [
+            "pool-yt-b8v8bdmc8oq-signal"
+          ]
+        },
+        {
+          "id": "pool-yt-z7ee9vwkrca",
+          "title": "Your AI Setup Needs This",
+          "source": "Matt Wolfe",
+          "url": "https://www.youtube.com/shorts/z7EE9VWKrCA",
+          "manual": false,
+          "priority": "watchlist",
+          "selected_segments": [
+            "pool-yt-z7ee9vwkrca-signal"
+          ]
+        },
+        {
+          "id": "pool-yt-yke4flqush4",
+          "title": "Build A Second Brain That Remembers Everything",
+          "source": "Matt Wolfe",
+          "url": "https://www.youtube.com/watch?v=yke4fLQUsh4",
+          "manual": false,
+          "priority": "watchlist",
+          "selected_segments": [
+            "pool-yt-yke4flqush4-chapter-1-group-1",
+            "pool-yt-yke4flqush4-chapter-2-group-2",
+            "pool-yt-yke4flqush4-chapter-3-group-3",
+            "pool-yt-yke4flqush4-chapter-7-group-4",
+            "pool-yt-yke4flqush4-chapter-9-group-5",
+            "pool-yt-yke4flqush4-chapter-14-group-6",
+            "pool-yt-yke4flqush4-chapter-15-group-7",
+            "pool-yt-yke4flqush4-chapter-19-group-8",
+            "pool-yt-yke4flqush4-chapter-21-group-9"
+          ]
+        },
+        {
+          "id": "pool-yt-b3vfchfk2b4",
+          "title": "AI Coworkers Are Officially Here",
+          "source": "Matt Wolfe",
+          "url": "https://www.youtube.com/shorts/B3vfCHfK2b4",
+          "manual": false,
+          "priority": "watchlist",
+          "selected_segments": [
+            "pool-yt-b3vfchfk2b4-signal"
+          ]
+        },
+        {
+          "id": "pool-yt-20bsrqrrcw8",
+          "title": "Longevity's Wright Brothers Moment | MOONSHOTS",
+          "source": "Peter H. Diamandis",
+          "url": "https://www.youtube.com/shorts/20BsRQrRcw8",
+          "manual": false,
+          "priority": "watchlist",
+          "selected_segments": [
+            "pool-yt-20bsrqrrcw8-signal"
+          ]
+        },
+        {
+          "id": "pool-yt-hpbmflgls-4",
+          "title": "David Sinclair on Biotech Investing | MOONSHOTS",
+          "source": "Peter H. Diamandis",
+          "url": "https://www.youtube.com/shorts/hpbmfLGLS-4",
+          "manual": false,
+          "priority": "watchlist",
+          "selected_segments": [
+            "pool-yt-hpbmflgls-4-signal"
+          ]
+        },
+        {
+          "id": "pool-yt-v1sfuy4mh3o",
+          "title": "Back Pain-Free Future Ahead? | MOONSHOTS",
+          "source": "Peter H. Diamandis",
+          "url": "https://www.youtube.com/shorts/v1SfUY4mH3o",
+          "manual": false,
+          "priority": "watchlist",
+          "selected_segments": [
+            "pool-yt-v1sfuy4mh3o-signal"
+          ]
+        },
+        {
+          "id": "pool-yt-msice1foywy",
+          "title": "Google's Record Quarter, the White House Intervenes, and GPT 5.5 Silently Matches Mythos | MOONSHOTS",
+          "source": "Peter H. Diamandis",
+          "url": "https://www.youtube.com/shorts/mSice1FOywY",
+          "manual": false,
+          "priority": "watchlist",
+          "selected_segments": [
+            "pool-yt-msice1foywy-topic-1",
+            "pool-yt-msice1foywy-topic-2",
+            "pool-yt-msice1foywy-topic-3"
+          ]
+        },
+        {
+          "id": "pool-yt-kp8y4pvlqfi",
+          "title": "Comfort World Kills Longevity | MOONSHOTS",
+          "source": "Peter H. Diamandis",
+          "url": "https://www.youtube.com/shorts/kP8Y4pVlQfI",
+          "manual": false,
+          "priority": "watchlist",
+          "selected_segments": [
+            "pool-yt-kp8y4pvlqfi-signal"
+          ]
+        },
+        {
+          "id": "pool-yt-j6tlew-oflo",
+          "title": "Lifespan: 50% Up to You | MOONSHOTS",
+          "source": "Peter H. Diamandis",
+          "url": "https://www.youtube.com/shorts/j6tLew-OFLo",
+          "manual": false,
+          "priority": "watchlist",
+          "selected_segments": [
+            "pool-yt-j6tlew-oflo-signal"
+          ]
+        },
+        {
+          "id": "pool-yt-tx3yjoaotp4",
+          "title": "David Sinclair: AI Is Smarter Than Humans at Longevity | MOONSHOTS",
+          "source": "Peter H. Diamandis",
+          "url": "https://www.youtube.com/shorts/tX3YjOaoTP4",
+          "manual": false,
+          "priority": "watchlist",
+          "selected_segments": [
+            "pool-yt-tx3yjoaotp4-signal"
+          ]
+        },
+        {
+          "id": "pool-yt-jxesbtylvbg",
+          "title": "Why You Should Eat Stressed Plants? | MOONSHOTS",
+          "source": "Peter H. Diamandis",
+          "url": "https://www.youtube.com/shorts/JxesbtYLVbg",
+          "manual": false,
+          "priority": "watchlist",
+          "selected_segments": [
+            "pool-yt-jxesbtylvbg-signal"
+          ]
+        },
+        {
+          "id": "pool-yt-3dcowoca2fq",
+          "title": "Verified Human Identity Matters More as AI Scales | MOONSHOTS",
+          "source": "Peter H. Diamandis",
+          "url": "https://www.youtube.com/shorts/3dcOWoCA2FQ",
+          "manual": false,
+          "priority": "watchlist",
+          "selected_segments": [
+            "pool-yt-3dcowoca2fq-signal"
+          ]
+        },
+        {
+          "id": "pool-yt-wnzthzndfn0",
+          "title": "The Downside of GLP-1 You Need to Know | MOONSHOTS",
+          "source": "Peter H. Diamandis",
+          "url": "https://www.youtube.com/shorts/WnZThZNdFn0",
+          "manual": false,
+          "priority": "watchlist",
+          "selected_segments": [
+            "pool-yt-wnzthzndfn0-signal"
+          ]
+        },
+        {
+          "id": "pool-yt-kpnrb59xfa",
+          "title": "AI Is Coming for the White-Collar Jobs | MOONSHOTS",
+          "source": "Peter H. Diamandis",
+          "url": "https://www.youtube.com/shorts/_kPNRB59xFA",
+          "manual": false,
+          "priority": "watchlist",
+          "selected_segments": [
+            "pool-yt-kpnrb59xfa-signal"
+          ]
+        },
+        {
+          "id": "pool-yt-okvfmtds6fi",
+          "title": "Math Is Cooked by AI | MOONSHOTS",
+          "source": "Peter H. Diamandis",
+          "url": "https://www.youtube.com/shorts/oKVfmtDS6FI",
+          "manual": false,
+          "priority": "watchlist",
+          "selected_segments": [
+            "pool-yt-okvfmtds6fi-signal"
+          ]
+        },
+        {
+          "id": "pool-yt-org0tkhyiba",
+          "title": "David Sinclair: $0.05 Pill Reverses Aging in Weeks | MOONSHOTS",
+          "source": "Peter H. Diamandis",
+          "url": "https://www.youtube.com/shorts/ORG0tkhyiBA",
+          "manual": false,
+          "priority": "watchlist",
+          "selected_segments": [
+            "pool-yt-org0tkhyiba-signal"
+          ]
+        },
+        {
+          "id": "pool-yt-sphghj7nwtc",
+          "title": "Demis Hassabis on AGI, Robots Scale Production, and Elon’s $1T Mars-Shot Comp | MOONSHOTS",
+          "source": "Peter H. Diamandis",
+          "url": "https://www.youtube.com/shorts/SPhghJ7NWTc",
+          "manual": false,
+          "priority": "watchlist",
+          "selected_segments": [
+            "pool-yt-sphghj7nwtc-topic-1",
+            "pool-yt-sphghj7nwtc-topic-2",
+            "pool-yt-sphghj7nwtc-topic-3"
+          ]
+        },
+        {
+          "id": "pool-yt-uzplbvhe6uy",
+          "title": "AI Memory Stocks Are About To Explode",
+          "source": "Limitless Podcast",
+          "url": "https://www.youtube.com/watch?v=UzpLbVHE6uY",
+          "manual": false,
+          "priority": "watchlist",
+          "selected_segments": [
+            "pool-yt-uzplbvhe6uy-chapter-1",
+            "pool-yt-uzplbvhe6uy-chapter-2",
+            "pool-yt-uzplbvhe6uy-chapter-3",
+            "pool-yt-uzplbvhe6uy-chapter-4",
+            "pool-yt-uzplbvhe6uy-chapter-5",
+            "pool-yt-uzplbvhe6uy-chapter-6"
+          ]
+        },
+        {
+          "id": "pool-yt-cq1dclcupso",
+          "title": "AI Stocks Are Going Parabolic",
+          "source": "Limitless Podcast",
+          "url": "https://www.youtube.com/shorts/CQ1dcLCUpso",
+          "manual": false,
+          "priority": "watchlist",
+          "selected_segments": [
+            "pool-yt-cq1dclcupso-signal"
+          ]
+        },
+        {
+          "id": "pool-yt-7odpzzj00jm",
+          "title": "Elon Musk Just Partnered With Claude",
+          "source": "Limitless Podcast",
+          "url": "https://www.youtube.com/shorts/7oDPZzJ00jM",
+          "manual": false,
+          "priority": "watchlist",
+          "selected_segments": [
+            "pool-yt-7odpzzj00jm-signal"
+          ]
+        },
+        {
+          "id": "pool-yt-lsma-kvpwf0",
+          "title": "OpenAI Is Building an iPhone Killer",
+          "source": "Limitless Podcast",
+          "url": "https://www.youtube.com/shorts/lsMa-kVpwF0",
+          "manual": false,
+          "priority": "watchlist",
+          "selected_segments": [
+            "pool-yt-lsma-kvpwf0-signal"
+          ]
+        },
+        {
+          "id": "pool-yt-u4g4l9pvozy",
+          "title": "We've Never Seen Anything like the OpenAI Phone",
+          "source": "Limitless Podcast",
+          "url": "https://www.youtube.com/watch?v=u4G4L9PvozY",
+          "manual": false,
+          "priority": "watchlist",
+          "selected_segments": [
+            "pool-yt-u4g4l9pvozy-chapter-1-group-1",
+            "pool-yt-u4g4l9pvozy-chapter-8-group-2",
+            "pool-yt-u4g4l9pvozy-chapter-10-group-3",
+            "pool-yt-u4g4l9pvozy-chapter-18-group-4",
+            "pool-yt-u4g4l9pvozy-chapter-20-group-5"
+          ]
+        }
+      ],
+      "selected_segments": [
+        {
+          "id": "pool-yt-kcupzl-5fgw-chapter-1-group-1",
+          "source": "Limitless Podcast",
+          "url": "https://www.youtube.com/watch?v=kCupZL_5Fgw",
+          "manual": false,
+          "priority": "editorial_override",
+          "candidate": "Nobody Understands How Big This Is (Cerebras IPO)",
+          "title": "Cerebras Chip Design; OpenAI's Investment; IPO + 6 more",
+          "summary": "Grouped related chapters: Cerebras Chip Design; OpenAI's Investment; IPO; Inference vs. Training; Memory; Distribution; The Bear Case; The IPO Landscape; Investment Strategies.",
+          "time": "1:30-20:50",
+          "suggested_theme": "AI infrastructure economics",
+          "strength": "strong"
+        },
+        {
+          "id": "pool-yt-i-ioltvb19o-signal",
+          "source": "AI Revolution",
+          "url": "https://www.youtube.com/watch?v=i-ioLtvb19o",
+          "manual": false,
+          "priority": "editorial_override",
+          "candidate": "Claude Mythos Just Crossed A Dangerous Line... AGAIN!",
+          "title": "Claude Mythos Just Crossed A Dangerous Line... AGAIN!",
+          "summary": "Claude Mythos may have just crossed one of the strangest lines in AI. A new METR evaluation reportedly puts Mythos around the sixteen-hour autonomous task range, while cybersecurity teams and governments are already reacting to what this could mean for AI agents, hacking, and national security.",
+          "time": "metadata",
+          "suggested_theme": "Agentic workflows",
+          "strength": "strong"
+        },
+        {
+          "id": "pool-yt-mhdwmcgmoqq-signal",
+          "source": "DigitalMada",
+          "url": "https://www.youtube.com/watch?v=mhDwmcgMoQQ",
+          "manual": false,
+          "priority": "editorial_override",
+          "candidate": "Anthropic combines with SPACEXAI!",
+          "title": "Anthropic combines with SPACEXAI!",
+          "summary": "Anthropic just made a massive move. 👀 Claude is now tapping into xAI’s Colossus supercluster for inference compute — a huge signal that the AI race is no longer just about models… it’s about who controls the compute.",
+          "time": "metadata",
+          "suggested_theme": "AI infrastructure economics",
+          "strength": "strong"
+        },
+        {
+          "id": "pool-yt-zdaqvqhdvgu-chapter-1-group-1",
+          "source": "Peter H. Diamandis",
+          "url": "https://www.youtube.com/watch?v=zdAqvqhdVgU",
+          "manual": false,
+          "priority": "editorial_override",
+          "candidate": "Google's Record Quarter, the White House Intervenes, and GPT 5.5 Silently Matches Mythos | EP 254",
+          "title": "White House Considers Vetting AI Models Before They Are Released; Pentagon Signs 7 AI Companies; Google Crushes Earning on AI Growth",
+          "summary": "Grouped related chapters: White House Considers Vetting AI Models Before They Are Released; Pentagon Signs 7 AI Companies; Google Crushes Earning on AI Growth.",
+          "time": "07:30-18:50",
+          "suggested_theme": "Agentic workflows",
+          "strength": "strong"
+        },
+        {
+          "id": "pool-yt-zdaqvqhdvgu-chapter-4-group-2",
+          "source": "Peter H. Diamandis",
+          "url": "https://www.youtube.com/watch?v=zdAqvqhdVgU",
+          "manual": false,
+          "priority": "editorial_override",
+          "candidate": "Google's Record Quarter, the White House Intervenes, and GPT 5.5 Silently Matches Mythos | EP 254",
+          "title": "Google Market Cap Just 4% Away From Overtaking NVIDIA",
+          "summary": "Grouped related chapters: Google Market Cap Just 4% Away From Overtaking NVIDIA.",
+          "time": "29:00",
+          "suggested_theme": "AI infrastructure economics",
+          "strength": "strong"
+        },
+        {
+          "id": "pool-yt-zdaqvqhdvgu-chapter-5-group-3",
+          "source": "Peter H. Diamandis",
+          "url": "https://www.youtube.com/watch?v=zdAqvqhdVgU",
+          "manual": false,
+          "priority": "editorial_override",
+          "candidate": "Google's Record Quarter, the White House Intervenes, and GPT 5.5 Silently Matches Mythos | EP 254",
+          "title": "OpenAI Drifts From Microsoft Agreement, Moves Toward Amazon; Labs Are Partnering With Private Equity Firms; China Blocks Meta’s Manus AI Acquisition Over Security Concerns + 1 more",
+          "summary": "Grouped related chapters: OpenAI Drifts From Microsoft Agreement, Moves Toward Amazon; Labs Are Partnering With Private Equity Firms; China Blocks Meta’s Manus AI Acquisition Over Security Concerns; Blitzy Is Taking on Claude Code & Codex.",
+          "time": "31:45-1:08:20",
+          "suggested_theme": "Agentic workflows",
+          "strength": "strong"
+        },
+        {
+          "id": "pool-yt-zdaqvqhdvgu-chapter-9-group-4",
+          "source": "Peter H. Diamandis",
+          "url": "https://www.youtube.com/watch?v=zdAqvqhdVgU",
+          "manual": false,
+          "priority": "editorial_override",
+          "candidate": "Google's Record Quarter, the White House Intervenes, and GPT 5.5 Silently Matches Mythos | EP 254",
+          "title": "Massive Chip Demand & Data Centers",
+          "summary": "Grouped related chapters: Massive Chip Demand & Data Centers.",
+          "time": "1:17:30",
+          "suggested_theme": "AI infrastructure economics",
+          "strength": "strong"
+        },
+        {
+          "id": "pool-yt-zdaqvqhdvgu-chapter-10-group-5",
+          "source": "Peter H. Diamandis",
+          "url": "https://www.youtube.com/watch?v=zdAqvqhdVgU",
+          "manual": false,
+          "priority": "editorial_override",
+          "candidate": "Google's Record Quarter, the White House Intervenes, and GPT 5.5 Silently Matches Mythos | EP 254",
+          "title": "AI Is Becoming The Engine of GDP Growth; Sam Altman Rethinks UBI; Insurers Are Dropping AI Risk Coverage + 1 more",
+          "summary": "Grouped related chapters: AI Is Becoming The Engine of GDP Growth; Sam Altman Rethinks UBI; Insurers Are Dropping AI Risk Coverage; AMA Session.",
+          "time": "1:31:20-1:48:40",
+          "suggested_theme": "Agentic workflows",
+          "strength": "strong"
+        },
+        {
+          "id": "pool-yt-myj2ivhofri-chapter-1-group-1",
+          "source": "Paul J Lipsky",
+          "url": "https://www.youtube.com/watch?v=myJ2IVHOfrI",
+          "manual": false,
+          "priority": "editorial_override",
+          "candidate": "AI News: ChatGPT Is Back, NotebookLM Update, Google AI Health Coach, New Pomelli Feature...",
+          "title": "OpenAI updates ChatGPT’s default model; Trusted contacts in ChatGPT; Voice mode improvements coming",
+          "summary": "Grouped related chapters: OpenAI updates ChatGPT’s default model; Trusted contacts in ChatGPT; Voice mode improvements coming.",
+          "time": "0:32-2:13",
+          "suggested_theme": "Google AI distribution",
+          "strength": "strong"
+        },
+        {
+          "id": "pool-yt-myj2ivhofri-chapter-4-group-2",
+          "source": "Paul J Lipsky",
+          "url": "https://www.youtube.com/watch?v=myJ2IVHOfrI",
+          "manual": false,
+          "priority": "editorial_override",
+          "candidate": "AI News: ChatGPT Is Back, NotebookLM Update, Google AI Health Coach, New Pomelli Feature...",
+          "title": "New Codex app updates",
+          "summary": "Grouped related chapters: New Codex app updates.",
+          "time": "3:13",
+          "suggested_theme": "Agentic workflows",
+          "strength": "strong"
+        },
+        {
+          "id": "pool-yt-myj2ivhofri-chapter-5-group-3",
+          "source": "Paul J Lipsky",
+          "url": "https://www.youtube.com/watch?v=myJ2IVHOfrI",
+          "manual": false,
+          "priority": "editorial_override",
+          "candidate": "AI News: ChatGPT Is Back, NotebookLM Update, Google AI Health Coach, New Pomelli Feature...",
+          "title": "Google AI updates; Google Health and Fitbit Air; Gemini personal intelligence expands + 4 more",
+          "summary": "Grouped related chapters: Google AI updates; Google Health and Fitbit Air; Gemini personal intelligence expands; Custom Gemini instructions in Google Docs; Gemini skills in Chrome; NotebookLM mind map updates; New Pomelli catalog feature.",
+          "time": "4:04-13:05",
+          "suggested_theme": "Google AI distribution",
+          "strength": "strong"
+        },
+        {
+          "id": "pool-yt-myj2ivhofri-chapter-12-group-4",
+          "source": "Paul J Lipsky",
+          "url": "https://www.youtube.com/watch?v=myJ2IVHOfrI",
+          "manual": false,
+          "priority": "editorial_override",
+          "candidate": "AI News: ChatGPT Is Back, NotebookLM Update, Google AI Health Coach, New Pomelli Feature...",
+          "title": "Anthropic signs new compute deals",
+          "summary": "Grouped related chapters: Anthropic signs new compute deals.",
+          "time": "15:47",
+          "suggested_theme": "AI infrastructure economics",
+          "strength": "strong"
+        },
+        {
+          "id": "pool-yt-myj2ivhofri-chapter-13-group-5",
+          "source": "Paul J Lipsky",
+          "url": "https://www.youtube.com/watch?v=myJ2IVHOfrI",
+          "manual": false,
+          "priority": "editorial_override",
+          "candidate": "AI News: ChatGPT Is Back, NotebookLM Update, Google AI Health Coach, New Pomelli Feature...",
+          "title": "Prompt of the week",
+          "summary": "Grouped related chapters: Prompt of the week.",
+          "time": "16:41",
+          "suggested_theme": "Google AI distribution",
+          "strength": "strong"
+        },
+        {
+          "id": "pool-yt-myj2ivhofri-chapter-14-group-6",
+          "source": "Paul J Lipsky",
+          "url": "https://www.youtube.com/watch?v=myJ2IVHOfrI",
+          "manual": false,
+          "priority": "editorial_override",
+          "candidate": "AI News: ChatGPT Is Back, NotebookLM Update, Google AI Health Coach, New Pomelli Feature...",
+          "title": "Perplexity Personal Computer for Mac",
+          "summary": "Grouped related chapters: Perplexity Personal Computer for Mac.",
+          "time": "18:23",
+          "suggested_theme": "AI infrastructure economics",
+          "strength": "strong"
+        },
+        {
+          "id": "pool-yt-myj2ivhofri-chapter-15-group-7",
+          "source": "Paul J Lipsky",
+          "url": "https://www.youtube.com/watch?v=myJ2IVHOfrI",
+          "manual": false,
+          "priority": "editorial_override",
+          "candidate": "AI News: ChatGPT Is Back, NotebookLM Update, Google AI Health Coach, New Pomelli Feature...",
+          "title": "Apple AirPods with cameras rumor",
+          "summary": "Grouped related chapters: Apple AirPods with cameras rumor.",
+          "time": "19:17",
+          "suggested_theme": "Google AI distribution",
+          "strength": "strong"
+        },
+        {
+          "id": "pool-yt-10mdovk-ag4-chapter-1",
+          "source": "All-In Podcast",
+          "url": "https://www.youtube.com/watch?v=10MdOvK-aG4",
+          "manual": false,
+          "priority": "editorial_override",
+          "candidate": "Elon’s Anthropic Deal, The Next AI Monopoly?, “FDA for AI” Panic, Trading the AI Boom",
+          "title": "Bestie intros! Thoughts on the LA mayor election",
+          "summary": "Chapter from Elon’s Anthropic Deal, The Next AI Monopoly?, “FDA for AI” Panic, Trading the AI Boom: Bestie intros! Thoughts on the LA mayor election.",
+          "time": "0:00",
+          "suggested_theme": "AI governance and competition",
+          "strength": "strong"
+        },
+        {
+          "id": "pool-yt-10mdovk-ag4-chapter-2",
+          "source": "All-In Podcast",
+          "url": "https://www.youtube.com/watch?v=10MdOvK-aG4",
+          "manual": false,
+          "priority": "editorial_override",
+          "candidate": "Elon’s Anthropic Deal, The Next AI Monopoly?, “FDA for AI” Panic, Trading the AI Boom",
+          "title": "SpaceX-Anthropic deal, Elon Web Services, SpaceX IPO valuation, Anthropic's insane growth trajectory",
+          "summary": "Chapter from Elon’s Anthropic Deal, The Next AI Monopoly?, “FDA for AI” Panic, Trading the AI Boom: SpaceX-Anthropic deal, Elon Web Services, SpaceX IPO valuation, Anthropic's insane growth trajectory.",
+          "time": "4:38",
+          "suggested_theme": "AI infrastructure economics",
+          "strength": "strong"
+        },
+        {
+          "id": "pool-yt-10mdovk-ag4-chapter-3",
+          "source": "All-In Podcast",
+          "url": "https://www.youtube.com/watch?v=10MdOvK-aG4",
+          "manual": false,
+          "priority": "editorial_override",
+          "candidate": "Elon’s Anthropic Deal, The Next AI Monopoly?, “FDA for AI” Panic, Trading the AI Boom",
+          "title": "Is Anthropic the next great monopoly? Early signals or major overreaction?",
+          "summary": "Chapter from Elon’s Anthropic Deal, The Next AI Monopoly?, “FDA for AI” Panic, Trading the AI Boom: Is Anthropic the next great monopoly? Early signals or major overreaction?.",
+          "time": "26:48",
+          "suggested_theme": "AI governance and competition",
+          "strength": "strong"
+        },
+        {
+          "id": "pool-yt-10mdovk-ag4-chapter-4",
+          "source": "All-In Podcast",
+          "url": "https://www.youtube.com/watch?v=10MdOvK-aG4",
+          "manual": false,
+          "priority": "editorial_override",
+          "candidate": "Elon’s Anthropic Deal, The Next AI Monopoly?, “FDA for AI” Panic, Trading the AI Boom",
+          "title": "\"FDA for AI\" freakout, how the White House thinks about AI safety",
+          "summary": "Chapter from Elon’s Anthropic Deal, The Next AI Monopoly?, “FDA for AI” Panic, Trading the AI Boom: \"FDA for AI\" freakout, how the White House thinks about AI safety.",
+          "time": "35:21",
+          "suggested_theme": "AI governance and competition",
+          "strength": "strong"
+        },
+        {
+          "id": "pool-yt-10mdovk-ag4-chapter-5",
+          "source": "All-In Podcast",
+          "url": "https://www.youtube.com/watch?v=10MdOvK-aG4",
+          "manual": false,
+          "priority": "editorial_override",
+          "candidate": "Elon’s Anthropic Deal, The Next AI Monopoly?, “FDA for AI” Panic, Trading the AI Boom",
+          "title": "Flipping AI's negative perception: Giving, healthcare and education innovation",
+          "summary": "Chapter from Elon’s Anthropic Deal, The Next AI Monopoly?, “FDA for AI” Panic, Trading the AI Boom: Flipping AI's negative perception: Giving, healthcare and education innovation.",
+          "time": "52:01",
+          "suggested_theme": "AI governance and competition",
+          "strength": "strong"
+        },
+        {
+          "id": "pool-yt-10mdovk-ag4-chapter-6",
+          "source": "All-In Podcast",
+          "url": "https://www.youtube.com/watch?v=10MdOvK-aG4",
+          "manual": false,
+          "priority": "editorial_override",
+          "candidate": "Elon’s Anthropic Deal, The Next AI Monopoly?, “FDA for AI” Panic, Trading the AI Boom",
+          "title": "Trading the AI market, state of the economy",
+          "summary": "Chapter from Elon’s Anthropic Deal, The Next AI Monopoly?, “FDA for AI” Panic, Trading the AI Boom: Trading the AI market, state of the economy.",
+          "time": "1:00:04",
+          "suggested_theme": "AI governance and competition",
+          "strength": "strong"
+        },
+        {
+          "id": "pool-yt-sxnez3brko4-chapter-1-group-1",
+          "source": "Matt Wolfe",
+          "url": "https://www.youtube.com/watch?v=SXneZ3bRKO4",
+          "manual": false,
+          "priority": "editorial_override",
+          "candidate": "AI News: OpenAI Absolutely Cooked This Week!",
+          "title": "GPT-5.5 Instant; New OpenAI Voice Models",
+          "summary": "Grouped related chapters: GPT-5.5 Instant; New OpenAI Voice Models.",
+          "time": "0:07-3:37",
+          "suggested_theme": "Specialized model race",
+          "strength": "strong"
+        },
+        {
+          "id": "pool-yt-sxnez3brko4-chapter-3-group-2",
+          "source": "Matt Wolfe",
+          "url": "https://www.youtube.com/watch?v=SXneZ3bRKO4",
+          "manual": false,
+          "priority": "editorial_override",
+          "candidate": "AI News: OpenAI Absolutely Cooked This Week!",
+          "title": "Trusted Contact in ChatGPT; New AEO Tool",
+          "summary": "Grouped related chapters: Trusted Contact in ChatGPT; New AEO Tool.",
+          "time": "8:45-9:23",
+          "suggested_theme": "Other signals to consider",
+          "strength": "strong"
+        },
+        {
+          "id": "pool-yt-sxnez3brko4-chapter-5-group-3",
+          "source": "Matt Wolfe",
+          "url": "https://www.youtube.com/watch?v=SXneZ3bRKO4",
+          "manual": false,
+          "priority": "editorial_override",
+          "candidate": "AI News: OpenAI Absolutely Cooked This Week!",
+          "title": "Codex with Chrome",
+          "summary": "Grouped related chapters: Codex with Chrome.",
+          "time": "10:53",
+          "suggested_theme": "Agentic workflows",
+          "strength": "strong"
+        },
+        {
+          "id": "pool-yt-sxnez3brko4-chapter-6-group-4",
+          "source": "Matt Wolfe",
+          "url": "https://www.youtube.com/watch?v=SXneZ3bRKO4",
+          "manual": false,
+          "priority": "editorial_override",
+          "candidate": "AI News: OpenAI Absolutely Cooked This Week!",
+          "title": "OpenAI Pets?",
+          "summary": "Grouped related chapters: OpenAI Pets?.",
+          "time": "13:03",
+          "suggested_theme": "Other signals to consider",
+          "strength": "strong"
+        },
+        {
+          "id": "pool-yt-sxnez3brko4-chapter-7-group-5",
+          "source": "Matt Wolfe",
+          "url": "https://www.youtube.com/watch?v=SXneZ3bRKO4",
+          "manual": false,
+          "priority": "editorial_override",
+          "candidate": "AI News: OpenAI Absolutely Cooked This Week!",
+          "title": "Claude Dreaming Outcomes",
+          "summary": "Grouped related chapters: Claude Dreaming Outcomes.",
+          "time": "16:10",
+          "suggested_theme": "Specialized model race",
+          "strength": "strong"
+        },
+        {
+          "id": "pool-yt-sxnez3brko4-chapter-8-group-6",
+          "source": "Matt Wolfe",
+          "url": "https://www.youtube.com/watch?v=SXneZ3bRKO4",
+          "manual": false,
+          "priority": "editorial_override",
+          "candidate": "AI News: OpenAI Absolutely Cooked This Week!",
+          "title": "Higher Claude Usage From SpaceX",
+          "summary": "Grouped related chapters: Higher Claude Usage From SpaceX.",
+          "time": "18:58",
+          "suggested_theme": "AI infrastructure economics",
+          "strength": "strong"
+        },
+        {
+          "id": "pool-yt-sxnez3brko4-chapter-9-group-7",
+          "source": "Matt Wolfe",
+          "url": "https://www.youtube.com/watch?v=SXneZ3bRKO4",
+          "manual": false,
+          "priority": "editorial_override",
+          "candidate": "AI News: OpenAI Absolutely Cooked This Week!",
+          "title": "Grok 4.3",
+          "summary": "Grouped related chapters: Grok 4.3.",
+          "time": "21:31",
+          "suggested_theme": "Specialized model race",
+          "strength": "strong"
+        },
+        {
+          "id": "pool-yt-sxnez3brko4-chapter-10-group-8",
+          "source": "Matt Wolfe",
+          "url": "https://www.youtube.com/watch?v=SXneZ3bRKO4",
+          "manual": false,
+          "priority": "editorial_override",
+          "candidate": "AI News: OpenAI Absolutely Cooked This Week!",
+          "title": "OpenAI & Elon Drama; Mira Murati's Side of the story",
+          "summary": "Grouped related chapters: OpenAI & Elon Drama; Mira Murati's Side of the story.",
+          "time": "22:51-23:45",
+          "suggested_theme": "Other signals to consider",
+          "strength": "strong"
+        },
+        {
+          "id": "pool-yt-sxnez3brko4-chapter-12-group-9",
+          "source": "Matt Wolfe",
+          "url": "https://www.youtube.com/watch?v=SXneZ3bRKO4",
+          "manual": false,
+          "priority": "editorial_override",
+          "candidate": "AI News: OpenAI Absolutely Cooked This Week!",
+          "title": "Claude in Excel, Powerpoint, Word, and Outlook",
+          "summary": "Grouped related chapters: Claude in Excel, Powerpoint, Word, and Outlook.",
+          "time": "27:28",
+          "suggested_theme": "AI infrastructure economics",
+          "strength": "strong"
+        },
+        {
+          "id": "pool-yt-sxnez3brko4-chapter-13-group-10",
+          "source": "Matt Wolfe",
+          "url": "https://www.youtube.com/watch?v=SXneZ3bRKO4",
+          "manual": false,
+          "priority": "editorial_override",
+          "candidate": "AI News: OpenAI Absolutely Cooked This Week!",
+          "title": "Adobe's New PDF Agent",
+          "summary": "Grouped related chapters: Adobe's New PDF Agent.",
+          "time": "28:01",
+          "suggested_theme": "Agentic workflows",
+          "strength": "strong"
+        },
+        {
+          "id": "pool-yt-sxnez3brko4-chapter-14-group-11",
+          "source": "Matt Wolfe",
+          "url": "https://www.youtube.com/watch?v=SXneZ3bRKO4",
+          "manual": false,
+          "priority": "editorial_override",
+          "candidate": "AI News: OpenAI Absolutely Cooked This Week!",
+          "title": "Spotify CLI For AI Podcasts; Apple's Camera AirPods",
+          "summary": "Grouped related chapters: Spotify CLI For AI Podcasts; Apple's Camera AirPods.",
+          "time": "29:18-30:16",
+          "suggested_theme": "AI product/application layer",
+          "strength": "strong"
+        },
+        {
+          "id": "pool-yt-sxnez3brko4-chapter-16-group-12",
+          "source": "Matt Wolfe",
+          "url": "https://www.youtube.com/watch?v=SXneZ3bRKO4",
+          "manual": false,
+          "priority": "editorial_override",
+          "candidate": "AI News: OpenAI Absolutely Cooked This Week!",
+          "title": "Homes with Built-in Data Centers",
+          "summary": "Grouped related chapters: Homes with Built-in Data Centers.",
+          "time": "31:08",
+          "suggested_theme": "AI infrastructure economics",
+          "strength": "strong"
+        },
+        {
+          "id": "pool-yt-q9svnvfohm-chapter-1",
+          "source": "Limitless Podcast",
+          "url": "https://www.youtube.com/watch?v=-q9SvNvfOHM",
+          "manual": false,
+          "priority": "editorial_override",
+          "candidate": "The Real Reason Elon Made a Deal with Anthropic",
+          "title": "SpaceXAI Anthropic Deal",
+          "summary": "Chapter from The Real Reason Elon Made a Deal with Anthropic: SpaceXAI Anthropic Deal.",
+          "time": "0:00",
+          "suggested_theme": "AI infrastructure economics",
+          "strength": "strong"
+        },
+        {
+          "id": "pool-yt-q9svnvfohm-chapter-2",
+          "source": "Limitless Podcast",
+          "url": "https://www.youtube.com/watch?v=-q9SvNvfOHM",
+          "manual": false,
+          "priority": "editorial_override",
+          "candidate": "The Real Reason Elon Made a Deal with Anthropic",
+          "title": "Elon vs OpenAI Trial",
+          "summary": "Chapter from The Real Reason Elon Made a Deal with Anthropic: Elon vs OpenAI Trial.",
+          "time": "9:43",
+          "suggested_theme": "AI governance and competition",
+          "strength": "strong"
+        },
+        {
+          "id": "pool-yt-q9svnvfohm-chapter-3",
+          "source": "Limitless Podcast",
+          "url": "https://www.youtube.com/watch?v=-q9SvNvfOHM",
+          "manual": false,
+          "priority": "editorial_override",
+          "candidate": "The Real Reason Elon Made a Deal with Anthropic",
+          "title": "Anthropic Templates",
+          "summary": "Chapter from The Real Reason Elon Made a Deal with Anthropic: Anthropic Templates.",
+          "time": "15:39",
+          "suggested_theme": "AI governance and competition",
+          "strength": "strong"
+        },
+        {
+          "id": "pool-yt-q9svnvfohm-chapter-4",
+          "source": "Limitless Podcast",
+          "url": "https://www.youtube.com/watch?v=-q9SvNvfOHM",
+          "manual": false,
+          "priority": "editorial_override",
+          "candidate": "The Real Reason Elon Made a Deal with Anthropic",
+          "title": "Google Anthropic's Deal",
+          "summary": "Chapter from The Real Reason Elon Made a Deal with Anthropic: Google Anthropic's Deal.",
+          "time": "21:23",
+          "suggested_theme": "Google AI distribution",
+          "strength": "strong"
+        },
+        {
+          "id": "pool-yt-q9svnvfohm-chapter-5",
+          "source": "Limitless Podcast",
+          "url": "https://www.youtube.com/watch?v=-q9SvNvfOHM",
+          "manual": false,
+          "priority": "editorial_override",
+          "candidate": "The Real Reason Elon Made a Deal with Anthropic",
+          "title": "Audio AI",
+          "summary": "Chapter from The Real Reason Elon Made a Deal with Anthropic: Audio AI.",
+          "time": "24:58",
+          "suggested_theme": "AI governance and competition",
+          "strength": "strong"
+        },
+        {
+          "id": "pool-yt-q9svnvfohm-chapter-6",
+          "source": "Limitless Podcast",
+          "url": "https://www.youtube.com/watch?v=-q9SvNvfOHM",
+          "manual": false,
+          "priority": "editorial_override",
+          "candidate": "The Real Reason Elon Made a Deal with Anthropic",
+          "title": "Robotics",
+          "summary": "Chapter from The Real Reason Elon Made a Deal with Anthropic: Robotics.",
+          "time": "26:08",
+          "suggested_theme": "Robotics commercialization",
+          "strength": "strong"
+        },
+        {
+          "id": "pool-yt-q9svnvfohm-chapter-7",
+          "source": "Limitless Podcast",
+          "url": "https://www.youtube.com/watch?v=-q9SvNvfOHM",
+          "manual": false,
+          "priority": "editorial_override",
+          "candidate": "The Real Reason Elon Made a Deal with Anthropic",
+          "title": "Hantavirus",
+          "summary": "Chapter from The Real Reason Elon Made a Deal with Anthropic: Hantavirus.",
+          "time": "27:07",
+          "suggested_theme": "AI governance and competition",
+          "strength": "strong"
+        },
+        {
+          "id": "pool-yt-rnqexgcwg-g-signal",
+          "source": "The AI Daily Brief: Artificial Intelligence News",
+          "url": "https://www.youtube.com/watch?v=RnqEXgcwg-g",
+          "manual": false,
+          "priority": "editorial_override",
+          "candidate": "Surprise Elon-Anthropic Team Up Reshapes AI Race",
+          "title": "Surprise Elon-Anthropic Team Up Reshapes AI Race",
+          "summary": "Surprise SpaceX–Anthropic partnership injects massive Colossus-scale compute into Anthropic's Claude ecosystem and reframes compute as a strategic kingmaker.",
+          "time": "metadata",
+          "suggested_theme": "AI infrastructure economics",
+          "strength": "strong"
+        },
+        {
+          "id": "pool-yt-jg2jjh1k0o8-topic-1",
+          "source": "Peter H. Diamandis",
+          "url": "https://www.youtube.com/watch?v=Jg2jJH1K0o8",
+          "manual": false,
+          "priority": "editorial_override",
+          "candidate": "Demis Hassabis on AGI, Robots Scale Production, and Elon’s $1T Mars-Shot Comp | EP 253",
+          "title": "Demis Hassabis on AGI",
+          "summary": "Topic called out by the source title: Demis Hassabis on AGI. Dennis Hassabis uh the CEO of Deep Mind uh says AGI may not need a major breakthrough.",
+          "time": "title topic",
+          "suggested_theme": "Robotics commercialization",
+          "strength": "strong"
+        },
+        {
+          "id": "pool-yt-jg2jjh1k0o8-topic-2",
+          "source": "Peter H. Diamandis",
+          "url": "https://www.youtube.com/watch?v=Jg2jJH1K0o8",
+          "manual": false,
+          "priority": "editorial_override",
+          "candidate": "Demis Hassabis on AGI, Robots Scale Production, and Elon’s $1T Mars-Shot Comp | EP 253",
+          "title": "Robots Scale Production",
+          "summary": "Topic called out by the source title: Robots Scale Production. Dennis Hassabis uh the CEO of Deep Mind uh says AGI may not need a major breakthrough.",
+          "time": "title topic",
+          "suggested_theme": "Robotics commercialization",
+          "strength": "strong"
+        },
+        {
+          "id": "pool-yt-jg2jjh1k0o8-topic-3",
+          "source": "Peter H. Diamandis",
+          "url": "https://www.youtube.com/watch?v=Jg2jJH1K0o8",
+          "manual": false,
+          "priority": "editorial_override",
+          "candidate": "Demis Hassabis on AGI, Robots Scale Production, and Elon’s $1T Mars-Shot Comp | EP 253",
+          "title": "Elon’s $1T Mars-Shot Comp",
+          "summary": "Topic called out by the source title: Elon’s $1T Mars-Shot Comp. Dennis Hassabis uh the CEO of Deep Mind uh says AGI may not need a major breakthrough.",
+          "time": "title topic",
+          "suggested_theme": "Robotics commercialization",
+          "strength": "strong"
+        },
+        {
+          "id": "pool-yt-kdljbpi-qwy-chapter-1",
+          "source": "BBC News",
+          "url": "https://www.youtube.com/watch?v=KdLJbpi-QwY",
+          "manual": false,
+          "priority": "editorial_override",
+          "candidate": "Why Elon Musk is even more powerful than you think | The Global Story",
+          "title": "Introduction",
+          "summary": "Chapter from Why Elon Musk is even more powerful than you think | The Global Story: Introduction.",
+          "time": "00:00",
+          "suggested_theme": "AI infrastructure economics",
+          "strength": "strong"
+        },
+        {
+          "id": "pool-yt-kdljbpi-qwy-chapter-2",
+          "source": "BBC News",
+          "url": "https://www.youtube.com/watch?v=KdLJbpi-QwY",
+          "manual": false,
+          "priority": "editorial_override",
+          "candidate": "Why Elon Musk is even more powerful than you think | The Global Story",
+          "title": "Why is Elon Musk suing Open AI's Sam Altman?",
+          "summary": "Chapter from Why Elon Musk is even more powerful than you think | The Global Story: Why is Elon Musk suing Open AI's Sam Altman?.",
+          "time": "01:24",
+          "suggested_theme": "AI infrastructure economics",
+          "strength": "strong"
+        },
+        {
+          "id": "pool-yt-kdljbpi-qwy-chapter-3",
+          "source": "BBC News",
+          "url": "https://www.youtube.com/watch?v=KdLJbpi-QwY",
+          "manual": false,
+          "priority": "editorial_override",
+          "candidate": "Why Elon Musk is even more powerful than you think | The Global Story",
+          "title": "What does Elon Musk want from the court case?",
+          "summary": "Chapter from Why Elon Musk is even more powerful than you think | The Global Story: What does Elon Musk want from the court case?.",
+          "time": "03:50",
+          "suggested_theme": "AI infrastructure economics",
+          "strength": "strong"
+        },
+        {
+          "id": "pool-yt-kdljbpi-qwy-chapter-4",
+          "source": "BBC News",
+          "url": "https://www.youtube.com/watch?v=KdLJbpi-QwY",
+          "manual": false,
+          "priority": "editorial_override",
+          "candidate": "Why Elon Musk is even more powerful than you think | The Global Story",
+          "title": "Why was Elon Musk summoned to court in France?",
+          "summary": "Chapter from Why Elon Musk is even more powerful than you think | The Global Story: Why was Elon Musk summoned to court in France?.",
+          "time": "10:03",
+          "suggested_theme": "AI infrastructure economics",
+          "strength": "strong"
+        },
+        {
+          "id": "pool-yt-kdljbpi-qwy-chapter-5",
+          "source": "BBC News",
+          "url": "https://www.youtube.com/watch?v=KdLJbpi-QwY",
+          "manual": false,
+          "priority": "editorial_override",
+          "candidate": "Why Elon Musk is even more powerful than you think | The Global Story",
+          "title": "What is Elon Musk's Starlink and why is it important?",
+          "summary": "Chapter from Why Elon Musk is even more powerful than you think | The Global Story: What is Elon Musk's Starlink and why is it important?.",
+          "time": "12:37",
+          "suggested_theme": "AI infrastructure economics",
+          "strength": "strong"
+        },
+        {
+          "id": "pool-yt-kdljbpi-qwy-chapter-6",
+          "source": "BBC News",
+          "url": "https://www.youtube.com/watch?v=KdLJbpi-QwY",
+          "manual": false,
+          "priority": "editorial_override",
+          "candidate": "Why Elon Musk is even more powerful than you think | The Global Story",
+          "title": "How Starlink has become so important during wars",
+          "summary": "Chapter from Why Elon Musk is even more powerful than you think | The Global Story: How Starlink has become so important during wars.",
+          "time": "18:24",
+          "suggested_theme": "AI infrastructure economics",
+          "strength": "strong"
+        },
+        {
+          "id": "pool-yt-kdljbpi-qwy-chapter-7",
+          "source": "BBC News",
+          "url": "https://www.youtube.com/watch?v=KdLJbpi-QwY",
+          "manual": false,
+          "priority": "editorial_override",
+          "candidate": "Why Elon Musk is even more powerful than you think | The Global Story",
+          "title": "The race to populate space",
+          "summary": "Chapter from Why Elon Musk is even more powerful than you think | The Global Story: The race to populate space.",
+          "time": "23:30",
+          "suggested_theme": "AI infrastructure economics",
+          "strength": "strong"
+        },
+        {
+          "id": "pool-yt-kdljbpi-qwy-chapter-8",
+          "source": "BBC News",
+          "url": "https://www.youtube.com/watch?v=KdLJbpi-QwY",
+          "manual": false,
+          "priority": "editorial_override",
+          "candidate": "Why Elon Musk is even more powerful than you think | The Global Story",
+          "title": "Is Elon Musk more powerful than ever?",
+          "summary": "Chapter from Why Elon Musk is even more powerful than you think | The Global Story: Is Elon Musk more powerful than ever?.",
+          "time": "24:55",
+          "suggested_theme": "AI infrastructure economics",
+          "strength": "strong"
+        },
+        {
+          "id": "pool-yt-6o19bezgmc-signal",
+          "source": "Limitless Podcast",
+          "url": "https://www.youtube.com/watch?v=_6O19bEZgMc",
+          "manual": false,
+          "priority": "editorial_override",
+          "candidate": "Where is AI Going Next?",
+          "title": "Where is AI Going Next?",
+          "summary": "If you bought Sandisk stock [music] just a year ago, you're up 40 times your money.",
+          "time": "transcript",
+          "suggested_theme": "Other signals to consider",
+          "strength": "strong"
+        },
+        {
+          "id": "pool-yt-np6cwvtytam-topic-1",
+          "source": "Dan Martell",
+          "url": "https://www.youtube.com/watch?v=np6CwvTYTAM",
+          "manual": false,
+          "priority": "editorial_override",
+          "candidate": "I Tested 500+ AI Tools, These Will Make You Rich",
+          "title": "I Tested 500+ AI Tools",
+          "summary": "Topic called out by the source title: I Tested 500+ AI Tools. ✅ Want my full AI Tech Stack? Get it here: https://go.danmartell.com/4tlas60 👥 Are you building an AI software company?",
+          "time": "title topic",
+          "suggested_theme": "Other signals to consider",
+          "strength": "strong"
+        },
+        {
+          "id": "pool-yt-np6cwvtytam-topic-2",
+          "source": "Dan Martell",
+          "url": "https://www.youtube.com/watch?v=np6CwvTYTAM",
+          "manual": false,
+          "priority": "editorial_override",
+          "candidate": "I Tested 500+ AI Tools, These Will Make You Rich",
+          "title": "These Will Make You Rich",
+          "summary": "Topic called out by the source title: These Will Make You Rich. ✅ Want my full AI Tech Stack? Get it here: https://go.danmartell.com/4tlas60 👥 Are you building an AI software company?",
+          "time": "title topic",
+          "suggested_theme": "Other signals to consider",
+          "strength": "strong"
+        },
+        {
+          "id": "pool-yt-nov9uoiqt6g-chapter-1",
+          "source": "AI Revolution",
+          "url": "https://www.youtube.com/watch?v=nov9uoIQt6g",
+          "manual": false,
+          "priority": "editorial_override",
+          "candidate": "Google’s New AI Is The OpenClaw Killer",
+          "title": "How Google Remy could turn Gemini into a real 24/7 AI agent",
+          "summary": "Chapter from Google’s New AI Is The OpenClaw Killer: How Google Remy could turn Gemini into a real 24/7 AI agent.",
+          "time": "1:00",
+          "suggested_theme": "Agentic workflows",
+          "strength": "strong"
+        },
+        {
+          "id": "pool-yt-nov9uoiqt6g-chapter-2",
+          "source": "AI Revolution",
+          "url": "https://www.youtube.com/watch?v=nov9uoIQt6g",
+          "manual": false,
+          "priority": "editorial_override",
+          "candidate": "Google’s New AI Is The OpenClaw Killer",
+          "title": "Why Remy looks like Google’s direct answer to OpenClaw",
+          "summary": "Chapter from Google’s New AI Is The OpenClaw Killer: Why Remy looks like Google’s direct answer to OpenClaw.",
+          "time": "3:05",
+          "suggested_theme": "Agentic workflows",
+          "strength": "strong"
+        },
+        {
+          "id": "pool-yt-nov9uoiqt6g-chapter-3",
+          "source": "AI Revolution",
+          "url": "https://www.youtube.com/watch?v=nov9uoIQt6g",
+          "manual": false,
+          "priority": "editorial_override",
+          "candidate": "Google’s New AI Is The OpenClaw Killer",
+          "title": "How Gemini 3.2 Flash surfaced with stronger coding, 3D, and design skills",
+          "summary": "Chapter from Google’s New AI Is The OpenClaw Killer: How Gemini 3.2 Flash surfaced with stronger coding, 3D, and design skills.",
+          "time": "6:09",
+          "suggested_theme": "Agentic workflows",
+          "strength": "strong"
+        },
+        {
+          "id": "pool-yt-nov9uoiqt6g-chapter-4",
+          "source": "AI Revolution",
+          "url": "https://www.youtube.com/watch?v=nov9uoIQt6g",
+          "manual": false,
+          "priority": "editorial_override",
+          "candidate": "Google’s New AI Is The OpenClaw Killer",
+          "title": "How Google’s Gemma 4 speed upgrade can make AI responses up to 3x faster",
+          "summary": "Chapter from Google’s New AI Is The OpenClaw Killer: How Google’s Gemma 4 speed upgrade can make AI responses up to 3x faster.",
+          "time": "7:53",
+          "suggested_theme": "Agentic workflows",
+          "strength": "strong"
+        },
+        {
+          "id": "pool-yt-nov9uoiqt6g-chapter-5",
+          "source": "AI Revolution",
+          "url": "https://www.youtube.com/watch?v=nov9uoIQt6g",
+          "manual": false,
+          "priority": "editorial_override",
+          "candidate": "Google’s New AI Is The OpenClaw Killer",
+          "title": "Why OpenAI made GPT-5.5 Instant the new default ChatGPT model",
+          "summary": "Chapter from Google’s New AI Is The OpenClaw Killer: Why OpenAI made GPT-5.5 Instant the new default ChatGPT model.",
+          "time": "10:21",
+          "suggested_theme": "Agentic workflows",
+          "strength": "strong"
+        },
+        {
+          "id": "pool-yt-nov9uoiqt6g-chapter-6",
+          "source": "AI Revolution",
+          "url": "https://www.youtube.com/watch?v=nov9uoIQt6g",
+          "manual": false,
+          "priority": "editorial_override",
+          "candidate": "Google’s New AI Is The OpenClaw Killer",
+          "title": "How Anthropic’s Claude Orbit could brief you before you even ask",
+          "summary": "Chapter from Google’s New AI Is The OpenClaw Killer: How Anthropic’s Claude Orbit could brief you before you even ask.",
+          "time": "11:43",
+          "suggested_theme": "Agentic workflows",
+          "strength": "strong"
+        },
+        {
+          "id": "pool-yt-rxziezfeede-signal",
+          "source": "Matt Wolfe",
+          "url": "https://www.youtube.com/shorts/RXzIezfeEdE",
+          "manual": false,
+          "priority": "watchlist",
+          "candidate": "Claude’s New Integration Is Surprisingly Powerful",
+          "title": "Claude’s New Integration Is Surprisingly Powerful",
+          "summary": "Claude inside Microsoft Office is an AI feature that actually makes a lot or sense.",
+          "time": "metadata",
+          "suggested_theme": "AI infrastructure economics",
+          "strength": "medium"
+        },
+        {
+          "id": "pool-yt-wefrl6cnfua-signal",
+          "source": "Matt Wolfe",
+          "url": "https://www.youtube.com/shorts/wefrL6CnfUA",
+          "manual": false,
+          "priority": "watchlist",
+          "candidate": "Claude Users FINALLY Get More Usage",
+          "title": "Claude Users FINALLY Get More Usage",
+          "summary": "This was NOT on my 2026 AI bingo card. Anthropic just partnered with SpaceX which could directly impact Claude users by raising usage limits for Claude Code and the API.",
+          "time": "metadata",
+          "suggested_theme": "AI infrastructure economics",
+          "strength": "medium"
+        },
+        {
+          "id": "pool-yt-c4nxmax27w0-signal",
+          "source": "Matt Wolfe",
+          "url": "https://www.youtube.com/shorts/C4nXMAX27W0",
+          "manual": false,
+          "priority": "watchlist",
+          "candidate": "AI Is Being Built Into New Homes",
+          "title": "AI Is Being Built Into New Homes",
+          "summary": "Your future home might come with an AI supercomputer built into the wall. NVIDIA, Pulte Group, and startup SPAN are working on homes with built-in mini data centers packed with Blackwell GPUs, AMD CPUs, and terabytes of RAM.",
+          "time": "metadata",
+          "suggested_theme": "AI infrastructure economics",
+          "strength": "medium"
+        },
+        {
+          "id": "pool-yt-b8v8bdmc8oq-signal",
+          "source": "Matt Wolfe",
+          "url": "https://www.youtube.com/shorts/b8V8bDmc8oQ",
+          "manual": false,
+          "priority": "watchlist",
+          "candidate": "Codex Now Has \"AI Pets\"",
+          "title": "Codex Now Has \"AI Pets\"",
+          "summary": "OpenAI keeps saying they’re cutting these random “side quests\" and YET... they just shipped AI PETS inside Codex 🤔 😂 You can now hatch little custom characters that live inside your coding environment, run around your screen, and even import pets other people created.",
+          "time": "metadata",
+          "suggested_theme": "Agentic workflows",
+          "strength": "medium"
+        },
+        {
+          "id": "pool-yt-z7ee9vwkrca-signal",
+          "source": "Matt Wolfe",
+          "url": "https://www.youtube.com/shorts/z7EE9VWKrCA",
+          "manual": false,
+          "priority": "watchlist",
+          "candidate": "Your AI Setup Needs This",
+          "title": "Your AI Setup Needs This",
+          "summary": "If you’re serious about AI, your laptop matters more than you think. Most people are running powerful AI tools on hardware that’s holding them back.",
+          "time": "metadata",
+          "suggested_theme": "AI infrastructure economics",
+          "strength": "medium"
+        },
+        {
+          "id": "pool-yt-yke4flqush4-chapter-1-group-1",
+          "source": "Matt Wolfe",
+          "url": "https://www.youtube.com/watch?v=yke4fLQUsh4",
+          "manual": false,
+          "priority": "watchlist",
+          "candidate": "Build A Second Brain That Remembers Everything",
+          "title": "The System Overview",
+          "summary": "Grouped related chapters: The System Overview.",
+          "time": "1:07",
+          "suggested_theme": "Other signals to consider",
+          "strength": "medium"
+        },
+        {
+          "id": "pool-yt-yke4flqush4-chapter-2-group-2",
+          "source": "Matt Wolfe",
+          "url": "https://www.youtube.com/watch?v=yke4fLQUsh4",
+          "manual": false,
+          "priority": "watchlist",
+          "candidate": "Build A Second Brain That Remembers Everything",
+          "title": "OpenClaw on Hostinger",
+          "summary": "Grouped related chapters: OpenClaw on Hostinger.",
+          "time": "6:14",
+          "suggested_theme": "Agentic workflows",
+          "strength": "medium"
+        },
+        {
+          "id": "pool-yt-yke4flqush4-chapter-3-group-3",
+          "source": "Matt Wolfe",
+          "url": "https://www.youtube.com/watch?v=yke4fLQUsh4",
+          "manual": false,
+          "priority": "watchlist",
+          "candidate": "Build A Second Brain That Remembers Everything",
+          "title": "Karpathy LLM Wiki Concept; Tools Needed; The Buildout + 1 more",
+          "summary": "Grouped related chapters: Karpathy LLM Wiki Concept; Tools Needed; The Buildout; Querying the Wiki.",
+          "time": "8:03-18:19",
+          "suggested_theme": "Other signals to consider",
+          "strength": "medium"
+        },
+        {
+          "id": "pool-yt-yke4flqush4-chapter-7-group-4",
+          "source": "Matt Wolfe",
+          "url": "https://www.youtube.com/watch?v=yke4fLQUsh4",
+          "manual": false,
+          "priority": "watchlist",
+          "candidate": "Build A Second Brain That Remembers Everything",
+          "title": "Manually Updating the Agent; Letting AI Update the Agent & Building Journal / CRM",
+          "summary": "Grouped related chapters: Manually Updating the Agent; Letting AI Update the Agent & Building Journal / CRM.",
+          "time": "19:28-21:25",
+          "suggested_theme": "Agentic workflows",
+          "strength": "medium"
+        },
+        {
+          "id": "pool-yt-yke4flqush4-chapter-9-group-5",
+          "source": "Matt Wolfe",
+          "url": "https://www.youtube.com/watch?v=yke4fLQUsh4",
+          "manual": false,
+          "priority": "watchlist",
+          "candidate": "Build A Second Brain That Remembers Everything",
+          "title": "Testing the CRM; Testing the Journal; Automating The Wiki Linking + 2 more",
+          "summary": "Grouped related chapters: Testing the CRM; Testing the Journal; Automating The Wiki Linking; Backing it all up to GitHub; The System Overview.",
+          "time": "24:46-1:07",
+          "suggested_theme": "Other signals to consider",
+          "strength": "medium"
+        },
+        {
+          "id": "pool-yt-yke4flqush4-chapter-14-group-6",
+          "source": "Matt Wolfe",
+          "url": "https://www.youtube.com/watch?v=yke4fLQUsh4",
+          "manual": false,
+          "priority": "watchlist",
+          "candidate": "Build A Second Brain That Remembers Everything",
+          "title": "OpenClaw on Hostinger",
+          "summary": "Grouped related chapters: OpenClaw on Hostinger.",
+          "time": "6:14",
+          "suggested_theme": "Agentic workflows",
+          "strength": "medium"
+        },
+        {
+          "id": "pool-yt-yke4flqush4-chapter-15-group-7",
+          "source": "Matt Wolfe",
+          "url": "https://www.youtube.com/watch?v=yke4fLQUsh4",
+          "manual": false,
+          "priority": "watchlist",
+          "candidate": "Build A Second Brain That Remembers Everything",
+          "title": "Karpathy LLM Wiki Concept; Tools Needed; The Buildout + 1 more",
+          "summary": "Grouped related chapters: Karpathy LLM Wiki Concept; Tools Needed; The Buildout; Querying the Wiki.",
+          "time": "8:03-18:19",
+          "suggested_theme": "Other signals to consider",
+          "strength": "medium"
+        },
+        {
+          "id": "pool-yt-yke4flqush4-chapter-19-group-8",
+          "source": "Matt Wolfe",
+          "url": "https://www.youtube.com/watch?v=yke4fLQUsh4",
+          "manual": false,
+          "priority": "watchlist",
+          "candidate": "Build A Second Brain That Remembers Everything",
+          "title": "Manually Updating the Agent; Letting AI Update the Agent & Building Journal / CRM",
+          "summary": "Grouped related chapters: Manually Updating the Agent; Letting AI Update the Agent & Building Journal / CRM.",
+          "time": "19:28-21:25",
+          "suggested_theme": "Agentic workflows",
+          "strength": "medium"
+        },
+        {
+          "id": "pool-yt-yke4flqush4-chapter-21-group-9",
+          "source": "Matt Wolfe",
+          "url": "https://www.youtube.com/watch?v=yke4fLQUsh4",
+          "manual": false,
+          "priority": "watchlist",
+          "candidate": "Build A Second Brain That Remembers Everything",
+          "title": "Testing the CRM; Testing the Journal; Automating The Wiki Linking + 1 more",
+          "summary": "Grouped related chapters: Testing the CRM; Testing the Journal; Automating The Wiki Linking; Backing it all up to GitHub.",
+          "time": "24:46-30:30",
+          "suggested_theme": "Other signals to consider",
+          "strength": "medium"
+        },
+        {
+          "id": "pool-yt-b3vfchfk2b4-signal",
+          "source": "Matt Wolfe",
+          "url": "https://www.youtube.com/shorts/B3vfCHfK2b4",
+          "manual": false,
+          "priority": "watchlist",
+          "candidate": "AI Coworkers Are Officially Here",
+          "title": "AI Coworkers Are Officially Here",
+          "summary": "If your team lives in Slack, this is worth checking out. @getviktor is an AI coworker that works where your team already works.",
+          "time": "metadata",
+          "suggested_theme": "Agentic workflows",
+          "strength": "medium"
+        },
+        {
+          "id": "pool-yt-20bsrqrrcw8-signal",
+          "source": "Peter H. Diamandis",
+          "url": "https://www.youtube.com/shorts/20BsRQrRcw8",
+          "manual": false,
+          "priority": "watchlist",
+          "candidate": "Longevity's Wright Brothers Moment | MOONSHOTS",
+          "title": "Longevity's Wright Brothers Moment | MOONSHOTS",
+          "summary": "David Sinclair: Longevity escape velocity is our Wright Brothers moment.",
+          "time": "metadata",
+          "suggested_theme": "Other signals to consider",
+          "strength": "medium"
+        },
+        {
+          "id": "pool-yt-hpbmflgls-4-signal",
+          "source": "Peter H. Diamandis",
+          "url": "https://www.youtube.com/shorts/hpbmfLGLS-4",
+          "manual": false,
+          "priority": "watchlist",
+          "candidate": "David Sinclair on Biotech Investing | MOONSHOTS",
+          "title": "David Sinclair on Biotech Investing | MOONSHOTS",
+          "summary": "Capital deficiency kills biotechs. This is how to avoid it, according to David Sinclair:",
+          "time": "metadata",
+          "suggested_theme": "Other signals to consider",
+          "strength": "medium"
+        },
+        {
+          "id": "pool-yt-v1sfuy4mh3o-signal",
+          "source": "Peter H. Diamandis",
+          "url": "https://www.youtube.com/shorts/v1SfUY4mH3o",
+          "manual": false,
+          "priority": "watchlist",
+          "candidate": "Back Pain-Free Future Ahead? | MOONSHOTS",
+          "title": "Back Pain-Free Future Ahead? | MOONSHOTS",
+          "summary": "Tired of back/joint pain? Watch this.",
+          "time": "metadata",
+          "suggested_theme": "Other signals to consider",
+          "strength": "medium"
+        },
+        {
+          "id": "pool-yt-msice1foywy-topic-1",
+          "source": "Peter H. Diamandis",
+          "url": "https://www.youtube.com/shorts/mSice1FOywY",
+          "manual": false,
+          "priority": "watchlist",
+          "candidate": "Google's Record Quarter, the White House Intervenes, and GPT 5.5 Silently Matches Mythos | MOONSHOTS",
+          "title": "Google's Record Quarter",
+          "summary": "Topic called out by the source title: Google's Record Quarter. For the first time, the U.S. government may start previewing the most powerful AI models before release.",
+          "time": "title topic",
+          "suggested_theme": "Agentic workflows",
+          "strength": "medium"
+        },
+        {
+          "id": "pool-yt-msice1foywy-topic-2",
+          "source": "Peter H. Diamandis",
+          "url": "https://www.youtube.com/shorts/mSice1FOywY",
+          "manual": false,
+          "priority": "watchlist",
+          "candidate": "Google's Record Quarter, the White House Intervenes, and GPT 5.5 Silently Matches Mythos | MOONSHOTS",
+          "title": "the White House Intervenes",
+          "summary": "Topic called out by the source title: the White House Intervenes. For the first time, the U.S. government may start previewing the most powerful AI models before release.",
+          "time": "title topic",
+          "suggested_theme": "Agentic workflows",
+          "strength": "medium"
+        },
+        {
+          "id": "pool-yt-msice1foywy-topic-3",
+          "source": "Peter H. Diamandis",
+          "url": "https://www.youtube.com/shorts/mSice1FOywY",
+          "manual": false,
+          "priority": "watchlist",
+          "candidate": "Google's Record Quarter, the White House Intervenes, and GPT 5.5 Silently Matches Mythos | MOONSHOTS",
+          "title": "GPT 5.5 Silently Matches Mythos",
+          "summary": "Topic called out by the source title: GPT 5.5 Silently Matches Mythos. For the first time, the U.S. government may start previewing the most powerful AI models before release.",
+          "time": "title topic",
+          "suggested_theme": "Agentic workflows",
+          "strength": "medium"
+        },
+        {
+          "id": "pool-yt-kp8y4pvlqfi-signal",
+          "source": "Peter H. Diamandis",
+          "url": "https://www.youtube.com/shorts/kP8Y4pVlQfI",
+          "manual": false,
+          "priority": "watchlist",
+          "candidate": "Comfort World Kills Longevity | MOONSHOTS",
+          "title": "Comfort World Kills Longevity | MOONSHOTS",
+          "summary": "Too comfortable? You might be aging faster.",
+          "time": "metadata",
+          "suggested_theme": "Other signals to consider",
+          "strength": "medium"
+        },
+        {
+          "id": "pool-yt-j6tlew-oflo-signal",
+          "source": "Peter H. Diamandis",
+          "url": "https://www.youtube.com/shorts/j6tLew-OFLo",
+          "manual": false,
+          "priority": "watchlist",
+          "candidate": "Lifespan: 50% Up to You | MOONSHOTS",
+          "title": "Lifespan: 50% Up to You | MOONSHOTS",
+          "summary": "Only 15-50% of lifespan is genetic. Rest? Your choices, your behavior, wearables, screening.",
+          "time": "metadata",
+          "suggested_theme": "AI infrastructure economics",
+          "strength": "medium"
+        },
+        {
+          "id": "pool-yt-tx3yjoaotp4-signal",
+          "source": "Peter H. Diamandis",
+          "url": "https://www.youtube.com/shorts/tX3YjOaoTP4",
+          "manual": false,
+          "priority": "watchlist",
+          "candidate": "David Sinclair: AI Is Smarter Than Humans at Longevity | MOONSHOTS",
+          "title": "David Sinclair: AI Is Smarter Than Humans at Longevity | MOONSHOTS",
+          "summary": "How scientists are using AI in their research on longevity.",
+          "time": "metadata",
+          "suggested_theme": "Other signals to consider",
+          "strength": "medium"
+        },
+        {
+          "id": "pool-yt-jxesbtylvbg-signal",
+          "source": "Peter H. Diamandis",
+          "url": "https://www.youtube.com/shorts/JxesbtYLVbg",
+          "manual": false,
+          "priority": "watchlist",
+          "candidate": "Why You Should Eat Stressed Plants? | MOONSHOTS",
+          "title": "Why You Should Eat Stressed Plants? | MOONSHOTS",
+          "summary": "When you eat colorful/bitter veggies, their signals activate your longevity genes.",
+          "time": "metadata",
+          "suggested_theme": "Other signals to consider",
+          "strength": "medium"
+        },
+        {
+          "id": "pool-yt-3dcowoca2fq-signal",
+          "source": "Peter H. Diamandis",
+          "url": "https://www.youtube.com/shorts/3dcOWoCA2FQ",
+          "manual": false,
+          "priority": "watchlist",
+          "candidate": "Verified Human Identity Matters More as AI Scales | MOONSHOTS",
+          "title": "Verified Human Identity Matters More as AI Scales | MOONSHOTS",
+          "summary": "The more AI scales, the more valuable verified human identity becomes.",
+          "time": "metadata",
+          "suggested_theme": "Other signals to consider",
+          "strength": "medium"
+        },
+        {
+          "id": "pool-yt-wnzthzndfn0-signal",
+          "source": "Peter H. Diamandis",
+          "url": "https://www.youtube.com/shorts/WnZThZNdFn0",
+          "manual": false,
+          "priority": "watchlist",
+          "candidate": "The Downside of GLP-1 You Need to Know | MOONSHOTS",
+          "title": "The Downside of GLP-1 You Need to Know | MOONSHOTS",
+          "summary": "The downside of GLP-1 you need to know.",
+          "time": "metadata",
+          "suggested_theme": "Other signals to consider",
+          "strength": "medium"
+        },
+        {
+          "id": "pool-yt-kpnrb59xfa-signal",
+          "source": "Peter H. Diamandis",
+          "url": "https://www.youtube.com/shorts/_kPNRB59xFA",
+          "manual": false,
+          "priority": "watchlist",
+          "candidate": "AI Is Coming for the White-Collar Jobs | MOONSHOTS",
+          "title": "AI Is Coming for the White-Collar Jobs | MOONSHOTS",
+          "summary": "ChatGPT for clinicians already outsourcing doctors, and next up is law, consulting, and finance.",
+          "time": "metadata",
+          "suggested_theme": "Other signals to consider",
+          "strength": "medium"
+        },
+        {
+          "id": "pool-yt-okvfmtds6fi-signal",
+          "source": "Peter H. Diamandis",
+          "url": "https://www.youtube.com/shorts/oKVfmtDS6FI",
+          "manual": false,
+          "priority": "watchlist",
+          "candidate": "Math Is Cooked by AI | MOONSHOTS",
+          "title": "Math Is Cooked by AI | MOONSHOTS",
+          "summary": "Alex runs the numbers on GPT-5.5 vs 5.4 and says frontier math is basically solved in 4–5 years.",
+          "time": "metadata",
+          "suggested_theme": "AI governance and competition",
+          "strength": "medium"
+        },
+        {
+          "id": "pool-yt-org0tkhyiba-signal",
+          "source": "Peter H. Diamandis",
+          "url": "https://www.youtube.com/shorts/ORG0tkhyiBA",
+          "manual": false,
+          "priority": "watchlist",
+          "candidate": "David Sinclair: $0.05 Pill Reverses Aging in Weeks | MOONSHOTS",
+          "title": "David Sinclair: $0.05 Pill Reverses Aging in Weeks | MOONSHOTS",
+          "summary": "David Sinclair: This pill may reverse aging in 6 weeks.",
+          "time": "metadata",
+          "suggested_theme": "Other signals to consider",
+          "strength": "medium"
+        },
+        {
+          "id": "pool-yt-sphghj7nwtc-topic-1",
+          "source": "Peter H. Diamandis",
+          "url": "https://www.youtube.com/shorts/SPhghJ7NWTc",
+          "manual": false,
+          "priority": "watchlist",
+          "candidate": "Demis Hassabis on AGI, Robots Scale Production, and Elon’s $1T Mars-Shot Comp | MOONSHOTS",
+          "title": "Demis Hassabis on AGI",
+          "summary": "Topic called out by the source title: Demis Hassabis on AGI. Mars colonies, robot workers, and AGI lawsuits all point to one big truth: the people building the future are moving faster than the systems meant to govern them.",
+          "time": "title topic",
+          "suggested_theme": "Robotics commercialization",
+          "strength": "medium"
+        },
+        {
+          "id": "pool-yt-sphghj7nwtc-topic-2",
+          "source": "Peter H. Diamandis",
+          "url": "https://www.youtube.com/shorts/SPhghJ7NWTc",
+          "manual": false,
+          "priority": "watchlist",
+          "candidate": "Demis Hassabis on AGI, Robots Scale Production, and Elon’s $1T Mars-Shot Comp | MOONSHOTS",
+          "title": "Robots Scale Production",
+          "summary": "Topic called out by the source title: Robots Scale Production. Mars colonies, robot workers, and AGI lawsuits all point to one big truth: the people building the future are moving faster than the systems meant to govern them.",
+          "time": "title topic",
+          "suggested_theme": "Robotics commercialization",
+          "strength": "medium"
+        },
+        {
+          "id": "pool-yt-sphghj7nwtc-topic-3",
+          "source": "Peter H. Diamandis",
+          "url": "https://www.youtube.com/shorts/SPhghJ7NWTc",
+          "manual": false,
+          "priority": "watchlist",
+          "candidate": "Demis Hassabis on AGI, Robots Scale Production, and Elon’s $1T Mars-Shot Comp | MOONSHOTS",
+          "title": "Elon’s $1T Mars-Shot Comp",
+          "summary": "Topic called out by the source title: Elon’s $1T Mars-Shot Comp. Mars colonies, robot workers, and AGI lawsuits all point to one big truth: the people building the future are moving faster than the systems meant to govern them.",
+          "time": "title topic",
+          "suggested_theme": "Robotics commercialization",
+          "strength": "medium"
+        },
+        {
+          "id": "pool-yt-uzplbvhe6uy-chapter-1",
+          "source": "Limitless Podcast",
+          "url": "https://www.youtube.com/watch?v=UzpLbVHE6uY",
+          "manual": false,
+          "priority": "watchlist",
+          "candidate": "AI Memory Stocks Are About To Explode",
+          "title": "Memory Companies",
+          "summary": "Chapter from AI Memory Stocks Are About To Explode: Memory Companies.",
+          "time": "0:00",
+          "suggested_theme": "AI infrastructure economics",
+          "strength": "medium"
+        },
+        {
+          "id": "pool-yt-uzplbvhe6uy-chapter-2",
+          "source": "Limitless Podcast",
+          "url": "https://www.youtube.com/watch?v=UzpLbVHE6uY",
+          "manual": false,
+          "priority": "watchlist",
+          "candidate": "AI Memory Stocks Are About To Explode",
+          "title": "Inference Demand",
+          "summary": "Chapter from AI Memory Stocks Are About To Explode: Inference Demand.",
+          "time": "5:03",
+          "suggested_theme": "AI infrastructure economics",
+          "strength": "medium"
+        },
+        {
+          "id": "pool-yt-uzplbvhe6uy-chapter-3",
+          "source": "Limitless Podcast",
+          "url": "https://www.youtube.com/watch?v=UzpLbVHE6uY",
+          "manual": false,
+          "priority": "watchlist",
+          "candidate": "AI Memory Stocks Are About To Explode",
+          "title": "Supply Constraints",
+          "summary": "Chapter from AI Memory Stocks Are About To Explode: Supply Constraints.",
+          "time": "6:52",
+          "suggested_theme": "AI infrastructure economics",
+          "strength": "medium"
+        },
+        {
+          "id": "pool-yt-uzplbvhe6uy-chapter-4",
+          "source": "Limitless Podcast",
+          "url": "https://www.youtube.com/watch?v=UzpLbVHE6uY",
+          "manual": false,
+          "priority": "watchlist",
+          "candidate": "AI Memory Stocks Are About To Explode",
+          "title": "Key Players",
+          "summary": "Chapter from AI Memory Stocks Are About To Explode: Key Players.",
+          "time": "10:58",
+          "suggested_theme": "AI infrastructure economics",
+          "strength": "medium"
+        },
+        {
+          "id": "pool-yt-uzplbvhe6uy-chapter-5",
+          "source": "Limitless Podcast",
+          "url": "https://www.youtube.com/watch?v=UzpLbVHE6uY",
+          "manual": false,
+          "priority": "watchlist",
+          "candidate": "AI Memory Stocks Are About To Explode",
+          "title": "Market Conditions",
+          "summary": "Chapter from AI Memory Stocks Are About To Explode: Market Conditions.",
+          "time": "14:55",
+          "suggested_theme": "AI infrastructure economics",
+          "strength": "medium"
+        },
+        {
+          "id": "pool-yt-uzplbvhe6uy-chapter-6",
+          "source": "Limitless Podcast",
+          "url": "https://www.youtube.com/watch?v=UzpLbVHE6uY",
+          "manual": false,
+          "priority": "watchlist",
+          "candidate": "AI Memory Stocks Are About To Explode",
+          "title": "Forecasting",
+          "summary": "Chapter from AI Memory Stocks Are About To Explode: Forecasting.",
+          "time": "20:04",
+          "suggested_theme": "AI infrastructure economics",
+          "strength": "medium"
+        },
+        {
+          "id": "pool-yt-cq1dclcupso-signal",
+          "source": "Limitless Podcast",
+          "url": "https://www.youtube.com/shorts/CQ1dcLCUpso",
+          "manual": false,
+          "priority": "watchlist",
+          "candidate": "AI Stocks Are Going Parabolic",
+          "title": "AI Stocks Are Going Parabolic",
+          "summary": "AI infrastructure stocks are going absolutely insane. SanDisk, Micron, AMD, Intel, and ARM have all surged as Big Tech doubles down on AI spending.",
+          "time": "metadata",
+          "suggested_theme": "AI infrastructure economics",
+          "strength": "medium"
+        },
+        {
+          "id": "pool-yt-7odpzzj00jm-signal",
+          "source": "Limitless Podcast",
+          "url": "https://www.youtube.com/shorts/7oDPZzJ00jM",
+          "manual": false,
+          "priority": "watchlist",
+          "candidate": "Elon Musk Just Partnered With Claude",
+          "title": "Elon Musk Just Partnered With Claude",
+          "summary": "Elon Musk and Anthropic may have just become the most unexpected AI alliance. After months of public criticism, Elon now says Claude “will probably be good” — and Anthropic is reportedly buying $5B worth of GPUs from SpaceXAI’s Colossus I data center.",
+          "time": "metadata",
+          "suggested_theme": "AI infrastructure economics",
+          "strength": "medium"
+        },
+        {
+          "id": "pool-yt-lsma-kvpwf0-signal",
+          "source": "Limitless Podcast",
+          "url": "https://www.youtube.com/shorts/lsMa-kVpwF0",
+          "manual": false,
+          "priority": "watchlist",
+          "candidate": "OpenAI Is Building an iPhone Killer",
+          "title": "OpenAI Is Building an iPhone Killer",
+          "summary": "OpenAI is reportedly building an AI-first smartphone with Jony Ive and it may arrive within the next year.",
+          "time": "metadata",
+          "suggested_theme": "Agentic workflows",
+          "strength": "medium"
+        },
+        {
+          "id": "pool-yt-u4g4l9pvozy-chapter-1-group-1",
+          "source": "Limitless Podcast",
+          "url": "https://www.youtube.com/watch?v=u4G4L9PvozY",
+          "manual": false,
+          "priority": "watchlist",
+          "candidate": "We've Never Seen Anything like the OpenAI Phone",
+          "title": "OpenAI Phone; Features and Design; AI Operating System + 4 more",
+          "summary": "Grouped related chapters: OpenAI Phone; Features and Design; AI Operating System; Supply Chain and Production Concerns; Johnny Ive's Design Influence; Market Competition and Consumer Interest; OpenAI's Strategic Roadmap.",
+          "time": "0:00-11:53",
+          "suggested_theme": "Other signals to consider",
+          "strength": "medium"
+        },
+        {
+          "id": "pool-yt-u4g4l9pvozy-chapter-8-group-2",
+          "source": "Limitless Podcast",
+          "url": "https://www.youtube.com/watch?v=u4G4L9PvozY",
+          "manual": false,
+          "priority": "watchlist",
+          "candidate": "We've Never Seen Anything like the OpenAI Phone",
+          "title": "Anthropic’s Shift to Financial Services; Comparing OpenAI and Anthropic",
+          "summary": "Grouped related chapters: Anthropic’s Shift to Financial Services; Comparing OpenAI and Anthropic.",
+          "time": "14:27-20:20",
+          "suggested_theme": "AI governance and competition",
+          "strength": "medium"
+        },
+        {
+          "id": "pool-yt-u4g4l9pvozy-chapter-10-group-3",
+          "source": "Limitless Podcast",
+          "url": "https://www.youtube.com/watch?v=u4G4L9PvozY",
+          "manual": false,
+          "priority": "watchlist",
+          "candidate": "We've Never Seen Anything like the OpenAI Phone",
+          "title": "Future of AI-First Hardware; OpenAI Phone; Features and Design + 5 more",
+          "summary": "Grouped related chapters: Future of AI-First Hardware; OpenAI Phone; Features and Design; AI Operating System; Supply Chain and Production Concerns; Johnny Ive's Design Influence; Market Competition and Consumer Interest; OpenAI's Strategic Roadmap.",
+          "time": "24:39-11:53",
+          "suggested_theme": "Other signals to consider",
+          "strength": "medium"
+        },
+        {
+          "id": "pool-yt-u4g4l9pvozy-chapter-18-group-4",
+          "source": "Limitless Podcast",
+          "url": "https://www.youtube.com/watch?v=u4G4L9PvozY",
+          "manual": false,
+          "priority": "watchlist",
+          "candidate": "We've Never Seen Anything like the OpenAI Phone",
+          "title": "Anthropic’s Shift to Financial Services; Comparing OpenAI and Anthropic",
+          "summary": "Grouped related chapters: Anthropic’s Shift to Financial Services; Comparing OpenAI and Anthropic.",
+          "time": "14:27-20:20",
+          "suggested_theme": "AI governance and competition",
+          "strength": "medium"
+        },
+        {
+          "id": "pool-yt-u4g4l9pvozy-chapter-20-group-5",
+          "source": "Limitless Podcast",
+          "url": "https://www.youtube.com/watch?v=u4G4L9PvozY",
+          "manual": false,
+          "priority": "watchlist",
+          "candidate": "We've Never Seen Anything like the OpenAI Phone",
+          "title": "Future of AI-First Hardware",
+          "summary": "Grouped related chapters: Future of AI-First Hardware.",
+          "time": "24:39",
+          "suggested_theme": "Other signals to consider",
+          "strength": "medium"
+        }
+      ],
+      "approved_themes": [
+        {
+          "order": 1,
+          "id": "theme-models",
+          "title": "Model News",
+          "summary": "A standing section for new models, capability jumps, pricing shifts, benchmarks, and specialized model lanes.",
+          "supporting_segments": []
+        },
+        {
+          "order": 2,
+          "id": "theme-agents",
+          "title": "Agents",
+          "summary": "A standing section for agents, agentic workflows, agent OS ideas, orchestration, tools, roles, artifacts, validation, and practical automation.",
+          "supporting_segments": []
+        },
+        {
+          "order": 3,
+          "id": "theme-platforms",
+          "title": "Platform Plays",
+          "summary": "A standing section for Google, Microsoft, OpenAI, Anthropic, Canva, Perplexity, and other platforms pushing AI into everyday work surfaces.",
+          "supporting_segments": []
+        },
+        {
+          "order": 4,
+          "id": "theme-infra",
+          "title": "Economics",
+          "summary": "A standing section for compute, capex, memory, data centers, routing, power, latency, and cost pressures shaping AI adoption.",
+          "supporting_segments": []
+        },
+        {
+          "order": 5,
+          "id": "theme-power",
+          "title": "Power Moves",
+          "summary": "A standing section for founder drama, lawsuits, acquisitions, surprise partnerships, platform politics, and industry titan maneuvering.",
+          "supporting_segments": []
+        },
+        {
+          "order": 6,
+          "id": "theme-robotics",
+          "title": "Robotics commercialization is moving from demo to scale",
+          "summary": "Humanoid production targets and frontier-lab robotics discussion suggest physical AI may become a credible near-term enterprise topic.",
+          "supporting_segments": []
+        }
+      ]
+    }
   }
 }
