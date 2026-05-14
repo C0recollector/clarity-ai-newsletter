@@ -22,8 +22,10 @@
   },
   "assets": {
     "hero": "AINewsletter/assets/ai-infrastructure-hero.png",
+    "model_news_radar": "AINewsletter/assets/model-news-radar-gpt-image-2.png",
     "platform_distribution": "AINewsletter/assets/platform-distribution-map-gpt-image-2.png",
-    "compute_economics": "AINewsletter/assets/compute-economics-gpt-image-2.png"
+    "compute_economics": "AINewsletter/assets/compute-economics-gpt-image-2.png",
+    "power_moves_compute_control": "AINewsletter/assets/power-moves-compute-control-gpt-image-2.png"
   },
   "sections": [
     {
