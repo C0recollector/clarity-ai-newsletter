@@ -17,6 +17,9 @@
 - If local AI is unavailable during a block rewrite, the editor now says that LM Studio/local AI is not running and loads the current text into the replacement box for manual editing instead of looking like nothing happened.
 - Block rewrites now prefer the OpenAI API when `OPENAI_API_KEY` is available in `.env` or the process environment. Default rewrite model is `gpt-5-mini`; override with `OPENAI_REWRITE_MODEL`. LM Studio remains a fallback only.
 - The local workflow label is now `Newsletter Studio` instead of `Editorial Review Gate`, with a top `Edit Generated Newsletter` action so Greg does not need to scroll to the export JSON panel to open the editor.
+- Source review choices now persist in browser `localStorage` keyed by issue id, including theme title edits, approved theme state, candidate include boxes, segment checkboxes, audience, and approved state. Loading the candidate pool merges new data into saved choices instead of resetting everything to defaults.
+- `Generate Draft Newsletter` now saves the review state, calls the local runner, and goes directly to the editor when generation succeeds. It no longer opens the JSON export panel during normal use; JSON export stays under Advanced.
+- The page generator now skips optional approved sections that do not exist in the current hand-designed HTML templates instead of failing with "Expected one match" errors, and it has mappings for future Robotics and AI-native Work sections.
 - Moved active work to local repo at `C:\Users\Greg\Codex\AI News`; do not edit the old Google Drive copy.
 - Connected GitHub remote `https://github.com/C0recollector/clarity-ai-newsletter.git` and pushed `main`.
 - Fixed five annotations.

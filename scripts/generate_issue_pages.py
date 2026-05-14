@@ -50,6 +50,18 @@ TECHNICAL_SECTION_MAP = {
         "nav": "Vendor Risk",
         "nav_summary": "Governance, incentives, ads, partnerships, lock-in.",
     },
+    "robotics": {
+        "id": "robotics",
+        "title": "Robotics: Commercialization Is Moving From Demo to Scale",
+        "nav": "Robotics",
+        "nav_summary": "Humanoids, production targets, embodiment, and deployment risk.",
+    },
+    "work": {
+        "id": "work",
+        "title": "AI-Native Work: Management Practices Are Catching Up",
+        "nav": "AI-Native Work",
+        "nav_summary": "Team practice, product strategy, training, and labor impact.",
+    },
 }
 
 
@@ -174,7 +186,10 @@ def sync_executive(content: str, issue: dict) -> str:
         "executive nav",
     )
 
+    existing_sections = set(re.findall(r'<section class="signal" id="([^"]+)">', content))
     for index, section in enumerate(sections, start=1):
+        if section["id"] not in existing_sections:
+            continue
         section_id = re.escape(section["id"])
         title = escape(section.get("headline") or section["title"])
         summary = escape(section.get("summary", ""))
@@ -197,8 +212,11 @@ def sync_technical(content: str, issue: dict) -> str:
         "technical nav",
     )
 
+    existing_sections = set(re.findall(r'<section class="signal" id="([^"]+)">', content))
     for section in sections:
         mapped = TECHNICAL_SECTION_MAP.get(section["id"], {"id": section["id"], "title": section.get("headline", section["title"])})
+        if mapped["id"] not in existing_sections:
+            continue
         section_id = re.escape(mapped["id"])
         title = escape(mapped["title"])
         summary = escape(section.get("summary", ""))

@@ -1353,6 +1353,7 @@
       draggedThemeId: null,
       approved: false
     };
+    const storageKey = `ai-newsletter-review-${issueModelSeed.issue.id}`;
 
     const candidateList = document.getElementById('candidate-list');
     const themeList = document.getElementById('theme-list');
@@ -1428,6 +1429,69 @@
 
     function segmentById(id) {
       return allSegments().find(segment => segment.id === id && segment.candidateIncluded && segment.selected);
+    }
+
+    function savedStatePayload() {
+      return {
+        candidates: state.candidates.map(candidate => ({
+          id: candidate.id,
+          included: candidate.included,
+          segments: candidate.segments.map(segment => ({
+            id: segment.id,
+            selected: segment.selected
+          }))
+        })),
+        themes: state.themes.map(theme => ({
+          ...theme,
+          segmentIds: [...theme.segmentIds]
+        })),
+        audience: state.audience,
+        approved: state.approved,
+        candidatePoolSource: state.candidatePoolSource
+      };
+    }
+
+    function saveReviewState() {
+      localStorage.setItem(storageKey, JSON.stringify(savedStatePayload()));
+    }
+
+    function restoreReviewState() {
+      const raw = localStorage.getItem(storageKey);
+      if (!raw) return false;
+      let saved;
+      try {
+        saved = JSON.parse(raw);
+      } catch (error) {
+        return false;
+      }
+      if (Array.isArray(saved.themes) && saved.themes.length) {
+        state.themes = saved.themes;
+        state.rejectedThemeNames = new Set(state.themes.filter(theme => !theme.approved).map(theme => theme.title.toLowerCase()));
+      }
+      if (saved.audience) {
+        state.audience = saved.audience;
+        const audienceInput = document.querySelector(`input[name="audience"][value="${saved.audience}"]`);
+        if (audienceInput) audienceInput.checked = true;
+      }
+      state.approved = Boolean(saved.approved);
+      state.candidatePoolSource = saved.candidatePoolSource || state.candidatePoolSource;
+      mergeCandidateChoices(saved.candidates || []);
+      return true;
+    }
+
+    function mergeCandidateChoices(savedCandidates) {
+      const savedById = new Map(savedCandidates.map(candidate => [candidate.id, candidate]));
+      state.candidates.forEach(candidate => {
+        const savedCandidate = savedById.get(candidate.id);
+        if (!savedCandidate) return;
+        candidate.included = Boolean(savedCandidate.included);
+        const savedSegments = new Map((savedCandidate.segments || []).map(segment => [segment.id, segment]));
+        candidate.segments.forEach(segment => {
+          if (savedSegments.has(segment.id)) {
+            segment.selected = Boolean(savedSegments.get(segment.id).selected);
+          }
+        });
+      });
     }
 
     function sourceKindClass(kind) {
@@ -1888,9 +1952,11 @@
       if (!nextCandidates.length) return false;
       state.candidates = nextCandidates;
       state.candidatePoolSource = pool.json || 'candidate pool';
-      regenerateThemes();
+      const restored = restoreReviewState();
+      if (!restored) regenerateThemes({ save: false });
       const summary = pool.summary || {};
       statusEl.textContent = `Loaded ${nextCandidates.length} candidate pool item(s): ${summary.playlist_candidates || 0} playlist, ${summary.watchlist_candidates || 0} watchlist.`;
+      render();
       return true;
     }
 
@@ -2275,13 +2341,14 @@
       statusEl.textContent = `${selected.length} segments selected · ${approvedThemes.length} themes approved · ${audienceLabel} lens`;
     }
 
-    function render() {
+    function render(options = {}) {
       renderCandidates();
       renderThemes();
       updateMetrics();
+      if (options.save !== false) saveReviewState();
     }
 
-    function regenerateThemes() {
+    function regenerateThemes(options = {}) {
       const selected = selectedSegments();
       const approvedThemes = state.themes.filter(theme => theme.approved);
       const keptThemes = approvedThemes.map(theme => ({
@@ -2313,7 +2380,7 @@
       });
       if (otherTheme.segmentIds.length) state.themes.push(otherTheme);
       statusEl.textContent = 'Evidence rebucketed into the current approved theme structure.';
-      render();
+      render(options);
     }
 
     function buildReviewObject() {
@@ -2439,12 +2506,7 @@
     async function generateNewsletter() {
       state.approved = true;
       const issueModel = buildIssueModel();
-      setExportContent(
-        'Structured Issue JSON',
-        'Saving this approved model and generating the newsletter through the local runner.',
-        issueModel
-      );
-      document.getElementById('brief-link-wrap').classList.add('open');
+      saveReviewState();
       const audienceLabel = state.audience === 'c_suite' ? 'C-suite executives' : 'operators and implementers';
       statusEl.textContent = `Approved for ${audienceLabel}. Generating newsletter...`;
 
@@ -2457,16 +2519,10 @@
         const result = await runBuildBrief(issueModel);
         const changedCount = (result.pages || []).filter(page => page.changed).length;
         statusEl.textContent = `Newsletter generated. ${changedCount} page(s) updated from your approved changes.`;
-        const link = document.querySelector('#brief-link-wrap a');
-        link.href = `../editor/index.html?v=${Date.now()}`;
-        link.textContent = 'Open newsletter editor';
+        location.href = `../editor/index.html?v=${Date.now()}`;
       } catch (error) {
         statusEl.textContent = `Approved, but newsletter generation failed: ${error.message}`;
-        setExportContent(
-          'Newsletter Generation Error',
-          'The approved issue JSON was generated, but the local runner could not rebuild the newsletter page.',
-          { issue: issueModel, error: error.message }
-        );
+        alert(`Newsletter generation failed: ${error.message}`);
       }
     }
 
