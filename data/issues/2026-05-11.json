@@ -3,8 +3,8 @@
   "issue": {
     "id": "2026-05-11",
     "week_of": "2026-05-11",
-    "title": "AI's Power Map Is Being Redrawn",
-    "dek": "This week's AI news points to a bigger shift: new models, agent workflows, platform moves, compute economics, and industry power plays are starting to decide where AI value will land.",
+    "title": "The AI Stack Gets Real",
+    "dek": "This week is less about one magic breakthrough and more about leverage: which models are worth paying for, where agents can actually work, which platforms will own the user, and how compute costs and power moves shape the next round.",
     "status": "approved",
     "default_audience": "c_suite",
     "editions": [
@@ -75,22 +75,12 @@
       "approved_theme_title": "Power Moves",
       "summary": "A standing section for founder drama, lawsuits, acquisitions, surprise partnerships, platform politics, and industry titan maneuvering.",
       "evidence_segment_ids": []
-    },
-    {
-      "id": "robotics",
-      "order": 6,
-      "title": "Robotics commercialization is moving from demo to scale",
-      "headline": "Robotics commercialization is moving from demo to scale",
-      "theme_id": "theme-robotics",
-      "approved_theme_title": "Robotics commercialization is moving from demo to scale",
-      "summary": "Humanoid production targets and frontier-lab robotics discussion suggest physical AI may become a credible near-term enterprise topic.",
-      "evidence_segment_ids": []
     }
   ],
   "review": {
     "source": "AINewsletter/admin/index.html",
     "status": "approved",
-    "approved_at": "2026-05-14T13:21:57.095Z",
+    "approved_at": "2026-05-14T13:57:48.073Z",
     "approved_review": {
       "run_date": "2026-05-11",
       "status": "approved",
@@ -2046,13 +2036,6 @@
           "id": "theme-power",
           "title": "Power Moves",
           "summary": "A standing section for founder drama, lawsuits, acquisitions, surprise partnerships, platform politics, and industry titan maneuvering.",
-          "supporting_segments": []
-        },
-        {
-          "order": 6,
-          "id": "theme-robotics",
-          "title": "Robotics commercialization is moving from demo to scale",
-          "summary": "Humanoid production targets and frontier-lab robotics discussion suggest physical AI may become a credible near-term enterprise topic.",
           "supporting_segments": []
         }
       ]
