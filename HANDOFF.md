@@ -22,6 +22,7 @@
 - The page generator now skips optional approved sections that do not exist in the current hand-designed HTML templates instead of failing with "Expected one match" errors, and it has mappings for future Robotics and AI-native Work sections.
 - Fixed a script initialization bug where the review-state storage key referenced the issue model before it existed. That bug made the admin page appear blank, prevented source settings/candidate pool loading, and made header/refresh/generate buttons look dead.
 - Default theme labels are now Greg's preferred shorter names: `Agents` and `Economics`.
+- OpenAI API rewrites require a local `.env` file with `OPENAI_API_KEY`. This is separate from Greg's ChatGPT subscription and is metered API billing; do not assume ChatGPT Plus/Pro covers API usage.
 - Moved active work to local repo at `C:\Users\Greg\Codex\AI News`; do not edit the old Google Drive copy.
 - Connected GitHub remote `https://github.com/C0recollector/clarity-ai-newsletter.git` and pushed `main`.
 - Fixed five annotations.
