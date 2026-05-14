@@ -272,14 +272,19 @@
     .edition-links a,.edition-current{font-weight:650}
     .edition-current{color:var(--ink)}
 
-    .lightbox{position:fixed;inset:0;background:rgba(7,13,24,.72);display:none;z-index:50;padding:28px;align-items:center;justify-content:center}
+    .lightbox{position:fixed;inset:0;background:rgba(7,13,24,.72);display:none;z-index:50;padding:22px;align-items:center;justify-content:center}
     .lightbox.open{display:flex}
-    .lightbox-inner{width:min(1180px,100%);max-height:90vh;overflow:auto;border-radius:10px;background:#fff;padding:18px;box-shadow:0 28px 80px rgba(0,0,0,.35)}
+    .lightbox-inner{width:min(96vw,1760px);max-height:92vh;border-radius:10px;background:#fff;padding:14px;box-shadow:0 28px 80px rgba(0,0,0,.35);display:grid;grid-template-rows:auto minmax(0,1fr)}
     .lightbox-bar{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:12px}
     .lightbox-bar b{font-size:18px}
-    .lightbox-close{border:1px solid #dce5f0;background:#fff;border-radius:8px;padding:8px 10px;font-weight:900;cursor:pointer}
+    .lightbox-tools{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+    .lightbox-btn,.lightbox-close{border:1px solid #dce5f0;background:#fff;border-radius:8px;padding:8px 10px;font-weight:900;cursor:pointer}
+    .lightbox-zoom{color:var(--muted);font-size:12px;font-weight:900;min-width:46px;text-align:center}
+    .lightbox-content{max-height:calc(92vh - 74px);overflow:auto;border:1px solid #e1e8f2;border-radius:8px;background:#f8fafc}
     .lightbox-content .infographic{cursor:default;transform:none;box-shadow:none}
     .lightbox-content .infographic::after{display:none}
+    .lightbox-content .infographic.dense-preview{width:max-content;min-width:100%;padding:12px}
+    .lightbox-content .infographic.dense-preview img{width:auto;max-width:none;height:auto;object-fit:contain;transform-origin:top left}
 
     @media(max-width:1040px){
       header::before{
@@ -577,7 +582,13 @@
     <div class="lightbox-inner">
       <div class="lightbox-bar">
         <b id="lightbox-title">Infographic</b>
-        <button class="lightbox-close" id="lightbox-close">Close</button>
+        <div class="lightbox-tools">
+          <button class="lightbox-btn" id="zoom-out" type="button">-</button>
+          <span class="lightbox-zoom" id="zoom-label">100%</span>
+          <button class="lightbox-btn" id="zoom-in" type="button">+</button>
+          <button class="lightbox-btn" id="zoom-reset" type="button">Fit</button>
+          <button class="lightbox-close" id="lightbox-close">Close</button>
+        </div>
       </div>
       <div class="lightbox-content" id="lightbox-content"></div>
     </div>
@@ -586,6 +597,30 @@
     const lightbox = document.getElementById('lightbox');
     const lightboxTitle = document.getElementById('lightbox-title');
     const lightboxContent = document.getElementById('lightbox-content');
+    const zoomLabel = document.getElementById('zoom-label');
+    let lightboxZoom = 1;
+
+    function setLightboxZoom(nextZoom) {
+      lightboxZoom = Math.min(2.5, Math.max(0.55, nextZoom));
+      const image = lightboxContent.querySelector('img');
+      if (image) {
+        image.style.width = `${image.naturalWidth * lightboxZoom}px`;
+        image.style.height = 'auto';
+      }
+      zoomLabel.textContent = `${Math.round(lightboxZoom * 100)}%`;
+    }
+
+    function fitLightboxImage() {
+      const image = lightboxContent.querySelector('img');
+      if (!image) {
+        setLightboxZoom(1);
+        return;
+      }
+      const availableWidth = Math.max(320, lightboxContent.clientWidth - 26);
+      setLightboxZoom(Math.min(1, availableWidth / image.naturalWidth));
+      lightboxContent.scrollTo({ left: 0, top: 0 });
+    }
+
     document.querySelectorAll('.infographic').forEach(panel => {
       panel.setAttribute('role', 'button');
       panel.setAttribute('tabindex', '0');
@@ -595,6 +630,13 @@
         lightboxContent.appendChild(panel.cloneNode(true));
         lightbox.classList.add('open');
         lightbox.setAttribute('aria-hidden', 'false');
+        const image = lightboxContent.querySelector('img');
+        if (image) {
+          image.addEventListener('load', fitLightboxImage, { once: true });
+          if (image.complete) fitLightboxImage();
+        } else {
+          setLightboxZoom(1);
+        }
       };
       panel.addEventListener('click', openPanel);
       panel.addEventListener('keydown', event => {
@@ -608,8 +650,12 @@
       lightbox.classList.remove('open');
       lightbox.setAttribute('aria-hidden', 'true');
       lightboxContent.innerHTML = '';
+      setLightboxZoom(1);
     }
     document.getElementById('lightbox-close').addEventListener('click', closeLightbox);
+    document.getElementById('zoom-in').addEventListener('click', () => setLightboxZoom(lightboxZoom + 0.2));
+    document.getElementById('zoom-out').addEventListener('click', () => setLightboxZoom(lightboxZoom - 0.2));
+    document.getElementById('zoom-reset').addEventListener('click', fitLightboxImage);
     lightbox.addEventListener('click', event => {
       if (event.target === lightbox) closeLightbox();
     });
