@@ -192,6 +192,17 @@
       min-height: 145px;
     }
 
+    .instruction-row {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 8px;
+      align-items: end;
+    }
+
+    .instruction-row .btn {
+      min-height: 42px;
+    }
+
     .note {
       color: var(--muted);
       font-size: 12px;
@@ -227,6 +238,8 @@
       main { grid-template-columns: 1fr; }
       .actions { justify-content: flex-start; }
       iframe { min-height: 70vh; }
+      .instruction-row { grid-template-columns: 1fr; }
+      .instruction-row .btn { width: fit-content; }
     }
   </style>
 </head>
@@ -268,18 +281,20 @@
           <span>Current text</span>
           <textarea class="textarea" id="current-text" readonly></textarea>
         </label>
+        <div class="instruction-row">
+          <label class="field">
+            <span>Instruction for this block</span>
+            <textarea class="textarea" id="instruction" placeholder="Tell me how to change only this selected block"></textarea>
+          </label>
+          <button class="btn primary" id="generate-draft">Suggest Rewrite</button>
+        </div>
         <label class="field">
-          <span>Instruction</span>
-          <textarea class="textarea" id="instruction" placeholder="Example: make this more executive-oriented and less technical"></textarea>
-        </label>
-        <label class="field">
-          <span>Draft replacement</span>
-          <textarea class="textarea tall" id="draft" placeholder="Generate a draft, or paste/edit your replacement here"></textarea>
+          <span>Replacement text</span>
+          <textarea class="textarea tall" id="draft" placeholder="A suggested rewrite appears here. You can also type the final text directly."></textarea>
         </label>
         <div class="editor-actions">
-          <button class="btn" id="reload-blocks">Reload Blocks</button>
-          <button class="btn" id="generate-draft">Generate Draft</button>
-          <button class="btn primary" id="apply-draft">Apply Draft and Rebuild</button>
+          <button class="btn" id="reload-blocks">Reload Saved Text</button>
+          <button class="btn primary" id="apply-draft">Save This Block</button>
         </div>
         <div class="note" id="editor-note">Loading editable newsletter blocks...</div>
       </div>
@@ -353,15 +368,21 @@
     function syncSelectedBlock() {
       const block = selectedBlock();
       currentTextEl.value = block?.value || '';
+      instructionEl.value = '';
       draftEl.value = '';
       autoGrowAll();
       highlightPreviewBlock(block?.id);
     }
 
     function previewTargetForBlock(blockId) {
-      if (blockId === 'issue.title' || blockId === 'issue.dek') return 'body';
-      const match = /^section\.([a-z0-9-]+)\./.exec(blockId || '');
-      return match ? `#${match[1]}` : 'body';
+      if (blockId === 'issue.title') return '.hero h1';
+      if (blockId === 'issue.dek') return '.hero .dek';
+      const match = /^section\.([a-z0-9-]+)\.([a-z]+)$/.exec(blockId || '');
+      if (!match) return 'body';
+      if (match[2] === 'title') return `#${match[1]} .signal-head h2`;
+      if (match[2] === 'summary') return `#${match[1]} .signal-head p`;
+      if (match[2] === 'headline') return `#${match[1]} .story-grid .fact:first-child b`;
+      return `#${match[1]}`;
     }
 
     function highlightPreviewBlock(blockId) {
@@ -377,23 +398,30 @@
       target.setAttribute('data-editor-highlight', 'true');
       target.style.outline = '3px solid #2563eb';
       target.style.boxShadow = '0 0 0 6px rgba(37, 99, 235, .12)';
-      target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      target.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     }
 
     function installPreviewClicks() {
       const doc = previewEl.contentDocument;
       if (!doc) return;
-      doc.querySelectorAll('section.signal[id]').forEach(section => {
-        section.style.cursor = 'pointer';
-        section.addEventListener('click', event => {
+      const bind = (selector, blockId, label) => {
+        const target = doc.querySelector(selector);
+        if (!target || !state.blocks.some(block => block.id === blockId)) return;
+        target.style.cursor = 'pointer';
+        target.addEventListener('click', event => {
           event.preventDefault();
-          const summaryBlock = `section.${section.id}.summary`;
-          if (state.blocks.some(block => block.id === summaryBlock)) {
-            blockSelectEl.value = summaryBlock;
-            syncSelectedBlock();
-            statusEl.textContent = `Selected ${section.id} summary.`;
-          }
+          event.stopPropagation();
+          blockSelectEl.value = blockId;
+          syncSelectedBlock();
+          statusEl.textContent = `Selected ${label}.`;
         });
+      };
+      bind('.hero h1', 'issue.title', 'issue title');
+      bind('.hero .dek', 'issue.dek', 'issue intro');
+      doc.querySelectorAll('section.signal[id]').forEach(section => {
+        bind(`#${section.id} .signal-head h2`, `section.${section.id}.title`, `${section.id} title`);
+        bind(`#${section.id} .signal-head p`, `section.${section.id}.summary`, `${section.id} intro`);
+        bind(`#${section.id} .story-grid .fact:first-child b`, `section.${section.id}.headline`, `${section.id} headline`);
       });
     }
 
@@ -409,7 +437,7 @@
         instructionEl.focus();
         return;
       }
-      editorNoteEl.textContent = 'Generating draft...';
+      editorNoteEl.textContent = 'Suggesting a rewrite for the selected block...';
       const result = await fetchJson('/api/rewrite-block', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -418,9 +446,9 @@
       draftEl.value = result.draft || block.value || '';
       autoGrow(draftEl);
       editorNoteEl.textContent = result.mode === 'local_lm_studio'
-        ? 'Draft generated by local AI. Review before applying.'
-        : `Local AI not available. Edit the draft manually; prompt saved to ${result.request_file || 'rewrite request file'}.`;
-      statusEl.textContent = 'Draft ready for review.';
+        ? 'Suggested rewrite generated by local AI. Review it, edit if needed, then save this block.'
+        : `Local AI is not running, so the current text was loaded below for manual editing. Prompt saved to ${result.request_file || 'rewrite request file'}.`;
+      statusEl.textContent = result.mode === 'local_lm_studio' ? 'Suggested rewrite ready.' : 'Local AI unavailable; manual edit mode.';
     }
 
     async function applyDraft() {
@@ -431,11 +459,11 @@
         return;
       }
       if (!value) {
-        editorNoteEl.textContent = 'Draft replacement is empty.';
+        editorNoteEl.textContent = 'Replacement text is empty.';
         draftEl.focus();
         return;
       }
-      editorNoteEl.textContent = 'Applying draft and regenerating newsletter...';
+      editorNoteEl.textContent = 'Saving this block and updating generated pages...';
       const result = await fetchJson('/api/apply-block', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -452,8 +480,8 @@
       previewEl.src = `../2026-05-11/index.html?v=${cacheBust}`;
       openNewsletterEl.href = `../2026-05-11/index.html?v=${cacheBust}`;
       const changedCount = (result.pages || []).filter(page => page.changed).length;
-      editorNoteEl.textContent = `Applied. ${changedCount} generated page(s) updated.`;
-      statusEl.textContent = 'Newsletter regenerated from your edit.';
+      editorNoteEl.textContent = `Saved selected block. ${changedCount} generated page(s) updated.`;
+      statusEl.textContent = 'Selected block saved and preview refreshed.';
       syncSelectedBlock();
     }
 

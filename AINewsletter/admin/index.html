@@ -475,11 +475,53 @@
       line-height: 1.15;
     }
 
+    .pill.override {
+      border-color: rgba(249, 115, 22, .35);
+      background: #fff7ed;
+      color: #9a3412;
+    }
+
+    .pill.playlist {
+      border-color: rgba(37, 99, 235, .35);
+      background: #eff6ff;
+      color: #1d4ed8;
+    }
+
+    .pill.watchlist {
+      border-color: rgba(15, 159, 154, .35);
+      background: #ecfeff;
+      color: #0f766e;
+    }
+
+    .pill.duration {
+      border-color: rgba(100, 116, 139, .35);
+      background: #f8fafc;
+      color: #475569;
+    }
+
+    .source-text {
+      color: #475569;
+      font-weight: 850;
+    }
+
     .score {
-      min-width: 72px;
+      min-width: 92px;
       text-align: right;
       font-weight: 900;
+      color: #334155;
+    }
+
+    .score b {
+      display: block;
       color: var(--blue);
+      font-size: 13px;
+    }
+
+    .score span {
+      display: block;
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 800;
     }
 
     .candidate-body {
@@ -1642,6 +1684,62 @@
       return chapters;
     }
 
+    function extractChapters(value) {
+      const text = String(value || '');
+      const chapters = [];
+      const pattern = /(?:^|\n)\s*\(?((?:\d{1,2}:)?\d{1,2}:\d{2})\)?\s*(?:[-\u2013\u2014]\s*)?(.+?)(?=\n|$)/g;
+      let match;
+      while ((match = pattern.exec(text)) !== null) {
+        const title = match[2].trim().replace(/\s+/g, ' ');
+        if (!title || /^https?:\/\//i.test(title)) continue;
+        chapters.push({
+          time: match[1],
+          title
+        });
+      }
+      return chapters;
+    }
+
+    function timeToSeconds(value) {
+      const parts = String(value || '').split(':').map(part => Number(part));
+      if (parts.some(Number.isNaN)) return null;
+      if (parts.length === 2) return (parts[0] * 60) + parts[1];
+      if (parts.length === 3) return (parts[0] * 3600) + (parts[1] * 60) + parts[2];
+      return null;
+    }
+
+    function durationLabel(seconds, chapters = []) {
+      let total = Number(seconds || 0);
+      let approximate = false;
+      if (!total && chapters.length) {
+        const lastChapterSeconds = timeToSeconds(chapters[chapters.length - 1].time);
+        if (lastChapterSeconds) {
+          total = lastChapterSeconds;
+          approximate = true;
+        }
+      }
+      if (!total) return '';
+      const minutes = Math.max(1, Math.round(total / 60));
+      const hours = Math.floor(minutes / 60);
+      const remaining = minutes % 60;
+      const label = hours ? `${hours}h ${remaining}m` : `${minutes}m`;
+      return approximate ? `${label}+` : label;
+    }
+
+    function relevanceLevel(score, priority) {
+      if (priority === 'editorial_override' || score >= 92) return { label: 'Priority', detail: 'top tier' };
+      if (score >= 82) return { label: 'High', detail: 'strong fit' };
+      if (score >= 70) return { label: 'Medium', detail: 'review' };
+      if (score >= 58) return { label: 'Low', detail: 'skim' };
+      return { label: 'Very low', detail: 'optional' };
+    }
+
+    function lanePill(candidate) {
+      if (candidate.sourceLane === 'youtube_playlist') return '<span class="pill playlist">playlist</span>';
+      if (candidate.sourceLane === 'youtube_watchlist') return '<span class="pill watchlist">watchlist</span>';
+      return '';
+    }
+
     function isLowValueChapter(title) {
       return /\b(intro|outro|final thoughts?|closing|recommended videos?|sponsor|ad break|meme of the week|question of the week|wtf)\b/i.test(title);
     }
@@ -1701,13 +1799,44 @@
       });
     }
 
+    function titleTopicSegments(item, idBase, strength, fallbackSummary) {
+      const cleanTitle = String(item.title || '')
+        .replace(/\s*\|\s*(EP|MOONSHOTS|Podcast|YouTube).*/i, '')
+        .replace(/\s+-\s+YouTube.*/i, '')
+        .trim();
+      const pieces = cleanTitle
+        .replace(/\s+and\s+/gi, ', ')
+        .split(',')
+        .map(piece => piece.trim())
+        .filter(piece => piece.length >= 8);
+      if (pieces.length < 2 || pieces.length > 5) return [];
+      return pieces.map((piece, index) => {
+        const theme = inferCandidateTheme({
+          title: piece,
+          summary: `${item.title || ''} ${piece}`,
+          source: item.source || ''
+        });
+        return {
+          id: `${idBase}-topic-${index + 1}`,
+          selected: strength !== 'weak',
+          strength,
+          time: 'title topic',
+          theme,
+          title: piece,
+          summary: `Topic called out by the source title: ${piece}. ${fallbackSummary}`
+        };
+      });
+    }
+
     function poolCandidateSegments(item, idBase, strength, fallbackSummary) {
-      const chapters = extractChapters(item.summary);
+      const chapters = extractChapters(`${item.description || ''}\n${item.summary || ''}`);
       const usefulChapters = chapters.filter(chapter => !isLowValueChapter(chapter.title));
       if (usefulChapters.length >= 2) {
         const chapterSegments = usefulChapters.map((chapter, index) => chapterToSegment(item, chapter, index, idBase, strength));
         return mergeChapterSegments(chapterSegments);
       }
+      const titleTopics = titleTopicSegments(item, idBase, strength, fallbackSummary);
+      if (titleTopics.length) return titleTopics;
       const theme = inferCandidateTheme(item);
       return [
         {
@@ -1731,6 +1860,7 @@
         ? ` Transcript: ${item.transcript_error_type || item.transcript_status}.`
         : '';
       const summary = firstUsefulSentence(item.summary);
+      const chapters = extractChapters(`${item.description || ''}\n${item.summary || ''}`);
       const included = score >= 82 || item.priority === 'editorial_override';
       return {
         id: idBase,
@@ -1745,6 +1875,8 @@
         priority: item.priority || 'standard',
         summary: `${summary}${transcriptStatus}`,
         sourceLane: item.source_lane || '',
+        durationLabel: durationLabel(item.duration_seconds, chapters),
+        relevance: relevanceLevel(score, item.priority || 'standard'),
         transcriptStatus: item.transcript_status || 'unknown',
         segments: poolCandidateSegments(item, idBase, strength, summary)
       };
@@ -1990,6 +2122,7 @@
     function renderCandidates() {
       candidateList.innerHTML = '';
       state.candidates.forEach(candidate => {
+        const relevance = candidate.relevance || relevanceLevel(candidate.score || 70, candidate.priority || 'standard');
         const article = document.createElement('article');
         article.className = `card candidate ${candidate.included ? '' : 'excluded'}`;
         article.innerHTML = `
@@ -1998,15 +2131,16 @@
             <div>
               <h3>${escapeHtml(candidate.title)}</h3>
               <div class="meta">
-                <span class="pill">${escapeHtml(sourceLabel(candidate))}</span>
-                ${candidate.manual ? '<span class="pill">manual override</span>' : ''}
-                ${candidate.priority === 'editorial_override' ? '<span class="pill">editorial override</span>' : ''}
-                ${candidate.sourceLane ? `<span class="pill">${escapeHtml(candidate.sourceLane)}</span>` : ''}
+                <span class="source-text">${escapeHtml(sourceLabel(candidate))}</span>
+                ${candidate.manual ? '<span class="pill override">manual override</span>' : ''}
+                ${candidate.priority === 'editorial_override' ? '<span class="pill override">editorial override</span>' : ''}
+                ${lanePill(candidate)}
+                ${candidate.durationLabel ? `<span class="pill duration">${escapeHtml(candidate.durationLabel)}</span>` : ''}
                 <span>${candidate.date}</span>
                 ${candidate.url !== '#' ? `<a href="${escapeHtml(candidate.url)}">Open source</a>` : ''}
               </div>
             </div>
-            <div class="score">${candidate.score}%</div>
+            <div class="score"><b>${escapeHtml(relevance.label)}</b><span>${escapeHtml(relevance.detail)}</span></div>
           </div>
           <div class="candidate-body">
             <label class="meta" style="margin-bottom:10px;">

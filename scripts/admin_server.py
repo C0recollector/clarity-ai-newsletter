@@ -110,13 +110,26 @@ def load_candidate_pool(issue_id: str) -> dict:
         }
     with path.open("r", encoding="utf-8") as file:
         pool = json.load(file)
+    candidates = enrich_pool_candidates(pool.get("candidates", []), issue_id)
+    since_date = pool.get("request", {}).get("since_date")
+    if since_date:
+        since = parse_iso_date(since_date)
+        if since:
+            candidates = [
+                candidate for candidate in candidates
+                if not candidate.get("date") or parse_iso_date(candidate.get("date")) is None or parse_iso_date(candidate.get("date")) >= since
+            ]
     return {
         "ok": True,
         "json": str(path.relative_to(ROOT)),
         "built_at": pool.get("built_at"),
         "request": pool.get("request", {}),
-        "summary": pool.get("summary", {}),
-        "candidates": pool.get("candidates", []),
+        "summary": {
+            **pool.get("summary", {}),
+            "candidate_count": len(candidates),
+            "filtered_since_date": since_date,
+        },
+        "candidates": candidates,
     }
 
 
@@ -130,7 +143,7 @@ def issue_blocks(issue: dict) -> list[dict]:
         },
         {
             "id": "issue.dek",
-            "label": "Issue intro/dek",
+            "label": "Issue intro",
             "kind": "summary",
             "value": issue.get("issue", {}).get("dek", ""),
         },
@@ -655,16 +668,29 @@ def candidate_score(video: dict) -> int:
     return {"tier_1": 84, "tier_2": 72, "tier_3": 58}.get(tier, 60)
 
 
+def transcript_duration_seconds(transcript: dict) -> int | None:
+    entries = transcript.get("entries")
+    if not isinstance(entries, list) or not entries:
+        return None
+    last = entries[-1]
+    start = float(last.get("start", 0) or 0)
+    duration = float(last.get("duration", 0) or 0)
+    total = int(round(start + duration))
+    return total or None
+
+
 def candidate_from_video(video: dict) -> dict:
     transcript = video.get("transcript", {})
     has_transcript = transcript.get("status") == "ok"
+    description = video.get("description") or ""
     summary = (
         transcript.get("text", "")[:420].strip()
         if has_transcript
-        else video.get("description") or transcript.get("error") or "Metadata-only candidate; transcript is not available yet."
+        else description or transcript.get("error") or "Metadata-only candidate; transcript is not available yet."
     )
     return {
         "id": f"yt-{video.get('video_id')}",
+        "video_id": video.get("video_id"),
         "kind": "youtube",
         "source": video.get("channel") or video.get("watchlist_source") or "YouTube",
         "source_lane": video.get("source_lane"),
@@ -676,8 +702,39 @@ def candidate_from_video(video: dict) -> dict:
         "priority": video.get("priority") or "standard",
         "transcript_status": transcript.get("status", "unknown"),
         "transcript_error_type": transcript.get("error_type", ""),
+        "description": description,
+        "duration_seconds": transcript_duration_seconds(transcript),
         "summary": summary,
     }
+
+
+def source_video_index(issue_date: str) -> dict[str, dict]:
+    videos = {}
+    for path in sorted(YOUTUBE_DIR.glob(f"*-{issue_date}.json")):
+        try:
+            data = json.loads(path.read_text(encoding="utf-8"))
+        except Exception:
+            continue
+        for video in data.get("videos", []):
+            video_id = video.get("video_id")
+            if video_id:
+                videos.setdefault(video_id, video)
+    return videos
+
+
+def enrich_pool_candidates(candidates: list[dict], issue_date: str) -> list[dict]:
+    videos = source_video_index(issue_date)
+    enriched = []
+    for candidate in candidates:
+        item = dict(candidate)
+        video_id = item.get("video_id") or str(item.get("id", "")).removeprefix("yt-")
+        source_video = videos.get(video_id)
+        if source_video:
+            transcript = source_video.get("transcript", {})
+            item.setdefault("description", source_video.get("description") or "")
+            item.setdefault("duration_seconds", transcript_duration_seconds(transcript))
+        enriched.append(item)
+    return enriched
 
 
 def rebuild_candidate_pool(request: dict, reports: list[dict] | None = None) -> dict:

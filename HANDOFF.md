@@ -8,6 +8,13 @@
 
 ## Last completed
 
+- Restored candidate-pool chapter splitting in the admin review gate by enriching pool candidates from cached YouTube source files and reading YouTube descriptions/chapters instead of only short summaries. This fixes cases where long videos collapsed to one selectable checkbox.
+- Added a fallback for YouTube videos without clean chapter metadata: multi-topic titles split into selectable topic checkboxes, so a title such as AGI + robots + Elon comp does not collapse into one all-or-nothing choice.
+- Candidate cards now show colored metadata: editorial override/manual override, playlist/watchlist lane, and video duration when available. The source name is now plain metadata instead of a pill tag, and numeric percentages are replaced visually with Priority/High/Medium/Low style relevance labels.
+- Candidate pool loading now filters against the refresh request `since_date`, so stale items older than the chosen lookback window should not keep appearing after the local runner is restarted.
+- Newsletter editor labels were simplified: `Issue intro/dek` is now `Issue intro`; the rewrite button is `Suggest Rewrite`; the save button is `Save This Block`; and stale instructions clear when switching selected blocks.
+- Newsletter editor preview clicks now target specific editable text areas such as issue title, issue intro, section title, section intro, and headline rather than treating an entire section as one vague block.
+- If local AI is unavailable during a block rewrite, the editor now says that LM Studio/local AI is not running and loads the current text into the replacement box for manual editing instead of looking like nothing happened.
 - Moved active work to local repo at `C:\Users\Greg\Codex\AI News`; do not edit the old Google Drive copy.
 - Connected GitHub remote `https://github.com/C0recollector/clarity-ai-newsletter.git` and pushed `main`.
 - Fixed five annotations.
