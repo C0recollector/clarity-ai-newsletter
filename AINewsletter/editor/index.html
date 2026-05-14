@@ -1,0 +1,506 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Newsletter Editor</title>
+  <style>
+    :root {
+      --ink: #111827;
+      --text: #334155;
+      --muted: #64748b;
+      --line: #d9e2ee;
+      --panel: #ffffff;
+      --soft: #eef3f8;
+      --blue: #2563eb;
+      --green: #22a35a;
+      --red: #df4b4b;
+      --shadow: 0 14px 34px rgba(15, 23, 42, .08);
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--soft);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    button, input, textarea, select { font: inherit; }
+    a { color: var(--blue); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(255, 255, 255, .94);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(16px);
+    }
+
+    .wrap {
+      width: min(1500px, calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    .topbar {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 16px;
+      align-items: center;
+      padding: 16px 0;
+    }
+
+    h1 {
+      margin: 0 0 4px;
+      font-size: 28px;
+      letter-spacing: 0;
+    }
+
+    .subtitle {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 650;
+    }
+
+    .actions, .editor-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+      justify-content: flex-end;
+    }
+
+    .btn {
+      border: 1px solid var(--line);
+      background: #fff;
+      color: var(--ink);
+      border-radius: 8px;
+      padding: 9px 12px;
+      font-size: 13px;
+      font-weight: 850;
+      cursor: pointer;
+      box-shadow: 0 6px 15px rgba(15, 23, 42, .06);
+    }
+
+    .btn.primary {
+      color: #fff;
+      border-color: var(--blue);
+      background: var(--blue);
+    }
+
+    .btn.green {
+      color: #fff;
+      border-color: var(--green);
+      background: var(--green);
+    }
+
+    main {
+      display: grid;
+      grid-template-columns: minmax(520px, 1.15fr) minmax(380px, .85fr);
+      gap: 16px;
+      padding: 16px 0 70px;
+    }
+
+    .preview-shell,
+    .editor-panel {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .preview-head,
+    .panel-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: center;
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--line);
+      background: #f8fafc;
+    }
+
+    .preview-head h2,
+    .panel-head h2 {
+      margin: 0;
+      font-size: 17px;
+    }
+
+    .mini-pill {
+      display: inline-flex;
+      align-items: center;
+      width: fit-content;
+      border-radius: 999px;
+      border: 1px solid #dce5f0;
+      background: #fff;
+      padding: 2px 7px;
+      color: #475569;
+      font-size: 11px;
+      font-weight: 750;
+      white-space: nowrap;
+    }
+
+    iframe {
+      display: block;
+      width: 100%;
+      min-height: calc(100vh - 170px);
+      border: 0;
+      background: #fff;
+    }
+
+    .panel-body {
+      display: grid;
+      gap: 12px;
+      padding: 14px;
+    }
+
+    .field {
+      display: grid;
+      gap: 5px;
+    }
+
+    .field span {
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 850;
+    }
+
+    .input,
+    .textarea,
+    select {
+      width: 100%;
+      border: 1px solid #dce5f0;
+      border-radius: 8px;
+      padding: 9px 10px;
+      color: var(--ink);
+      background: #fff;
+      font-size: 14px;
+    }
+
+    .textarea {
+      min-height: 92px;
+      resize: vertical;
+      color: var(--text);
+      line-height: 1.4;
+    }
+
+    .textarea.tall {
+      min-height: 145px;
+    }
+
+    .note {
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 700;
+      line-height: 1.35;
+    }
+
+    .status {
+      position: fixed;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      border-top: 1px solid var(--line);
+      background: rgba(255, 255, 255, .95);
+      backdrop-filter: blur(16px);
+      z-index: 20;
+    }
+
+    .status-inner {
+      width: min(1500px, calc(100% - 32px));
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 10px 0;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 750;
+    }
+
+    @media (max-width: 1050px) {
+      .topbar,
+      main { grid-template-columns: 1fr; }
+      .actions { justify-content: flex-start; }
+      iframe { min-height: 70vh; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap topbar">
+      <div>
+        <h1>Newsletter Editor</h1>
+        <p class="subtitle">Review the generated newsletter, select a block, request a rewrite, then publish when ready.</p>
+      </div>
+      <div class="actions">
+        <a class="btn" href="../admin/index.html">Back to Editorial Gate</a>
+        <a class="btn" id="open-newsletter" href="../2026-05-11/index.html" target="_blank" rel="noreferrer">Open Newsletter</a>
+        <button class="btn green" id="publish">Publish to Hostinger</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="preview-shell">
+      <div class="preview-head">
+        <h2>Generated Newsletter Preview</h2>
+        <span class="mini-pill">click blocks here or choose at right</span>
+      </div>
+      <iframe id="preview" src="../2026-05-11/index.html"></iframe>
+    </section>
+
+    <section class="editor-panel">
+      <div class="panel-head">
+        <h2>Selected Block</h2>
+        <span class="mini-pill" id="mode-pill">issue JSON</span>
+      </div>
+      <div class="panel-body">
+        <label class="field">
+          <span>Newsletter block</span>
+          <select id="block-select"></select>
+        </label>
+        <label class="field">
+          <span>Current text</span>
+          <textarea class="textarea" id="current-text" readonly></textarea>
+        </label>
+        <label class="field">
+          <span>Instruction</span>
+          <textarea class="textarea" id="instruction" placeholder="Example: make this more executive-oriented and less technical"></textarea>
+        </label>
+        <label class="field">
+          <span>Draft replacement</span>
+          <textarea class="textarea tall" id="draft" placeholder="Generate a draft, or paste/edit your replacement here"></textarea>
+        </label>
+        <div class="editor-actions">
+          <button class="btn" id="reload-blocks">Reload Blocks</button>
+          <button class="btn" id="generate-draft">Generate Draft</button>
+          <button class="btn primary" id="apply-draft">Apply Draft and Rebuild</button>
+        </div>
+        <div class="note" id="editor-note">Loading editable newsletter blocks...</div>
+      </div>
+    </section>
+  </main>
+
+  <div class="status">
+    <div class="status-inner">
+      <div id="status">Ready.</div>
+      <div>Local editor - edits save to issue JSON and regenerate pages</div>
+    </div>
+  </div>
+
+  <script>
+    const issueId = '2026-05-11';
+    const state = {
+      blocks: [],
+      issue: null
+    };
+
+    const previewEl = document.getElementById('preview');
+    const blockSelectEl = document.getElementById('block-select');
+    const currentTextEl = document.getElementById('current-text');
+    const instructionEl = document.getElementById('instruction');
+    const draftEl = document.getElementById('draft');
+    const editorNoteEl = document.getElementById('editor-note');
+    const statusEl = document.getElementById('status');
+    const openNewsletterEl = document.getElementById('open-newsletter');
+
+    function escapeHtml(value) {
+      return String(value)
+        .replaceAll('&', '&amp;')
+        .replaceAll('<', '&lt;')
+        .replaceAll('>', '&gt;')
+        .replaceAll('"', '&quot;')
+        .replaceAll("'", '&#039;');
+    }
+
+    function autoGrow(element) {
+      element.style.height = 'auto';
+      element.style.height = `${element.scrollHeight}px`;
+    }
+
+    function autoGrowAll() {
+      document.querySelectorAll('.textarea').forEach(autoGrow);
+    }
+
+    async function fetchJson(url, options) {
+      const response = await fetch(url, options);
+      const result = await response.json();
+      if (!response.ok || !result.ok) throw new Error(result.error || result.message || 'Request failed.');
+      return result;
+    }
+
+    async function loadBlocks() {
+      const result = await fetchJson(`/api/issue?issue_id=${encodeURIComponent(issueId)}`);
+      state.issue = result.issue;
+      state.blocks = result.blocks || [];
+      blockSelectEl.innerHTML = state.blocks.map(block => (
+        `<option value="${escapeHtml(block.id)}">${escapeHtml(block.label)}</option>`
+      )).join('');
+      syncSelectedBlock();
+      editorNoteEl.textContent = `Loaded ${state.blocks.length} editable block(s).`;
+      statusEl.textContent = 'Newsletter blocks loaded.';
+    }
+
+    function selectedBlock() {
+      return state.blocks.find(block => block.id === blockSelectEl.value);
+    }
+
+    function syncSelectedBlock() {
+      const block = selectedBlock();
+      currentTextEl.value = block?.value || '';
+      draftEl.value = '';
+      autoGrowAll();
+      highlightPreviewBlock(block?.id);
+    }
+
+    function previewTargetForBlock(blockId) {
+      if (blockId === 'issue.title' || blockId === 'issue.dek') return 'body';
+      const match = /^section\.([a-z0-9-]+)\./.exec(blockId || '');
+      return match ? `#${match[1]}` : 'body';
+    }
+
+    function highlightPreviewBlock(blockId) {
+      const doc = previewEl.contentDocument;
+      if (!doc) return;
+      doc.querySelectorAll('[data-editor-highlight]').forEach(element => {
+        element.style.outline = '';
+        element.style.boxShadow = '';
+        element.removeAttribute('data-editor-highlight');
+      });
+      const target = doc.querySelector(previewTargetForBlock(blockId));
+      if (!target) return;
+      target.setAttribute('data-editor-highlight', 'true');
+      target.style.outline = '3px solid #2563eb';
+      target.style.boxShadow = '0 0 0 6px rgba(37, 99, 235, .12)';
+      target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+
+    function installPreviewClicks() {
+      const doc = previewEl.contentDocument;
+      if (!doc) return;
+      doc.querySelectorAll('section.signal[id]').forEach(section => {
+        section.style.cursor = 'pointer';
+        section.addEventListener('click', event => {
+          event.preventDefault();
+          const summaryBlock = `section.${section.id}.summary`;
+          if (state.blocks.some(block => block.id === summaryBlock)) {
+            blockSelectEl.value = summaryBlock;
+            syncSelectedBlock();
+            statusEl.textContent = `Selected ${section.id} summary.`;
+          }
+        });
+      });
+    }
+
+    async function generateDraft() {
+      const block = selectedBlock();
+      const instruction = instructionEl.value.trim();
+      if (!block) {
+        editorNoteEl.textContent = 'Load blocks first.';
+        return;
+      }
+      if (!instruction) {
+        editorNoteEl.textContent = 'Add an instruction before generating a draft.';
+        instructionEl.focus();
+        return;
+      }
+      editorNoteEl.textContent = 'Generating draft...';
+      const result = await fetchJson('/api/rewrite-block', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ issue_id: issueId, block_id: block.id, instruction })
+      });
+      draftEl.value = result.draft || block.value || '';
+      autoGrow(draftEl);
+      editorNoteEl.textContent = result.mode === 'local_lm_studio'
+        ? 'Draft generated by local AI. Review before applying.'
+        : `Local AI not available. Edit the draft manually; prompt saved to ${result.request_file || 'rewrite request file'}.`;
+      statusEl.textContent = 'Draft ready for review.';
+    }
+
+    async function applyDraft() {
+      const block = selectedBlock();
+      const value = draftEl.value.trim();
+      if (!block) {
+        editorNoteEl.textContent = 'Load blocks first.';
+        return;
+      }
+      if (!value) {
+        editorNoteEl.textContent = 'Draft replacement is empty.';
+        draftEl.focus();
+        return;
+      }
+      editorNoteEl.textContent = 'Applying draft and regenerating newsletter...';
+      const result = await fetchJson('/api/apply-block', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ issue_id: issueId, block_id: block.id, value })
+      });
+      state.issue = result.issue_model;
+      state.blocks = result.blocks || [];
+      const previousBlockId = block.id;
+      blockSelectEl.innerHTML = state.blocks.map(item => (
+        `<option value="${escapeHtml(item.id)}">${escapeHtml(item.label)}</option>`
+      )).join('');
+      blockSelectEl.value = previousBlockId;
+      const cacheBust = Date.now();
+      previewEl.src = `../2026-05-11/index.html?v=${cacheBust}`;
+      openNewsletterEl.href = `../2026-05-11/index.html?v=${cacheBust}`;
+      const changedCount = (result.pages || []).filter(page => page.changed).length;
+      editorNoteEl.textContent = `Applied. ${changedCount} generated page(s) updated.`;
+      statusEl.textContent = 'Newsletter regenerated from your edit.';
+      syncSelectedBlock();
+    }
+
+    async function publish() {
+      editorNoteEl.textContent = 'Preparing Hostinger publish package...';
+      const result = await fetchJson('/api/publish', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ issue_id: issueId })
+      });
+      editorNoteEl.textContent = `${result.message} Package: ${result.manifest?.zip || 'dist/hostinger package'}.`;
+      statusEl.textContent = result.next_step || 'Publish package prepared.';
+    }
+
+    blockSelectEl.addEventListener('change', syncSelectedBlock);
+    document.getElementById('reload-blocks').addEventListener('click', () => {
+      loadBlocks().catch(error => {
+        editorNoteEl.textContent = error.message;
+      });
+    });
+    document.getElementById('generate-draft').addEventListener('click', () => {
+      generateDraft().catch(error => {
+        editorNoteEl.textContent = error.message;
+      });
+    });
+    document.getElementById('apply-draft').addEventListener('click', () => {
+      applyDraft().catch(error => {
+        editorNoteEl.textContent = error.message;
+      });
+    });
+    document.getElementById('publish').addEventListener('click', () => {
+      publish().catch(error => {
+        editorNoteEl.textContent = error.message;
+      });
+    });
+    previewEl.addEventListener('load', () => {
+      installPreviewClicks();
+      highlightPreviewBlock(blockSelectEl.value);
+    });
+    document.addEventListener('input', event => {
+      if (event.target.classList.contains('textarea')) autoGrow(event.target);
+    });
+
+    loadBlocks().catch(error => {
+      editorNoteEl.textContent = error.message;
+      statusEl.textContent = 'Could not load editable blocks.';
+    });
+  </script>
+</body>
+</html>

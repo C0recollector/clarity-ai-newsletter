@@ -1,0 +1,63 @@
+{
+  "fetched_at": "2026-05-13T20:41:50.522581+00:00",
+  "request": {
+    "request_type": "source_refresh",
+    "created_at": "2026-05-13T20:41:50.520Z",
+    "issue_date": "2026-05-11",
+    "lookback_days": 5,
+    "since_date": "2026-05-06",
+    "playlist_basis": "published_newest",
+    "max_transcript_attempts": 3,
+    "transcript_delay_seconds": 1.5,
+    "lane": "newsletters",
+    "label": "Email newsletters",
+    "priority": "filtered",
+    "policy": "Collect recent newsletter items, extract useful AI sections/headlines, and skip promotional filler.",
+    "sources": [
+      "Gmail newsletters",
+      "TLDR AI",
+      "Superhuman AI",
+      "Metatrends",
+      "other configured newsletters"
+    ],
+    "output_expectation": {
+      "update_cache": true,
+      "rebuild_candidate_pool": true,
+      "fetch_transcripts": "selected_only",
+      "preserve_manual_candidates": true,
+      "avoid_full_reprocess_unless_needed": true
+    }
+  },
+  "sources": [
+    {
+      "name": "TLDR AI",
+      "url": "",
+      "status": "connector_needed",
+      "note": "Local runner cannot read Gmail by itself. Use the Gmail connector or export matching newsletters into this data folder."
+    },
+    {
+      "name": "Superhuman AI",
+      "url": "",
+      "status": "connector_needed",
+      "note": "Local runner cannot read Gmail by itself. Use the Gmail connector or export matching newsletters into this data folder."
+    },
+    {
+      "name": "Metatrends",
+      "url": "",
+      "status": "connector_needed",
+      "note": "Local runner cannot read Gmail by itself. Use the Gmail connector or export matching newsletters into this data folder."
+    },
+    {
+      "name": "Maven",
+      "url": "",
+      "status": "connector_needed",
+      "note": "Local runner cannot read Gmail by itself. Use the Gmail connector or export matching newsletters into this data folder."
+    }
+  ],
+  "items": [],
+  "summary": {
+    "sources_configured": 4,
+    "items_found": 0,
+    "connector_needed": true
+  }
+}

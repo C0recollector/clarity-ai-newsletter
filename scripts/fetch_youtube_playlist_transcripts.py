@@ -1,9 +1,10 @@
 import argparse
 import json
+import re
 import sys
 from datetime import datetime, timezone
 from pathlib import Path
-from urllib.request import urlopen
+from urllib.request import Request, urlopen
 from xml.etree import ElementTree as ET
 
 
@@ -36,6 +37,13 @@ def fetch_feed(playlist_id):
         return response.read()
 
 
+def fetch_playlist_page(playlist_id):
+    url = f"https://www.youtube.com/playlist?list={playlist_id}"
+    request = Request(url, headers={"User-Agent": "Mozilla/5.0"})
+    with urlopen(request, timeout=30) as response:
+        return response.read().decode("utf-8", "replace")
+
+
 def parse_feed(xml_bytes):
     root = ET.fromstring(xml_bytes)
     playlist = {
@@ -66,6 +74,79 @@ def parse_feed(xml_bytes):
                 "description": text_or_empty(group.find(f"{MEDIA}description")) if group is not None else "",
             }
         )
+    return playlist, entries
+
+
+def text_from_runs(value):
+    if not value:
+        return ""
+    if isinstance(value, str):
+        return value
+    if "simpleText" in value:
+        return value["simpleText"]
+    return "".join(run.get("text", "") for run in value.get("runs", []))
+
+
+def item_video_info(renderer):
+    return text_from_runs(renderer.get("videoInfo"))
+
+
+def parse_playlist_page(html, playlist_id):
+    match = re.search(r"var ytInitialData\s*=\s*(\{.*?\});</script>", html)
+    if not match:
+        raise ValueError("Could not find ytInitialData in YouTube playlist page.")
+
+    data = json.loads(match.group(1))
+    renderers = []
+
+    def walk(node):
+        if isinstance(node, dict):
+            renderer = node.get("playlistVideoRenderer")
+            if renderer:
+                renderers.append(renderer)
+            for value in node.values():
+                walk(value)
+        elif isinstance(node, list):
+            for value in node:
+                walk(value)
+
+    walk(data)
+    entries = []
+    seen = set()
+    for renderer in renderers:
+        video_id = renderer.get("videoId")
+        if not video_id or video_id in seen:
+            continue
+        seen.add(video_id)
+        thumbnails = renderer.get("thumbnail", {}).get("thumbnails", [])
+        short_byline = renderer.get("shortBylineText", {})
+        long_byline = renderer.get("longBylineText", {})
+        channel = text_from_runs(short_byline) or text_from_runs(long_byline)
+        entries.append(
+            {
+                "video_id": video_id,
+                "title": text_from_runs(renderer.get("title")),
+                "url": f"https://www.youtube.com/watch?v={video_id}",
+                "channel": channel,
+                "channel_id": "",
+                "published": "",
+                "updated": "",
+                "thumbnail": thumbnails[-1].get("url", "") if thumbnails else "",
+                "views": None,
+                "description": "",
+                "video_info": item_video_info(renderer),
+                "playlist_page_fallback": True,
+            }
+        )
+
+    playlist = {
+        "title": "AI & News to watch",
+        "playlist_id": playlist_id,
+        "channel_id": "",
+        "author": "",
+        "published": "",
+        "source": "playlist_page_fallback",
+    }
     return playlist, entries
 
 

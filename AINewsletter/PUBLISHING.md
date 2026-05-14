@@ -23,10 +23,13 @@ Local admin/review file:
 
 Workflow:
 
-1. Keep `reports/editorial-review-sample-2026-05-11.html` local as the admin/review surface.
-2. Publish only the static files under `AINewsletter/`.
-3. After upload, verify the archive page, executive issue, technical issue, and cross-links.
+1. Keep `AINewsletter/admin/index.html` and `AINewsletter/editor/index.html` local unless authentication is added.
+2. Run `python scripts/package_publish.py --issue-date 2026-05-11`.
+3. Upload `dist/hostinger/clarityinnovation-ai-newsletter-2026-05-11.zip` to Hostinger and extract it so the included `AINewsletter/` folder lands under the site root, normally `public_html/AINewsletter/`.
+4. After upload, verify the archive page, executive issue, technical issue, assets, and cross-links.
 
 Current note:
 
 The available Hostinger tool in this Codex session can create or retrieve Hostinger Horizons editing links, but it does not expose a direct static-file upload/publish action for an existing Hostinger site. If the site is managed outside Horizons, upload the `AINewsletter/` folder contents through Hostinger file manager, FTP/SFTP, Git deployment, or the site's normal deployment pipeline.
+
+Do not upload the admin/editor pages publicly until they have authentication. The package script excludes `AINewsletter/admin/` and `AINewsletter/editor/` by default.

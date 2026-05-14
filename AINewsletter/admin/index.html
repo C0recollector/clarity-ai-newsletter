@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>AI Brief Editorial Review</title>
+  <title>AI Newsletter Editorial Review</title>
   <style>
     :root {
       --ink: #111827;
@@ -244,6 +244,99 @@
       font-weight: 650;
     }
 
+    .refresh-panel {
+      margin: 0 0 18px;
+      border: 1px solid var(--line);
+      background: var(--panel);
+      border-radius: 8px;
+      padding: 14px;
+      box-shadow: var(--shadow);
+      display: grid;
+      gap: 12px;
+    }
+
+    .refresh-warning {
+      display: none;
+      border: 1px solid #fed7aa;
+      border-left: 5px solid var(--orange);
+      background: #fff7ed;
+      color: #7c2d12;
+      border-radius: 8px;
+      padding: 11px 12px;
+      font-size: 13px;
+      font-weight: 750;
+    }
+
+    .refresh-warning.open {
+      display: block;
+    }
+
+    .refresh-warning a {
+      color: #9a3412;
+      font-weight: 900;
+      text-decoration: underline;
+    }
+
+    .refresh-result {
+      display: none;
+      border: 1px solid #bbf7d0;
+      border-left: 5px solid var(--green);
+      background: #f0fdf5;
+      color: #166534;
+      border-radius: 8px;
+      padding: 11px 12px;
+      font-size: 13px;
+      font-weight: 750;
+    }
+
+    .refresh-result.open {
+      display: block;
+    }
+
+    .refresh-head {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 14px;
+      align-items: start;
+    }
+
+    .refresh-head h2 {
+      margin: 0 0 3px;
+      font-size: 18px;
+      letter-spacing: 0;
+    }
+
+    .refresh-head p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 650;
+    }
+
+    .refresh-controls {
+      display: grid;
+      grid-template-columns: minmax(120px, .5fr) minmax(180px, .8fr) minmax(220px, .8fr) minmax(130px, .5fr) auto;
+      gap: 8px;
+      align-items: end;
+    }
+
+    .refresh-actions {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 8px;
+    }
+
+    .field {
+      display: grid;
+      gap: 4px;
+    }
+
+    .field span {
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 800;
+    }
+
     .layout {
       display: grid;
       grid-template-columns: minmax(520px, 1.08fr) minmax(420px, .92fr);
@@ -329,6 +422,30 @@
     .source-kind.news,
     .source-kind.video,
     .source-kind.youtube { background: #ff0033; }
+
+    .source-kind.article { background: var(--purple); }
+    .source-kind.article::before {
+      content: "";
+      border: 0;
+      width: 18px;
+      height: 22px;
+      margin-left: 0;
+      border-radius: 3px;
+      background: linear-gradient(#fff 0 0) 4px 6px/10px 2px no-repeat,
+        linear-gradient(#fff 0 0) 4px 11px/10px 2px no-repeat,
+        linear-gradient(#fff 0 0) 4px 16px/7px 2px no-repeat;
+      outline: 2px solid #fff;
+    }
+
+    .source-kind.xfeed { background: #111827; }
+    .source-kind.xfeed::before {
+      content: "X";
+      border: 0;
+      width: auto;
+      height: auto;
+      margin-left: 0;
+      font-size: 19px;
+    }
 
     .candidate h3, .theme h3 {
       margin: 0 0 4px;
@@ -494,6 +611,21 @@
     .theme-badges .pill {
       font-size: 11px;
       padding: 2px 6px;
+    }
+
+    .mini-pill {
+      display: inline-flex;
+      align-items: center;
+      width: fit-content;
+      border-radius: 999px;
+      border: 1px solid #dce5f0;
+      background: #f8fafc;
+      padding: 2px 6px;
+      color: #475569;
+      font-size: 11px;
+      font-weight: 750;
+      line-height: 1.15;
+      white-space: nowrap;
     }
 
     .theme-count {
@@ -663,6 +795,81 @@
       gap: 9px;
     }
 
+    .manual-source {
+      padding: 14px;
+      display: grid;
+      gap: 10px;
+    }
+
+    .source-settings {
+      margin: 0 0 18px;
+      border: 1px solid var(--line);
+      background: var(--panel);
+      border-radius: 8px;
+      padding: 14px;
+      box-shadow: var(--shadow);
+      display: grid;
+      gap: 12px;
+    }
+
+    .source-settings[open] summary {
+      margin-bottom: 12px;
+    }
+
+    .source-settings summary {
+      cursor: pointer;
+      font-size: 18px;
+      font-weight: 900;
+      color: var(--ink);
+    }
+
+    .source-settings-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .source-settings .wide {
+      grid-column: 1 / -1;
+    }
+
+    .manual-source-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      align-items: start;
+    }
+
+    .manual-source h3 {
+      margin: 0 0 3px;
+      font-size: 16px;
+    }
+
+    .manual-source p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .manual-source-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.35fr) minmax(160px, .65fr);
+      gap: 8px;
+    }
+
+    .manual-source-actions {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .manual-source-note {
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 700;
+    }
+
     .export-panel {
       display: none;
       margin-top: 16px;
@@ -735,6 +942,12 @@
       .actions { justify-content: flex-start; }
       .audience-panel { grid-template-columns: 1fr; }
       .audience-toggle { min-width: 0; }
+      .refresh-head,
+      .refresh-controls,
+      .refresh-actions,
+      .source-settings-grid { grid-template-columns: 1fr; }
+
+      .source-settings .wide { grid-column: auto; }
     }
 
     @media (max-width: 620px) {
@@ -744,6 +957,7 @@
       .candidate-head { grid-template-columns: auto 1fr; }
       .score { grid-column: 2; text-align: left; }
       .footer-inner { align-items: flex-start; flex-direction: column; }
+      .manual-source-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -763,10 +977,10 @@
             <button class="btn" id="export-issue-json">Export Issue JSON</button>
             <button class="btn" id="export-review-json">Export Review JSON</button>
             <button class="btn" id="download-issue-json">Download Issue Model</button>
-            <p>Developer handoff only. For normal use, review the checks below and click Approve and Build Brief.</p>
+            <p>Developer handoff only. For normal use, review the checks below and click Generate Newsletter.</p>
           </div>
         </details>
-        <button class="btn green" id="approve">Approve and Build Brief</button>
+        <button class="btn green" id="approve">Generate Newsletter</button>
       </div>
     </div>
   </header>
@@ -782,7 +996,7 @@
     <section class="audience-panel" aria-label="Target audience">
       <div>
         <h2>Target Audience</h2>
-        <p>Choose the lens before approval so the final brief uses the right examples, depth, and calls to action.</p>
+        <p>Choose the lens before approval so the final newsletter uses the right examples, depth, and calls to action.</p>
       </div>
       <div class="audience-toggle" id="audience-toggle">
         <label>
@@ -798,12 +1012,111 @@
       </div>
     </section>
 
+    <section class="refresh-panel" aria-label="Source refresh controls">
+      <div class="refresh-head">
+        <div>
+          <h2>Source Refresh</h2>
+          <p>Refresh only the lanes you need so the issue can be built any day of the week without reprocessing everything.</p>
+        </div>
+        <span class="mini-pill" id="refresh-mode-pill">local request</span>
+      </div>
+      <div class="refresh-warning" id="refresh-warning">
+        This page is open in file mode, so refresh buttons cannot fetch new sources.
+        Open <a href="http://127.0.0.1:8765/AINewsletter/admin/index.html">the local runner admin page</a> and use the refresh buttons there.
+      </div>
+      <div class="refresh-result" id="refresh-result"></div>
+      <div class="refresh-controls">
+        <label class="field">
+          <span>Lookback days</span>
+          <input class="new-input" id="refresh-lookback" type="number" min="1" max="60" step="1" value="7">
+        </label>
+        <label class="field">
+          <span>Issue date</span>
+          <input class="new-input" id="refresh-issue-date" type="date" value="2026-05-11">
+        </label>
+        <label class="field">
+          <span>Playlist basis</span>
+          <select class="new-input" id="refresh-playlist-basis">
+            <option value="published_newest" selected>Date published (newest)</option>
+            <option value="published_oldest">Date published (oldest)</option>
+            <option value="added_newest">Date added (newest)</option>
+            <option value="added_oldest">Date added (oldest)</option>
+            <option value="manual">Manual order</option>
+          </select>
+        </label>
+        <label class="field">
+          <span>Transcript attempts</span>
+          <input class="new-input" id="refresh-transcript-attempts" type="number" min="0" max="25" step="1" value="3">
+        </label>
+        <span class="manual-source-note" id="refresh-note">Open through the local runner URL to refresh sources directly.</span>
+      </div>
+      <div class="refresh-actions">
+        <button class="btn" data-refresh-lane="youtube_playlist">Refresh YouTube Playlist</button>
+        <button class="btn" data-refresh-lane="youtube_watchlist">Refresh YouTube Watchlist</button>
+        <button class="btn" data-refresh-lane="newsletters">Refresh Newsletters</button>
+        <button class="btn primary" data-refresh-lane="all">Refresh All Sources</button>
+      </div>
+    </section>
+
+    <details class="source-settings" id="source-settings">
+      <summary>Source Settings</summary>
+      <div class="source-settings-grid">
+        <label class="field">
+          <span>Curated playlist name</span>
+          <input class="new-input" id="config-playlist-name" placeholder="AI & News to watch">
+        </label>
+        <label class="field">
+          <span>Curated playlist ID</span>
+          <input class="new-input" id="config-playlist-id" placeholder="PL...">
+        </label>
+        <label class="field wide">
+          <span>Tier 1 YouTube channels, one per line as Name | URL</span>
+          <textarea class="new-textarea" id="config-youtube-tier-1" placeholder="Matt Wolfe | https://www.youtube.com/@mreflow"></textarea>
+        </label>
+        <label class="field wide">
+          <span>Tier 2 YouTube channels, one per line as Name | URL</span>
+          <textarea class="new-textarea" id="config-youtube-tier-2" placeholder="Channel name | https://www.youtube.com/@channelhandle"></textarea>
+        </label>
+        <label class="field wide">
+          <span>Tier 3 YouTube channels, one per line as Name | URL</span>
+          <textarea class="new-textarea" id="config-youtube-tier-3" placeholder="Channel name | https://www.youtube.com/channel/CHANNEL_ID"></textarea>
+        </label>
+        <label class="field wide">
+          <span>Newsletters, one per line as Name | URL or search label</span>
+          <textarea class="new-textarea" id="config-newsletters" placeholder="TLDR AI | https://tldr.tech/ai"></textarea>
+        </label>
+      </div>
+      <div class="manual-source-actions">
+        <button class="btn primary" id="save-source-config">Save Source Settings</button>
+        <button class="btn" id="reload-source-config">Reload Settings</button>
+        <span class="manual-source-note" id="source-config-note">Settings save to data/source_config.json through the local runner.</span>
+      </div>
+    </details>
+
     <section class="layout">
       <div class="column">
         <div class="section-head">
           <div>
             <h2>1. Candidate Items</h2>
-            <p class="hint">Check the source, then choose the specific segments that should drive the final brief.</p>
+            <p class="hint">Check the source, then choose the specific segments that should drive the final newsletter.</p>
+          </div>
+        </div>
+        <div class="card manual-source" aria-label="Add missed source">
+          <div class="manual-source-head">
+            <div>
+              <h3>Add Missed Source</h3>
+              <p>Paste a source that retrieval missed. Manual candidates are selected by default and treated as high-priority editorial overrides.</p>
+            </div>
+            <span class="mini-pill">manual override</span>
+          </div>
+          <div class="manual-source-grid">
+            <input class="new-input" id="manual-url" placeholder="Paste YouTube, article, X, or newsletter URL">
+            <input class="new-input" id="manual-title" placeholder="Optional title">
+          </div>
+          <textarea class="new-textarea" id="manual-summary" placeholder="Optional note, angle, or why this matters"></textarea>
+          <div class="manual-source-actions">
+            <button class="btn primary" id="add-manual-source">Add Manual Candidate</button>
+            <span class="manual-source-note" id="manual-source-note">YouTube transcript fetching comes in the refresh backend step.</span>
           </div>
         </div>
         <div id="candidate-list" class="column"></div>
@@ -830,11 +1143,11 @@
       <div class="section-head">
         <div>
           <h2 id="export-title">Structured Issue JSON</h2>
-          <p class="hint" id="export-hint">This is the issue content model the final brief generator would read.</p>
+          <p class="hint" id="export-hint">This is the issue content model the newsletter generator would read.</p>
         </div>
       </div>
       <div class="brief-link-wrap" id="brief-link-wrap">
-        <a class="brief-link" href="../2026-05-11/index.html">Open generated weekly brief</a>
+        <a class="brief-link" href="../editor/index.html">Open newsletter editor</a>
       </div>
       <textarea class="export-box" id="export-box" spellcheck="false"></textarea>
     </section>
@@ -1000,6 +1313,24 @@
     const candidateList = document.getElementById('candidate-list');
     const themeList = document.getElementById('theme-list');
     const statusEl = document.getElementById('review-status');
+    const manualUrlEl = document.getElementById('manual-url');
+    const manualTitleEl = document.getElementById('manual-title');
+    const manualSummaryEl = document.getElementById('manual-summary');
+    const manualSourceNoteEl = document.getElementById('manual-source-note');
+    const refreshLookbackEl = document.getElementById('refresh-lookback');
+    const refreshIssueDateEl = document.getElementById('refresh-issue-date');
+    const refreshPlaylistBasisEl = document.getElementById('refresh-playlist-basis');
+    const refreshTranscriptAttemptsEl = document.getElementById('refresh-transcript-attempts');
+    const refreshNoteEl = document.getElementById('refresh-note');
+    const refreshWarningEl = document.getElementById('refresh-warning');
+    const refreshResultEl = document.getElementById('refresh-result');
+    const configPlaylistNameEl = document.getElementById('config-playlist-name');
+    const configPlaylistIdEl = document.getElementById('config-playlist-id');
+    const configTier1El = document.getElementById('config-youtube-tier-1');
+    const configTier2El = document.getElementById('config-youtube-tier-2');
+    const configTier3El = document.getElementById('config-youtube-tier-3');
+    const configNewslettersEl = document.getElementById('config-newsletters');
+    const sourceConfigNoteEl = document.getElementById('source-config-note');
     const issueModelSeed = {
       schema_version: '0.1',
       issue: {
@@ -1041,7 +1372,9 @@
         candidateTitle: candidate.title,
         candidateIncluded: candidate.included,
         source: candidate.source,
-        sourceUrl: candidate.url
+        sourceUrl: candidate.url,
+        manual: Boolean(candidate.manual),
+        priority: candidate.priority || 'standard'
       })));
     }
 
@@ -1054,12 +1387,360 @@
     }
 
     function sourceKindClass(kind) {
-      return kind === 'mail' ? 'mail' : 'youtube';
+      if (kind === 'mail') return 'mail';
+      if (kind === 'article') return 'article';
+      if (kind === 'xfeed') return 'xfeed';
+      return 'youtube';
     }
 
     function sourceLabel(candidate) {
       if (candidate.kind === 'mail') return `Email - ${candidate.source}`;
+      if (candidate.kind === 'article') return `Article - ${candidate.source}`;
+      if (candidate.kind === 'xfeed') return `X - ${candidate.source}`;
       return `YouTube - ${candidate.source}`;
+    }
+
+    function escapeHtml(value) {
+      return String(value)
+        .replaceAll('&', '&amp;')
+        .replaceAll('<', '&lt;')
+        .replaceAll('>', '&gt;')
+        .replaceAll('"', '&quot;')
+        .replaceAll("'", '&#039;');
+    }
+
+    function slugify(value) {
+      return String(value)
+        .toLowerCase()
+        .replace(/https?:\/\//g, '')
+        .replace(/[^a-z0-9]+/g, '-')
+        .replace(/^-|-$/g, '')
+        .slice(0, 42) || 'source';
+    }
+
+    function todayIsoDate() {
+      return new Date().toISOString().slice(0, 10);
+    }
+
+    function normalizeUrl(value) {
+      const trimmed = value.trim();
+      if (!trimmed) return '';
+      if (/^https?:\/\//i.test(trimmed)) return trimmed;
+      return `https://${trimmed}`;
+    }
+
+    function detectManualSource(url) {
+      let host = '';
+      try {
+        host = new URL(url).hostname.replace(/^www\./, '').toLowerCase();
+      } catch (error) {
+        return { kind: 'article', label: 'URL', source: 'Manual source', host: '' };
+      }
+
+      if (host === 'youtu.be' || host.endsWith('youtube.com')) {
+        return { kind: 'youtube', label: 'YouTube', source: 'Manual YouTube', host };
+      }
+      if (host === 'x.com' || host === 'twitter.com' || host.endsWith('.x.com') || host.endsWith('.twitter.com')) {
+        return { kind: 'xfeed', label: 'X', source: 'Manual X', host };
+      }
+      return { kind: 'article', label: 'Article', source: host || 'Manual source', host };
+    }
+
+    function inferManualTitle(url, sourceInfo) {
+      if (manualTitleEl.value.trim()) return manualTitleEl.value.trim();
+      if (sourceInfo.kind === 'youtube') return 'Manual YouTube source';
+      if (sourceInfo.kind === 'xfeed') return 'Manual X source';
+      return `Manual source from ${sourceInfo.host || 'URL'}`;
+    }
+
+    function addManualSource() {
+      const url = normalizeUrl(manualUrlEl.value);
+      if (!url) {
+        manualSourceNoteEl.textContent = 'Paste a URL first.';
+        manualUrlEl.focus();
+        return;
+      }
+
+      const sourceInfo = detectManualSource(url);
+      const title = inferManualTitle(url, sourceInfo);
+      const summary = manualSummaryEl.value.trim()
+        || 'Manually added editorial override. Review and refine this source before publishing.';
+      const idBase = `manual-${slugify(title)}-${Date.now()}`;
+      const segmentId = `${idBase}-signal`;
+      const candidate = {
+        id: idBase,
+        kind: sourceInfo.kind,
+        label: sourceInfo.label,
+        source: sourceInfo.source,
+        title,
+        url,
+        date: todayIsoDate(),
+        score: 99,
+        included: true,
+        manual: true,
+        priority: 'editorial_override',
+        summary,
+        segments: [
+          {
+            id: segmentId,
+            selected: true,
+            strength: 'strong',
+            time: sourceInfo.kind === 'youtube' ? 'manual URL' : 'manual source',
+            theme: 'Manual editorial signal',
+            title,
+            summary
+          }
+        ]
+      };
+
+      state.candidates.unshift(candidate);
+      manualUrlEl.value = '';
+      manualTitleEl.value = '';
+      manualSummaryEl.value = '';
+      render();
+      manualSourceNoteEl.textContent = `${sourceInfo.label} candidate added as a high-priority manual override.`;
+      statusEl.textContent = `Added manual source: ${title}`;
+    }
+
+    function buildRefreshRequest(lane) {
+      const lookbackDays = Math.max(1, Math.min(60, Number(refreshLookbackEl.value || 7)));
+      refreshLookbackEl.value = lookbackDays;
+      const issueDate = refreshIssueDateEl.value || '2026-05-11';
+      const transcriptAttempts = Math.max(0, Math.min(25, Number(refreshTranscriptAttemptsEl.value || 0)));
+      refreshTranscriptAttemptsEl.value = transcriptAttempts;
+      const sinceDate = new Date(`${issueDate}T12:00:00`);
+      sinceDate.setDate(sinceDate.getDate() - lookbackDays);
+      const lanes = {
+        youtube_playlist: {
+          label: 'YouTube curated playlist',
+          priority: 'highest',
+          policy: 'Always include videos from the AI & News to watch playlist, fetch transcripts when available, summarize, and weight as Greg editorial overrides.',
+          sources: ['AI & News to watch']
+        },
+        youtube_watchlist: {
+          label: 'YouTube watchlist channels',
+          priority: 'filtered',
+          policy: 'Check tiered channel RSS feeds, rank by relevance and uniqueness, and fetch transcripts only for selected candidates.',
+          sources: ['Tier 1 channels', 'Tier 2 channels', 'Tier 3 only when relevant']
+        },
+        newsletters: {
+          label: 'Email newsletters',
+          priority: 'filtered',
+          policy: 'Collect recent newsletter items, extract useful AI sections/headlines, and skip promotional filler.',
+          sources: ['Gmail newsletters', 'TLDR AI', 'Superhuman AI', 'Metatrends', 'other configured newsletters']
+        },
+        all: {
+          label: 'All configured sources',
+          priority: 'mixed',
+          policy: 'Refresh curated playlist, watchlist channels, and newsletters, then deduplicate into a candidate pool.',
+          sources: ['AI & News to watch', 'Tiered YouTube watchlist', 'Gmail newsletters']
+        }
+      };
+      const selected = lanes[lane] || lanes.all;
+      return {
+        request_type: 'source_refresh',
+        created_at: new Date().toISOString(),
+        issue_date: issueDate,
+        lookback_days: lookbackDays,
+        since_date: sinceDate.toISOString().slice(0, 10),
+        playlist_basis: refreshPlaylistBasisEl.value,
+        max_transcript_attempts: transcriptAttempts,
+        transcript_delay_seconds: 1.5,
+        lane,
+        label: selected.label,
+        priority: selected.priority,
+        policy: selected.policy,
+        sources: selected.sources,
+        output_expectation: {
+          update_cache: true,
+          rebuild_candidate_pool: true,
+          fetch_transcripts: lane === 'youtube_playlist' ? 'all_available' : 'selected_only',
+          preserve_manual_candidates: true,
+          avoid_full_reprocess_unless_needed: true
+        }
+      };
+    }
+
+    function canRunRefreshLocally() {
+      return location.protocol === 'http:' || location.protocol === 'https:';
+    }
+
+    async function runRefreshRequest(request) {
+      const response = await fetch('/api/refresh', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(request)
+      });
+      const result = await response.json();
+      if (!response.ok || !result.ok) {
+        const message = result.message || result.error || 'Refresh failed.';
+        throw new Error(message);
+      }
+      return result;
+    }
+
+    async function runBuildBrief(issue) {
+      const response = await fetch('/api/build-brief', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ issue })
+      });
+      const result = await response.json();
+      if (!response.ok || !result.ok) {
+        const message = result.message || result.error || 'Newsletter generation failed.';
+        throw new Error(message);
+      }
+      return result;
+    }
+
+    function parseSourceLines(value) {
+      return value
+        .split('\n')
+        .map(item => item.trim())
+        .filter(Boolean)
+        .map(item => {
+          const parts = item.split('|');
+          const name = parts.shift().trim();
+          const url = parts.join('|').trim();
+          return url ? { name: name || url, url } : { name };
+        });
+    }
+
+    function formatSourceLines(value) {
+      if (!Array.isArray(value)) return '';
+      return value.map(item => {
+        if (typeof item === 'string') return item;
+        const name = item.name || item.label || item.title || item.url || '';
+        const url = item.url || item.channel_url || item.feed_url || '';
+        return url ? `${name} | ${url}` : name;
+      }).filter(Boolean).join('\n');
+    }
+
+    function populateSourceConfig(config) {
+      const curated = config.youtube?.curated_playlist || {};
+      const watchlist = config.youtube?.watchlist || {};
+      configPlaylistNameEl.value = curated.name || '';
+      configPlaylistIdEl.value = curated.playlist_id || '';
+      configTier1El.value = formatSourceLines(watchlist.tier_1);
+      configTier2El.value = formatSourceLines(watchlist.tier_2);
+      configTier3El.value = formatSourceLines(watchlist.tier_3);
+      configNewslettersEl.value = formatSourceLines(config.newsletters?.sources);
+      autoGrowTextareas();
+    }
+
+    function collectSourceConfig() {
+      return {
+        youtube: {
+          curated_playlist: {
+            name: configPlaylistNameEl.value.trim() || 'AI & News to watch',
+            playlist_id: configPlaylistIdEl.value.trim(),
+            priority: 'editorial_override'
+          },
+          watchlist: {
+            tier_1: parseSourceLines(configTier1El.value),
+            tier_2: parseSourceLines(configTier2El.value),
+            tier_3: parseSourceLines(configTier3El.value)
+          }
+        },
+        newsletters: {
+          sources: parseSourceLines(configNewslettersEl.value)
+        }
+      };
+    }
+
+    async function loadSourceConfig() {
+      if (!canRunRefreshLocally()) {
+        sourceConfigNoteEl.textContent = 'Open through the local runner URL to load and save settings.';
+        return;
+      }
+      const response = await fetch('/api/source-config');
+      const result = await response.json();
+      if (!response.ok || !result.ok) throw new Error(result.error || 'Could not load source settings.');
+      populateSourceConfig(result.config);
+      sourceConfigNoteEl.textContent = 'Source settings loaded.';
+    }
+
+    async function saveSourceConfig() {
+      if (!canRunRefreshLocally()) {
+        sourceConfigNoteEl.textContent = 'Open through the local runner URL to save settings.';
+        return;
+      }
+      const config = collectSourceConfig();
+      const response = await fetch('/api/source-config', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ config })
+      });
+      const result = await response.json();
+      if (!response.ok || !result.ok) throw new Error(result.error || 'Could not save source settings.');
+      populateSourceConfig(result.config);
+      sourceConfigNoteEl.textContent = 'Source settings saved.';
+    }
+
+    function describeRefreshResult(result) {
+      const summary = result.summary || {};
+      const parts = [result.message || 'Refresh complete.'];
+      if (result.note) parts.push(result.note);
+
+      if (summary.videos_found !== undefined || summary.video_count !== undefined) {
+        parts.push(`Found ${summary.videos_found ?? summary.video_count ?? 0} video(s).`);
+      }
+      if (summary.channels_configured !== undefined) {
+        parts.push(`Channels: ${summary.channels_checked ?? 0} checked, ${summary.channels_need_url ?? 0} need URL, ${summary.channels_error ?? 0} error(s).`);
+      }
+      if (summary.sources_configured !== undefined) {
+        parts.push(`Newsletter sources configured: ${summary.sources_configured}.`);
+      }
+      if (summary.candidate_count !== undefined) {
+        parts.push(`Candidate pool: ${summary.candidate_count} item(s).`);
+      }
+      if (summary.transcripts_cached !== undefined || summary.transcripts_fetched !== undefined) {
+        parts.push(`Transcripts: ${summary.transcripts_cached ?? 0} cached, ${summary.transcripts_fetched ?? 0} attempted, ${summary.transcripts_skipped ?? 0} skipped, ${summary.transcripts_ok ?? 0} usable, ${summary.transcripts_error ?? 0} error(s).`);
+      }
+
+      const errorTypes = summary.transcript_error_types || {};
+      const errorTypeText = Object.entries(errorTypes).map(([key, count]) => `${count} ${key}`).join(', ');
+      if (errorTypeText) parts.push(`Error types: ${errorTypeText}.`);
+      if (errorTypes.IpBlocked || summary.transcript_blocked) {
+        parts.push('YouTube blocked transcript requests from this runner; skipped videos were queued for a later or browser-assisted pass.');
+      }
+      parts.push(`Output: ${result.markdown || result.json || 'source cache updated'}.`);
+      return parts.join(' ');
+    }
+
+    async function showRefreshRequest(lane) {
+      const request = buildRefreshRequest(lane);
+      if (!canRunRefreshLocally()) {
+        refreshWarningEl.classList.add('open');
+        refreshNoteEl.textContent = 'Open the local runner admin page to run this refresh.';
+        statusEl.textContent = `${request.label} was not refreshed because this page is open in file mode.`;
+        return;
+      }
+
+      refreshNoteEl.textContent = `Refreshing ${request.label} from ${request.since_date} through ${request.issue_date}...`;
+      statusEl.textContent = `Refreshing ${request.label}...`;
+      refreshWarningEl.classList.remove('open');
+      refreshResultEl.classList.remove('open');
+      try {
+        const result = await runRefreshRequest(request);
+        refreshResultEl.classList.add('open');
+        refreshResultEl.textContent = describeRefreshResult(result);
+        refreshNoteEl.textContent = lane === 'all'
+          ? 'Refresh complete. Candidate pool rebuilt.'
+          : 'Refresh complete. Use Refresh All Sources when you are ready to rebuild the candidate pool.';
+        statusEl.textContent = `${request.label} refreshed from ${request.since_date} through ${request.issue_date}.`;
+      } catch (error) {
+        refreshWarningEl.classList.add('open');
+        refreshWarningEl.textContent = error.message;
+        refreshResultEl.classList.remove('open');
+        setExportContent(
+          'Source Refresh Error',
+          'The local runner tried to execute this refresh but returned an error.',
+          { request, error: error.message }
+        );
+        refreshNoteEl.textContent = error.message;
+        statusEl.textContent = `${request.label} refresh did not complete.`;
+      }
     }
 
     function autoGrow(element) {
@@ -1135,11 +1816,12 @@
           <div class="candidate-head">
             <div class="source-kind ${sourceKindClass(candidate.kind)}" title="${candidate.kind === 'mail' ? 'Email' : 'YouTube'}"></div>
             <div>
-              <h3>${candidate.title}</h3>
+              <h3>${escapeHtml(candidate.title)}</h3>
               <div class="meta">
                 <span class="pill">${sourceLabel(candidate)}</span>
+                ${candidate.manual ? '<span class="pill">manual override</span>' : ''}
                 <span>${candidate.date}</span>
-                ${candidate.url !== '#' ? `<a href="${candidate.url}">Open source</a>` : ''}
+                ${candidate.url !== '#' ? `<a href="${escapeHtml(candidate.url)}">Open source</a>` : ''}
               </div>
             </div>
             <div class="score">${candidate.score}%</div>
@@ -1149,7 +1831,7 @@
               <input type="checkbox" data-candidate="${candidate.id}" ${candidate.included ? 'checked' : ''}>
               Include this source and its selected segments
             </label>
-            <p class="summary">${candidate.summary}</p>
+            <p class="summary">${escapeHtml(candidate.summary)}</p>
             <div class="excluded-note">Source excluded. Its segment choices are saved here, but they will not count on the right unless you include the source again.</div>
             <div class="segments"></div>
           </div>
@@ -1161,12 +1843,12 @@
           row.innerHTML = `
             <input type="checkbox" data-segment="${segment.id}" ${segment.selected ? 'checked' : ''}>
             <div>
-              <h4>${segment.title}</h4>
-              <p>${segment.summary}</p>
+              <h4>${escapeHtml(segment.title)}</h4>
+              <p>${escapeHtml(segment.summary)}</p>
               <div class="segment-footer">
-                <span class="pill">${segment.strength}</span>
-                <span>${segment.time}</span>
-                <span>Suggested theme: <b>${segment.theme}</b></span>
+                <span class="pill">${escapeHtml(segment.strength)}</span>
+                <span>${escapeHtml(segment.time)}</span>
+                <span>Suggested theme: <b>${escapeHtml(segment.theme)}</b></span>
               </div>
             </div>
           `;
@@ -1186,8 +1868,8 @@
           .filter(Boolean)
           .map(segment => `
             <div class="supporting-row">
-              <b>${segment.title}</b>
-              ${segment.source} · ${segment.time}
+              <b>${escapeHtml(segment.title)}</b>
+              ${escapeHtml(segment.source)} · ${escapeHtml(segment.time)}
             </div>
           `).join('');
         article.innerHTML = `
@@ -1222,8 +1904,8 @@
         const rows = visibleSegments.map(segment => `
           <div class="supporting-row">
             <div>
-              <b>${segment.title}</b>
-              ${segment.source} · ${segment.time}
+              <b>${escapeHtml(segment.title)}</b>
+              ${escapeHtml(segment.source)} · ${escapeHtml(segment.time)}
             </div>
             <button class="icon-btn" data-remove-segment="${theme.id}:${segment.id}" title="Remove evidence">×</button>
           </div>
@@ -1330,11 +2012,16 @@
           title: c.title,
           source: c.source,
           url: c.url,
+          manual: Boolean(c.manual),
+          priority: c.priority || 'standard',
           selected_segments: c.segments.filter(s => s.selected).map(s => s.id)
         })),
         selected_segments: selectedSegments().map(segment => ({
           id: segment.id,
           source: segment.source,
+          url: segment.sourceUrl,
+          manual: Boolean(segment.manual),
+          priority: segment.priority || 'standard',
           candidate: segment.candidateTitle,
           title: segment.title,
           summary: segment.summary,
@@ -1363,8 +2050,11 @@
       model.issue.default_audience = review.target_audience;
       model.sections = model.sections.map(section => {
         const theme = approvedThemes.find(item => item.id === section.theme_id);
+        const title = theme?.title || section.title;
         return {
           ...section,
+          title,
+          headline: title,
           approved_theme_title: theme?.title || section.title,
           summary: theme?.summary || '',
           evidence_segment_ids: theme?.supporting_segments || []
@@ -1406,7 +2096,7 @@
     function showIssueExport() {
       setExportContent(
         'Structured Issue JSON',
-        'This is the issue content model the final brief generator would read.',
+        'This is the issue content model the newsletter generator would read.',
         buildIssueModel()
       );
     }
@@ -1427,6 +2117,40 @@
       link.download = '2026-05-11.json';
       link.click();
       URL.revokeObjectURL(link.href);
+    }
+
+    async function generateNewsletter() {
+      state.approved = true;
+      const issueModel = buildIssueModel();
+      setExportContent(
+        'Structured Issue JSON',
+        'Saving this approved model and generating the newsletter through the local runner.',
+        issueModel
+      );
+      document.getElementById('brief-link-wrap').classList.add('open');
+      const audienceLabel = state.audience === 'c_suite' ? 'C-suite executives' : 'operators and implementers';
+      statusEl.textContent = `Approved for ${audienceLabel}. Generating newsletter...`;
+
+      if (!canRunRefreshLocally()) {
+        statusEl.textContent = `Approved for ${audienceLabel}. Open the local runner URL to generate the newsletter.`;
+        return;
+      }
+
+      try {
+        const result = await runBuildBrief(issueModel);
+        const changedCount = (result.pages || []).filter(page => page.changed).length;
+        statusEl.textContent = `Newsletter generated. ${changedCount} page(s) updated from your approved changes.`;
+        const link = document.querySelector('#brief-link-wrap a');
+        link.href = `../editor/index.html?v=${Date.now()}`;
+        link.textContent = 'Open newsletter editor';
+      } catch (error) {
+        statusEl.textContent = `Approved, but newsletter generation failed: ${error.message}`;
+        setExportContent(
+          'Newsletter Generation Error',
+          'The approved issue JSON was generated, but the local runner could not rebuild the newsletter page.',
+          { issue: issueModel, error: error.message }
+        );
+      }
     }
 
     document.addEventListener('change', event => {
@@ -1592,12 +2316,25 @@
     document.getElementById('export-issue-json').addEventListener('click', showIssueExport);
     document.getElementById('export-review-json').addEventListener('click', showReviewExport);
     document.getElementById('download-issue-json').addEventListener('click', downloadIssueModel);
+    document.getElementById('add-manual-source').addEventListener('click', addManualSource);
+    document.getElementById('save-source-config').addEventListener('click', () => {
+      saveSourceConfig().catch(error => {
+        sourceConfigNoteEl.textContent = error.message;
+      });
+    });
+    document.getElementById('reload-source-config').addEventListener('click', () => {
+      loadSourceConfig().catch(error => {
+        sourceConfigNoteEl.textContent = error.message;
+      });
+    });
+    document.querySelectorAll('[data-refresh-lane]').forEach(button => {
+      button.addEventListener('click', () => showRefreshRequest(button.dataset.refreshLane));
+    });
+    manualUrlEl.addEventListener('keydown', event => {
+      if (event.key === 'Enter') addManualSource();
+    });
     document.getElementById('approve').addEventListener('click', () => {
-      state.approved = true;
-      showIssueExport();
-      document.getElementById('brief-link-wrap').classList.add('open');
-      const audienceLabel = state.audience === 'c_suite' ? 'C-suite executives' : 'operators and implementers';
-      statusEl.textContent = `Approved for ${audienceLabel}. Structured issue JSON is ready.`;
+      generateNewsletter();
     });
 
     document.getElementById('add-theme').addEventListener('click', () => {
@@ -1633,6 +2370,14 @@
     });
 
     render();
+    document.getElementById('refresh-mode-pill').textContent = canRunRefreshLocally() ? 'runner active' : 'file mode';
+    refreshWarningEl.classList.toggle('open', !canRunRefreshLocally());
+    refreshNoteEl.textContent = canRunRefreshLocally()
+      ? 'Refresh buttons will call the local runner.'
+      : 'Open through the local runner URL to refresh sources directly.';
+    loadSourceConfig().catch(error => {
+      sourceConfigNoteEl.textContent = error.message;
+    });
   </script>
 </body>
 </html>

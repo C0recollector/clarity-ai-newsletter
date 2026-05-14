@@ -1,0 +1,108 @@
+{
+  "youtube": {
+    "curated_playlist": {
+      "name": "AI & News to watch",
+      "playlist_id": "PLxFjGka4tveAOS0oDFqsnlsG0UqdlN0yC",
+      "url": "https://www.youtube.com/playlist?list=PLxFjGka4tveAOS0oDFqsnlsG0UqdlN0yC",
+      "priority": "editorial_override"
+    },
+    "watchlist": {
+      "tier_1": [
+        {
+          "name": "Matt Wolfe",
+          "url": "https://www.youtube.com/channel/UChpleBmo18P08aKCIgti38g"
+        },
+        {
+          "name": "Matthew Berman"
+        },
+        {
+          "name": "Peter Diamandis / Moonshots",
+          "url": "https://www.youtube.com/channel/UCvxm0qTrGN_1LMYgUaftWyQ"
+        },
+        {
+          "name": "Limitless Podcast",
+          "url": "https://www.youtube.com/channel/UCCRxYlYOmLE2l5wxs3ckJtg"
+        },
+        {
+          "name": "World of AI"
+        },
+        {
+          "name": "TLDR AI"
+        },
+        {
+          "name": "Superhuman AI"
+        },
+        {
+          "name": "Metatrends"
+        }
+      ],
+      "tier_2": [
+        {
+          "name": "Paul J Lipsky",
+          "url": "https://www.youtube.com/channel/UCmeU2DYiVy80wMBGZzEWnbw"
+        },
+        {
+          "name": "Riley Brown",
+          "url": "https://www.youtube.com/channel/UCMcoud_ZW7cfxeIugBflSBw"
+        },
+        {
+          "name": "Greg Isenberg"
+        },
+        {
+          "name": "All-In Podcast",
+          "url": "https://www.youtube.com/channel/UCESLZhusAkFfsNsApnjF_Cg"
+        },
+        {
+          "name": "BitBiased AI"
+        },
+        {
+          "name": "Digital Storm"
+        },
+        {
+          "name": "TLDR general"
+        }
+      ],
+      "tier_3": [
+        {
+          "name": "Dan Martell",
+          "url": "https://www.youtube.com/channel/UCA-mWX9CvCTVFWRMb9bKc9w"
+        },
+        {
+          "name": "Alex Finn"
+        },
+        {
+          "name": "Vaibhav Sisinty"
+        },
+        {
+          "name": "AI Daily Brief",
+          "url": "https://www.youtube.com/channel/UCKelCK4ZaO6HeEI1KQjqzWA"
+        },
+        {
+          "name": "Julian Goldie SEO"
+        },
+        {
+          "name": "Universe of AI"
+        },
+        {
+          "name": "ByteMonk"
+        }
+      ]
+    }
+  },
+  "newsletters": {
+    "sources": [
+      {
+        "name": "TLDR AI"
+      },
+      {
+        "name": "Superhuman AI"
+      },
+      {
+        "name": "Metatrends"
+      },
+      {
+        "name": "Maven"
+      }
+    ]
+  }
+}
