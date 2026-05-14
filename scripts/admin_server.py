@@ -15,7 +15,9 @@ from urllib.request import Request, urlopen
 
 
 ROOT = Path(__file__).resolve().parents[1]
+SCRIPT_DIR = Path(__file__).resolve().parent
 VENDOR = ROOT / ".vendor"
+sys.path.insert(0, str(SCRIPT_DIR))
 if VENDOR.exists():
     sys.path.insert(0, str(VENDOR))
 
@@ -90,6 +92,32 @@ def load_issue(issue_id: str) -> dict:
     path = issue_path(issue_id)
     with path.open("r", encoding="utf-8") as file:
         return json.load(file)
+
+
+def candidate_pool_path(issue_id: str) -> Path:
+    return CANDIDATE_DIR / f"candidate-pool-{safe_issue_id(issue_id)}.json"
+
+
+def load_candidate_pool(issue_id: str) -> dict:
+    path = candidate_pool_path(issue_id)
+    if not path.exists():
+        return {
+            "ok": False,
+            "message": "Candidate pool has not been built yet.",
+            "json": str(path.relative_to(ROOT)),
+            "candidates": [],
+            "summary": {"candidate_count": 0},
+        }
+    with path.open("r", encoding="utf-8") as file:
+        pool = json.load(file)
+    return {
+        "ok": True,
+        "json": str(path.relative_to(ROOT)),
+        "built_at": pool.get("built_at"),
+        "request": pool.get("request", {}),
+        "summary": pool.get("summary", {}),
+        "candidates": pool.get("candidates", []),
+    }
 
 
 def issue_blocks(issue: dict) -> list[dict]:
@@ -841,6 +869,11 @@ class AdminHandler(SimpleHTTPRequestHandler):
         parsed = urlparse(self.path)
         if parsed.path == "/api/source-config":
             self.send_json(HTTPStatus.OK, {"ok": True, "config": load_source_config()})
+            return
+        if parsed.path == "/api/candidate-pool":
+            issue_id = parse_qs(parsed.query).get("issue_id", ["2026-05-11"])[0]
+            result = load_candidate_pool(issue_id)
+            self.send_json(HTTPStatus.OK, result)
             return
         if parsed.path == "/api/issue":
             issue_id = parse_qs(parsed.query).get("issue_id", ["2026-05-11"])[0]

@@ -1306,6 +1306,7 @@
       themes: structuredClone(themes),
       rejectedThemeNames: new Set(themes.filter(theme => !theme.approved).map(theme => theme.title.toLowerCase())),
       audience: 'c_suite',
+      candidatePoolSource: 'sample',
       draggedThemeId: null,
       approved: false
     };
@@ -1593,6 +1594,95 @@
       return result;
     }
 
+    async function fetchCandidatePool(issueDate) {
+      const response = await fetch(`/api/candidate-pool?issue_id=${encodeURIComponent(issueDate)}`);
+      const result = await response.json();
+      if (!response.ok || !result.ok) {
+        const message = result.message || result.error || 'Candidate pool has not been built yet.';
+        throw new Error(message);
+      }
+      return result;
+    }
+
+    function firstUsefulSentence(value) {
+      const normalized = String(value || '').replace(/\s+/g, ' ').trim();
+      if (!normalized) return 'Metadata-only candidate. Review the source before publishing.';
+      const sentence = normalized.match(/^.{80,560}?[.!?](\s|$)/);
+      return sentence ? sentence[0].trim() : normalized.slice(0, 560).trim();
+    }
+
+    function inferCandidateTheme(candidate) {
+      const text = normalizeText(`${candidate.title || ''} ${candidate.summary || ''} ${candidate.source || ''}`);
+      const matchers = [
+        ['Robotics commercialization', /\brobot|humanoid|optimus|figure\b/],
+        ['AI infrastructure economics', /\bcompute|chip|cerebras|nvidia|memory|capex|data center|datacenter|power|inference|training|spacex|cloud\b/],
+        ['Agentic workflows', /\bagent|agentic|codex|claude code|openclaw|mythos|autonomous|workflow|orchestration\b/],
+        ['Google AI distribution', /\bgoogle|gemini|chrome|workspace|gmail|docs|drive|sheets|notebooklm\b/],
+        ['AI product/application layer', /\bcanva|adobe|perplexity|spotify|airpods|desktop|browser|productivity|app\b/],
+        ['AI governance and competition', /\bwhite house|fda|regulat|lawsuit|court|monopoly|deal|partnership|musk|altman|anthropic\b/],
+        ['Specialized model race', /\bgpt|claude|grok|qwen|minimax|model|voice|realtime|image|benchmark\b/]
+      ];
+      const match = matchers.find(([, pattern]) => pattern.test(text));
+      return match ? match[0] : 'Other signals to consider';
+    }
+
+    function normalizePoolCandidate(item, index) {
+      const id = item.id || `pool-${index}`;
+      const theme = inferCandidateTheme(item);
+      const score = Number(item.score || 70);
+      const strength = score >= 92 ? 'strong' : score >= 82 ? 'medium' : 'weak';
+      const transcriptStatus = item.transcript_status && item.transcript_status !== 'ok'
+        ? ` Transcript: ${item.transcript_error_type || item.transcript_status}.`
+        : '';
+      const summary = firstUsefulSentence(item.summary);
+      return {
+        id: `pool-${slugify(id)}`,
+        kind: item.kind || 'youtube',
+        label: item.kind === 'mail' ? 'Newsletter' : 'YouTube',
+        source: item.source || 'Candidate pool',
+        title: item.title || 'Untitled candidate',
+        url: item.url || '#',
+        date: item.date || refreshIssueDateEl.value || todayIsoDate(),
+        score,
+        included: score >= 82 || item.priority === 'editorial_override',
+        priority: item.priority || 'standard',
+        summary: `${summary}${transcriptStatus}`,
+        sourceLane: item.source_lane || '',
+        transcriptStatus: item.transcript_status || 'unknown',
+        segments: [
+          {
+            id: `pool-${slugify(id)}-signal`,
+            selected: score >= 82 || item.priority === 'editorial_override',
+            strength,
+            time: item.transcript_status === 'ok' ? 'transcript' : 'metadata',
+            theme,
+            title: item.title || 'Candidate signal',
+            summary
+          }
+        ]
+      };
+    }
+
+    function applyCandidatePool(pool) {
+      const nextCandidates = (pool.candidates || []).map(normalizePoolCandidate);
+      if (!nextCandidates.length) return false;
+      state.candidates = nextCandidates;
+      state.candidatePoolSource = pool.json || 'candidate pool';
+      regenerateThemes();
+      const summary = pool.summary || {};
+      statusEl.textContent = `Loaded ${nextCandidates.length} candidate pool item(s): ${summary.playlist_candidates || 0} playlist, ${summary.watchlist_candidates || 0} watchlist.`;
+      return true;
+    }
+
+    async function loadCandidatePool() {
+      if (!canRunRefreshLocally()) return;
+      const issueDate = refreshIssueDateEl.value || issueModelSeed.issue.id;
+      const pool = await fetchCandidatePool(issueDate);
+      if (applyCandidatePool(pool)) {
+        refreshNoteEl.textContent = `Candidate pool loaded from ${pool.json}.`;
+      }
+    }
+
     function parseSourceLines(value) {
       return value
         .split('\n')
@@ -1729,6 +1819,9 @@
           ? 'Refresh complete. Candidate pool rebuilt.'
           : 'Refresh complete. Use Refresh All Sources when you are ready to rebuild the candidate pool.';
         statusEl.textContent = `${request.label} refreshed from ${request.since_date} through ${request.issue_date}.`;
+        if (lane === 'all' || result.lane === 'candidate_pool' || result.summary?.candidate_count !== undefined) {
+          await loadCandidatePool();
+        }
       } catch (error) {
         refreshWarningEl.classList.add('open');
         refreshWarningEl.textContent = error.message;
@@ -1818,8 +1911,10 @@
             <div>
               <h3>${escapeHtml(candidate.title)}</h3>
               <div class="meta">
-                <span class="pill">${sourceLabel(candidate)}</span>
+                <span class="pill">${escapeHtml(sourceLabel(candidate))}</span>
                 ${candidate.manual ? '<span class="pill">manual override</span>' : ''}
+                ${candidate.priority === 'editorial_override' ? '<span class="pill">editorial override</span>' : ''}
+                ${candidate.sourceLane ? `<span class="pill">${escapeHtml(candidate.sourceLane)}</span>` : ''}
                 <span>${candidate.date}</span>
                 ${candidate.url !== '#' ? `<a href="${escapeHtml(candidate.url)}">Open source</a>` : ''}
               </div>
@@ -2377,6 +2472,9 @@
       : 'Open through the local runner URL to refresh sources directly.';
     loadSourceConfig().catch(error => {
       sourceConfigNoteEl.textContent = error.message;
+    });
+    loadCandidatePool().catch(error => {
+      refreshNoteEl.textContent = `${error.message} Using bundled sample candidates.`;
     });
   </script>
 </body>
