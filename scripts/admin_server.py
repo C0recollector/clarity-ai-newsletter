@@ -233,72 +233,54 @@ def rewrite_prompt(block: dict, instruction: str, issue: dict) -> str:
     )
 
 
-def local_ai_rewrite(prompt: str) -> tuple[str, str]:
-    body = json.dumps(
-        {
-            "model": "local-model",
-            "messages": [
-                {
-                    "role": "system",
-                    "content": "You are a precise newsletter editor. Return only the replacement text.",
-                },
-                {"role": "user", "content": prompt},
-            ],
-            "temperature": 0.4,
-            "max_tokens": 700,
-        }
-    ).encode("utf-8")
-    request = Request(
-        "http://127.0.0.1:1234/v1/chat/completions",
-        data=body,
-        headers={"Content-Type": "application/json"},
-        method="POST",
-    )
-    with urlopen(request, timeout=5) as response:
-        data = json.loads(response.read().decode("utf-8"))
-    text = data["choices"][0]["message"]["content"].strip()
-    return text, "local_lm_studio"
+def codex_request_type(instruction: str) -> str:
+    if re.search(r"\b(image|graphic|infographic|illustration|visual|chart|diagram|regenerate)\b", instruction, re.I):
+        return "visual_or_image_request"
+    return "text_rewrite_request"
 
 
-def openai_rewrite(prompt: str) -> tuple[str, str]:
-    api_key = os.environ.get("OPENAI_API_KEY", "").strip()
-    if not api_key:
-        raise RuntimeError("OPENAI_API_KEY is not set.")
-    model = os.environ.get("OPENAI_REWRITE_MODEL", "gpt-5-mini").strip() or "gpt-5-mini"
-    body = json.dumps(
-        {
-            "model": model,
-            "messages": [
-                {
-                    "role": "system",
-                    "content": "You are a precise newsletter editor. Return only the replacement text.",
-                },
-                {"role": "user", "content": prompt},
-            ],
-            "max_completion_tokens": 700,
-        }
-    ).encode("utf-8")
-    request = Request(
-        "https://api.openai.com/v1/chat/completions",
-        data=body,
-        headers={
-            "Authorization": f"Bearer {api_key}",
-            "Content-Type": "application/json",
-        },
-        method="POST",
-    )
-    with urlopen(request, timeout=45) as response:
-        data = json.loads(response.read().decode("utf-8"))
-    text = data["choices"][0]["message"]["content"].strip()
-    return text, f"openai:{model}"
-
-
-def prompt_only_rewrite(block: dict, prompt: str, issue_id: str) -> tuple[str, str, str]:
+def queue_codex_request(block: dict, instruction: str, prompt: str, issue_id: str) -> tuple[str, str, str]:
     output_dir = ROOT / "data" / "rewrite_requests"
     output_dir.mkdir(parents=True, exist_ok=True)
     path = output_dir / f"{issue_id}-{block['id'].replace('.', '-')}-{datetime.now(timezone.utc).strftime('%Y%m%d-%H%M%S')}.md"
-    path.write_text(prompt, encoding="utf-8")
-    return block["value"], "manual_edit", str(path.relative_to(ROOT))
+    request_type = codex_request_type(instruction)
+    path.write_text(
+        "\n".join(
+            [
+                "---",
+                f"status: pending",
+                f"request_type: {request_type}",
+                f"issue_id: {issue_id}",
+                f"block_id: {block['id']}",
+                f"block_label: {block['label']}",
+                f"block_kind: {block['kind']}",
+                f"created_at: {utc_now()}",
+                "---",
+                "",
+                "# Codex Newsletter Request",
+                "",
+                "## Current text",
+                "",
+                block["value"],
+                "",
+                "## Instruction",
+                "",
+                instruction,
+                "",
+                "## Prompt for Codex",
+                "",
+                prompt,
+                "",
+                "## Codex handling",
+                "",
+                "- Read this request from the local repo.",
+                "- If this is a text request, update the selected issue block and rebuild the newsletter.",
+                "- If this is a visual/image request, create or regenerate the appropriate asset and wire it into the issue/page.",
+            ]
+        ),
+        encoding="utf-8",
+    )
+    return block["value"], "queued_for_codex", str(path.relative_to(ROOT))
 
 
 def rewrite_block(request: dict) -> dict:
@@ -310,19 +292,7 @@ def rewrite_block(request: dict) -> dict:
     issue = load_issue(issue_id)
     block = find_issue_block(issue, block_id)
     prompt = rewrite_prompt(block, instruction, issue)
-    request_file = ""
-    note = ""
-    try:
-        draft, mode = openai_rewrite(prompt)
-    except Exception as openai_exc:
-        try:
-            draft, mode = local_ai_rewrite(prompt)
-        except Exception as local_exc:
-            draft, mode, request_file = prompt_only_rewrite(block, prompt, issue_id)
-            note = (
-                f"AI rewrite is not configured. OpenAI: {type(openai_exc).__name__}; "
-                f"local AI: {type(local_exc).__name__}. Edit the draft manually or use the saved prompt."
-            )
+    draft, mode, request_file = queue_codex_request(block, instruction, prompt, issue_id)
     return {
         "ok": True,
         "mode": mode,
@@ -330,7 +300,7 @@ def rewrite_block(request: dict) -> dict:
         "draft": draft,
         "prompt": prompt,
         "request_file": request_file,
-        "note": note,
+        "note": "Queued for Codex. Ask Codex to process the pending rewrite or visual request.",
     }
 
 
