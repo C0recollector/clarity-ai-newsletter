@@ -20,6 +20,8 @@
 - Source review choices now persist in browser `localStorage` keyed by issue id, including theme title edits, approved theme state, candidate include boxes, segment checkboxes, audience, and approved state. Loading the candidate pool merges new data into saved choices instead of resetting everything to defaults.
 - `Generate Draft Newsletter` now saves the review state, calls the local runner, and goes directly to the editor when generation succeeds. It no longer opens the JSON export panel during normal use; JSON export stays under Advanced.
 - The page generator now skips optional approved sections that do not exist in the current hand-designed HTML templates instead of failing with "Expected one match" errors, and it has mappings for future Robotics and AI-native Work sections.
+- Fixed a script initialization bug where the review-state storage key referenced the issue model before it existed. That bug made the admin page appear blank, prevented source settings/candidate pool loading, and made header/refresh/generate buttons look dead.
+- Default theme labels are now Greg's preferred shorter names: `Agents` and `Economics`.
 - Moved active work to local repo at `C:\Users\Greg\Codex\AI News`; do not edit the old Google Drive copy.
 - Connected GitHub remote `https://github.com/C0recollector/clarity-ai-newsletter.git` and pushed `main`.
 - Fixed five annotations.

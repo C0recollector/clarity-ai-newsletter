@@ -1336,9 +1336,9 @@
 
     let themes = [
       { id: 'theme-models', approved: true, recurring: true, collapsed: true, title: 'Model News', summary: 'A standing section for new models, capability jumps, pricing shifts, benchmarks, and specialized model lanes.', aliases: ['Specialized model race'], segmentIds: ['ai-writing-models', 'claude-opus-47', 'minimax-m27', 'qwen36', 'gpt-rosalind', 'microsoft-image', 'gpt-realtime'] },
-      { id: 'theme-agents', approved: true, recurring: true, collapsed: true, title: 'All Things Agents', summary: 'A standing section for agents, agentic workflows, agent OS ideas, orchestration, tools, roles, artifacts, validation, and practical automation.', aliases: ['Agentic workflows'], segmentIds: ['codex-everything', 'claude-code-update', 'memory-myth', 'workflow-roles-artifacts', 'memory-last', 'agentic-layer'] },
+      { id: 'theme-agents', approved: true, recurring: true, collapsed: true, title: 'Agents', summary: 'A standing section for agents, agentic workflows, agent OS ideas, orchestration, tools, roles, artifacts, validation, and practical automation.', aliases: ['Agentic workflows'], segmentIds: ['codex-everything', 'claude-code-update', 'memory-myth', 'workflow-roles-artifacts', 'memory-last', 'agentic-layer'] },
       { id: 'theme-platforms', approved: true, recurring: true, collapsed: true, title: 'Platform Plays', summary: 'A standing section for Google, Microsoft, OpenAI, Anthropic, Canva, Perplexity, and other platforms pushing AI into everyday work surfaces.', aliases: ['Google AI distribution', 'AI product/application layer'], segmentIds: ['google-desktop', 'gemini-mac', 'chrome-ai-update', 'nano-banana', 'canva-ai-updates', 'ai-2028-feel'] },
-      { id: 'theme-infra', approved: true, recurring: true, collapsed: true, title: 'Economics and Infrastructure', summary: 'A standing section for compute, capex, memory, data centers, routing, power, latency, and cost pressures shaping AI adoption.', aliases: ['AI infrastructure economics'], segmentIds: ['capex-stack', 'memory-demand'] },
+      { id: 'theme-infra', approved: true, recurring: true, collapsed: true, title: 'Economics', summary: 'A standing section for compute, capex, memory, data centers, routing, power, latency, and cost pressures shaping AI adoption.', aliases: ['AI infrastructure economics'], segmentIds: ['capex-stack', 'memory-demand'] },
       { id: 'theme-power', approved: true, recurring: true, collapsed: true, title: 'Power Moves', summary: 'A standing section for founder drama, lawsuits, acquisitions, surprise partnerships, platform politics, and industry titan maneuvering.', aliases: ['AI governance and competition', 'AI-adjacent business strategy'], segmentIds: ['musk-altman-trial'] },
       { id: 'theme-robotics', approved: true, collapsed: true, title: 'Robotics commercialization is moving from demo to scale', summary: 'Humanoid production targets and frontier-lab robotics discussion suggest physical AI may become a credible near-term enterprise topic.', aliases: ['Robotics commercialization'], segmentIds: ['figure-scales-production', 'optimus-production'] },
       { id: 'theme-work', approved: false, collapsed: true, title: 'AI-native work practices are becoming management work', summary: 'Newsletters, labor rulings, and course demand suggest teams need shared practices for AI collaboration, not just individual prompting tips.', aliases: ['AI-native work practices', 'AI workplace impact'], segmentIds: ['china-ai-layoffs', 'ai-as-team', 'ai-product-strategy', 'ai-layoffs'] }
@@ -1353,7 +1353,7 @@
       draggedThemeId: null,
       approved: false
     };
-    const storageKey = `ai-newsletter-review-${issueModelSeed.issue.id}`;
+    const storageKey = 'ai-newsletter-review-2026-05-11';
 
     const candidateList = document.getElementById('candidate-list');
     const themeList = document.getElementById('theme-list');
@@ -1397,9 +1397,9 @@
       },
       sections: [
         { id: 'model-news', order: 1, title: 'Model News', headline: 'Model News: The Race Is Splitting Into Lanes', theme_id: 'theme-models' },
-        { id: 'agents', order: 2, title: 'All Things Agents', headline: 'All Things Agents: From Chatbot to Operating Layer', theme_id: 'theme-agents' },
+        { id: 'agents', order: 2, title: 'Agents', headline: 'Agents: From Chatbot to Operating Layer', theme_id: 'theme-agents' },
         { id: 'platforms', order: 3, title: 'Platform Plays', headline: 'Platform Plays: AI Is Moving Into Existing Surfaces', theme_id: 'theme-platforms' },
-        { id: 'infrastructure', order: 4, title: 'Economics & Infrastructure', headline: 'Economics & Infrastructure: Compute Is the Strategy', theme_id: 'theme-infra' },
+        { id: 'infrastructure', order: 4, title: 'Economics', headline: 'Economics: Compute Is the Strategy', theme_id: 'theme-infra' },
         { id: 'power-moves', order: 5, title: 'Power Moves', headline: 'Power Moves: The Drama Is Sometimes the Signal', theme_id: 'theme-power' }
       ],
       review: {
