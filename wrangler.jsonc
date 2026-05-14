@@ -1,0 +1,9 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "clarity-ai-newsletter",
+  "compatibility_date": "2026-05-14",
+  "assets": {
+    "directory": "./dist/cloudflare",
+    "not_found_handling": "404-page"
+  }
+}

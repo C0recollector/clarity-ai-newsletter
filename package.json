@@ -1,0 +1,11 @@
+{
+  "name": "clarity-ai-newsletter",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build:cloudflare": "node scripts/build_cloudflare_static.mjs"
+  },
+  "devDependencies": {
+    "wrangler": "^4.0.0"
+  }
+}
