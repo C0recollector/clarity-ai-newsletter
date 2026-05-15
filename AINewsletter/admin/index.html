@@ -1338,7 +1338,7 @@
       { id: 'theme-models', approved: true, recurring: true, collapsed: true, title: 'Model News', summary: 'A standing section for new models, capability jumps, pricing shifts, benchmarks, and specialized model lanes.', aliases: ['Specialized model race'], segmentIds: ['ai-writing-models', 'claude-opus-47', 'minimax-m27', 'qwen36', 'gpt-rosalind', 'microsoft-image', 'gpt-realtime'] },
       { id: 'theme-agents', approved: true, recurring: true, collapsed: true, title: 'Agents', summary: 'A standing section for agents, agentic workflows, agent OS ideas, orchestration, tools, roles, artifacts, validation, and practical automation.', aliases: ['Agentic workflows'], segmentIds: ['codex-everything', 'claude-code-update', 'memory-myth', 'workflow-roles-artifacts', 'memory-last', 'agentic-layer'] },
       { id: 'theme-platforms', approved: true, recurring: true, collapsed: true, title: 'Platform Plays', summary: 'A standing section for Google, Microsoft, OpenAI, Anthropic, Canva, Perplexity, and other platforms pushing AI into everyday work surfaces.', aliases: ['Google AI distribution', 'AI product/application layer'], segmentIds: ['google-desktop', 'gemini-mac', 'chrome-ai-update', 'nano-banana', 'canva-ai-updates', 'ai-2028-feel'] },
-      { id: 'theme-infra', approved: true, recurring: true, collapsed: true, title: 'Economics', summary: 'A standing section for compute, capex, memory, data centers, routing, power, latency, and cost pressures shaping AI adoption.', aliases: ['AI infrastructure economics'], segmentIds: ['capex-stack', 'memory-demand'] },
+      { id: 'theme-infra', approved: true, recurring: true, collapsed: true, title: 'Economics', summary: 'The catch-all for the AI stack underneath the headlines: compute, capex, memory, data centers, power, chips, devices, distribution, and odd but important infrastructure moves like Google Books or space-based Tensor experiments.', aliases: ['AI infrastructure economics'], segmentIds: ['capex-stack', 'memory-demand'] },
       { id: 'theme-power', approved: true, recurring: true, collapsed: true, title: 'Power Moves', summary: 'A standing section for founder drama, lawsuits, acquisitions, surprise partnerships, platform politics, and industry titan maneuvering.', aliases: ['AI governance and competition', 'AI-adjacent business strategy'], segmentIds: ['musk-altman-trial'] },
       { id: 'theme-robotics', approved: true, collapsed: true, title: 'Robotics commercialization is moving from demo to scale', summary: 'Humanoid production targets and frontier-lab robotics discussion suggest physical AI may become a credible near-term enterprise topic.', aliases: ['Robotics commercialization'], segmentIds: ['figure-scales-production', 'optimus-production'] },
       { id: 'theme-work', approved: false, collapsed: true, title: 'AI-native work practices are becoming management work', summary: 'Newsletters, labor rulings, and course demand suggest teams need shared practices for AI collaboration, not just individual prompting tips.', aliases: ['AI-native work practices', 'AI workplace impact'], segmentIds: ['china-ai-layoffs', 'ai-as-team', 'ai-product-strategy', 'ai-layoffs'] }
@@ -1418,6 +1418,8 @@
         candidateIncluded: candidate.included,
         source: candidate.source,
         sourceUrl: candidate.url,
+        sourceMaterial: segment.sourceMaterial || candidate.sourceMaterial || candidate.summary || '',
+        sourceMaterialRef: segment.sourceMaterialRef || candidate.sourceMaterialRef || '',
         manual: Boolean(candidate.manual),
         priority: candidate.priority || 'standard'
       })));
@@ -1561,6 +1563,54 @@
       return `Manual source from ${sourceInfo.host || 'URL'}`;
     }
 
+    function manualSegmentsFromSummary(summary, idBase, title, sourceInfo) {
+      const lines = summary.split(/\r?\n/).map(line => line.trim()).filter(Boolean);
+      const chapterLines = lines
+        .map(line => line.match(/^((?:\d{1,2}:)?\d{1,2}:\d{2})\s+(.+)$/))
+        .filter(Boolean)
+        .map(match => ({
+          time: match[1],
+          title: match[2].trim()
+        }));
+      const selectedChapterTitles = new Set(chapterLines.map(chapter => chapter.title));
+      const context = lines
+        .filter(line => !chapterLines.some(chapter => line.includes(chapter.time) && line.includes(chapter.title)))
+        .join(' ');
+      if (chapterLines.length >= 2 && chapterLines.length <= 8) {
+        return chapterLines.map((chapter, index) => {
+          const theme = inferCandidateTheme({
+            title: chapter.title,
+            summary: `${title} ${chapter.title} ${context}`,
+            source: sourceInfo.source
+          });
+          return {
+            id: `${idBase}-manual-topic-${index + 1}`,
+            selected: true,
+            strength: 'strong',
+            time: chapter.time,
+            theme,
+            title: chapter.title,
+            summary: `${chapter.title}. ${context || summary}`,
+            sourceMaterial: summary,
+            sourceMaterialRef: 'manual note'
+          };
+        });
+      }
+      return [
+        {
+          id: `${idBase}-signal`,
+          selected: true,
+          strength: 'strong',
+          time: sourceInfo.kind === 'youtube' ? 'manual URL' : 'manual source',
+          theme: 'Manual editorial signal',
+          title,
+          summary,
+          sourceMaterial: summary,
+          sourceMaterialRef: 'manual note'
+        }
+      ];
+    }
+
     function addManualSource() {
       const url = normalizeUrl(manualUrlEl.value);
       if (!url) {
@@ -1574,7 +1624,7 @@
       const summary = manualSummaryEl.value.trim()
         || 'Manually added editorial override. Review and refine this source before publishing.';
       const idBase = `manual-${slugify(title)}-${Date.now()}`;
-      const segmentId = `${idBase}-signal`;
+      const manualSegments = manualSegmentsFromSummary(summary, idBase, title, sourceInfo);
       const candidate = {
         id: idBase,
         kind: sourceInfo.kind,
@@ -1588,17 +1638,9 @@
         manual: true,
         priority: 'editorial_override',
         summary,
-        segments: [
-          {
-            id: segmentId,
-            selected: true,
-            strength: 'strong',
-            time: sourceInfo.kind === 'youtube' ? 'manual URL' : 'manual source',
-            theme: 'Manual editorial signal',
-            title,
-            summary
-          }
-        ]
+        sourceMaterial: summary,
+        sourceMaterialRef: 'manual note',
+        segments: manualSegments
       };
 
       state.candidates.unshift(candidate);
@@ -1606,7 +1648,7 @@
       manualTitleEl.value = '';
       manualSummaryEl.value = '';
       render();
-      manualSourceNoteEl.textContent = `${sourceInfo.label} candidate added as a high-priority manual override.`;
+      manualSourceNoteEl.textContent = `${sourceInfo.label} candidate added as a high-priority manual override with ${manualSegments.length} selectable item(s).`;
       statusEl.textContent = `Added manual source: ${title}`;
     }
 
@@ -1828,7 +1870,9 @@
         time: chapter.time,
         theme,
         title: chapter.title,
-        summary: `Chapter from ${item.title || 'this source'}: ${chapter.title}.`
+        summary: `Chapter from ${item.title || 'this source'}: ${chapter.title}.`,
+        sourceMaterial: item.sourceMaterial || item.summary || '',
+        sourceMaterialRef: item.sourceMaterialRef || ''
       };
     }
 
@@ -1859,7 +1903,9 @@
           time: group.startTime === group.endTime ? group.startTime : `${group.startTime}-${group.endTime}`,
           theme: group.theme,
           title,
-          summary: `Grouped related chapters: ${titles.join('; ')}.`
+          summary: `Grouped related chapters: ${titles.join('; ')}.`,
+          sourceMaterial: group.items.map(item => item.sourceMaterial || item.summary).join('\n\n'),
+          sourceMaterialRef: group.items.find(item => item.sourceMaterialRef)?.sourceMaterialRef || ''
         };
       });
     }
@@ -1888,7 +1934,9 @@
           time: 'title topic',
           theme,
           title: piece,
-          summary: `Topic called out by the source title: ${piece}. ${fallbackSummary}`
+          summary: `Topic called out by the source title: ${piece}. ${fallbackSummary}`,
+          sourceMaterial: item.sourceMaterial || fallbackSummary,
+          sourceMaterialRef: item.sourceMaterialRef || ''
         };
       });
     }
@@ -1911,7 +1959,9 @@
           time: item.transcript_status === 'ok' ? 'transcript' : 'metadata',
           theme,
           title: item.title || 'Candidate signal',
-          summary: fallbackSummary
+          summary: fallbackSummary,
+          sourceMaterial: item.sourceMaterial || fallbackSummary,
+          sourceMaterialRef: item.sourceMaterialRef || ''
         }
       ];
     }
@@ -1939,6 +1989,8 @@
         included,
         priority: item.priority || 'standard',
         summary: `${summary}${transcriptStatus}`,
+        sourceMaterial: item.source_material || item.sourceMaterial || item.description || summary,
+        sourceMaterialRef: item.source_material_ref || item.sourceMaterialRef || '',
         sourceLane: item.source_lane || '',
         durationLabel: durationLabel(item.duration_seconds, chapters),
         relevance: relevanceLevel(score, item.priority || 'standard'),
@@ -2409,6 +2461,8 @@
           candidate: segment.candidateTitle,
           title: segment.title,
           summary: segment.summary,
+          source_material: segment.sourceMaterial,
+          source_material_ref: segment.sourceMaterialRef,
           time: segment.time,
           suggested_theme: segment.theme,
           strength: segment.strength

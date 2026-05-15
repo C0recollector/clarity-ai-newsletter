@@ -708,8 +708,9 @@ def candidate_from_video(video: dict) -> dict:
     transcript = video.get("transcript", {})
     has_transcript = transcript.get("status") == "ok"
     description = video.get("description") or ""
+    transcript_text = transcript.get("text", "").strip() if has_transcript else ""
     summary = (
-        transcript.get("text", "")[:420].strip()
+        transcript_text[:420]
         if has_transcript
         else description or transcript.get("error") or "Metadata-only candidate; transcript is not available yet."
     )
@@ -729,6 +730,8 @@ def candidate_from_video(video: dict) -> dict:
         "transcript_error_type": transcript.get("error_type", ""),
         "description": description,
         "duration_seconds": transcript_duration_seconds(transcript),
+        "source_material_ref": f"data/youtube/*-{video.get('video_id')}.json",
+        "source_material": transcript_text[:12000] if transcript_text else description,
         "summary": summary,
     }
 
@@ -756,8 +759,12 @@ def enrich_pool_candidates(candidates: list[dict], issue_date: str) -> list[dict
         source_video = videos.get(video_id)
         if source_video:
             transcript = source_video.get("transcript", {})
+            transcript_text = transcript.get("text", "").strip() if transcript.get("status") == "ok" else ""
             item.setdefault("description", source_video.get("description") or "")
             item.setdefault("duration_seconds", transcript_duration_seconds(transcript))
+            item.setdefault("source_material_ref", f"data/youtube/*-{video_id}.json")
+            if transcript_text:
+                item.setdefault("source_material", transcript_text[:12000])
         enriched.append(item)
     return enriched
 

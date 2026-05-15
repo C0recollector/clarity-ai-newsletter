@@ -1,18 +1,18 @@
 # AI & News to watch
 
-Fetched: 2026-05-13T20:41:20.483050+00:00
+Fetched: 2026-05-14T02:29:36.234515+00:00
 Playlist ID: `PLxFjGka4tveAOS0oDFqsnlsG0UqdlN0yC`
 
-## Nobody Understands How Big This Is (Cerebras IPO)
+## Everyone's getting hacked
 
-- Channel: Limitless Podcast
-- Published: 2026-05-12T13:45:10+00:00
-- Updated: 2026-05-12T17:09:14+00:00
-- URL: https://www.youtube.com/watch?v=kCupZL_5Fgw
+- Channel: Matthew Berman
+- Published: 
+- Updated: 
+- URL: https://www.youtube.com/watch?v=hAzhVloGkOw
 - Transcript: error
 
 
-Could not retrieve a transcript for the video https://www.youtube.com/watch?v=kCupZL_5Fgw! This is most likely caused by:
+Could not retrieve a transcript for the video https://www.youtube.com/watch?v=hAzhVloGkOw! This is most likely caused by:
 
 YouTube is blocking requests from your IP. This usually is due to one of the following reasons:
 - You have done too many requests and your IP has been blocked by YouTube
@@ -23,11 +23,31 @@ Ways to work around this are explained in the "Working around IP bans" section o
 
 If you are sure that the described cause is not responsible for this error and that a transcript should be retrievable, please create an issue at https://github.com/jdepoix/youtube-transcript-api/issues. Please add which version of youtube_transcript_api you are using and provide the information needed to replicate the error. Also make sure that there are no open issues which already describe your problem!
 
+## There's a Big Move Coming for AI Memory Stocks
+
+- Channel: Limitless Podcast
+- Published: 
+- Updated: 
+- URL: https://www.youtube.com/watch?v=UzpLbVHE6uY
+- Transcript: error
+
+Skipped because YouTube blocked transcript requests earlier in this run.
+
+## Nobody Understands How Big This Is (Cerebras IPO)
+
+- Channel: Limitless Podcast
+- Published: 
+- Updated: 
+- URL: https://www.youtube.com/watch?v=kCupZL_5Fgw
+- Transcript: error
+
+Skipped because YouTube blocked transcript requests earlier in this run.
+
 ## Claude Mythos Just Crossed A Dangerous Line... AGAIN!
 
 - Channel: AI Revolution
-- Published: 2026-05-11T22:26:35+00:00
-- Updated: 2026-05-12T09:21:35+00:00
+- Published: 
+- Updated: 
 - URL: https://www.youtube.com/watch?v=i-ioLtvb19o
 - Transcript: error
 
@@ -36,8 +56,8 @@ Skipped because YouTube blocked transcript requests earlier in this run.
 ## Anthropic combines with SPACEXAI!
 
 - Channel: DigitalMada
-- Published: 2026-05-10T06:38:03+00:00
-- Updated: 2026-05-11T07:01:40+00:00
+- Published: 
+- Updated: 
 - URL: https://www.youtube.com/watch?v=mhDwmcgMoQQ
 - Transcript: error
 
@@ -46,8 +66,8 @@ Skipped because YouTube blocked transcript requests earlier in this run.
 ## Google's Record Quarter, the White House Intervenes, and GPT 5.5 Silently Matches Mythos | EP 254
 
 - Channel: Peter H. Diamandis
-- Published: 2026-05-09T15:01:54+00:00
-- Updated: 2026-05-09T22:48:17+00:00
+- Published: 
+- Updated: 
 - URL: https://www.youtube.com/watch?v=zdAqvqhdVgU
 - Transcript: error
 
@@ -56,8 +76,8 @@ Skipped because YouTube blocked transcript requests earlier in this run.
 ## AI News: ChatGPT Is Back, NotebookLM Update, Google AI Health Coach, New Pomelli Feature...
 
 - Channel: Paul J Lipsky
-- Published: 2026-05-09T13:01:24+00:00
-- Updated: 2026-05-12T21:12:06+00:00
+- Published: 
+- Updated: 
 - URL: https://www.youtube.com/watch?v=myJ2IVHOfrI
 - Transcript: error
 
@@ -66,8 +86,8 @@ Skipped because YouTube blocked transcript requests earlier in this run.
 ## Elon’s Anthropic Deal, The Next AI Monopoly?, “FDA for AI” Panic, Trading the AI Boom
 
 - Channel: All-In Podcast
-- Published: 2026-05-08T22:46:01+00:00
-- Updated: 2026-05-12T20:33:12+00:00
+- Published: 
+- Updated: 
 - URL: https://www.youtube.com/watch?v=10MdOvK-aG4
 - Transcript: error
 
@@ -76,8 +96,8 @@ Skipped because YouTube blocked transcript requests earlier in this run.
 ## AI News: OpenAI Absolutely Cooked This Week!
 
 - Channel: Matt Wolfe
-- Published: 2026-05-08T15:00:27+00:00
-- Updated: 2026-05-09T11:11:23+00:00
+- Published: 
+- Updated: 
 - URL: https://www.youtube.com/watch?v=SXneZ3bRKO4
 - Transcript: error
 
@@ -86,8 +106,8 @@ Skipped because YouTube blocked transcript requests earlier in this run.
 ## The Real Reason Elon Made a Deal with Anthropic
 
 - Channel: Limitless Podcast
-- Published: 2026-05-08T13:53:24+00:00
-- Updated: 2026-05-13T17:44:43+00:00
+- Published: 
+- Updated: 
 - URL: https://www.youtube.com/watch?v=-q9SvNvfOHM
 - Transcript: error
 
@@ -96,8 +116,8 @@ Skipped because YouTube blocked transcript requests earlier in this run.
 ## Surprise Elon-Anthropic Team Up Reshapes AI Race
 
 - Channel: The AI Daily Brief: Artificial Intelligence News
-- Published: 2026-05-07T21:38:41+00:00
-- Updated: 2026-05-13T18:44:25+00:00
+- Published: 
+- Updated: 
 - URL: https://www.youtube.com/watch?v=RnqEXgcwg-g
 - Transcript: error
 
@@ -106,8 +126,8 @@ Skipped because YouTube blocked transcript requests earlier in this run.
 ## Demis Hassabis on AGI, Robots Scale Production, and Elon’s $1T Mars-Shot Comp | EP 253
 
 - Channel: Peter H. Diamandis
-- Published: 2026-05-07T20:00:23+00:00
-- Updated: 2026-05-13T07:14:27+00:00
+- Published: 
+- Updated: 
 - URL: https://www.youtube.com/watch?v=Jg2jJH1K0o8
 - Transcript: ok
 
@@ -116,8 +136,8 @@ Dennis Hassabis uh the CEO of Deep Mind uh says AGI may not need a major breakth
 ## Why Elon Musk is even more powerful than you think | The Global Story
 
 - Channel: BBC News
-- Published: 2026-05-07T15:30:26+00:00
-- Updated: 2026-05-08T07:40:37+00:00
+- Published: 
+- Updated: 
 - URL: https://www.youtube.com/watch?v=KdLJbpi-QwY
 - Transcript: error
 
@@ -126,8 +146,8 @@ Skipped because YouTube blocked transcript requests earlier in this run.
 ## Where is AI Going Next?
 
 - Channel: Limitless Podcast
-- Published: 2026-05-07T14:11:06+00:00
-- Updated: 2026-05-07T21:56:42+00:00
+- Published: 
+- Updated: 
 - URL: https://www.youtube.com/watch?v=_6O19bEZgMc
 - Transcript: ok
 
@@ -136,29 +156,9 @@ If you bought Sandisk stock [music] just a year ago, you're up 40 times your mon
 ## I Tested 500+ AI Tools, These Will Make You Rich
 
 - Channel: Dan Martell
-- Published: 2026-05-07T13:01:25+00:00
-- Updated: 2026-05-11T20:02:57+00:00
+- Published: 
+- Updated: 
 - URL: https://www.youtube.com/watch?v=np6CwvTYTAM
-- Transcript: error
-
-Skipped because YouTube blocked transcript requests earlier in this run.
-
-## Google’s New AI Is The OpenClaw Killer
-
-- Channel: AI Revolution
-- Published: 2026-05-06T22:33:48+00:00
-- Updated: 2026-05-10T17:19:49+00:00
-- URL: https://www.youtube.com/watch?v=nov9uoIQt6g
-- Transcript: error
-
-Skipped because YouTube blocked transcript requests earlier in this run.
-
-## Codex is The NEW Best AI Coding Tool (Here's Why)
-
-- Channel: Riley Brown
-- Published: 2026-05-02T20:35:06+00:00
-- Updated: 2026-05-11T06:56:54+00:00
-- URL: https://www.youtube.com/watch?v=FU2iB-UfPPA
 - Transcript: error
 
 Skipped because YouTube blocked transcript requests earlier in this run.

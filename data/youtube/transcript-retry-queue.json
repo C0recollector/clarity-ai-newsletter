@@ -1,15 +1,37 @@
 {
-  "updated_at": "2026-05-13T20:41:20.490230+00:00",
+  "updated_at": "2026-05-14T02:29:36.242171+00:00",
   "items": [
+    {
+      "video_id": "hAzhVloGkOw",
+      "title": "Everyone's getting hacked",
+      "url": "https://www.youtube.com/watch?v=hAzhVloGkOw",
+      "channel": "Matthew Berman",
+      "source_lane": "youtube_playlist",
+      "last_error_type": "IpBlocked",
+      "last_error": "\nCould not retrieve a transcript for the video https://www.youtube.com/watch?v=hAzhVloGkOw! This is most likely caused by:\n\nYouTube is blocking requests from your IP. This usually is due to one of the following reasons:\n- You have done too many requests and your IP has been blocked by YouTube\n- You are doing requests from an IP belonging to a cloud provider (like AWS, Google Cloud Platform, Azure, etc.). Unfortunately, most IPs from cloud providers are blocked by YouTube.\n\nWays to work around this are explained in the \"Working around IP bans\" section of the README (https://github.com/jdepoix/youtube-transcript-api?tab=readme-ov-file#working-around-ip-bans-requestblocked-or-ipblocked-exception).\n\n\nIf you are sure that the described cause is not responsible for this error and that a transcript should be retrievable, please create an issue at https://github.com/jdepoix/youtube-transcript-api/issues. Please add which version of youtube_transcript_api you are using and provide the information needed to replicate the error. Also make sure that there are no open issues which already describe your problem!",
+      "updated_at": "2026-05-14T02:29:36.242139+00:00",
+      "attempt_count": 1
+    },
+    {
+      "video_id": "UzpLbVHE6uY",
+      "title": "There's a Big Move Coming for AI Memory Stocks",
+      "url": "https://www.youtube.com/watch?v=UzpLbVHE6uY",
+      "channel": "Limitless Podcast",
+      "source_lane": "youtube_playlist",
+      "last_error_type": "SkippedAfterIpBlocked",
+      "last_error": "Skipped because YouTube blocked transcript requests earlier in this run.",
+      "updated_at": "2026-05-14T02:29:36.242151+00:00",
+      "attempt_count": 0
+    },
     {
       "video_id": "kCupZL_5Fgw",
       "title": "Nobody Understands How Big This Is (Cerebras IPO)",
       "url": "https://www.youtube.com/watch?v=kCupZL_5Fgw",
       "channel": "Limitless Podcast",
       "source_lane": "youtube_playlist",
-      "last_error_type": "IpBlocked",
-      "last_error": "\nCould not retrieve a transcript for the video https://www.youtube.com/watch?v=kCupZL_5Fgw! This is most likely caused by:\n\nYouTube is blocking requests from your IP. This usually is due to one of the following reasons:\n- You have done too many requests and your IP has been blocked by YouTube\n- You are doing requests from an IP belonging to a cloud provider (like AWS, Google Cloud Platform, Azure, etc.). Unfortunately, most IPs from cloud providers are blocked by YouTube.\n\nWays to work around this are explained in the \"Working around IP bans\" section of the README (https://github.com/jdepoix/youtube-transcript-api?tab=readme-ov-file#working-around-ip-bans-requestblocked-or-ipblocked-exception).\n\n\nIf you are sure that the described cause is not responsible for this error and that a transcript should be retrievable, please create an issue at https://github.com/jdepoix/youtube-transcript-api/issues. Please add which version of youtube_transcript_api you are using and provide the information needed to replicate the error. Also make sure that there are no open issues which already describe your problem!",
-      "updated_at": "2026-05-13T20:41:20.490199+00:00",
+      "last_error_type": "SkippedAfterIpBlocked",
+      "last_error": "Skipped because YouTube blocked transcript requests earlier in this run.",
+      "updated_at": "2026-05-14T02:29:36.242154+00:00",
       "attempt_count": 3
     },
     {
@@ -20,7 +42,7 @@
       "source_lane": "youtube_playlist",
       "last_error_type": "SkippedAfterIpBlocked",
       "last_error": "Skipped because YouTube blocked transcript requests earlier in this run.",
-      "updated_at": "2026-05-13T20:41:20.490211+00:00",
+      "updated_at": "2026-05-14T02:29:36.242156+00:00",
       "attempt_count": 0
     },
     {
@@ -31,7 +53,7 @@
       "source_lane": "youtube_playlist",
       "last_error_type": "SkippedAfterIpBlocked",
       "last_error": "Skipped because YouTube blocked transcript requests earlier in this run.",
-      "updated_at": "2026-05-13T20:41:20.490214+00:00",
+      "updated_at": "2026-05-14T02:29:36.242158+00:00",
       "attempt_count": 0
     },
     {
@@ -42,7 +64,7 @@
       "source_lane": "youtube_playlist",
       "last_error_type": "SkippedAfterIpBlocked",
       "last_error": "Skipped because YouTube blocked transcript requests earlier in this run.",
-      "updated_at": "2026-05-13T20:41:20.490215+00:00",
+      "updated_at": "2026-05-14T02:29:36.242159+00:00",
       "attempt_count": 0
     },
     {
@@ -53,7 +75,7 @@
       "source_lane": "youtube_playlist",
       "last_error_type": "SkippedAfterIpBlocked",
       "last_error": "Skipped because YouTube blocked transcript requests earlier in this run.",
-      "updated_at": "2026-05-13T20:41:20.490217+00:00",
+      "updated_at": "2026-05-14T02:29:36.242161+00:00",
       "attempt_count": 0
     },
     {
@@ -64,7 +86,7 @@
       "source_lane": "youtube_playlist",
       "last_error_type": "SkippedAfterIpBlocked",
       "last_error": "Skipped because YouTube blocked transcript requests earlier in this run.",
-      "updated_at": "2026-05-13T20:41:20.490218+00:00",
+      "updated_at": "2026-05-14T02:29:36.242162+00:00",
       "attempt_count": 0
     },
     {
@@ -75,7 +97,7 @@
       "source_lane": "youtube_playlist",
       "last_error_type": "SkippedAfterIpBlocked",
       "last_error": "Skipped because YouTube blocked transcript requests earlier in this run.",
-      "updated_at": "2026-05-13T20:41:20.490220+00:00",
+      "updated_at": "2026-05-14T02:29:36.242164+00:00",
       "attempt_count": 0
     },
     {
@@ -86,7 +108,7 @@
       "source_lane": "youtube_playlist",
       "last_error_type": "SkippedAfterIpBlocked",
       "last_error": "Skipped because YouTube blocked transcript requests earlier in this run.",
-      "updated_at": "2026-05-13T20:41:20.490221+00:00",
+      "updated_at": "2026-05-14T02:29:36.242165+00:00",
       "attempt_count": 0
     },
     {
@@ -97,7 +119,7 @@
       "source_lane": "youtube_playlist",
       "last_error_type": "SkippedAfterIpBlocked",
       "last_error": "Skipped because YouTube blocked transcript requests earlier in this run.",
-      "updated_at": "2026-05-13T20:41:20.490222+00:00",
+      "updated_at": "2026-05-14T02:29:36.242166+00:00",
       "attempt_count": 0
     },
     {
@@ -108,7 +130,7 @@
       "source_lane": "youtube_playlist",
       "last_error_type": "SkippedAfterIpBlocked",
       "last_error": "Skipped because YouTube blocked transcript requests earlier in this run.",
-      "updated_at": "2026-05-13T20:41:20.490224+00:00",
+      "updated_at": "2026-05-14T02:29:36.242168+00:00",
       "attempt_count": 0
     },
     {
@@ -119,29 +141,7 @@
       "source_lane": "youtube_playlist",
       "last_error_type": "SkippedAfterIpBlocked",
       "last_error": "Skipped because YouTube blocked transcript requests earlier in this run.",
-      "updated_at": "2026-05-13T20:41:20.490226+00:00",
-      "attempt_count": 0
-    },
-    {
-      "video_id": "nov9uoIQt6g",
-      "title": "Google’s New AI Is The OpenClaw Killer",
-      "url": "https://www.youtube.com/watch?v=nov9uoIQt6g",
-      "channel": "AI Revolution",
-      "source_lane": "youtube_playlist",
-      "last_error_type": "SkippedAfterIpBlocked",
-      "last_error": "Skipped because YouTube blocked transcript requests earlier in this run.",
-      "updated_at": "2026-05-13T20:41:20.490227+00:00",
-      "attempt_count": 0
-    },
-    {
-      "video_id": "FU2iB-UfPPA",
-      "title": "Codex is The NEW Best AI Coding Tool (Here's Why)",
-      "url": "https://www.youtube.com/watch?v=FU2iB-UfPPA",
-      "channel": "Riley Brown",
-      "source_lane": "youtube_playlist",
-      "last_error_type": "SkippedAfterIpBlocked",
-      "last_error": "Skipped because YouTube blocked transcript requests earlier in this run.",
-      "updated_at": "2026-05-13T20:41:20.490228+00:00",
+      "updated_at": "2026-05-14T02:29:36.242169+00:00",
       "attempt_count": 0
     }
   ]

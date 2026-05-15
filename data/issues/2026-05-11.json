@@ -3,8 +3,8 @@
   "issue": {
     "id": "2026-05-11",
     "week_of": "2026-05-11",
-    "title": "The AI Stack Gets Real",
-    "dek": "This week is less about one magic breakthrough and more about leverage: which models are worth paying for, where agents can actually work, which platforms will own the user, and how compute costs and power moves shape the next round.",
+    "title": "The Week AI Became Infrastructure",
+    "dek": "The useful story this week is not \"more AI news.\" It is that AI is reorganizing into infrastructure layers: model portfolios, agent operating systems, distribution surfaces, compute supply chains, and power politics.",
     "status": "approved",
     "default_audience": "c_suite",
     "editions": [
@@ -22,10 +22,8 @@
   },
   "assets": {
     "hero": "AINewsletter/assets/ai-infrastructure-hero.png",
-    "model_news_radar": "AINewsletter/assets/model-news-radar-gpt-image-2.png",
     "platform_distribution": "AINewsletter/assets/platform-distribution-map-gpt-image-2.png",
-    "compute_economics": "AINewsletter/assets/compute-economics-gpt-image-2.png",
-    "power_moves_compute_control": "AINewsletter/assets/power-moves-compute-control-gpt-image-2.png"
+    "compute_economics": "AINewsletter/assets/compute-economics-gpt-image-2.png"
   },
   "sections": [
     {
@@ -35,8 +33,13 @@
       "headline": "Model News",
       "theme_id": "theme-models",
       "approved_theme_title": "Model News",
-      "summary": "A standing section for new models, capability jumps, pricing shifts, benchmarks, and specialized model lanes.",
-      "evidence_segment_ids": []
+      "summary": "New models released, with a focus on capability, pricing, and benchmarks.",
+      "evidence_segment_ids": [
+        "pool-yt-sxnez3brko4-chapter-1-group-1",
+        "pool-yt-sxnez3brko4-chapter-7-group-5",
+        "pool-yt-sxnez3brko4-chapter-9-group-7",
+        "pool-yt-q9svnvfohm-chapter-6"
+      ]
     },
     {
       "id": "agents",
@@ -46,7 +49,34 @@
       "theme_id": "theme-agents",
       "approved_theme_title": "Agents",
       "summary": "A standing section for agents, agentic workflows, agent OS ideas, orchestration, tools, roles, artifacts, validation, and practical automation.",
-      "evidence_segment_ids": []
+      "evidence_segment_ids": [
+        "pool-yt-i-ioltvb19o-signal",
+        "pool-yt-zdaqvqhdvgu-chapter-1-group-1",
+        "pool-yt-zdaqvqhdvgu-chapter-5-group-3",
+        "pool-yt-zdaqvqhdvgu-chapter-10-group-5",
+        "pool-yt-myj2ivhofri-chapter-4-group-2",
+        "pool-yt-sxnez3brko4-chapter-5-group-3",
+        "pool-yt-sxnez3brko4-chapter-13-group-10",
+        "pool-yt-np6cwvtytam-topic-1",
+        "pool-yt-nov9uoiqt6g-chapter-1",
+        "pool-yt-nov9uoiqt6g-chapter-2",
+        "pool-yt-nov9uoiqt6g-chapter-3",
+        "pool-yt-nov9uoiqt6g-chapter-4",
+        "pool-yt-nov9uoiqt6g-chapter-5",
+        "pool-yt-nov9uoiqt6g-chapter-6",
+        "pool-yt-b8v8bdmc8oq-signal",
+        "pool-yt-yke4flqush4-chapter-2-group-2",
+        "pool-yt-yke4flqush4-chapter-3-group-3",
+        "pool-yt-yke4flqush4-chapter-7-group-4",
+        "pool-yt-yke4flqush4-chapter-14-group-6",
+        "pool-yt-yke4flqush4-chapter-15-group-7",
+        "pool-yt-yke4flqush4-chapter-19-group-8",
+        "pool-yt-b3vfchfk2b4-signal",
+        "pool-yt-msice1foywy-topic-1",
+        "pool-yt-msice1foywy-topic-2",
+        "pool-yt-msice1foywy-topic-3",
+        "pool-yt-lsma-kvpwf0-signal"
+      ]
     },
     {
       "id": "platforms",
@@ -55,18 +85,81 @@
       "headline": "Platform Plays",
       "theme_id": "theme-platforms",
       "approved_theme_title": "Platform Plays",
-      "summary": "A standing section for Google, Microsoft, OpenAI, Anthropic, Canva, Perplexity, and other platforms pushing AI into everyday work surfaces.",
-      "evidence_segment_ids": []
+      "summary": "News on Google, Microsoft, OpenAI, Anthropic, Meta, Perplexity, Chinese/opensource companies, and other platforms pushing AI into everyday work surfaces.",
+      "evidence_segment_ids": [
+        "manual-this-250-google-laptop-is-a-game-changer-1778812112790-signal",
+        "pool-yt-myj2ivhofri-chapter-1-group-1",
+        "pool-yt-myj2ivhofri-chapter-5-group-3",
+        "pool-yt-myj2ivhofri-chapter-13-group-5",
+        "pool-yt-myj2ivhofri-chapter-15-group-7",
+        "pool-yt-sxnez3brko4-chapter-3-group-2",
+        "pool-yt-sxnez3brko4-chapter-6-group-4",
+        "pool-yt-sxnez3brko4-chapter-10-group-8",
+        "pool-yt-sxnez3brko4-chapter-14-group-11",
+        "pool-yt-q9svnvfohm-chapter-4",
+        "pool-yt-6o19bezgmc-signal",
+        "pool-yt-np6cwvtytam-topic-2",
+        "pool-yt-yke4flqush4-chapter-1-group-1",
+        "pool-yt-yke4flqush4-chapter-9-group-5",
+        "pool-yt-yke4flqush4-chapter-21-group-9",
+        "pool-yt-20bsrqrrcw8-signal",
+        "pool-yt-hpbmflgls-4-signal",
+        "pool-yt-v1sfuy4mh3o-signal",
+        "pool-yt-kp8y4pvlqfi-signal",
+        "pool-yt-tx3yjoaotp4-signal",
+        "pool-yt-jxesbtylvbg-signal",
+        "pool-yt-3dcowoca2fq-signal",
+        "pool-yt-wnzthzndfn0-signal",
+        "pool-yt-kpnrb59xfa-signal",
+        "pool-yt-org0tkhyiba-signal",
+        "pool-yt-u4g4l9pvozy-chapter-1-group-1",
+        "pool-yt-u4g4l9pvozy-chapter-10-group-3",
+        "pool-yt-u4g4l9pvozy-chapter-20-group-5"
+      ]
     },
     {
       "id": "infrastructure",
       "order": 4,
-      "title": "Economics",
-      "headline": "Economics",
+      "title": "New and Interesting",
+      "headline": "New and Interesting",
       "theme_id": "theme-infra",
-      "approved_theme_title": "Economics",
-      "summary": "A standing section for compute, capex, memory, data centers, routing, power, latency, and cost pressures shaping AI adoption.",
-      "evidence_segment_ids": []
+      "approved_theme_title": "New and Interesting",
+      "summary": "Interesting announcements.",
+      "evidence_segment_ids": [
+        "pool-yt-kcupzl-5fgw-chapter-1-group-1",
+        "pool-yt-mhdwmcgmoqq-signal",
+        "pool-yt-zdaqvqhdvgu-chapter-4-group-2",
+        "pool-yt-zdaqvqhdvgu-chapter-9-group-4",
+        "pool-yt-myj2ivhofri-chapter-12-group-4",
+        "pool-yt-myj2ivhofri-chapter-14-group-6",
+        "pool-yt-10mdovk-ag4-chapter-2",
+        "pool-yt-sxnez3brko4-chapter-8-group-6",
+        "pool-yt-sxnez3brko4-chapter-12-group-9",
+        "pool-yt-sxnez3brko4-chapter-16-group-12",
+        "pool-yt-q9svnvfohm-chapter-1",
+        "pool-yt-rnqexgcwg-g-signal",
+        "pool-yt-kdljbpi-qwy-chapter-1",
+        "pool-yt-kdljbpi-qwy-chapter-2",
+        "pool-yt-kdljbpi-qwy-chapter-3",
+        "pool-yt-kdljbpi-qwy-chapter-4",
+        "pool-yt-kdljbpi-qwy-chapter-5",
+        "pool-yt-kdljbpi-qwy-chapter-6",
+        "pool-yt-kdljbpi-qwy-chapter-7",
+        "pool-yt-kdljbpi-qwy-chapter-8",
+        "pool-yt-rxziezfeede-signal",
+        "pool-yt-wefrl6cnfua-signal",
+        "pool-yt-c4nxmax27w0-signal",
+        "pool-yt-z7ee9vwkrca-signal",
+        "pool-yt-j6tlew-oflo-signal",
+        "pool-yt-uzplbvhe6uy-chapter-1",
+        "pool-yt-uzplbvhe6uy-chapter-2",
+        "pool-yt-uzplbvhe6uy-chapter-3",
+        "pool-yt-uzplbvhe6uy-chapter-4",
+        "pool-yt-uzplbvhe6uy-chapter-5",
+        "pool-yt-uzplbvhe6uy-chapter-6",
+        "pool-yt-cq1dclcupso-signal",
+        "pool-yt-7odpzzj00jm-signal"
+      ]
     },
     {
       "id": "power-moves",
@@ -76,19 +169,60 @@
       "theme_id": "theme-power",
       "approved_theme_title": "Power Moves",
       "summary": "A standing section for founder drama, lawsuits, acquisitions, surprise partnerships, platform politics, and industry titan maneuvering.",
-      "evidence_segment_ids": []
+      "evidence_segment_ids": [
+        "pool-yt-10mdovk-ag4-chapter-1",
+        "pool-yt-10mdovk-ag4-chapter-3",
+        "pool-yt-10mdovk-ag4-chapter-4",
+        "pool-yt-10mdovk-ag4-chapter-5",
+        "pool-yt-10mdovk-ag4-chapter-6",
+        "pool-yt-q9svnvfohm-chapter-2",
+        "pool-yt-q9svnvfohm-chapter-3",
+        "pool-yt-q9svnvfohm-chapter-5",
+        "pool-yt-q9svnvfohm-chapter-7",
+        "pool-yt-okvfmtds6fi-signal",
+        "pool-yt-sphghj7nwtc-topic-1",
+        "pool-yt-sphghj7nwtc-topic-2",
+        "pool-yt-sphghj7nwtc-topic-3",
+        "pool-yt-u4g4l9pvozy-chapter-8-group-2",
+        "pool-yt-u4g4l9pvozy-chapter-18-group-4"
+      ]
+    },
+    {
+      "id": "other-1778812805167",
+      "order": 6,
+      "title": "Other signals to consider",
+      "headline": "Other signals to consider",
+      "theme_id": "theme-other-1778812805167",
+      "approved_theme_title": "Other signals to consider",
+      "summary": "Selected items that did not fit the approved theme set cleanly. Review these before final publishing.",
+      "evidence_segment_ids": [
+        "pool-yt-jg2jjh1k0o8-topic-1",
+        "pool-yt-jg2jjh1k0o8-topic-2",
+        "pool-yt-jg2jjh1k0o8-topic-3"
+      ]
     }
   ],
   "review": {
     "source": "AINewsletter/admin/index.html",
     "status": "approved",
-    "approved_at": "2026-05-14T13:57:48.073Z",
+    "approved_at": "2026-05-15T02:43:43.924Z",
     "approved_review": {
       "run_date": "2026-05-11",
       "status": "approved",
       "target_audience": "c_suite",
       "audience_guidance": "Write for executives: emphasize strategic implications, business risk, vendor/platform movement, budget/ROI, and decisions leaders should watch.",
       "selected_candidates": [
+        {
+          "id": "manual-this-250-google-laptop-is-a-game-changer-1778812112790",
+          "title": "This $250 Google Laptop is a Game Changer",
+          "source": "Manual YouTube",
+          "url": "https://www.youtube.com/watch?v=N3oqUmSBmIc&list=PLxFjGka4tveAOS0oDFqsnlsG0UqdlN0yC&index=1&t=143s",
+          "manual": true,
+          "priority": "editorial_override",
+          "selected_segments": [
+            "manual-this-250-google-laptop-is-a-game-changer-1778812112790-signal"
+          ]
+        },
         {
           "id": "pool-yt-kcupzl-5fgw",
           "title": "Nobody Understands How Big This Is (Cerebras IPO)",
@@ -599,6 +733,19 @@
         }
       ],
       "selected_segments": [
+        {
+          "id": "manual-this-250-google-laptop-is-a-game-changer-1778812112790-signal",
+          "source": "Manual YouTube",
+          "url": "https://www.youtube.com/watch?v=N3oqUmSBmIc&list=PLxFjGka4tveAOS0oDFqsnlsG0UqdlN0yC&index=1&t=143s",
+          "manual": true,
+          "priority": "editorial_override",
+          "candidate": "This $250 Google Laptop is a Game Changer",
+          "title": "This $250 Google Laptop is a Game Changer",
+          "summary": "The two key things in this article are news about the Google Books project and Google's deal with SpaceX.\n0:00 Googlebook\n6:48 Google’s SpaceX Deal\nI'd like to ensure we capture all of the transcript related to these two sections, and I want to add them to the proposed theme.",
+          "time": "manual URL",
+          "suggested_theme": "Manual editorial signal",
+          "strength": "strong"
+        },
         {
           "id": "pool-yt-kcupzl-5fgw-chapter-1-group-1",
           "source": "Limitless Podcast",
@@ -2009,36 +2156,158 @@
           "order": 1,
           "id": "theme-models",
           "title": "Model News",
-          "summary": "A standing section for new models, capability jumps, pricing shifts, benchmarks, and specialized model lanes.",
-          "supporting_segments": []
+          "summary": "New models released, with a focus on capability, pricing, and benchmarks.",
+          "supporting_segments": [
+            "pool-yt-sxnez3brko4-chapter-1-group-1",
+            "pool-yt-sxnez3brko4-chapter-7-group-5",
+            "pool-yt-sxnez3brko4-chapter-9-group-7",
+            "pool-yt-q9svnvfohm-chapter-6"
+          ]
         },
         {
           "order": 2,
           "id": "theme-agents",
           "title": "Agents",
           "summary": "A standing section for agents, agentic workflows, agent OS ideas, orchestration, tools, roles, artifacts, validation, and practical automation.",
-          "supporting_segments": []
+          "supporting_segments": [
+            "pool-yt-i-ioltvb19o-signal",
+            "pool-yt-zdaqvqhdvgu-chapter-1-group-1",
+            "pool-yt-zdaqvqhdvgu-chapter-5-group-3",
+            "pool-yt-zdaqvqhdvgu-chapter-10-group-5",
+            "pool-yt-myj2ivhofri-chapter-4-group-2",
+            "pool-yt-sxnez3brko4-chapter-5-group-3",
+            "pool-yt-sxnez3brko4-chapter-13-group-10",
+            "pool-yt-np6cwvtytam-topic-1",
+            "pool-yt-nov9uoiqt6g-chapter-1",
+            "pool-yt-nov9uoiqt6g-chapter-2",
+            "pool-yt-nov9uoiqt6g-chapter-3",
+            "pool-yt-nov9uoiqt6g-chapter-4",
+            "pool-yt-nov9uoiqt6g-chapter-5",
+            "pool-yt-nov9uoiqt6g-chapter-6",
+            "pool-yt-b8v8bdmc8oq-signal",
+            "pool-yt-yke4flqush4-chapter-2-group-2",
+            "pool-yt-yke4flqush4-chapter-3-group-3",
+            "pool-yt-yke4flqush4-chapter-7-group-4",
+            "pool-yt-yke4flqush4-chapter-14-group-6",
+            "pool-yt-yke4flqush4-chapter-15-group-7",
+            "pool-yt-yke4flqush4-chapter-19-group-8",
+            "pool-yt-b3vfchfk2b4-signal",
+            "pool-yt-msice1foywy-topic-1",
+            "pool-yt-msice1foywy-topic-2",
+            "pool-yt-msice1foywy-topic-3",
+            "pool-yt-lsma-kvpwf0-signal"
+          ]
         },
         {
           "order": 3,
           "id": "theme-platforms",
           "title": "Platform Plays",
-          "summary": "A standing section for Google, Microsoft, OpenAI, Anthropic, Canva, Perplexity, and other platforms pushing AI into everyday work surfaces.",
-          "supporting_segments": []
+          "summary": "News on Google, Microsoft, OpenAI, Anthropic, Meta, Perplexity, Chinese/opensource companies, and other platforms pushing AI into everyday work surfaces.",
+          "supporting_segments": [
+            "manual-this-250-google-laptop-is-a-game-changer-1778812112790-signal",
+            "pool-yt-myj2ivhofri-chapter-1-group-1",
+            "pool-yt-myj2ivhofri-chapter-5-group-3",
+            "pool-yt-myj2ivhofri-chapter-13-group-5",
+            "pool-yt-myj2ivhofri-chapter-15-group-7",
+            "pool-yt-sxnez3brko4-chapter-3-group-2",
+            "pool-yt-sxnez3brko4-chapter-6-group-4",
+            "pool-yt-sxnez3brko4-chapter-10-group-8",
+            "pool-yt-sxnez3brko4-chapter-14-group-11",
+            "pool-yt-q9svnvfohm-chapter-4",
+            "pool-yt-6o19bezgmc-signal",
+            "pool-yt-np6cwvtytam-topic-2",
+            "pool-yt-yke4flqush4-chapter-1-group-1",
+            "pool-yt-yke4flqush4-chapter-9-group-5",
+            "pool-yt-yke4flqush4-chapter-21-group-9",
+            "pool-yt-20bsrqrrcw8-signal",
+            "pool-yt-hpbmflgls-4-signal",
+            "pool-yt-v1sfuy4mh3o-signal",
+            "pool-yt-kp8y4pvlqfi-signal",
+            "pool-yt-tx3yjoaotp4-signal",
+            "pool-yt-jxesbtylvbg-signal",
+            "pool-yt-3dcowoca2fq-signal",
+            "pool-yt-wnzthzndfn0-signal",
+            "pool-yt-kpnrb59xfa-signal",
+            "pool-yt-org0tkhyiba-signal",
+            "pool-yt-u4g4l9pvozy-chapter-1-group-1",
+            "pool-yt-u4g4l9pvozy-chapter-10-group-3",
+            "pool-yt-u4g4l9pvozy-chapter-20-group-5"
+          ]
         },
         {
           "order": 4,
           "id": "theme-infra",
-          "title": "Economics",
-          "summary": "A standing section for compute, capex, memory, data centers, routing, power, latency, and cost pressures shaping AI adoption.",
-          "supporting_segments": []
+          "title": "New and Interesting",
+          "summary": "Interesting announcements.",
+          "supporting_segments": [
+            "pool-yt-kcupzl-5fgw-chapter-1-group-1",
+            "pool-yt-mhdwmcgmoqq-signal",
+            "pool-yt-zdaqvqhdvgu-chapter-4-group-2",
+            "pool-yt-zdaqvqhdvgu-chapter-9-group-4",
+            "pool-yt-myj2ivhofri-chapter-12-group-4",
+            "pool-yt-myj2ivhofri-chapter-14-group-6",
+            "pool-yt-10mdovk-ag4-chapter-2",
+            "pool-yt-sxnez3brko4-chapter-8-group-6",
+            "pool-yt-sxnez3brko4-chapter-12-group-9",
+            "pool-yt-sxnez3brko4-chapter-16-group-12",
+            "pool-yt-q9svnvfohm-chapter-1",
+            "pool-yt-rnqexgcwg-g-signal",
+            "pool-yt-kdljbpi-qwy-chapter-1",
+            "pool-yt-kdljbpi-qwy-chapter-2",
+            "pool-yt-kdljbpi-qwy-chapter-3",
+            "pool-yt-kdljbpi-qwy-chapter-4",
+            "pool-yt-kdljbpi-qwy-chapter-5",
+            "pool-yt-kdljbpi-qwy-chapter-6",
+            "pool-yt-kdljbpi-qwy-chapter-7",
+            "pool-yt-kdljbpi-qwy-chapter-8",
+            "pool-yt-rxziezfeede-signal",
+            "pool-yt-wefrl6cnfua-signal",
+            "pool-yt-c4nxmax27w0-signal",
+            "pool-yt-z7ee9vwkrca-signal",
+            "pool-yt-j6tlew-oflo-signal",
+            "pool-yt-uzplbvhe6uy-chapter-1",
+            "pool-yt-uzplbvhe6uy-chapter-2",
+            "pool-yt-uzplbvhe6uy-chapter-3",
+            "pool-yt-uzplbvhe6uy-chapter-4",
+            "pool-yt-uzplbvhe6uy-chapter-5",
+            "pool-yt-uzplbvhe6uy-chapter-6",
+            "pool-yt-cq1dclcupso-signal",
+            "pool-yt-7odpzzj00jm-signal"
+          ]
         },
         {
           "order": 5,
           "id": "theme-power",
           "title": "Power Moves",
           "summary": "A standing section for founder drama, lawsuits, acquisitions, surprise partnerships, platform politics, and industry titan maneuvering.",
-          "supporting_segments": []
+          "supporting_segments": [
+            "pool-yt-10mdovk-ag4-chapter-1",
+            "pool-yt-10mdovk-ag4-chapter-3",
+            "pool-yt-10mdovk-ag4-chapter-4",
+            "pool-yt-10mdovk-ag4-chapter-5",
+            "pool-yt-10mdovk-ag4-chapter-6",
+            "pool-yt-q9svnvfohm-chapter-2",
+            "pool-yt-q9svnvfohm-chapter-3",
+            "pool-yt-q9svnvfohm-chapter-5",
+            "pool-yt-q9svnvfohm-chapter-7",
+            "pool-yt-okvfmtds6fi-signal",
+            "pool-yt-sphghj7nwtc-topic-1",
+            "pool-yt-sphghj7nwtc-topic-2",
+            "pool-yt-sphghj7nwtc-topic-3",
+            "pool-yt-u4g4l9pvozy-chapter-8-group-2",
+            "pool-yt-u4g4l9pvozy-chapter-18-group-4"
+          ]
+        },
+        {
+          "order": 6,
+          "id": "theme-other-1778812805167",
+          "title": "Other signals to consider",
+          "summary": "Selected items that did not fit the approved theme set cleanly. Review these before final publishing.",
+          "supporting_segments": [
+            "pool-yt-jg2jjh1k0o8-topic-1",
+            "pool-yt-jg2jjh1k0o8-topic-2",
+            "pool-yt-jg2jjh1k0o8-topic-3"
+          ]
         }
       ]
     }
