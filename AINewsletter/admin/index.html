@@ -1339,9 +1339,7 @@
       { id: 'theme-agents', approved: true, recurring: true, collapsed: true, title: 'Agents', summary: 'A standing section for agents, agentic workflows, agent OS ideas, orchestration, tools, roles, artifacts, validation, and practical automation.', aliases: ['Agentic workflows'], segmentIds: ['codex-everything', 'claude-code-update', 'memory-myth', 'workflow-roles-artifacts', 'memory-last', 'agentic-layer'] },
       { id: 'theme-platforms', approved: true, recurring: true, collapsed: true, title: 'Platform Plays', summary: 'A standing section for Google, Microsoft, OpenAI, Anthropic, Canva, Perplexity, and other platforms pushing AI into everyday work surfaces.', aliases: ['Google AI distribution', 'AI product/application layer'], segmentIds: ['google-desktop', 'gemini-mac', 'chrome-ai-update', 'nano-banana', 'canva-ai-updates', 'ai-2028-feel'] },
       { id: 'theme-infra', approved: true, recurring: true, collapsed: true, title: 'Economics', summary: 'The catch-all for the AI stack underneath the headlines: compute, capex, memory, data centers, power, chips, devices, distribution, and odd but important infrastructure moves like Google Books or space-based Tensor experiments.', aliases: ['AI infrastructure economics'], segmentIds: ['capex-stack', 'memory-demand'] },
-      { id: 'theme-power', approved: true, recurring: true, collapsed: true, title: 'Power Moves', summary: 'A standing section for founder drama, lawsuits, acquisitions, surprise partnerships, platform politics, and industry titan maneuvering.', aliases: ['AI governance and competition', 'AI-adjacent business strategy'], segmentIds: ['musk-altman-trial'] },
-      { id: 'theme-robotics', approved: true, collapsed: true, title: 'Robotics commercialization is moving from demo to scale', summary: 'Humanoid production targets and frontier-lab robotics discussion suggest physical AI may become a credible near-term enterprise topic.', aliases: ['Robotics commercialization'], segmentIds: ['figure-scales-production', 'optimus-production'] },
-      { id: 'theme-work', approved: false, collapsed: true, title: 'AI-native work practices are becoming management work', summary: 'Newsletters, labor rulings, and course demand suggest teams need shared practices for AI collaboration, not just individual prompting tips.', aliases: ['AI-native work practices', 'AI workplace impact'], segmentIds: ['china-ai-layoffs', 'ai-as-team', 'ai-product-strategy', 'ai-layoffs'] }
+      { id: 'theme-power', approved: true, recurring: true, collapsed: true, title: 'Power Moves', summary: 'A standing section for founder drama, lawsuits, acquisitions, surprise partnerships, platform politics, and industry titan maneuvering.', aliases: ['AI governance and competition', 'AI-adjacent business strategy'], segmentIds: ['musk-altman-trial'] }
     ];
 
     const state = {
@@ -1449,7 +1447,8 @@
         })),
         audience: state.audience,
         approved: state.approved,
-        candidatePoolSource: state.candidatePoolSource
+        candidatePoolSource: state.candidatePoolSource,
+        saved_at: new Date().toISOString()
       };
     }
 
@@ -1478,6 +1477,42 @@
       state.approved = Boolean(saved.approved);
       state.candidatePoolSource = saved.candidatePoolSource || state.candidatePoolSource;
       mergeCandidateChoices(saved.candidates || []);
+      return true;
+    }
+
+    function restoreIssueReviewState(issueModel) {
+      const review = issueModel?.review?.approved_review;
+      if (!review) return false;
+      if (Array.isArray(review.approved_themes) && review.approved_themes.length) {
+        state.themes = review.approved_themes.map(theme => {
+          const existing = state.themes.find(item => item.id === theme.id) || {};
+          return {
+            ...existing,
+            id: theme.id,
+            title: theme.title,
+            summary: theme.summary || existing.summary || '',
+            approved: true,
+            collapsed: existing.collapsed ?? true,
+            aliases: existing.aliases || [],
+            segmentIds: [...(theme.supporting_segments || [])]
+          };
+        });
+        state.rejectedThemeNames = new Set();
+      }
+      if (Array.isArray(review.selected_candidates)) {
+        const selectedCandidates = new Map(review.selected_candidates.map(candidate => [candidate.id, candidate]));
+        state.candidates.forEach(candidate => {
+          const savedCandidate = selectedCandidates.get(candidate.id);
+          candidate.included = Boolean(savedCandidate);
+          const selectedSegmentIds = new Set(savedCandidate?.selected_segments || []);
+          candidate.segments.forEach(segment => {
+            segment.selected = selectedSegmentIds.has(segment.id);
+          });
+        });
+      }
+      state.audience = review.target_audience || state.audience;
+      state.approved = review.status === 'approved';
+      saveReviewState();
       return true;
     }
 
@@ -1999,13 +2034,14 @@
       };
     }
 
-    function applyCandidatePool(pool) {
+    function applyCandidatePool(pool, issueModel = null) {
       const nextCandidates = (pool.candidates || []).map(normalizePoolCandidate);
       if (!nextCandidates.length) return false;
       state.candidates = nextCandidates;
       state.candidatePoolSource = pool.json || 'candidate pool';
-      const restored = restoreReviewState();
-      if (!restored) regenerateThemes({ save: false });
+      const issueRestored = restoreIssueReviewState(issueModel);
+      const browserRestored = issueRestored ? false : restoreReviewState();
+      if (!issueRestored && !browserRestored) regenerateThemes({ save: false });
       const summary = pool.summary || {};
       statusEl.textContent = `Loaded ${nextCandidates.length} candidate pool item(s): ${summary.playlist_candidates || 0} playlist, ${summary.watchlist_candidates || 0} watchlist.`;
       render();
@@ -2015,8 +2051,12 @@
     async function loadCandidatePool() {
       if (!canRunRefreshLocally()) return;
       const issueDate = refreshIssueDateEl.value || issueModelSeed.issue.id;
-      const pool = await fetchCandidatePool(issueDate);
-      if (applyCandidatePool(pool)) {
+      const [pool, issueResponse] = await Promise.all([
+        fetchCandidatePool(issueDate),
+        fetch(`/data/issues/${issueDate}.json`).catch(() => null)
+      ]);
+      const issueModel = issueResponse?.ok ? await issueResponse.json() : null;
+      if (applyCandidatePool(pool, issueModel)) {
         refreshNoteEl.textContent = `Candidate pool loaded from ${pool.json}.`;
       }
     }
