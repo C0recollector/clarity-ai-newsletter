@@ -77,6 +77,8 @@
     .mini-card p{font-size:13px}
     .infographic{border:1px solid var(--line);border-radius:8px;background:linear-gradient(180deg,#fbfdff,#f4f8fd);padding:15px;margin-bottom:16px}
     .infographic img{display:block;width:100%;height:auto;border-radius:7px}
+    .infographic.dense-preview{padding:12px;max-height:430px;overflow:hidden;background:linear-gradient(#e8edf5 1px,transparent 1px),linear-gradient(90deg,#e8edf5 1px,transparent 1px),#fbfdff;background-size:28px 28px}
+    .infographic.dense-preview img{height:365px;object-fit:cover;object-position:center top}
     .info-title{font-size:13px;font-weight:900;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin:0 0 12px}
     .route-map{display:grid;grid-template-columns:1fr 1.15fr 1fr;gap:10px;align-items:stretch}
     .route-col{display:grid;gap:8px}
@@ -89,6 +91,17 @@
     .flow-step strong{display:block;font-size:13px;margin-bottom:6px}
     .flow-step span{display:block;color:var(--muted);font-size:12px}
     .flow-step:not(:last-child)::after{content:">";position:absolute;right:-10px;top:36px;color:#94a3b8;font-weight:900}
+    .agent-map{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+    .agent-column{border:1px solid #d9e4f2;border-radius:8px;background:rgba(255,255,255,.9);padding:12px}
+    .agent-column h4{margin:0 0 10px;font-size:14px}
+    .agent-column.fail h4{color:var(--red)}
+    .agent-column.fix h4{color:var(--green)}
+    .agent-list{display:grid;gap:8px}
+    .agent-item{display:grid;grid-template-columns:28px 1fr;gap:8px;align-items:start}
+    .agent-dot{width:28px;height:28px;border-radius:999px;display:grid;place-items:center;font-weight:950;color:#fff;background:var(--red);font-size:13px}
+    .fix .agent-dot{background:var(--green)}
+    .agent-item b{display:block;font-size:12px}
+    .agent-item span{display:block;font-size:11px;color:#50627d;font-weight:750}
     .surface-map{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
     .compute-bars{display:grid;gap:9px}
     .bar-row{display:grid;grid-template-columns:96px 1fr;gap:10px;align-items:center;font-size:13px;font-weight:850}
@@ -100,7 +113,7 @@
     .sources{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-top:10px}
     .sources a{border:1px solid var(--line);border-radius:8px;background:#fff;padding:9px;font-size:13px}
     .footer{color:var(--muted);font-size:13px;margin-top:22px}
-    @media (max-width:900px){header::before{background:linear-gradient(180deg,#fff 0%,rgba(255,255,255,.95) 38%,rgba(255,255,255,.62) 72%,rgba(255,255,255,.9) 100%),url("../../assets/ai-infrastructure-hero.png") center top/cover no-repeat;opacity:.55}.top,.body,.grid,.matrix,.route-map,.agent-flow,.surface-map,.risk-grid{grid-template-columns:1fr}.top{min-height:0}.hero-art{display:none}nav{grid-template-columns:1fr}.side{border-left:0;border-top:1px solid var(--line)}.edition-nav{align-items:flex-start;flex-direction:column}.edition-links{justify-content:flex-start}.flow-step::after{display:none}}
+    @media (max-width:900px){header::before{background:linear-gradient(180deg,#fff 0%,rgba(255,255,255,.95) 38%,rgba(255,255,255,.62) 72%,rgba(255,255,255,.9) 100%),url("../../assets/ai-infrastructure-hero.png") center top/cover no-repeat;opacity:.55}.top,.body,.grid,.matrix,.route-map,.agent-flow,.agent-map,.surface-map,.risk-grid{grid-template-columns:1fr}.top{min-height:0}.hero-art{display:none}nav{grid-template-columns:1fr}.side{border-left:0;border-top:1px solid var(--line)}.edition-nav{align-items:flex-start;flex-direction:column}.edition-links{justify-content:flex-start}.flow-step::after{display:none}}
   </style>
 </head>
 <body>
@@ -119,45 +132,32 @@
         <aside class="hero-art" aria-label="The Week AI Became Infrastructure hero graphic"></aside>
       </div>
       <nav aria-label="Technical signals">
-        <a href="#model-routing"><b>Model Routing</b><span>Portfolio design, evals, cost tiers, fallback paths.</span></a>
-        <a href="#agent-architecture"><b>Agent Architecture</b><span>Roles, artifacts, permissions, validation, review gates.</span></a>
-        <a href="#platform-integrations"><b>Platform Integrations</b><span>Search, browser, desktop, creative, and workflow surfaces.</span></a>
-        <a href="#compute-ops"><b>Compute Ops</b><span>Capacity, latency, token cost, resilience, data boundaries.</span></a>
-        <a href="#vendor-risk"><b>Vendor Risk</b><span>Governance, incentives, ads, partnerships, lock-in.</span></a>
+        <a href="#model-news"><b>Model News</b><span>New models released, with a focus on capability, pricing, and benchmarks.</span></a>
+        <a href="#agents"><b>Agents</b><span>Agentic workflows, agent OS ideas, orchestration, tools, roles, artifacts, validation, and practical automation.</span></a>
+        <a href="#platforms"><b>Platform Plays</b><span>AI platforms pushing into everyday work surfaces.</span></a>
+        <a href="#infrastructure"><b>AI Infrastructure</b><span>Compute access, chips, power, memory, and data-center capacity.</span></a>
+        <a href="#power-moves"><b>Power Moves</b><span>Founder drama, lawsuits, acquisitions, partnerships, platform politics, and titan maneuvering.</span></a>
       </nav>
     </div>
   </header>
 
   <main class="wrap">
-    <section class="signal" id="model-routing">
-      <div class="signal-head"><div><h2>Model Routing: Stop Asking for One Best Model</h2><p>New models released, with a focus on capability, pricing, and benchmarks.</p></div><div class="num">01</div></div>
+    <section class="signal" id="model-news">
+      <div class="signal-head"><div><h2>Model News</h2><p>New models released, with a focus on capability, pricing, and benchmarks.</p></div><div class="num">01</div></div>
       <div class="body">
         <div class="maincol">
-          <div class="infographic">
-            <p class="info-title">Model Portfolio Control Plane</p>
-            <div class="route-map">
-              <div class="route-col">
-                <div class="route-node"><b>Frontier</b><span>planning, synthesis, hard reasoning</span></div>
-                <div class="route-node"><b>Agentic coding</b><span>repo edits, tests, tool workflows</span></div>
-                <div class="route-node"><b>Open / efficient</b><span>private, cheap, repeatable tasks</span></div>
-              </div>
-              <div class="router-core">Routing Policy<br>quality + cost + privacy + latency + vendor risk</div>
-              <div class="route-col">
-                <div class="route-node"><b>Media native</b><span>image, design, video, creative review</span></div>
-                <div class="route-node"><b>Realtime</b><span>voice, support, translation, meetings</span></div>
-                <div class="route-node"><b>Evaluation loop</b><span>regression sets, approvals, cost telemetry</span></div>
-              </div>
-            </div>
+          <div class="infographic dense-preview">
+            <img src="../../assets/model-news-radar-gpt-image-2.png" alt="Model News Radar infographic: routing AI work across frontier reasoning, coding agents, open models, media models, and realtime audio">
           </div>
           <div class="grid">
-            <div class="fact"><b>Architecture move</b><p>Create a routing layer that chooses model class by task, sensitivity, latency, and price.</p></div>
-            <div class="fact"><b>Eval move</b><p>Keep a small regression set for each workflow instead of relying on public benchmarks.</p></div>
-            <div class="fact"><b>Cost move</b><p>Use frontier models for planning and hard reasoning; use cheaper models for extraction, formatting, and classification.</p></div>
+            <div class="fact"><b>Technical signal</b><p>Model choice is now an execution-path decision: reasoning, coding, local/open, media, and realtime lanes each fail differently.</p></div>
+            <div class="fact"><b>Implementation move</b><p>Put routing, evals, fallback, and logs in front of the model instead of wiring one vendor directly into workflows.</p></div>
+            <div class="fact"><b>Operational guardrail</b><p>Track latency, rate-limit exposure, cost per run, privacy boundary, and recovery path for every model lane.</p></div>
           </div>
-          <div class="callout"><b>Technical takeaway:</b> the durable asset is the routing/evaluation harness, not whichever model wins the week.</div>
+          <div class="callout"><b>Technical takeaway:</b> build model routing like cloud routing: pick the lane, measure it, and keep a working fallback.</div>
         </div>
         <aside class="side">
-          <a class="mini-card news-hook" href="https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-1-pro/" aria-label="Open source for Gemini 3.1 Pro landed quietly"><b>Gemini 3.1 Pro landed quietly</b><p>Google released Gemini 3.1 Pro in preview on February 19 and pushed it into the Gemini API, AI Studio, Vertex AI, Gemini Enterprise, Gemini CLI, Android Studio, NotebookLM, and the Gemini app. Google reported a 77.1% verified ARC-AGI-2 score, making it a serious reasoning-model entry rather than a routine Gemini refresh.</p></a>
+          <a class="mini-card news-hook" href="https://www.anthropic.com/news/higher-limits-spacex" aria-label="Open source for Claude Code got more room to work"><b>Claude Code got more room to work</b><p>Anthropic doubled Claude Code five-hour rate limits for Pro, Max, Team, and seat-based Enterprise plans, removed peak-hour reductions for Pro and Max, and raised Claude Opus API limits. That turns compute capacity into a visible product feature for agent users.</p></a>
           <a class="mini-card news-hook" href="https://openai.com/index/introducing-gpt-5-3-codex" aria-label="Open source for Codex got a frontier work model"><b>Codex got a frontier work model</b><p>OpenAI introduced GPT-5.3-Codex as its most capable agentic coding model, saying it combines GPT-5.2-Codex coding strength with GPT-5.2-style reasoning and professional knowledge, runs 25% faster, and can handle long-running research, tool-use, and execution tasks.</p></a>
           <a class="mini-card news-hook" href="https://openai.com/index/introducing-gpt-5-3-codex-spark/" aria-label="Open source for OpenAI put Codex Spark on Cerebras-speed silicon"><b>OpenAI put Codex Spark on Cerebras-speed silicon</b><p>OpenAI previewed GPT-5.3-Codex-Spark on Cerebras, targeting near-instant coding interactions at more than 1,000 tokens per second. Cerebras is not a normal NVIDIA-style GPU card; its wafer-scale processor keeps far more compute and memory on one giant chip, which makes the hook ultra-low-latency coding loops rather than long background agents.</p></a>
         </aside>
@@ -165,48 +165,60 @@
       <details><summary>References</summary><div class="sources"><a href="https://www.youtube.com/watch?v=bIrzOQtnp8w">Matt Wolfe model roundup</a><a href="https://martinalderson.com/posts/open-weights-are-quietly-closing-up/">Open weights are quietly closing up</a><a href="https://openai.com/">OpenAI product home</a><a href="https://www.anthropic.com/claude-code">Claude Code product home</a></div></details>
     </section>
 
-    <section class="signal" id="agent-architecture">
-      <div class="signal-head"><div><h2>Agent Architecture: Workflow First, Memory Later</h2><p>A standing section for agents, agentic workflows, agent OS ideas, orchestration, tools, roles, artifacts, validation, and practical automation.</p></div><div class="num">02</div></div>
+    <section class="signal" id="agents">
+      <div class="signal-head"><div><h2>Agents</h2><p>A standing section for agents, agentic workflows, agent OS ideas, orchestration, tools, roles, artifacts, validation, and practical automation.</p></div><div class="num">02</div></div>
       <div class="body">
         <div class="maincol">
           <div class="infographic">
-            <p class="info-title">Agent Workflow Architecture</p>
-            <div class="agent-flow">
-              <div class="flow-step"><strong>Job Contract</strong><span>goal, inputs, done criteria</span></div>
-              <div class="flow-step"><strong>Tool Boundary</strong><span>files, apps, APIs, browser</span></div>
-              <div class="flow-step"><strong>Artifact Trail</strong><span>drafts, diffs, sources, logs</span></div>
-              <div class="flow-step"><strong>Review Gate</strong><span>approve, publish, archive</span></div>
+            <p class="info-title">Agent Failure and Control Map</p>
+            <div class="agent-map">
+              <div class="agent-column fail">
+                <h4>Why agents fail</h4>
+                <div class="agent-list">
+                  <div class="agent-item"><div class="agent-dot">1</div><div><b>Vague job</b><span>No clear output or done criteria.</span></div></div>
+                  <div class="agent-item"><div class="agent-dot">2</div><div><b>Loose permissions</b><span>Too many tools before trust is earned.</span></div></div>
+                  <div class="agent-item"><div class="agent-dot">3</div><div><b>No artifact trail</b><span>Hard to inspect what changed and why.</span></div></div>
+                </div>
+              </div>
+              <div class="agent-column fix">
+                <h4>What makes them useful</h4>
+                <div class="agent-list">
+                  <div class="agent-item"><div class="agent-dot">A</div><div><b>Workflow contract</b><span>Inputs, allowed actions, output.</span></div></div>
+                  <div class="agent-item"><div class="agent-dot">B</div><div><b>Review gate</b><span>Human approval before publish/send/spend.</span></div></div>
+                  <div class="agent-item"><div class="agent-dot">C</div><div><b>Audit + cost trail</b><span>Sources, diffs, logs, and spend caps.</span></div></div>
+                </div>
+              </div>
             </div>
           </div>
           <div class="grid">
-            <div class="fact"><b>Design unit</b><p>Define the job as input -> allowed actions -> output artifact -> review gate.</p></div>
-            <div class="fact"><b>State model</b><p>Use explicit files, tickets, docs, and run logs as durable state before relying on generic memory.</p></div>
-            <div class="fact"><b>Permission model</b><p>Separate read, draft, edit, publish, spend, and external-send permissions.</p></div>
+            <div class="fact"><b>Technical signal</b><p>Agent adoption is moving from demos to quota, billing, security classification, and permission design.</p></div>
+            <div class="fact"><b>Implementation move</b><p>Define input contracts, allowed tools, output artifacts, review gates, and rollback paths before adding autonomy.</p></div>
+            <div class="fact"><b>Operational guardrail</b><p>Meter token use, retries, long-context runs, external sends, and tool calls separately from ordinary chat usage.</p></div>
           </div>
-          <div class="callout"><b>Technical takeaway:</b> agents need an operating procedure more than they need a personality.</div>
+          <div class="callout"><b>Technical takeaway:</b> useful agents need workflow contracts, audit trails, and spend controls more than personality or generic memory.</div>
         </div>
         <aside class="side">
-          <a class="mini-card news-hook" href="https://www.anthropic.com/news/higher-limits-spacex" aria-label="Open source for Claude Code got more room to work"><b>Claude Code got more room to work</b><p>Anthropic doubled Claude Code five-hour rate limits for Pro, Max, Team, and seat-based Enterprise plans, removed peak-hour reductions for Pro and Max, and raised Claude Opus API limits. That turns compute capacity into a visible product feature for agent users.</p></a>
           <a class="mini-card news-hook" href="https://openai.com/index/codex-for-almost-everything/" aria-label="Open source for Codex moved beyond code-only chores"><b>Codex moved beyond code-only chores</b><p>OpenAI&#x27;s Codex update framed it as a computer-side collaborator: it can use more tools and apps, work across development workflows, generate images, remember preferences, continue repetitive tasks, inspect multiple files and terminals, use SSH, and iterate in an integrated browser.</p></a>
           <a class="mini-card news-hook" href="https://openai.com/index/gpt-5-3-codex-system-card/" aria-label="Open source for Agent models are being treated as security-sensitive"><b>Agent models are being treated as security-sensitive</b><p>OpenAI&#x27;s GPT-5.3-Codex system card says the model is being treated as high capability in cybersecurity under its Preparedness Framework. That is a signal that coding agents are moving from productivity toys into controlled professional infrastructure.</p></a>
+          <a class="mini-card news-hook" href="https://www.theregister.com/2026/05/14/anthropic_tosses_agents_into_the_api_billing_pool/" aria-label="Open source for Claude agents moved onto metered rails"><b>Claude agents moved onto metered rails</b><p>Anthropic separated interactive subscription usage from programmatic Claude Code and Agent SDK usage, pushing heavier agent loops toward a dedicated API credit pool. The signal for builders is that useful agents are starting to look like cloud workloads: token budgets, retries, context windows, and automation frequency need explicit controls.</p></a>
         </aside>
       </div>
       <details><summary>References</summary><div class="sources"><a href="https://drstorm.substack.com/p/why-claude-code-changes-more-than">Why Claude Code changes more than software development</a><a href="https://www.youtube.com/watch?v=wzADqzsm6pI">Openclaw Labs on agent memory</a><a href="https://youtu.be/_6O19bEZgMc">Limitless: agentic application layer</a><a href="https://openai.com/codex/">OpenAI Codex product home</a></div></details>
     </section>
 
-    <section class="signal" id="platform-integrations">
-      <div class="signal-head"><div><h2>Platform Integrations: AI Is Moving to the Point of Work</h2><p>News on Google, Microsoft, OpenAI, Anthropic, Meta, Perplexity, Chinese/opensource companies, and other platforms pushing AI into everyday work surfaces.</p></div><div class="num">03</div></div>
+    <section class="signal" id="platforms">
+      <div class="signal-head"><div><h2>Platform Plays</h2><p>News on Google, Microsoft, OpenAI, Anthropic, Meta, Perplexity, Chinese/opensource companies, and other platforms pushing AI into everyday work surfaces.</p></div><div class="num">03</div></div>
       <div class="body">
         <div class="maincol">
-          <div class="infographic">
+          <div class="infographic dense-preview">
             <img src="../../assets/platform-distribution-map-gpt-image-2.png" alt="AI Platform Distribution Map: from apps to intent surfaces">
           </div>
           <div class="grid">
-            <div class="fact"><b>UX move</b><p>Map where users currently ask, search, copy/paste, summarize, or hand work across systems.</p></div>
-            <div class="fact"><b>Integration move</b><p>Prioritize extensions, APIs, and embedded actions inside existing work surfaces.</p></div>
-            <div class="fact"><b>Measurement move</b><p>Track answer quality, task completion, conversion, and handoff reduction.</p></div>
+            <div class="fact"><b>Technical signal</b><p>AI is moving into surfaces that already own user intent: browser, search, docs, design tools, laptops, ads, and assistants.</p></div>
+            <div class="fact"><b>Implementation move</b><p>Expose tools through stable actions, permissions, and event logs so embedded assistants can be inspected and tested.</p></div>
+            <div class="fact"><b>Operational guardrail</b><p>Measure answer quality, attribution, task completion, conversion effects, and user trust when AI becomes the front door.</p></div>
           </div>
-          <div class="callout"><b>Technical takeaway:</b> AI adoption is easier when the assistant lives where the work already happens.</div>
+          <div class="callout"><b>Technical takeaway:</b> integration quality matters as much as model quality when the assistant sits inside the workflow surface.</div>
         </div>
         <aside class="side">
           <a class="mini-card news-hook" href="https://www.youtube.com/watch?v=N3oqUmSBmIc&amp;list=PLxFjGka4tveAOS0oDFqsnlsG0UqdlN0yC&amp;index=1&amp;t=143s" aria-label="Open source for Google Book turns Gemini into the operating layer"><b>Google Book turns Gemini into the operating layer</b><p>Google&#x27;s AI laptop push frames Google Book as a low-cost successor to Chromebook, built around Gemini Intelligence, Magic Pointer actions, and Android/Google app integration. The Google Books angle matters because Google can pair consumer devices and Workspace distribution with a deep corpus, making the push feel like a platform-and-data play instead of another chatbot launch.</p></a>
@@ -219,55 +231,49 @@
       <details><summary>References</summary><div class="sources"><a href="https://openai.com/index/new-ways-to-buy-chatgpt-ads/">OpenAI ChatGPT ads update</a><a href="https://www.macrumors.com/2026/05/06/google-search-ai-mode-expert-advice/">Google AI Search changes</a><a href="https://www.canva.com/ai/">Canva AI product home</a><a href="https://www.perplexity.ai/">Perplexity product home</a></div></details>
     </section>
 
-    <section class="signal" id="compute-ops">
-      <div class="signal-head"><div><h2>Compute Ops: Capacity Is Now an Architecture Constraint</h2><p>Compute access, chips, power, memory, and data-center capacity became product strategy this week.</p></div><div class="num">04</div></div>
+    <section class="signal" id="infrastructure">
+      <div class="signal-head"><div><h2>AI Infrastructure</h2><p>Compute access, chips, power, memory, and data-center capacity became product strategy this week.</p></div><div class="num">04</div></div>
       <div class="body">
         <div class="maincol">
-          <div class="infographic">
+          <div class="infographic dense-preview">
             <img src="../../assets/compute-economics-gpt-image-2.png" alt="AI Compute Economics: capacity becomes strategy">
           </div>
           <div class="grid">
-            <div class="fact"><b>Reliability move</b><p>Define fallback behavior for rate limits, vendor degradation, or budget caps.</p></div>
-            <div class="fact"><b>Data move</b><p>Document where prompts, files, logs, and derived outputs can be stored.</p></div>
-            <div class="fact"><b>FinOps move</b><p>Report cost per workflow, not just total AI subscription spend.</p></div>
+            <div class="fact"><b>Technical signal</b><p>Rate limits, power, memory, launch capacity, and GPU access now show up as user-visible product behavior.</p></div>
+            <div class="fact"><b>Implementation move</b><p>Design fallback behavior for vendor degradation, quota exhaustion, long queues, model swaps, and data-residency constraints.</p></div>
+            <div class="fact"><b>Operational guardrail</b><p>Track cost and capacity per workflow, not just subscription totals or aggregate token spend.</p></div>
           </div>
-          <div class="callout"><b>Technical takeaway:</b> production AI needs the same discipline as cloud operations: capacity, observability, incident plans, and cost controls.</div>
+          <div class="callout"><b>Technical takeaway:</b> production AI now needs cloud-style capacity planning, observability, incident paths, and cost controls.</div>
         </div>
         <aside class="side">
-          <a class="mini-card news-hook" href="https://www.anthropic.com/news/higher-limits-spacex" aria-label="Open source for Anthropic took the whole Colossus 1 lane"><b>Anthropic took the whole Colossus 1 lane</b><p>Anthropic said it signed with SpaceX to use all compute capacity at Colossus 1, adding more than 300 megawatts and over 220,000 NVIDIA GPUs within the month. The company tied that new capacity directly to higher Claude Code, Claude Pro/Max, and Claude Opus API limits.</p></a>
+          <a class="mini-card news-hook" href="https://www.tomshardware.com/tech-industry/artificial-intelligence/musks-spacex-has-rented-out-access-to-its-supercomputers-220-000-nvidia-gpus-and-300-megawatts-of-ai-compute-power-to-rival-anthropic-musk-says-no-one-set-off-my-evil-detector-antrhropic-also-interested-in-orbital-data-centers" aria-label="Open source for Anthropic took the whole Colossus 1 lane"><b>Anthropic took the whole Colossus 1 lane</b><p>Anthropic said it signed with SpaceX to use all compute capacity at Colossus 1, adding more than 300 megawatts and over 220,000 NVIDIA H100, H200, and GB200 GPUs within the month. Reports say SpaceX/xAI&#x27;s next Colossus 2 buildout is aimed at far larger Blackwell-scale capacity, with public claims around 550,000 GPUs and up to a gigawatt even as outside analysts have questioned how much power and cooling is already online.</p></a>
           <a class="mini-card news-hook" href="https://www.anthropic.com/news/higher-limits-spacex" aria-label="Open source for Anthropic is stacking compute partners"><b>Anthropic is stacking compute partners</b><p>The SpaceX deal joins Anthropic&#x27;s disclosed compute pipeline: up to 5 GW with Amazon, 5 GW with Google/Broadcom beginning in 2027, a Microsoft/NVIDIA partnership including $30 billion of Azure capacity, and a $50 billion U.S. infrastructure investment with Fluidstack.</p></a>
-          <a class="mini-card news-hook" href="https://www.tomshardware.com/tech-industry/artificial-intelligence/google-reportedly-in-talks-with-spacex-to-launch-its-orbital-data-centers-partnership-could-mark-a-historic-turning-point-and-boost-upcoming-ipo" aria-label="Open source for Space-based AI stopped sounding hypothetical"><b>Space-based AI stopped sounding hypothetical</b><p>The Google-SpaceX segment says Google wants launch capacity for radiation-resistant TPUs tied to Project Suncatcher, its space-based machine-learning initiative. The practical angle is simple: if AI compute is power-constrained on Earth, Google is exploring solar-powered orbital data centers and SpaceX is the cheapest highway to orbit.</p></a>
+          <a class="mini-card news-hook" href="https://research.google/blog/exploring-a-space-based-scalable-ai-infrastructure-system-design/" aria-label="Open source for Space-based AI stopped sounding hypothetical"><b>Space-based AI stopped sounding hypothetical</b><p>Project Suncatcher is Google&#x27;s own research moonshot, not a SpaceX project: Google Research proposed TPU-equipped satellites powered by near-continuous orbital sunlight and linked by free-space optical connections. The new SpaceX angle is launch capacity: reports say Google is discussing how to get radiation-tested TPU satellites into orbit, with prototype validation targeted before any real orbital data-center buildout.</p></a>
         </aside>
       </div>
       <details><summary>References</summary><div class="sources"><a href="https://timesofindia.indiatimes.com/technology/tech-news/anthropic-takes-on-openai-expands-ai-infrastructure-with-spacex-deal-joining-google-broadcom-microsoft-nvidia-and-amazon/articleshow/130868969.cms">Report: Anthropic / SpaceX compute access</a><a href="https://www.teslarati.com/spacexai-signs-agreement-anthropic-massive-ai-supercomputer-access/">Teslarati: SpaceXAI and Anthropic report</a><a href="https://youtu.be/_6O19bEZgMc">Limitless: AI capex and memory bottlenecks</a></div></details>
     </section>
 
-    <section class="signal" id="vendor-risk">
-      <div class="signal-head"><div><h2>Vendor Risk: Governance, Ads, and Compute Deals Matter</h2><p>A standing section for founder drama, lawsuits, acquisitions, surprise partnerships, platform politics, and industry titan maneuvering.</p></div><div class="num">05</div></div>
+    <section class="signal" id="power-moves">
+      <div class="signal-head"><div><h2>Power Moves</h2><p>A standing section for founder drama, lawsuits, acquisitions, surprise partnerships, platform politics, and industry titan maneuvering.</p></div><div class="num">05</div></div>
       <div class="body">
         <div class="maincol">
-          <div class="infographic">
-            <p class="info-title">Vendor Risk Decoder</p>
-            <div class="risk-grid">
-              <div class="risk-node"><b>Governance</b><span>control, litigation, incentives</span></div>
-              <div class="risk-node"><b>Compute</b><span>capacity partners and constraints</span></div>
-              <div class="risk-node"><b>Monetization</b><span>ads, sponsored answers, trust</span></div>
-              <div class="risk-node"><b>Lock-In</b><span>data, workflow, integration depth</span></div>
-            </div>
+          <div class="infographic dense-preview">
+            <img src="../../assets/power-moves-compute-control-gpt-image-2.png" alt="Power Moves infographic: Musk and Altman legal fight, Anthropic compute limits, and OpenAI Codex developer migration">
           </div>
           <div class="grid">
-            <div class="fact"><b>Governance move</b><p>Track ownership structure, litigation risk, and enterprise data commitments for critical AI vendors.</p></div>
-            <div class="fact"><b>Monetization move</b><p>Watch whether ads or sponsored answers change user trust in assistant surfaces.</p></div>
-            <div class="fact"><b>Dependency move</b><p>Map which vendors depend on which clouds, chips, compute partners, and distribution channels.</p></div>
+            <div class="fact"><b>Technical signal</b><p>Vendor strategy is becoming architecture context: governance, compute partners, ad incentives, and developer lock-in affect system risk.</p></div>
+            <div class="fact"><b>Implementation move</b><p>Map which vendors control your model, workflow state, data, IDE hooks, browser automation, ads, cloud, and compute path.</p></div>
+            <div class="fact"><b>Operational guardrail</b><p>Keep portability plans for prompts, evals, tool contracts, logs, and source-of-truth data before a vendor becomes the workflow.</p></div>
           </div>
-          <div class="callout"><b>Technical takeaway:</b> vendor risk is not just legal review. It is architecture review.</div>
+          <div class="callout"><b>Technical takeaway:</b> vendor risk is architecture risk once an AI provider controls execution, context, distribution, or spend.</div>
         </div>
         <aside class="side">
-          <a class="mini-card news-hook" href="https://youtu.be/Jg2jJH1K0o8" aria-label="Open source for Musk versus Altman stayed strategically relevant"><b>Musk versus Altman stayed strategically relevant</b><p>The Musk-Altman legal fight is more than founder drama because it touches control, mission, commercialization, and who gets to define the rules of the leading AI labs. It belongs in the newsletter only when tied to vendor risk and market power.</p></a>
+          <a class="mini-card news-hook" href="https://www.axios.com/2026/05/14/musk-closing-arguments-openai-altman" aria-label="Open source for Musk versus Altman put OpenAI control on trial"><b>Musk versus Altman put OpenAI control on trial</b><p>Musk&#x27;s case argues that Altman, Brockman, and OpenAI betrayed the nonprofit mission Musk helped fund, then converted the value of that charity into a for-profit machine. The money is not the cleanest read of the case: Musk has said any damages should go back to OpenAI&#x27;s nonprofit arm, while OpenAI argues the lawsuit is really about control and competition. The strategic question is whether courts will treat AI lab governance as ordinary startup restructuring or as a charitable-mission promise that donors can enforce.</p></a>
           <a class="mini-card news-hook" href="https://www.anthropic.com/news/higher-limits-spacex" aria-label="Open source for Anthropic and SpaceX made an unlikely alliance"><b>Anthropic and SpaceX made an unlikely alliance</b><p>Musk&#x27;s companies and Anthropic have not looked like natural allies, yet Anthropic now gets Colossus 1 capacity from SpaceX. That is the power move: compute scarcity can override public rivalries.</p></a>
-          <a class="mini-card news-hook" href="https://openai.com/index/codex-for-almost-everything/" aria-label="Open source for OpenAI&#x27;s countermove is developer loyalty"><b>OpenAI&#x27;s countermove is developer loyalty</b><p>Codex is becoming OpenAI&#x27;s wedge into everyday technical work: app, CLI, IDE extension, browser, local workflows, and faster model lanes. That makes it harder for developers to judge vendors only by chat-model quality.</p></a>
+          <a class="mini-card news-hook" href="https://www.axios.com/2026/05/14/anthropic-claude-price-openai-tokens" aria-label="Open source for OpenAI&#x27;s countermove is developer loyalty"><b>OpenAI&#x27;s countermove is developer loyalty</b><p>The week turned into a developer-loyalty knife fight. Anthropic&#x27;s Claude updates improved some limits but also pushed heavier programmatic agent use toward explicit credits; the next day, Altman said OpenAI would give new business customers two months of free Codex usage, while OpenAI&#x27;s help docs also point to temporary Codex inclusion and 2x rate limits across plans. That is not just generosity; it is a land grab for the workflows developers run every day.</p></a>
           <a class="mini-card news-hook" href="https://openai.com/index/new-ways-to-buy-chatgpt-ads/" aria-label="Open source for ChatGPT ads changed the incentive picture"><b>ChatGPT ads changed the incentive picture</b><p>OpenAI&#x27;s self-serve ChatGPT ads, CPC bidding, and measurement stack mean assistant surfaces are becoming monetized distribution channels. Boards should watch whether answer quality, trust, and commercial placement stay clearly separated.</p></a>
-          <a class="mini-card news-hook" href="https://www.tomshardware.com/tech-industry/artificial-intelligence/google-reportedly-in-talks-with-spacex-to-launch-its-orbital-data-centers-partnership-could-mark-a-historic-turning-point-and-boost-upcoming-ipo" aria-label="Open source for Google and SpaceX point to the next infrastructure frontier"><b>Google and SpaceX point to the next infrastructure frontier</b><p>The podcast notes that Google already owns a SpaceX stake, has Project Suncatcher in motion, and is reportedly discussing TPU launches with SpaceX. If this proceeds, AI infrastructure politics expands from chips and clouds to launch capacity, satellites, solar power, and orbital operations.</p></a>
+          <a class="mini-card news-hook" href="https://www.datacenterdynamics.com/en/news/google-in-talks-with-spacex-regarding-suncatcher-orbital-data-center-project/" aria-label="Open source for Google and SpaceX point to the next infrastructure frontier"><b>Google and SpaceX point to the next infrastructure frontier</b><p>Google&#x27;s Project Suncatcher is the research program; SpaceX is the launch-capacity wildcard. If Google can move radiation-tested TPUs, optical inter-satellite links, and solar-powered compute from paper to orbit, AI infrastructure politics expands from chips and clouds to launch cadence, satellite operations, orbital insurance, and space power economics.</p></a>
         </aside>
       </div>
       <details><summary>References</summary><div class="sources"><a href="https://youtu.be/Jg2jJH1K0o8">Moonshots: Musk / Altman trial segment</a><a href="https://openai.com/index/new-ways-to-buy-chatgpt-ads/">OpenAI ChatGPT ads buying</a><a href="https://www.anthropic.com/">Anthropic product home</a><a href="https://x.ai/">xAI product home</a></div></details>
