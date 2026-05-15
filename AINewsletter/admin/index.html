@@ -1495,9 +1495,9 @@
       }
       state.approved = Boolean(saved.approved);
       state.candidatePoolSource = saved.candidatePoolSource || state.candidatePoolSource;
-      mergeCandidateChoices(saved.candidates || []);
+      const mergedCandidates = mergeCandidateChoices(saved.candidates || []);
       restoreManualCandidates(saved.candidates || []);
-      return true;
+      return mergedCandidates > 0 || (saved.candidates || []).some(candidate => candidate.manual);
     }
 
     function restoreIssueReviewState(issueModel) {
@@ -1573,9 +1573,11 @@
 
     function mergeCandidateChoices(savedCandidates) {
       const savedById = new Map(savedCandidates.map(candidate => [candidate.id, candidate]));
+      let mergedCandidates = 0;
       state.candidates.forEach(candidate => {
         const savedCandidate = savedById.get(candidate.id);
         if (!savedCandidate) return;
+        mergedCandidates += 1;
         candidate.included = Boolean(savedCandidate.included);
         const savedSegments = new Map((savedCandidate.segments || []).map(segment => [segment.id, segment]));
         candidate.segments.forEach(segment => {
@@ -1584,6 +1586,7 @@
           }
         });
       });
+      return mergedCandidates;
     }
 
     function sourceKindClass(kind) {
@@ -1950,9 +1953,10 @@
     function chapterToSegment(item, chapter, index, idBase, strength) {
       const chapterSeconds = timeToSeconds(chapter.time);
       const transcriptExcerpt = transcriptExcerptForWindow(item.sourceMaterial || '', chapterSeconds);
+      const fallbackContext = firstUsefulSentence(item.sourceMaterial || item.description || item.summary || '', 260);
       const chapterSummary = transcriptExcerpt
         ? `${chapter.title}: ${transcriptExcerpt}`
-        : `Chapter marker from ${item.title || 'this source'}: ${chapter.title}.`;
+        : fallbackContext || 'No transcript excerpt is available for this chapter yet.';
       const theme = inferCandidateTheme({
         title: chapter.title,
         summary: `${item.title || ''} ${chapter.title} ${chapterSummary}`,
@@ -1998,6 +2002,13 @@
       return merged.map((group, index) => {
         const titles = group.items.map(item => item.title);
         const title = conciseChapterTitle(titles);
+        const sourceText = firstUsefulSentence(
+          group.items.map(item => item.sourceMaterial || item.summary || '').join(' '),
+          260
+        );
+        const summary = sourceText
+          ? `${title}: ${sourceText}`
+          : `${title}. Related source chapters: ${titles.join('; ')}.`;
         return {
           id: `${group.items[0].id}-group-${index + 1}`,
           selected: group.items.some(item => item.selected),
@@ -2005,7 +2016,7 @@
           time: group.startTime === group.endTime ? group.startTime : `${group.startTime}-${group.endTime}`,
           theme: group.theme,
           title,
-          summary: `Grouped related chapters: ${titles.join('; ')}.`,
+          summary,
           sourceMaterial: group.items.map(item => item.sourceMaterial || item.summary).join('\n\n'),
           sourceMaterialRef: group.items.find(item => item.sourceMaterialRef)?.sourceMaterialRef || ''
         };
@@ -2106,8 +2117,8 @@
       if (!nextCandidates.length) return false;
       state.candidates = nextCandidates;
       state.candidatePoolSource = pool.json || 'candidate pool';
-      const issueRestored = restoreIssueReviewState(issueModel);
-      const browserRestored = issueRestored ? false : restoreReviewState();
+      const browserRestored = restoreReviewState();
+      const issueRestored = browserRestored ? false : restoreIssueReviewState(issueModel);
       if (!issueRestored && !browserRestored) regenerateThemes({ save: false });
       const summary = pool.summary || {};
       statusEl.textContent = `Loaded ${nextCandidates.length} candidate pool item(s): ${summary.playlist_candidates || 0} playlist, ${summary.watchlist_candidates || 0} watchlist.`;
@@ -2903,7 +2914,7 @@
         : 'Added theme with no matching selected segments yet. Select supporting segments or refine the theme text, then regenerate.';
     });
 
-    render();
+    render({ save: false });
     document.getElementById('refresh-mode-pill').textContent = canRunRefreshLocally() ? 'runner active' : 'file mode';
     refreshWarningEl.classList.toggle('open', !canRunRefreshLocally());
     refreshNoteEl.textContent = canRunRefreshLocally()

@@ -8,6 +8,9 @@
 
 ## Last completed
 
+- Fixed the admin review-state persistence bug that caused unchecked candidate sources to come back after browser refresh. Root cause: the page saved bundled sample state during startup before the real candidate pool loaded, then candidate-pool loading restored the issue JSON before browser edits. `AINewsletter/admin/index.html` now does the initial render without saving, prefers valid browser state over issue JSON during candidate-pool restore, and ignores stale saved sample state that does not match the loaded candidates.
+- Removed the visible filler phrases `Grouped related chapters` and `Chapter marker from` from candidate segment descriptions. Grouped chapter summaries now use available source text when possible, otherwise they describe the related source chapters without redundant UI wording.
+- Local commit: `7276c0d Fix admin review state restore`.
 - Restored candidate-pool chapter splitting in the admin review gate by enriching pool candidates from cached YouTube source files and reading YouTube descriptions/chapters instead of only short summaries. This fixes cases where long videos collapsed to one selectable checkbox.
 - Added a fallback for YouTube videos without clean chapter metadata: multi-topic titles split into selectable topic checkboxes, so a title such as AGI + robots + Elon comp does not collapse into one all-or-nothing choice.
 - Candidate cards now show colored metadata: editorial override/manual override, playlist/watchlist lane, and video duration when available. The source name is now plain metadata instead of a pill tag, and numeric percentages are replaced visually with Priority/High/Medium/Low style relevance labels.
