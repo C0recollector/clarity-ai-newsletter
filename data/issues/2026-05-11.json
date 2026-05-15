@@ -52,13 +52,9 @@
           "url": "https://openai.com/index/introducing-gpt-5-3-codex"
         },
         {
-          "title": "Real-time coding became a model lane",
-          "text": "OpenAI also previewed GPT-5.3-Codex-Spark on Cerebras, aiming for near-instant coding interactions at more than 1,000 tokens per second. That is a different product lane from frontier reasoning: fast pair-programming loops instead of long autonomous jobs.",
+          "title": "OpenAI put Codex Spark on Cerebras-speed silicon",
+          "text": "OpenAI previewed GPT-5.3-Codex-Spark on Cerebras, targeting near-instant coding interactions at more than 1,000 tokens per second. Cerebras is not a normal NVIDIA-style GPU card; its wafer-scale processor keeps far more compute and memory on one giant chip, which makes the hook ultra-low-latency coding loops rather than long background agents.",
           "url": "https://openai.com/index/introducing-gpt-5-3-codex-spark/"
-        },
-        {
-          "title": "The model story is now portfolio design",
-          "text": "The weekly model roundups included Claude, MiniMax, Qwen, Microsoft image, Midjourney, and realtime audio updates. The useful takeaway is not just who won a benchmark, but which model lane fits reasoning, coding, open/local control, image generation, or voice work."
         }
       ]
     },
@@ -113,10 +109,6 @@
           "title": "Agent models are being treated as security-sensitive",
           "text": "OpenAI's GPT-5.3-Codex system card says the model is being treated as high capability in cybersecurity under its Preparedness Framework. That is a signal that coding agents are moving from productivity toys into controlled professional infrastructure.",
           "url": "https://openai.com/index/gpt-5-3-codex-system-card/"
-        },
-        {
-          "title": "The practical news is permission design",
-          "text": "The battle is not just Claude Code versus Codex. The important shift is that agent products are adding limits, review gates, computer control, browser access, and persistent workflow context because real work needs boundaries."
         }
       ]
     },
@@ -161,7 +153,7 @@
       "side_panel": [
         {
           "title": "Google Book turns Gemini into the operating layer",
-          "text": "The Limitless segment says Google's AI laptop is being framed as a natural successor to Chromebook: a low-cost Google Book built around Gemini Intelligence, Magic Pointer actions, and Android/Google app integration. The interesting move is that Gemini is not just a chatbot here; it is being positioned as the action layer across Gmail, Maps, documents, shopping, scheduling, and device handoffs.",
+          "text": "Google's AI laptop push frames Google Book as a low-cost successor to Chromebook, built around Gemini Intelligence, Magic Pointer actions, and Android/Google app integration. The Google Books angle matters because Google can pair consumer devices and Workspace distribution with a deep corpus, making the push feel like a platform-and-data play instead of another chatbot launch.",
           "url": "https://www.youtube.com/watch?v=N3oqUmSBmIc&list=PLxFjGka4tveAOS0oDFqsnlsG0UqdlN0yC&index=1&t=143s"
         },
         {
@@ -178,11 +170,6 @@
           "title": "Gemini kept spreading through work surfaces",
           "text": "Google's Gemini 3.1 Pro rollout matters because the model is not isolated in a chat app; it reaches API, Vertex, Gemini Enterprise, CLI, Android Studio, NotebookLM, and consumer Gemini surfaces. Distribution is part of the model launch.",
           "url": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-1-pro/"
-        },
-        {
-          "title": "Google Books belongs in the platform story",
-          "text": "The podcast specifically flags Google Books as part of the Google platform advantage: Google can connect AI models to a deep corpus, consumer devices, Workspace, Android, Search, and Maps. That makes Google's AI push feel less like one product launch and more like a distribution-and-data play.",
-          "url": "https://www.youtube.com/watch?v=N3oqUmSBmIc&list=PLxFjGka4tveAOS0oDFqsnlsG0UqdlN0yC&index=1&t=143s"
         },
         {
           "title": "Creative platforms are becoming command centers",
@@ -241,10 +228,6 @@
           "url": "https://www.anthropic.com/news/higher-limits-spacex"
         },
         {
-          "title": "Capacity is now a customer-facing feature",
-          "text": "This is why the rate-limit story matters: Anthropic did not just announce a data-center deal; it immediately changed product limits. If a vendor cannot get GPUs, power, and facilities online, customers feel it as queues, caps, slower agents, or worse reliability."
-        },
-        {
           "title": "Anthropic is stacking compute partners",
           "text": "The SpaceX deal joins Anthropic's disclosed compute pipeline: up to 5 GW with Amazon, 5 GW with Google/Broadcom beginning in 2027, a Microsoft/NVIDIA partnership including $30 billion of Azure capacity, and a $50 billion U.S. infrastructure investment with Fluidstack.",
           "url": "https://www.anthropic.com/news/higher-limits-spacex"
@@ -253,10 +236,6 @@
           "title": "Space-based AI stopped sounding hypothetical",
           "text": "The Google-SpaceX segment says Google wants launch capacity for radiation-resistant TPUs tied to Project Suncatcher, its space-based machine-learning initiative. The practical angle is simple: if AI compute is power-constrained on Earth, Google is exploring solar-powered orbital data centers and SpaceX is the cheapest highway to orbit.",
           "url": "https://www.tomshardware.com/tech-industry/artificial-intelligence/google-reportedly-in-talks-with-spacex-to-launch-its-orbital-data-centers-partnership-could-mark-a-historic-turning-point-and-boost-upcoming-ipo"
-        },
-        {
-          "title": "Memory and capex stayed in the foreground",
-          "text": "The infrastructure watchlist also included memory demand, inference growth, and AI capex pressure. The practical question is becoming less 'which model is best?' and more 'who can serve it at scale without rationing?'"
         }
       ]
     },

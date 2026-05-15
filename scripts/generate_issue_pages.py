@@ -206,9 +206,9 @@ def sync_common(content: str, issue: dict, edition_label: str, hero_prefix: str)
     )
     content = replace_once(
         content,
-        r"<span class=\"pill\">Week of .*?</span>",
-        f'<span class="pill">{escape(portable_week_label(item["week_of"]))}</span>',
-        "week pill",
+        r'<span class="(?:pill|issue-week)">Week of .*?</span>',
+        f'<span class="issue-week">{escape(portable_week_label(item["week_of"]))}</span>',
+        "week label",
     )
     return content
 

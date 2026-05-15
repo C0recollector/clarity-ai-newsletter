@@ -12,7 +12,7 @@
     body{margin:0;background:#edf2f7;color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.48}
     a{color:var(--blue);text-decoration:none}
     a:hover{text-decoration:underline}
-    .wrap{width:min(1760px,calc(100% - 34px));margin:0 auto}
+    .wrap{width:min(1760px,calc(100% - 64px));margin:0 auto}
     header{position:relative;overflow:hidden;background:#fff;border-bottom:1px solid var(--line)}
     header::before{
       content:"";
@@ -27,9 +27,10 @@
     header::after{content:"";position:absolute;inset:auto 0 0;height:42%;background:linear-gradient(180deg,rgba(255,255,255,0),#f5f8fc 72%,#edf2f7 100%);pointer-events:none}
     .hero{position:relative;z-index:1;padding:34px 0 24px}
     .top{display:grid;grid-template-columns:minmax(0,1fr) minmax(280px,340px);gap:26px;align-items:end;min-height:300px}
-    .pills{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
-    .pill{display:inline-flex;border:1px solid var(--line);border-radius:999px;background:#fff;padding:4px 9px;color:var(--muted);font-size:12px;font-weight:850}
-    a.pill:hover{text-decoration:none;border-color:#b8c8dd;box-shadow:0 8px 18px rgba(15,23,42,.08)}
+    .edition-kicker{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:15px;color:var(--muted);font-size:12px;font-weight:850;line-height:1.1;letter-spacing:.08em;text-transform:uppercase}
+    .edition-kicker a{color:#174ea6}
+    .edition-kicker a:hover{text-decoration:underline}
+    .edition-kicker span:not(:first-child)::before{content:"/";margin-right:10px;color:#93a4ba;font-weight:750}
     h1{font-size:clamp(40px,6vw,76px);line-height:.94;margin:0 0 12px;letter-spacing:0}
     .dek{max-width:850px;margin:0;color:var(--text);font-size:18px}
     .hero-art{min-height:242px}
@@ -54,9 +55,9 @@
     .signal h2{margin:0 0 8px;font-size:28px}
     .signal p{margin:0;color:var(--text)}
     .num{color:#cbd5e1;font-size:44px;font-weight:900;line-height:1}
-    .body{display:grid;grid-template-columns:minmax(0,1fr) minmax(440px,520px);gap:0;align-items:start}
+    .body{display:grid;grid-template-columns:minmax(0,1fr) minmax(440px,520px);gap:0;align-items:stretch}
     .maincol{padding:22px}
-    .side{border-left:1px solid var(--line);background:#f8fafc;padding:22px;max-height:520px;overflow-y:auto;overscroll-behavior:contain}
+    .side{border-left:1px solid var(--line);background:#f8fafc;padding:22px;max-height:680px;overflow-y:auto;overscroll-behavior:contain}
     .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:16px 0}
     .fact{border:1px solid var(--line);border-radius:8px;background:#fff;padding:13px}
     .fact:nth-child(1){background:#f5f9ff}
@@ -107,10 +108,10 @@
     <div class="wrap hero">
       <div class="top">
         <div>
-          <div class="pills">
-            <a class="pill" href="../../index.html">AI Weekly Brief</a>
-            <span class="pill">Week of May 11, 2026</span>
-            <span class="pill">Technical edition</span>
+          <div class="edition-kicker">
+            <a href="../../index.html">AI Weekly Brief</a>
+            <span class="issue-week">Week of May 11, 2026</span>
+            <span>Technical edition</span>
           </div>
           <h1>The Week AI Became Infrastructure</h1>
           <p class="dek">The useful story this week is not &quot;more AI news.&quot; It is that AI is reorganizing into infrastructure layers: model portfolios, agent operating systems, distribution surfaces, compute supply chains, and power politics.</p>
@@ -158,8 +159,7 @@
         <aside class="side">
           <a class="mini-card news-hook" href="https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-1-pro/" aria-label="Open source for Gemini 3.1 Pro landed quietly"><b>Gemini 3.1 Pro landed quietly</b><p>Google released Gemini 3.1 Pro in preview on February 19 and pushed it into the Gemini API, AI Studio, Vertex AI, Gemini Enterprise, Gemini CLI, Android Studio, NotebookLM, and the Gemini app. Google reported a 77.1% verified ARC-AGI-2 score, making it a serious reasoning-model entry rather than a routine Gemini refresh.</p></a>
           <a class="mini-card news-hook" href="https://openai.com/index/introducing-gpt-5-3-codex" aria-label="Open source for Codex got a frontier work model"><b>Codex got a frontier work model</b><p>OpenAI introduced GPT-5.3-Codex as its most capable agentic coding model, saying it combines GPT-5.2-Codex coding strength with GPT-5.2-style reasoning and professional knowledge, runs 25% faster, and can handle long-running research, tool-use, and execution tasks.</p></a>
-          <a class="mini-card news-hook" href="https://openai.com/index/introducing-gpt-5-3-codex-spark/" aria-label="Open source for Real-time coding became a model lane"><b>Real-time coding became a model lane</b><p>OpenAI also previewed GPT-5.3-Codex-Spark on Cerebras, aiming for near-instant coding interactions at more than 1,000 tokens per second. That is a different product lane from frontier reasoning: fast pair-programming loops instead of long autonomous jobs.</p></a>
-          <div class="mini-card news-hook"><b>The model story is now portfolio design</b><p>The weekly model roundups included Claude, MiniMax, Qwen, Microsoft image, Midjourney, and realtime audio updates. The useful takeaway is not just who won a benchmark, but which model lane fits reasoning, coding, open/local control, image generation, or voice work.</p></div>
+          <a class="mini-card news-hook" href="https://openai.com/index/introducing-gpt-5-3-codex-spark/" aria-label="Open source for OpenAI put Codex Spark on Cerebras-speed silicon"><b>OpenAI put Codex Spark on Cerebras-speed silicon</b><p>OpenAI previewed GPT-5.3-Codex-Spark on Cerebras, targeting near-instant coding interactions at more than 1,000 tokens per second. Cerebras is not a normal NVIDIA-style GPU card; its wafer-scale processor keeps far more compute and memory on one giant chip, which makes the hook ultra-low-latency coding loops rather than long background agents.</p></a>
         </aside>
       </div>
       <details><summary>References</summary><div class="sources"><a href="https://www.youtube.com/watch?v=bIrzOQtnp8w">Matt Wolfe model roundup</a><a href="https://martinalderson.com/posts/open-weights-are-quietly-closing-up/">Open weights are quietly closing up</a><a href="https://openai.com/">OpenAI product home</a><a href="https://www.anthropic.com/claude-code">Claude Code product home</a></div></details>
@@ -189,7 +189,6 @@
           <a class="mini-card news-hook" href="https://www.anthropic.com/news/higher-limits-spacex" aria-label="Open source for Claude Code got more room to work"><b>Claude Code got more room to work</b><p>Anthropic doubled Claude Code five-hour rate limits for Pro, Max, Team, and seat-based Enterprise plans, removed peak-hour reductions for Pro and Max, and raised Claude Opus API limits. That turns compute capacity into a visible product feature for agent users.</p></a>
           <a class="mini-card news-hook" href="https://openai.com/index/codex-for-almost-everything/" aria-label="Open source for Codex moved beyond code-only chores"><b>Codex moved beyond code-only chores</b><p>OpenAI&#x27;s Codex update framed it as a computer-side collaborator: it can use more tools and apps, work across development workflows, generate images, remember preferences, continue repetitive tasks, inspect multiple files and terminals, use SSH, and iterate in an integrated browser.</p></a>
           <a class="mini-card news-hook" href="https://openai.com/index/gpt-5-3-codex-system-card/" aria-label="Open source for Agent models are being treated as security-sensitive"><b>Agent models are being treated as security-sensitive</b><p>OpenAI&#x27;s GPT-5.3-Codex system card says the model is being treated as high capability in cybersecurity under its Preparedness Framework. That is a signal that coding agents are moving from productivity toys into controlled professional infrastructure.</p></a>
-          <div class="mini-card news-hook"><b>The practical news is permission design</b><p>The battle is not just Claude Code versus Codex. The important shift is that agent products are adding limits, review gates, computer control, browser access, and persistent workflow context because real work needs boundaries.</p></div>
         </aside>
       </div>
       <details><summary>References</summary><div class="sources"><a href="https://drstorm.substack.com/p/why-claude-code-changes-more-than">Why Claude Code changes more than software development</a><a href="https://www.youtube.com/watch?v=wzADqzsm6pI">Openclaw Labs on agent memory</a><a href="https://youtu.be/_6O19bEZgMc">Limitless: agentic application layer</a><a href="https://openai.com/codex/">OpenAI Codex product home</a></div></details>
@@ -210,11 +209,10 @@
           <div class="callout"><b>Technical takeaway:</b> AI adoption is easier when the assistant lives where the work already happens.</div>
         </div>
         <aside class="side">
-          <a class="mini-card news-hook" href="https://www.youtube.com/watch?v=N3oqUmSBmIc&amp;list=PLxFjGka4tveAOS0oDFqsnlsG0UqdlN0yC&amp;index=1&amp;t=143s" aria-label="Open source for Google Book turns Gemini into the operating layer"><b>Google Book turns Gemini into the operating layer</b><p>The Limitless segment says Google&#x27;s AI laptop is being framed as a natural successor to Chromebook: a low-cost Google Book built around Gemini Intelligence, Magic Pointer actions, and Android/Google app integration. The interesting move is that Gemini is not just a chatbot here; it is being positioned as the action layer across Gmail, Maps, documents, shopping, scheduling, and device handoffs.</p></a>
+          <a class="mini-card news-hook" href="https://www.youtube.com/watch?v=N3oqUmSBmIc&amp;list=PLxFjGka4tveAOS0oDFqsnlsG0UqdlN0yC&amp;index=1&amp;t=143s" aria-label="Open source for Google Book turns Gemini into the operating layer"><b>Google Book turns Gemini into the operating layer</b><p>Google&#x27;s AI laptop push frames Google Book as a low-cost successor to Chromebook, built around Gemini Intelligence, Magic Pointer actions, and Android/Google app integration. The Google Books angle matters because Google can pair consumer devices and Workspace distribution with a deep corpus, making the push feel like a platform-and-data play instead of another chatbot launch.</p></a>
           <a class="mini-card news-hook" href="https://openai.com/index/new-ways-to-buy-chatgpt-ads/" aria-label="Open source for ChatGPT ads became buyable infrastructure"><b>ChatGPT ads became buyable infrastructure</b><p>OpenAI opened a beta self-serve Ads Manager for U.S. advertisers, added CPC bidding, expanded measurement with Conversions API and pixel-based tooling, and named agency and ad-tech partners including Dentsu, Omnicom, Publicis, WPP, Adobe, Criteo, Kargo, Pacvue, and StackAdapt.</p></a>
           <a class="mini-card news-hook" href="https://blog.google/products-and-platforms/products/search/explore-web-generative-ai-search/" aria-label="Open source for Google changed the search surface again"><b>Google changed the search surface again</b><p>Google updated AI Mode and AI Overviews with more direct links, article suggestions, website previews on desktop hover, and more personal/community perspectives. That makes AI answers less like a search results page and more like a guided answer surface.</p></a>
           <a class="mini-card news-hook" href="https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-1-pro/" aria-label="Open source for Gemini kept spreading through work surfaces"><b>Gemini kept spreading through work surfaces</b><p>Google&#x27;s Gemini 3.1 Pro rollout matters because the model is not isolated in a chat app; it reaches API, Vertex, Gemini Enterprise, CLI, Android Studio, NotebookLM, and consumer Gemini surfaces. Distribution is part of the model launch.</p></a>
-          <a class="mini-card news-hook" href="https://www.youtube.com/watch?v=N3oqUmSBmIc&amp;list=PLxFjGka4tveAOS0oDFqsnlsG0UqdlN0yC&amp;index=1&amp;t=143s" aria-label="Open source for Google Books belongs in the platform story"><b>Google Books belongs in the platform story</b><p>The podcast specifically flags Google Books as part of the Google platform advantage: Google can connect AI models to a deep corpus, consumer devices, Workspace, Android, Search, and Maps. That makes Google&#x27;s AI push feel less like one product launch and more like a distribution-and-data play.</p></a>
           <a class="mini-card news-hook" href="https://www.canva.com/ai/" aria-label="Open source for Creative platforms are becoming command centers"><b>Creative platforms are becoming command centers</b><p>The platform-play story is not only Google and OpenAI. Tools like Canva keep pulling AI into the normal creation workflow, which means employees may adopt AI first through the software they already open every day.</p></a>
         </aside>
       </div>
@@ -237,10 +235,8 @@
         </div>
         <aside class="side">
           <a class="mini-card news-hook" href="https://www.anthropic.com/news/higher-limits-spacex" aria-label="Open source for Anthropic took the whole Colossus 1 lane"><b>Anthropic took the whole Colossus 1 lane</b><p>Anthropic said it signed with SpaceX to use all compute capacity at Colossus 1, adding more than 300 megawatts and over 220,000 NVIDIA GPUs within the month. The company tied that new capacity directly to higher Claude Code, Claude Pro/Max, and Claude Opus API limits.</p></a>
-          <div class="mini-card news-hook"><b>Capacity is now a customer-facing feature</b><p>This is why the rate-limit story matters: Anthropic did not just announce a data-center deal; it immediately changed product limits. If a vendor cannot get GPUs, power, and facilities online, customers feel it as queues, caps, slower agents, or worse reliability.</p></div>
           <a class="mini-card news-hook" href="https://www.anthropic.com/news/higher-limits-spacex" aria-label="Open source for Anthropic is stacking compute partners"><b>Anthropic is stacking compute partners</b><p>The SpaceX deal joins Anthropic&#x27;s disclosed compute pipeline: up to 5 GW with Amazon, 5 GW with Google/Broadcom beginning in 2027, a Microsoft/NVIDIA partnership including $30 billion of Azure capacity, and a $50 billion U.S. infrastructure investment with Fluidstack.</p></a>
           <a class="mini-card news-hook" href="https://www.tomshardware.com/tech-industry/artificial-intelligence/google-reportedly-in-talks-with-spacex-to-launch-its-orbital-data-centers-partnership-could-mark-a-historic-turning-point-and-boost-upcoming-ipo" aria-label="Open source for Space-based AI stopped sounding hypothetical"><b>Space-based AI stopped sounding hypothetical</b><p>The Google-SpaceX segment says Google wants launch capacity for radiation-resistant TPUs tied to Project Suncatcher, its space-based machine-learning initiative. The practical angle is simple: if AI compute is power-constrained on Earth, Google is exploring solar-powered orbital data centers and SpaceX is the cheapest highway to orbit.</p></a>
-          <div class="mini-card news-hook"><b>Memory and capex stayed in the foreground</b><p>The infrastructure watchlist also included memory demand, inference growth, and AI capex pressure. The practical question is becoming less &#x27;which model is best?&#x27; and more &#x27;who can serve it at scale without rationing?&#x27;</p></div>
         </aside>
       </div>
       <details><summary>References</summary><div class="sources"><a href="https://timesofindia.indiatimes.com/technology/tech-news/anthropic-takes-on-openai-expands-ai-infrastructure-with-spacex-deal-joining-google-broadcom-microsoft-nvidia-and-amazon/articleshow/130868969.cms">Report: Anthropic / SpaceX compute access</a><a href="https://www.teslarati.com/spacexai-signs-agreement-anthropic-massive-ai-supercomputer-access/">Teslarati: SpaceXAI and Anthropic report</a><a href="https://youtu.be/_6O19bEZgMc">Limitless: AI capex and memory bottlenecks</a></div></details>

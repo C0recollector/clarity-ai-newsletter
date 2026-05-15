@@ -34,7 +34,7 @@
     }
     a{color:var(--blue);text-decoration:none}
     a:hover{text-decoration:underline}
-    .wrap{width:min(1760px,calc(100% - 34px));margin:0 auto}
+    .wrap{width:min(1760px,calc(100% - 64px));margin:0 auto}
 
     header{
       position:relative;
@@ -62,20 +62,22 @@
     }
     .hero{position:relative;z-index:1;padding:34px 0 24px}
     .hero-top{display:grid;grid-template-columns:minmax(0,1fr) minmax(280px,360px);gap:28px;align-items:end;min-height:300px}
-    .date-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:13px}
-    .pill{
-      display:inline-flex;
+    .edition-kicker{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
       align-items:center;
-      border:1px solid #dce5f0;
-      border-radius:999px;
-      background:#fff;
-      color:#485872;
-      padding:4px 9px;
+      margin-bottom:15px;
+      color:#5f6f87;
       font-size:12px;
       font-weight:850;
       line-height:1.1;
+      letter-spacing:.08em;
+      text-transform:uppercase;
     }
-    a.pill:hover{text-decoration:none;border-color:#b8c8dd;box-shadow:0 8px 18px rgba(15,23,42,.08)}
+    .edition-kicker a{color:#174ea6}
+    .edition-kicker a:hover{text-decoration:underline}
+    .edition-kicker span:not(:first-child)::before{content:"/";margin-right:10px;color:#93a4ba;font-weight:750}
     h1{font-size:clamp(42px,7vw,86px);line-height:.92;margin:0 0 12px;letter-spacing:0}
     .dek{max-width:860px;margin:0;color:var(--text);font-size:19px}
     .hero-art{min-height:242px}
@@ -111,7 +113,7 @@
     .signal h2{font-size:31px;line-height:1.05;margin:0 0 7px;letter-spacing:0}
     .signal-head p{margin:0;color:var(--text);font-size:16px;max-width:850px}
     .signal-num{font-size:46px;line-height:1;font-weight:950;color:#dbe7f7}
-    .signal-body{display:grid;grid-template-columns:minmax(0,1fr) minmax(440px,520px);gap:18px;align-items:start;padding:18px 22px 22px}
+    .signal-body{display:grid;grid-template-columns:minmax(0,1fr) minmax(440px,520px);gap:18px;align-items:stretch;padding:18px 22px 22px}
     .signal-body.media-first{grid-template-columns:minmax(0,1fr) minmax(440px,520px)}
     .media-layout{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:18px}
     .story{display:grid;gap:14px;align-content:start}
@@ -137,7 +139,7 @@
       font-size:15px;
     }
     .callout b{color:#0f3f9f}
-    .side-panel{display:grid;gap:10px;max-height:520px;overflow-y:auto;align-content:start;padding-right:6px;overscroll-behavior:contain}
+    .side-panel{display:grid;gap:10px;max-height:680px;overflow-y:auto;align-content:start;padding-right:6px;overscroll-behavior:contain}
     .action-box{
       display:block;
       border:1px solid #dce5f0;
@@ -322,10 +324,10 @@
     <div class="wrap hero">
       <div class="hero-top">
         <div>
-          <div class="date-row">
-            <a class="pill" href="../index.html">AI Weekly Brief</a>
-            <span class="pill">Week of May 11, 2026</span>
-            <span class="pill">Executive edition</span>
+          <div class="edition-kicker">
+            <a href="../index.html">AI Weekly Brief</a>
+            <span class="issue-week">Week of May 11, 2026</span>
+            <span>Executive edition</span>
           </div>
           <h1>The Week AI Became Infrastructure</h1>
           <p class="dek">The useful story this week is not &quot;more AI news.&quot; It is that AI is reorganizing into infrastructure layers: model portfolios, agent operating systems, distribution surfaces, compute supply chains, and power politics.</p>
@@ -374,14 +376,10 @@
             <h3>Codex got a frontier work model</h3>
             <p>OpenAI introduced GPT-5.3-Codex as its most capable agentic coding model, saying it combines GPT-5.2-Codex coding strength with GPT-5.2-style reasoning and professional knowledge, runs 25% faster, and can handle long-running research, tool-use, and execution tasks.</p>
           </a>
-          <a class="action-box news-hook" href="https://openai.com/index/introducing-gpt-5-3-codex-spark/" aria-label="Open source for Real-time coding became a model lane">
-            <h3>Real-time coding became a model lane</h3>
-            <p>OpenAI also previewed GPT-5.3-Codex-Spark on Cerebras, aiming for near-instant coding interactions at more than 1,000 tokens per second. That is a different product lane from frontier reasoning: fast pair-programming loops instead of long autonomous jobs.</p>
+          <a class="action-box news-hook" href="https://openai.com/index/introducing-gpt-5-3-codex-spark/" aria-label="Open source for OpenAI put Codex Spark on Cerebras-speed silicon">
+            <h3>OpenAI put Codex Spark on Cerebras-speed silicon</h3>
+            <p>OpenAI previewed GPT-5.3-Codex-Spark on Cerebras, targeting near-instant coding interactions at more than 1,000 tokens per second. Cerebras is not a normal NVIDIA-style GPU card; its wafer-scale processor keeps far more compute and memory on one giant chip, which makes the hook ultra-low-latency coding loops rather than long background agents.</p>
           </a>
-          <div class="action-box news-hook">
-            <h3>The model story is now portfolio design</h3>
-            <p>The weekly model roundups included Claude, MiniMax, Qwen, Microsoft image, Midjourney, and realtime audio updates. The useful takeaway is not just who won a benchmark, but which model lane fits reasoning, coding, open/local control, image generation, or voice work.</p>
-          </div>
         </aside>
       </div>
       <details class="sources"><summary>References</summary><div class="source-list"><a href="https://www.youtube.com/watch?v=bIrzOQtnp8w">Matt Wolfe model roundup</a><a href="https://martinalderson.com/posts/open-weights-are-quietly-closing-up/">Open weights are quietly closing up</a></div></details>
@@ -438,10 +436,6 @@
             <h3>Agent models are being treated as security-sensitive</h3>
             <p>OpenAI&#x27;s GPT-5.3-Codex system card says the model is being treated as high capability in cybersecurity under its Preparedness Framework. That is a signal that coding agents are moving from productivity toys into controlled professional infrastructure.</p>
           </a>
-          <div class="action-box news-hook">
-            <h3>The practical news is permission design</h3>
-            <p>The battle is not just Claude Code versus Codex. The important shift is that agent products are adding limits, review gates, computer control, browser access, and persistent workflow context because real work needs boundaries.</p>
-          </div>
         </aside>
       </div>
       <details class="sources"><summary>References</summary><div class="source-list"><a href="https://drstorm.substack.com/p/why-claude-code-changes-more-than">Digital Storm: Why Claude Code Changes More Than Software Development</a><a href="https://www.youtube.com/watch?v=wzADqzsm6pI">Openclaw Labs: workflow before memory</a><a href="https://youtu.be/_6O19bEZgMc">Limitless: agentic application layer</a></div></details>
@@ -470,7 +464,7 @@
         <aside class="side-panel">
           <a class="action-box news-hook" href="https://www.youtube.com/watch?v=N3oqUmSBmIc&amp;list=PLxFjGka4tveAOS0oDFqsnlsG0UqdlN0yC&amp;index=1&amp;t=143s" aria-label="Open source for Google Book turns Gemini into the operating layer">
             <h3>Google Book turns Gemini into the operating layer</h3>
-            <p>The Limitless segment says Google&#x27;s AI laptop is being framed as a natural successor to Chromebook: a low-cost Google Book built around Gemini Intelligence, Magic Pointer actions, and Android/Google app integration. The interesting move is that Gemini is not just a chatbot here; it is being positioned as the action layer across Gmail, Maps, documents, shopping, scheduling, and device handoffs.</p>
+            <p>Google&#x27;s AI laptop push frames Google Book as a low-cost successor to Chromebook, built around Gemini Intelligence, Magic Pointer actions, and Android/Google app integration. The Google Books angle matters because Google can pair consumer devices and Workspace distribution with a deep corpus, making the push feel like a platform-and-data play instead of another chatbot launch.</p>
           </a>
           <a class="action-box news-hook" href="https://openai.com/index/new-ways-to-buy-chatgpt-ads/" aria-label="Open source for ChatGPT ads became buyable infrastructure">
             <h3>ChatGPT ads became buyable infrastructure</h3>
@@ -483,10 +477,6 @@
           <a class="action-box news-hook" href="https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-1-pro/" aria-label="Open source for Gemini kept spreading through work surfaces">
             <h3>Gemini kept spreading through work surfaces</h3>
             <p>Google&#x27;s Gemini 3.1 Pro rollout matters because the model is not isolated in a chat app; it reaches API, Vertex, Gemini Enterprise, CLI, Android Studio, NotebookLM, and consumer Gemini surfaces. Distribution is part of the model launch.</p>
-          </a>
-          <a class="action-box news-hook" href="https://www.youtube.com/watch?v=N3oqUmSBmIc&amp;list=PLxFjGka4tveAOS0oDFqsnlsG0UqdlN0yC&amp;index=1&amp;t=143s" aria-label="Open source for Google Books belongs in the platform story">
-            <h3>Google Books belongs in the platform story</h3>
-            <p>The podcast specifically flags Google Books as part of the Google platform advantage: Google can connect AI models to a deep corpus, consumer devices, Workspace, Android, Search, and Maps. That makes Google&#x27;s AI push feel less like one product launch and more like a distribution-and-data play.</p>
           </a>
           <a class="action-box news-hook" href="https://www.canva.com/ai/" aria-label="Open source for Creative platforms are becoming command centers">
             <h3>Creative platforms are becoming command centers</h3>
@@ -522,10 +512,6 @@
             <h3>Anthropic took the whole Colossus 1 lane</h3>
             <p>Anthropic said it signed with SpaceX to use all compute capacity at Colossus 1, adding more than 300 megawatts and over 220,000 NVIDIA GPUs within the month. The company tied that new capacity directly to higher Claude Code, Claude Pro/Max, and Claude Opus API limits.</p>
           </a>
-          <div class="action-box news-hook">
-            <h3>Capacity is now a customer-facing feature</h3>
-            <p>This is why the rate-limit story matters: Anthropic did not just announce a data-center deal; it immediately changed product limits. If a vendor cannot get GPUs, power, and facilities online, customers feel it as queues, caps, slower agents, or worse reliability.</p>
-          </div>
           <a class="action-box news-hook" href="https://www.anthropic.com/news/higher-limits-spacex" aria-label="Open source for Anthropic is stacking compute partners">
             <h3>Anthropic is stacking compute partners</h3>
             <p>The SpaceX deal joins Anthropic&#x27;s disclosed compute pipeline: up to 5 GW with Amazon, 5 GW with Google/Broadcom beginning in 2027, a Microsoft/NVIDIA partnership including $30 billion of Azure capacity, and a $50 billion U.S. infrastructure investment with Fluidstack.</p>
@@ -534,10 +520,6 @@
             <h3>Space-based AI stopped sounding hypothetical</h3>
             <p>The Google-SpaceX segment says Google wants launch capacity for radiation-resistant TPUs tied to Project Suncatcher, its space-based machine-learning initiative. The practical angle is simple: if AI compute is power-constrained on Earth, Google is exploring solar-powered orbital data centers and SpaceX is the cheapest highway to orbit.</p>
           </a>
-          <div class="action-box news-hook">
-            <h3>Memory and capex stayed in the foreground</h3>
-            <p>The infrastructure watchlist also included memory demand, inference growth, and AI capex pressure. The practical question is becoming less &#x27;which model is best?&#x27; and more &#x27;who can serve it at scale without rationing?&#x27;</p>
-          </div>
         </aside>
       </div>
       <details class="sources"><summary>References</summary><div class="source-list"><a href="https://timesofindia.indiatimes.com/technology/tech-news/anthropic-takes-on-openai-expands-ai-infrastructure-with-spacex-deal-joining-google-broadcom-microsoft-nvidia-and-amazon/articleshow/130868969.cms">Report: Anthropic / SpaceX Colossus compute access</a><a href="https://youtu.be/_6O19bEZgMc">Limitless: AI capex and memory bottlenecks</a><a href="https://www.teslarati.com/spacexai-signs-agreement-anthropic-massive-ai-supercomputer-access/">Teslarati: SpaceXAI signs agreement with Anthropic</a></div></details>
