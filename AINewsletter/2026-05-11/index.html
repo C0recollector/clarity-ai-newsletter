@@ -34,7 +34,7 @@
     }
     a{color:var(--blue);text-decoration:none}
     a:hover{text-decoration:underline}
-    .wrap{width:min(1760px,calc(100% - 64px));margin:0 auto}
+    .wrap{width:min(1760px,calc(100% - 96px));margin:0 auto}
 
     header{
       position:relative;
@@ -78,7 +78,7 @@
     .edition-kicker a{color:#174ea6}
     .edition-kicker a:hover{text-decoration:underline}
     .edition-kicker span:not(:first-child)::before{content:"/";margin-right:10px;color:#93a4ba;font-weight:750}
-    h1{font-size:clamp(42px,7vw,86px);line-height:.92;margin:0 0 12px;letter-spacing:0}
+    h1{font-size:clamp(42px,7vw,86px);line-height:.98;margin:0 0 12px;letter-spacing:0;text-transform:uppercase;font-weight:950}
     .dek{max-width:860px;margin:0;color:var(--text);font-size:19px}
     .hero-art{min-height:242px}
     .hero-art img{display:none}
@@ -308,7 +308,7 @@
       .story-grid{grid-template-columns:1fr}
     }
     @media(max-width:660px){
-      .wrap{width:min(100% - 22px,1760px)}
+      .wrap{width:min(100% - 32px,1760px)}
       .nav-strip,.source-list,.lane-map,.battlefield,.route-board,.agent-map,.risk-matrix{grid-template-columns:1fr}
       .vs{padding:4px}
       .stack-row,.power-item{grid-template-columns:1fr}
