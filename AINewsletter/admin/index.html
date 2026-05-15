@@ -536,6 +536,35 @@
       display: none;
     }
 
+    .candidate-filter {
+      display: grid;
+      gap: 10px;
+      padding: 12px;
+    }
+
+    .candidate-filter-row {
+      display: grid;
+      grid-template-columns: minmax(190px, .9fr) minmax(170px, .8fr) minmax(220px, 1fr);
+      gap: 8px;
+      align-items: end;
+    }
+
+    .candidate-filter-summary {
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .empty-filter {
+      border: 1px dashed #b8c7dc;
+      border-radius: 8px;
+      background: #f8fafc;
+      color: var(--muted);
+      padding: 14px;
+      font-size: 13px;
+      font-weight: 800;
+    }
+
     .excluded-note {
       display: none;
       border: 1px dashed #b8c7dc;
@@ -987,6 +1016,7 @@
       .refresh-head,
       .refresh-controls,
       .refresh-actions,
+      .candidate-filter-row,
       .source-settings-grid { grid-template-columns: 1fr; }
 
       .source-settings .wide { grid-column: auto; }
@@ -1143,6 +1173,31 @@
             <h2>1. Candidate Items</h2>
             <p class="hint">Check the source, then choose the specific segments that should drive the final newsletter.</p>
           </div>
+        </div>
+        <div class="card candidate-filter" aria-label="Candidate filters">
+          <div class="candidate-filter-row">
+            <label class="field">
+              <span>Review view</span>
+              <select class="new-input" id="candidate-filter-mode">
+                <option value="fast" selected>Fast review</option>
+                <option value="selected">Selected evidence</option>
+                <option value="unselected">Needs decision</option>
+                <option value="excluded">Excluded sources</option>
+                <option value="all">All sources</option>
+              </select>
+            </label>
+            <label class="field">
+              <span>Theme</span>
+              <select class="new-input" id="candidate-filter-theme">
+                <option value="">All themes</option>
+              </select>
+            </label>
+            <label class="field">
+              <span>Search</span>
+              <input class="new-input" id="candidate-filter-search" placeholder="Source, title, segment, or summary">
+            </label>
+          </div>
+          <div class="candidate-filter-summary" id="candidate-filter-summary">Fast review shows the highest-signal included items first.</div>
         </div>
         <div class="card manual-source" aria-label="Add missed source">
           <div class="manual-source-head">
@@ -1348,12 +1403,21 @@
       rejectedThemeNames: new Set(themes.filter(theme => !theme.approved).map(theme => theme.title.toLowerCase())),
       audience: 'c_suite',
       candidatePoolSource: 'sample',
+      filters: {
+        mode: 'fast',
+        theme: '',
+        search: ''
+      },
       draggedThemeId: null,
       approved: false
     };
     const storageKey = 'ai-newsletter-review-2026-05-11';
 
     const candidateList = document.getElementById('candidate-list');
+    const candidateFilterModeEl = document.getElementById('candidate-filter-mode');
+    const candidateFilterThemeEl = document.getElementById('candidate-filter-theme');
+    const candidateFilterSearchEl = document.getElementById('candidate-filter-search');
+    const candidateFilterSummaryEl = document.getElementById('candidate-filter-summary');
     const themeList = document.getElementById('theme-list');
     const statusEl = document.getElementById('review-status');
     const manualUrlEl = document.getElementById('manual-url');
@@ -2356,9 +2420,56 @@
       });
     }
 
+    function candidateSearchText(candidate) {
+      return normalizeText([
+        candidate.title,
+        candidate.source,
+        candidate.label,
+        candidate.summary,
+        candidate.date,
+        candidate.segments.map(segment => `${segment.title} ${segment.summary} ${segment.theme}`).join(' ')
+      ].filter(Boolean).join(' '));
+    }
+
+    function filterThemeNames() {
+      return [...new Set(state.candidates.flatMap(candidate => candidate.segments.map(segment => segment.theme)).filter(Boolean))]
+        .sort((a, b) => a.localeCompare(b));
+    }
+
+    function syncCandidateFilterOptions() {
+      const previous = candidateFilterThemeEl.value;
+      candidateFilterThemeEl.innerHTML = '<option value="">All themes</option>' + filterThemeNames()
+        .map(theme => `<option value="${escapeHtml(theme)}">${escapeHtml(theme)}</option>`)
+        .join('');
+      candidateFilterThemeEl.value = filterThemeNames().includes(previous) ? previous : '';
+      state.filters.theme = candidateFilterThemeEl.value;
+    }
+
+    function segmentMatchesFilter(candidate, segment) {
+      const mode = state.filters.mode;
+      if (state.filters.theme && segment.theme !== state.filters.theme) return false;
+      if (mode === 'fast') {
+        if (candidate.manual || candidate.priority === 'editorial_override' || candidate.sourceLane === 'youtube_playlist') return segment.selected || segment.strength !== 'weak';
+        return segment.selected && segment.strength !== 'weak';
+      }
+      if (mode === 'selected') return segment.selected;
+      if (mode === 'unselected') return !segment.selected;
+      return true;
+    }
+
+    function candidateMatchesFilter(candidate) {
+      const search = normalizeText(state.filters.search || '');
+      if (search && !candidateSearchText(candidate).includes(search)) return false;
+      if (state.filters.mode === 'excluded') return !candidate.included;
+      if (state.filters.mode !== 'all' && !candidate.included) return false;
+      return candidate.segments.some(segment => segmentMatchesFilter(candidate, segment));
+    }
+
     function renderCandidates() {
       candidateList.innerHTML = '';
-      state.candidates.forEach(candidate => {
+      syncCandidateFilterOptions();
+      const visibleCandidates = state.candidates.filter(candidateMatchesFilter);
+      visibleCandidates.forEach(candidate => {
         const relevance = candidate.relevance || relevanceLevel(candidate.score || 70, candidate.priority || 'standard');
         const article = document.createElement('article');
         article.className = `card candidate ${candidate.included ? '' : 'excluded'}`;
@@ -2390,7 +2501,8 @@
           </div>
         `;
         const segmentWrap = article.querySelector('.segments');
-        candidate.segments.forEach(segment => {
+        const visibleSegments = candidate.segments.filter(segment => segmentMatchesFilter(candidate, segment));
+        visibleSegments.forEach(segment => {
           const row = document.createElement('label');
           row.className = `segment ${segment.selected ? 'selected' : ''}`;
           row.innerHTML = `
@@ -2409,6 +2521,13 @@
         });
         candidateList.appendChild(article);
       });
+      candidateFilterSummaryEl.textContent = `${visibleCandidates.length} of ${state.candidates.length} sources shown. ${state.filters.mode === 'fast' ? 'Fast review hides excluded, weak, and low-signal rows.' : 'Change Review view to Fast review when you want the short list.'}`;
+      if (!visibleCandidates.length) {
+        const empty = document.createElement('div');
+        empty.className = 'empty-filter';
+        empty.textContent = 'No sources match these filters. Switch Review view to All sources or clear search.';
+        candidateList.appendChild(empty);
+      }
     }
 
     function renderThemes() {
@@ -2699,6 +2818,18 @@
     }
 
     document.addEventListener('change', event => {
+      if (event.target === candidateFilterModeEl) {
+        state.filters.mode = event.target.value;
+        render({ save: false });
+        return;
+      }
+
+      if (event.target === candidateFilterThemeEl) {
+        state.filters.theme = event.target.value;
+        render({ save: false });
+        return;
+      }
+
       const candidateId = event.target.dataset.candidate;
       if (candidateId) {
         const candidate = state.candidates.find(c => c.id === candidateId);
@@ -2735,6 +2866,12 @@
     });
 
     document.addEventListener('input', event => {
+      if (event.target === candidateFilterSearchEl) {
+        state.filters.search = event.target.value;
+        render({ save: false });
+        return;
+      }
+
       const titleId = event.target.dataset.themeTitle;
       if (titleId) {
         const theme = state.themes.find(t => t.id === titleId);
