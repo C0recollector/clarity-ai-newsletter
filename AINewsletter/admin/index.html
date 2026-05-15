@@ -1436,9 +1436,28 @@
         candidates: state.candidates.map(candidate => ({
           id: candidate.id,
           included: candidate.included,
+          kind: candidate.kind,
+          label: candidate.label,
+          source: candidate.source,
+          title: candidate.title,
+          url: candidate.url,
+          date: candidate.date,
+          score: candidate.score,
+          manual: Boolean(candidate.manual),
+          priority: candidate.priority || 'standard',
+          summary: candidate.summary,
+          sourceMaterial: candidate.sourceMaterial || '',
+          sourceMaterialRef: candidate.sourceMaterialRef || '',
           segments: candidate.segments.map(segment => ({
             id: segment.id,
-            selected: segment.selected
+            selected: segment.selected,
+            strength: segment.strength,
+            time: segment.time,
+            theme: segment.theme,
+            title: segment.title,
+            summary: segment.summary,
+            sourceMaterial: segment.sourceMaterial || '',
+            sourceMaterialRef: segment.sourceMaterialRef || ''
           }))
         })),
         themes: state.themes.map(theme => ({
@@ -1477,6 +1496,7 @@
       state.approved = Boolean(saved.approved);
       state.candidatePoolSource = saved.candidatePoolSource || state.candidatePoolSource;
       mergeCandidateChoices(saved.candidates || []);
+      restoreManualCandidates(saved.candidates || []);
       return true;
     }
 
@@ -1514,6 +1534,41 @@
       state.approved = review.status === 'approved';
       saveReviewState();
       return true;
+    }
+
+    function restoreManualCandidates(savedCandidates) {
+      const existingIds = new Set(state.candidates.map(candidate => candidate.id));
+      savedCandidates
+        .filter(candidate => candidate.manual && !existingIds.has(candidate.id))
+        .forEach(candidate => {
+          state.candidates.unshift({
+            id: candidate.id,
+            kind: candidate.kind || 'article',
+            label: candidate.label || 'Manual',
+            source: candidate.source || 'Manual source',
+            title: candidate.title || 'Manual source',
+            url: candidate.url || '#',
+            date: candidate.date || todayIsoDate(),
+            score: candidate.score || 99,
+            included: candidate.included !== false,
+            manual: true,
+            priority: candidate.priority || 'editorial_override',
+            summary: candidate.summary || '',
+            sourceMaterial: candidate.sourceMaterial || candidate.summary || '',
+            sourceMaterialRef: candidate.sourceMaterialRef || 'manual note',
+            segments: (candidate.segments || []).map(segment => ({
+              id: segment.id,
+              selected: segment.selected !== false,
+              strength: segment.strength || 'strong',
+              time: segment.time || 'manual source',
+              theme: segment.theme || 'Manual editorial signal',
+              title: segment.title || candidate.title || 'Manual source',
+              summary: segment.summary || candidate.summary || '',
+              sourceMaterial: segment.sourceMaterial || candidate.sourceMaterial || candidate.summary || '',
+              sourceMaterialRef: segment.sourceMaterialRef || candidate.sourceMaterialRef || 'manual note'
+            }))
+          });
+        });
     }
 
     function mergeCandidateChoices(savedCandidates) {
@@ -1788,11 +1843,11 @@
       return result;
     }
 
-    function firstUsefulSentence(value) {
+    function firstUsefulSentence(value, maxLength = 560) {
       const normalized = String(value || '').replace(/\s+/g, ' ').trim();
       if (!normalized) return 'Metadata-only candidate. Review the source before publishing.';
-      const sentence = normalized.match(/^.{80,560}?[.!?](\s|$)/);
-      return sentence ? sentence[0].trim() : normalized.slice(0, 560).trim();
+      const sentence = normalized.match(new RegExp(`^.{80,${maxLength}}?[.!?](\\s|$)`));
+      return sentence ? sentence[0].trim() : normalized.slice(0, maxLength).trim();
     }
 
     function inferCandidateTheme(candidate) {
@@ -1893,9 +1948,14 @@
     }
 
     function chapterToSegment(item, chapter, index, idBase, strength) {
+      const chapterSeconds = timeToSeconds(chapter.time);
+      const transcriptExcerpt = transcriptExcerptForWindow(item.sourceMaterial || '', chapterSeconds);
+      const chapterSummary = transcriptExcerpt
+        ? `${chapter.title}: ${transcriptExcerpt}`
+        : `Chapter marker from ${item.title || 'this source'}: ${chapter.title}.`;
       const theme = inferCandidateTheme({
         title: chapter.title,
-        summary: `${item.title || ''} ${chapter.title}`,
+        summary: `${item.title || ''} ${chapter.title} ${chapterSummary}`,
         source: item.source || ''
       });
       return {
@@ -1905,10 +1965,17 @@
         time: chapter.time,
         theme,
         title: chapter.title,
-        summary: `Chapter from ${item.title || 'this source'}: ${chapter.title}.`,
+        summary: chapterSummary,
         sourceMaterial: item.sourceMaterial || item.summary || '',
         sourceMaterialRef: item.sourceMaterialRef || ''
       };
+    }
+
+    function transcriptExcerptForWindow(text, startSeconds) {
+      if (!text || !startSeconds) return '';
+      const clean = String(text).replace(/\s+/g, ' ').trim();
+      if (!clean) return '';
+      return firstUsefulSentence(clean, 240);
     }
 
     function mergeChapterSegments(segments) {
