@@ -332,9 +332,8 @@
         <a class="nav-card" href="#model-news"><b>Model News</b><span>New models released, with a focus on capability, pricing, and benchmarks.</span></a>
         <a class="nav-card" href="#agents"><b>Agents</b><span>A standing section for agents, agentic workflows, agent OS ideas, orchestration, tools, roles, artifacts, validation, and practical automation.</span></a>
         <a class="nav-card" href="#platforms"><b>Platform Plays</b><span>News on Google, Microsoft, OpenAI, Anthropic, Meta, Perplexity, Chinese/opensource companies, and other platforms pushing AI into everyday work surfaces.</span></a>
-        <a class="nav-card" href="#infrastructure"><b>New and Interesting</b><span>Interesting announcements.</span></a>
+        <a class="nav-card" href="#infrastructure"><b>AI Infrastructure</b><span>Compute access, chips, power, memory, and data-center capacity became product strategy this week.</span></a>
         <a class="nav-card" href="#power-moves"><b>Power Moves</b><span>A standing section for founder drama, lawsuits, acquisitions, surprise partnerships, platform politics, and industry titan maneuvering.</span></a>
-        <a class="nav-card" href="#other-1778812805167"><b>Other signals to consider</b><span>Selected items that did not fit the approved theme set cleanly. Review these before final publishing.</span></a>
       </nav>
     </div>
   </header>
@@ -361,21 +360,24 @@
           <div class="callout"><b>Business Insight:</b> model strategy is starting to look like cloud strategy. You will not use one provider for every workload forever.</div>
         </div>
         <aside class="side-panel">
-          <div class="action-box">
-            <h3>Decision Questions</h3>
-            <ul>
-              <li>Which workflows require frontier reasoning?</li>
-              <li>Where is a cheaper specialized model good enough?</li>
-              <li>Which use cases need realtime audio or image-native models?</li>
-            </ul>
+          <div class="action-box news-hook">
+            <h3>Gemini 3.1 Pro landed quietly</h3>
+            <p>Google released Gemini 3.1 Pro in preview on February 19 and pushed it into the Gemini API, AI Studio, Vertex AI, Gemini Enterprise, Gemini CLI, Android Studio, NotebookLM, and the Gemini app. Google reported a 77.1% verified ARC-AGI-2 score, making it a serious reasoning-model entry rather than a routine Gemini refresh.</p>
+            <a href="https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-1-pro/">Source</a>
           </div>
-          <div class="action-box">
-            <h3>Watch Next</h3>
-            <ul>
-              <li>Open-weight licensing restrictions.</li>
-              <li>Realtime API pricing and quality.</li>
-              <li>Whether coding-agent gains translate outside engineering.</li>
-            </ul>
+          <div class="action-box news-hook">
+            <h3>Codex got a frontier work model</h3>
+            <p>OpenAI introduced GPT-5.3-Codex as its most capable agentic coding model, saying it combines GPT-5.2-Codex coding strength with GPT-5.2-style reasoning and professional knowledge, runs 25% faster, and can handle long-running research, tool-use, and execution tasks.</p>
+            <a href="https://openai.com/index/introducing-gpt-5-3-codex">Source</a>
+          </div>
+          <div class="action-box news-hook">
+            <h3>Real-time coding became a model lane</h3>
+            <p>OpenAI also previewed GPT-5.3-Codex-Spark on Cerebras, aiming for near-instant coding interactions at more than 1,000 tokens per second. That is a different product lane from frontier reasoning: fast pair-programming loops instead of long autonomous jobs.</p>
+            <a href="https://openai.com/index/introducing-gpt-5-3-codex-spark/">Source</a>
+          </div>
+          <div class="action-box news-hook">
+            <h3>The model story is now portfolio design</h3>
+            <p>The weekly model roundups included Claude, MiniMax, Qwen, Microsoft image, Midjourney, and realtime audio updates. The useful takeaway is not just who won a benchmark, but which model lane fits reasoning, coding, open/local control, image generation, or voice work.</p>
           </div>
         </aside>
       </div>
@@ -421,21 +423,24 @@
           <div class="callout"><b>Business Insight:</b> agents fail when the workflow is vague. They get useful when the job has boundaries, tools, and a review loop.</div>
         </div>
         <aside class="side-panel">
-          <div class="action-box">
-            <h3>Practical Pilot</h3>
-            <ul>
-              <li>Choose one annoying weekly workflow.</li>
-              <li>Define inputs, outputs, allowed tools, and review gate.</li>
-              <li>Measure time saved and error rate, not novelty.</li>
-            </ul>
+          <div class="action-box news-hook">
+            <h3>Claude Code got more room to work</h3>
+            <p>Anthropic doubled Claude Code five-hour rate limits for Pro, Max, Team, and seat-based Enterprise plans, removed peak-hour reductions for Pro and Max, and raised Claude Opus API limits. That turns compute capacity into a visible product feature for agent users.</p>
+            <a href="https://www.anthropic.com/news/higher-limits-spacex">Source</a>
           </div>
-          <div class="action-box">
-            <h3>Risk</h3>
-            <ul>
-              <li>Too much permission too early.</li>
-              <li>No audit trail for generated work.</li>
-              <li>No cost ceiling for long-running tasks.</li>
-            </ul>
+          <div class="action-box news-hook">
+            <h3>Codex moved beyond code-only chores</h3>
+            <p>OpenAI&#x27;s Codex update framed it as a computer-side collaborator: it can use more tools and apps, work across development workflows, generate images, remember preferences, continue repetitive tasks, inspect multiple files and terminals, use SSH, and iterate in an integrated browser.</p>
+            <a href="https://openai.com/index/codex-for-almost-everything/">Source</a>
+          </div>
+          <div class="action-box news-hook">
+            <h3>Agent models are being treated as security-sensitive</h3>
+            <p>OpenAI&#x27;s GPT-5.3-Codex system card says the model is being treated as high capability in cybersecurity under its Preparedness Framework. That is a signal that coding agents are moving from productivity toys into controlled professional infrastructure.</p>
+            <a href="https://openai.com/index/gpt-5-3-codex-system-card/">Source</a>
+          </div>
+          <div class="action-box news-hook">
+            <h3>The practical news is permission design</h3>
+            <p>The battle is not just Claude Code versus Codex. The important shift is that agent products are adding limits, review gates, computer control, browser access, and persistent workflow context because real work needs boundaries.</p>
           </div>
         </aside>
       </div>
@@ -463,20 +468,35 @@
           <div class="callout"><b>Business Insight:</b> AI platforms are not just selling tools. They are trying to own the doorway where decisions begin.</div>
         </div>
         <aside class="side-panel">
-          <div class="action-box">
-            <h3>Business Implication</h3>
-            <ul>
-              <li>SEO and paid search may become answer-surface strategy.</li>
-              <li>Internal adoption follows tools already in the flow of work.</li>
-              <li>Creative and knowledge-work platforms can become AI command centers.</li>
-            </ul>
+          <div class="action-box news-hook">
+            <h3>Google Book turns Gemini into the operating layer</h3>
+            <p>The Limitless segment says Google&#x27;s AI laptop is being framed as a natural successor to Chromebook: a low-cost Google Book built around Gemini Intelligence, Magic Pointer actions, and Android/Google app integration. The interesting move is that Gemini is not just a chatbot here; it is being positioned as the action layer across Gmail, Maps, documents, shopping, scheduling, and device handoffs.</p>
+            <a href="https://www.youtube.com/watch?v=N3oqUmSBmIc&amp;list=PLxFjGka4tveAOS0oDFqsnlsG0UqdlN0yC&amp;index=1&amp;t=143s">Source</a>
           </div>
-          <div class="action-box">
-            <h3>Links</h3>
-            <ul>
-              <li><a href="https://openai.com/index/new-ways-to-buy-chatgpt-ads/">OpenAI ChatGPT ads update</a></li>
-              <li><a href="https://www.macrumors.com/2026/05/06/google-search-ai-mode-expert-advice/">Google AI Search changes</a></li>
-            </ul>
+          <div class="action-box news-hook">
+            <h3>ChatGPT ads became buyable infrastructure</h3>
+            <p>OpenAI opened a beta self-serve Ads Manager for U.S. advertisers, added CPC bidding, expanded measurement with Conversions API and pixel-based tooling, and named agency and ad-tech partners including Dentsu, Omnicom, Publicis, WPP, Adobe, Criteo, Kargo, Pacvue, and StackAdapt.</p>
+            <a href="https://openai.com/index/new-ways-to-buy-chatgpt-ads/">Source</a>
+          </div>
+          <div class="action-box news-hook">
+            <h3>Google changed the search surface again</h3>
+            <p>Google updated AI Mode and AI Overviews with more direct links, article suggestions, website previews on desktop hover, and more personal/community perspectives. That makes AI answers less like a search results page and more like a guided answer surface.</p>
+            <a href="https://blog.google/products-and-platforms/products/search/explore-web-generative-ai-search/">Source</a>
+          </div>
+          <div class="action-box news-hook">
+            <h3>Gemini kept spreading through work surfaces</h3>
+            <p>Google&#x27;s Gemini 3.1 Pro rollout matters because the model is not isolated in a chat app; it reaches API, Vertex, Gemini Enterprise, CLI, Android Studio, NotebookLM, and consumer Gemini surfaces. Distribution is part of the model launch.</p>
+            <a href="https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-1-pro/">Source</a>
+          </div>
+          <div class="action-box news-hook">
+            <h3>Google Books belongs in the platform story</h3>
+            <p>The podcast specifically flags Google Books as part of the Google platform advantage: Google can connect AI models to a deep corpus, consumer devices, Workspace, Android, Search, and Maps. That makes Google&#x27;s AI push feel less like one product launch and more like a distribution-and-data play.</p>
+            <a href="https://www.youtube.com/watch?v=N3oqUmSBmIc&amp;list=PLxFjGka4tveAOS0oDFqsnlsG0UqdlN0yC&amp;index=1&amp;t=143s">Source</a>
+          </div>
+          <div class="action-box news-hook">
+            <h3>Creative platforms are becoming command centers</h3>
+            <p>The platform-play story is not only Google and OpenAI. Tools like Canva keep pulling AI into the normal creation workflow, which means employees may adopt AI first through the software they already open every day.</p>
+            <a href="https://www.canva.com/ai/">Source</a>
           </div>
         </aside>
       </div>
@@ -486,8 +506,8 @@
     <section class="signal" id="infrastructure">
       <div class="signal-head">
         <div>
-          <h2>New and Interesting</h2>
-          <p>Interesting announcements.</p>
+          <h2>AI Infrastructure</h2>
+          <p>Compute access, chips, power, memory, and data-center capacity became product strategy this week.</p>
         </div>
         <div class="signal-num">04</div>
       </div>
@@ -504,21 +524,28 @@
           <div class="callout"><b>Business Insight:</b> in AI, infrastructure is not back office. It is product strategy.</div>
         </div>
         <aside class="side-panel">
-          <div class="action-box">
-            <h3>Budget Lens</h3>
-            <ul>
-              <li>Separate experimentation spend from production AI spend.</li>
-              <li>Track token cost by workflow, not just by vendor.</li>
-              <li>Use routing and caching where quality does not require frontier models.</li>
-            </ul>
+          <div class="action-box news-hook">
+            <h3>Anthropic took the whole Colossus 1 lane</h3>
+            <p>Anthropic said it signed with SpaceX to use all compute capacity at Colossus 1, adding more than 300 megawatts and over 220,000 NVIDIA GPUs within the month. The company tied that new capacity directly to higher Claude Code, Claude Pro/Max, and Claude Opus API limits.</p>
+            <a href="https://www.anthropic.com/news/higher-limits-spacex">Source</a>
           </div>
-          <div class="action-box">
-            <h3>Vendor Questions</h3>
-            <ul>
-              <li>What happens during peak usage?</li>
-              <li>Can we cap spend by team or workflow?</li>
-              <li>Do we have a fallback model path?</li>
-            </ul>
+          <div class="action-box news-hook">
+            <h3>Capacity is now a customer-facing feature</h3>
+            <p>This is why the rate-limit story matters: Anthropic did not just announce a data-center deal; it immediately changed product limits. If a vendor cannot get GPUs, power, and facilities online, customers feel it as queues, caps, slower agents, or worse reliability.</p>
+          </div>
+          <div class="action-box news-hook">
+            <h3>Anthropic is stacking compute partners</h3>
+            <p>The SpaceX deal joins Anthropic&#x27;s disclosed compute pipeline: up to 5 GW with Amazon, 5 GW with Google/Broadcom beginning in 2027, a Microsoft/NVIDIA partnership including $30 billion of Azure capacity, and a $50 billion U.S. infrastructure investment with Fluidstack.</p>
+            <a href="https://www.anthropic.com/news/higher-limits-spacex">Source</a>
+          </div>
+          <div class="action-box news-hook">
+            <h3>Space-based AI stopped sounding hypothetical</h3>
+            <p>The Google-SpaceX segment says Google wants launch capacity for radiation-resistant TPUs tied to Project Suncatcher, its space-based machine-learning initiative. The practical angle is simple: if AI compute is power-constrained on Earth, Google is exploring solar-powered orbital data centers and SpaceX is the cheapest highway to orbit.</p>
+            <a href="https://www.tomshardware.com/tech-industry/artificial-intelligence/google-reportedly-in-talks-with-spacex-to-launch-its-orbital-data-centers-partnership-could-mark-a-historic-turning-point-and-boost-upcoming-ipo">Source</a>
+          </div>
+          <div class="action-box news-hook">
+            <h3>Memory and capex stayed in the foreground</h3>
+            <p>The infrastructure watchlist also included memory demand, inference growth, and AI capex pressure. The practical question is becoming less &#x27;which model is best?&#x27; and more &#x27;who can serve it at scale without rationing?&#x27;</p>
           </div>
         </aside>
       </div>
@@ -546,20 +573,30 @@
           <div class="callout"><b>Business Insight:</b> the soap opera matters when the actors also control the rails.</div>
         </div>
         <aside class="side-panel">
-          <div class="action-box">
-            <h3>What to Monitor</h3>
-            <ul>
-              <li>Compute partnerships that change vendor capacity.</li>
-              <li>Governance fights that affect enterprise trust.</li>
-              <li>Advertising and monetization moves inside AI assistants.</li>
-            </ul>
+          <div class="action-box news-hook">
+            <h3>Musk versus Altman stayed strategically relevant</h3>
+            <p>The Musk-Altman legal fight is more than founder drama because it touches control, mission, commercialization, and who gets to define the rules of the leading AI labs. It belongs in the newsletter only when tied to vendor risk and market power.</p>
+            <a href="https://youtu.be/Jg2jJH1K0o8">Source</a>
           </div>
-          <div class="action-box">
-            <h3>Board-Level Translation</h3>
-            <ul>
-              <li>This is not gossip if it changes vendor risk.</li>
-              <li>This is not strategy if it cannot affect spend, access, trust, or distribution.</li>
-            </ul>
+          <div class="action-box news-hook">
+            <h3>Anthropic and SpaceX made an unlikely alliance</h3>
+            <p>Musk&#x27;s companies and Anthropic have not looked like natural allies, yet Anthropic now gets Colossus 1 capacity from SpaceX. That is the power move: compute scarcity can override public rivalries.</p>
+            <a href="https://www.anthropic.com/news/higher-limits-spacex">Source</a>
+          </div>
+          <div class="action-box news-hook">
+            <h3>OpenAI&#x27;s countermove is developer loyalty</h3>
+            <p>Codex is becoming OpenAI&#x27;s wedge into everyday technical work: app, CLI, IDE extension, browser, local workflows, and faster model lanes. That makes it harder for developers to judge vendors only by chat-model quality.</p>
+            <a href="https://openai.com/index/codex-for-almost-everything/">Source</a>
+          </div>
+          <div class="action-box news-hook">
+            <h3>ChatGPT ads changed the incentive picture</h3>
+            <p>OpenAI&#x27;s self-serve ChatGPT ads, CPC bidding, and measurement stack mean assistant surfaces are becoming monetized distribution channels. Boards should watch whether answer quality, trust, and commercial placement stay clearly separated.</p>
+            <a href="https://openai.com/index/new-ways-to-buy-chatgpt-ads/">Source</a>
+          </div>
+          <div class="action-box news-hook">
+            <h3>Google and SpaceX point to the next infrastructure frontier</h3>
+            <p>The podcast notes that Google already owns a SpaceX stake, has Project Suncatcher in motion, and is reportedly discussing TPU launches with SpaceX. If this proceeds, AI infrastructure politics expands from chips and clouds to launch capacity, satellites, solar power, and orbital operations.</p>
+            <a href="https://www.tomshardware.com/tech-industry/artificial-intelligence/google-reportedly-in-talks-with-spacex-to-launch-its-orbital-data-centers-partnership-could-mark-a-historic-turning-point-and-boost-upcoming-ipo">Source</a>
           </div>
         </aside>
       </div>

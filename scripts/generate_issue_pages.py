@@ -125,6 +125,43 @@ def technical_nav(sections: list[dict]) -> str:
     return "\n".join(cards)
 
 
+def render_side_panel(items: list[dict], class_name: str = "side-panel") -> str:
+    if not items:
+        return ""
+    cards = []
+    for item in items:
+        title = escape(item.get("title", "News item"))
+        text = escape(item.get("text", ""))
+        url = item.get("url")
+        link = f'<a href="{escape(url)}">Source</a>' if url else ""
+        cards.append(
+            '          <div class="action-box news-hook">\n'
+            f"            <h3>{title}</h3>\n"
+            f"            <p>{text}</p>\n"
+            + (f"            {link}\n" if link else "")
+            + "          </div>"
+        )
+    return f'        <aside class="{class_name}">\n' + "\n".join(cards) + "\n        </aside>"
+
+
+def render_technical_side(items: list[dict]) -> str:
+    if not items:
+        return ""
+    cards = []
+    for item in items:
+        title = escape(item.get("title", "News item"))
+        text = escape(item.get("text", ""))
+        url = item.get("url")
+        link = f'<a href="{escape(url)}">Source</a>' if url else ""
+        cards.append(
+            '          <div class="mini-card news-hook">'
+            f"<b>{title}</b><p>{text}</p>"
+            + (link if link else "")
+            + "</div>"
+        )
+    return '        <aside class="side">\n' + "\n".join(cards) + "\n        </aside>"
+
+
 def replace_once(content: str, pattern: str, replacement: str, label: str) -> str:
     updated, count = re.subn(pattern, replacement, content, count=1, flags=re.S)
     if count != 1:
@@ -199,6 +236,14 @@ def sync_executive(content: str, issue: dict) -> str:
         )
         replacement = rf"\g<1>{title}\g<2>{summary}\g<3>"
         content = replace_once(content, pattern, replacement, f"executive section {section['id']}")
+        if section.get("side_panel"):
+            side_panel = render_side_panel(section["side_panel"])
+            content = replace_once(
+                content,
+                rf'(<section class="signal" id="{section_id}">.*?<div class="signal-body(?: [^"]*)?">.*?)\s*(<aside class="side-panel">.*?</aside>)(\s*</div>\s*<details)',
+                rf"\g<1>\n{side_panel}\g<3>",
+                f"executive side panel {section['id']}",
+            )
     return content
 
 
@@ -226,6 +271,14 @@ def sync_technical(content: str, issue: dict) -> str:
         )
         replacement = rf"\g<1>{title}\g<2>{summary}\g<3>"
         content = replace_once(content, pattern, replacement, f"technical section {section['id']}")
+        if section.get("side_panel"):
+            side_panel = render_technical_side(section["side_panel"])
+            content = replace_once(
+                content,
+                rf'(<section class="signal" id="{section_id}">.*?<div class="body">.*?)\s*(<aside class="side">.*?</aside>)(\s*</div>\s*<details)',
+                rf"\g<1>\n{side_panel}\g<3>",
+                f"technical side panel {section['id']}",
+            )
     return content
 
 

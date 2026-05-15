@@ -39,6 +39,27 @@
         "pool-yt-sxnez3brko4-chapter-7-group-5",
         "pool-yt-sxnez3brko4-chapter-9-group-7",
         "pool-yt-q9svnvfohm-chapter-6"
+      ],
+      "side_panel": [
+        {
+          "title": "Gemini 3.1 Pro landed quietly",
+          "text": "Google released Gemini 3.1 Pro in preview on February 19 and pushed it into the Gemini API, AI Studio, Vertex AI, Gemini Enterprise, Gemini CLI, Android Studio, NotebookLM, and the Gemini app. Google reported a 77.1% verified ARC-AGI-2 score, making it a serious reasoning-model entry rather than a routine Gemini refresh.",
+          "url": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-1-pro/"
+        },
+        {
+          "title": "Codex got a frontier work model",
+          "text": "OpenAI introduced GPT-5.3-Codex as its most capable agentic coding model, saying it combines GPT-5.2-Codex coding strength with GPT-5.2-style reasoning and professional knowledge, runs 25% faster, and can handle long-running research, tool-use, and execution tasks.",
+          "url": "https://openai.com/index/introducing-gpt-5-3-codex"
+        },
+        {
+          "title": "Real-time coding became a model lane",
+          "text": "OpenAI also previewed GPT-5.3-Codex-Spark on Cerebras, aiming for near-instant coding interactions at more than 1,000 tokens per second. That is a different product lane from frontier reasoning: fast pair-programming loops instead of long autonomous jobs.",
+          "url": "https://openai.com/index/introducing-gpt-5-3-codex-spark/"
+        },
+        {
+          "title": "The model story is now portfolio design",
+          "text": "The weekly model roundups included Claude, MiniMax, Qwen, Microsoft image, Midjourney, and realtime audio updates. The useful takeaway is not just who won a benchmark, but which model lane fits reasoning, coding, open/local control, image generation, or voice work."
+        }
       ]
     },
     {
@@ -76,6 +97,27 @@
         "pool-yt-msice1foywy-topic-2",
         "pool-yt-msice1foywy-topic-3",
         "pool-yt-lsma-kvpwf0-signal"
+      ],
+      "side_panel": [
+        {
+          "title": "Claude Code got more room to work",
+          "text": "Anthropic doubled Claude Code five-hour rate limits for Pro, Max, Team, and seat-based Enterprise plans, removed peak-hour reductions for Pro and Max, and raised Claude Opus API limits. That turns compute capacity into a visible product feature for agent users.",
+          "url": "https://www.anthropic.com/news/higher-limits-spacex"
+        },
+        {
+          "title": "Codex moved beyond code-only chores",
+          "text": "OpenAI's Codex update framed it as a computer-side collaborator: it can use more tools and apps, work across development workflows, generate images, remember preferences, continue repetitive tasks, inspect multiple files and terminals, use SSH, and iterate in an integrated browser.",
+          "url": "https://openai.com/index/codex-for-almost-everything/"
+        },
+        {
+          "title": "Agent models are being treated as security-sensitive",
+          "text": "OpenAI's GPT-5.3-Codex system card says the model is being treated as high capability in cybersecurity under its Preparedness Framework. That is a signal that coding agents are moving from productivity toys into controlled professional infrastructure.",
+          "url": "https://openai.com/index/gpt-5-3-codex-system-card/"
+        },
+        {
+          "title": "The practical news is permission design",
+          "text": "The battle is not just Claude Code versus Codex. The important shift is that agent products are adding limits, review gates, computer control, browser access, and persistent workflow context because real work needs boundaries."
+        }
       ]
     },
     {
@@ -115,16 +157,48 @@
         "pool-yt-u4g4l9pvozy-chapter-1-group-1",
         "pool-yt-u4g4l9pvozy-chapter-10-group-3",
         "pool-yt-u4g4l9pvozy-chapter-20-group-5"
+      ],
+      "side_panel": [
+        {
+          "title": "Google Book turns Gemini into the operating layer",
+          "text": "The Limitless segment says Google's AI laptop is being framed as a natural successor to Chromebook: a low-cost Google Book built around Gemini Intelligence, Magic Pointer actions, and Android/Google app integration. The interesting move is that Gemini is not just a chatbot here; it is being positioned as the action layer across Gmail, Maps, documents, shopping, scheduling, and device handoffs.",
+          "url": "https://www.youtube.com/watch?v=N3oqUmSBmIc&list=PLxFjGka4tveAOS0oDFqsnlsG0UqdlN0yC&index=1&t=143s"
+        },
+        {
+          "title": "ChatGPT ads became buyable infrastructure",
+          "text": "OpenAI opened a beta self-serve Ads Manager for U.S. advertisers, added CPC bidding, expanded measurement with Conversions API and pixel-based tooling, and named agency and ad-tech partners including Dentsu, Omnicom, Publicis, WPP, Adobe, Criteo, Kargo, Pacvue, and StackAdapt.",
+          "url": "https://openai.com/index/new-ways-to-buy-chatgpt-ads/"
+        },
+        {
+          "title": "Google changed the search surface again",
+          "text": "Google updated AI Mode and AI Overviews with more direct links, article suggestions, website previews on desktop hover, and more personal/community perspectives. That makes AI answers less like a search results page and more like a guided answer surface.",
+          "url": "https://blog.google/products-and-platforms/products/search/explore-web-generative-ai-search/"
+        },
+        {
+          "title": "Gemini kept spreading through work surfaces",
+          "text": "Google's Gemini 3.1 Pro rollout matters because the model is not isolated in a chat app; it reaches API, Vertex, Gemini Enterprise, CLI, Android Studio, NotebookLM, and consumer Gemini surfaces. Distribution is part of the model launch.",
+          "url": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-1-pro/"
+        },
+        {
+          "title": "Google Books belongs in the platform story",
+          "text": "The podcast specifically flags Google Books as part of the Google platform advantage: Google can connect AI models to a deep corpus, consumer devices, Workspace, Android, Search, and Maps. That makes Google's AI push feel less like one product launch and more like a distribution-and-data play.",
+          "url": "https://www.youtube.com/watch?v=N3oqUmSBmIc&list=PLxFjGka4tveAOS0oDFqsnlsG0UqdlN0yC&index=1&t=143s"
+        },
+        {
+          "title": "Creative platforms are becoming command centers",
+          "text": "The platform-play story is not only Google and OpenAI. Tools like Canva keep pulling AI into the normal creation workflow, which means employees may adopt AI first through the software they already open every day.",
+          "url": "https://www.canva.com/ai/"
+        }
       ]
     },
     {
       "id": "infrastructure",
       "order": 4,
-      "title": "New and Interesting",
-      "headline": "New and Interesting",
+      "title": "AI Infrastructure",
+      "headline": "AI Infrastructure",
       "theme_id": "theme-infra",
-      "approved_theme_title": "New and Interesting",
-      "summary": "Interesting announcements.",
+      "approved_theme_title": "AI Infrastructure",
+      "summary": "Compute access, chips, power, memory, and data-center capacity became product strategy this week.",
       "evidence_segment_ids": [
         "pool-yt-kcupzl-5fgw-chapter-1-group-1",
         "pool-yt-mhdwmcgmoqq-signal",
@@ -159,6 +233,31 @@
         "pool-yt-uzplbvhe6uy-chapter-6",
         "pool-yt-cq1dclcupso-signal",
         "pool-yt-7odpzzj00jm-signal"
+      ],
+      "side_panel": [
+        {
+          "title": "Anthropic took the whole Colossus 1 lane",
+          "text": "Anthropic said it signed with SpaceX to use all compute capacity at Colossus 1, adding more than 300 megawatts and over 220,000 NVIDIA GPUs within the month. The company tied that new capacity directly to higher Claude Code, Claude Pro/Max, and Claude Opus API limits.",
+          "url": "https://www.anthropic.com/news/higher-limits-spacex"
+        },
+        {
+          "title": "Capacity is now a customer-facing feature",
+          "text": "This is why the rate-limit story matters: Anthropic did not just announce a data-center deal; it immediately changed product limits. If a vendor cannot get GPUs, power, and facilities online, customers feel it as queues, caps, slower agents, or worse reliability."
+        },
+        {
+          "title": "Anthropic is stacking compute partners",
+          "text": "The SpaceX deal joins Anthropic's disclosed compute pipeline: up to 5 GW with Amazon, 5 GW with Google/Broadcom beginning in 2027, a Microsoft/NVIDIA partnership including $30 billion of Azure capacity, and a $50 billion U.S. infrastructure investment with Fluidstack.",
+          "url": "https://www.anthropic.com/news/higher-limits-spacex"
+        },
+        {
+          "title": "Space-based AI stopped sounding hypothetical",
+          "text": "The Google-SpaceX segment says Google wants launch capacity for radiation-resistant TPUs tied to Project Suncatcher, its space-based machine-learning initiative. The practical angle is simple: if AI compute is power-constrained on Earth, Google is exploring solar-powered orbital data centers and SpaceX is the cheapest highway to orbit.",
+          "url": "https://www.tomshardware.com/tech-industry/artificial-intelligence/google-reportedly-in-talks-with-spacex-to-launch-its-orbital-data-centers-partnership-could-mark-a-historic-turning-point-and-boost-upcoming-ipo"
+        },
+        {
+          "title": "Memory and capex stayed in the foreground",
+          "text": "The infrastructure watchlist also included memory demand, inference growth, and AI capex pressure. The practical question is becoming less 'which model is best?' and more 'who can serve it at scale without rationing?'"
+        }
       ]
     },
     {
@@ -185,20 +284,33 @@
         "pool-yt-sphghj7nwtc-topic-3",
         "pool-yt-u4g4l9pvozy-chapter-8-group-2",
         "pool-yt-u4g4l9pvozy-chapter-18-group-4"
-      ]
-    },
-    {
-      "id": "other-1778812805167",
-      "order": 6,
-      "title": "Other signals to consider",
-      "headline": "Other signals to consider",
-      "theme_id": "theme-other-1778812805167",
-      "approved_theme_title": "Other signals to consider",
-      "summary": "Selected items that did not fit the approved theme set cleanly. Review these before final publishing.",
-      "evidence_segment_ids": [
-        "pool-yt-jg2jjh1k0o8-topic-1",
-        "pool-yt-jg2jjh1k0o8-topic-2",
-        "pool-yt-jg2jjh1k0o8-topic-3"
+      ],
+      "side_panel": [
+        {
+          "title": "Musk versus Altman stayed strategically relevant",
+          "text": "The Musk-Altman legal fight is more than founder drama because it touches control, mission, commercialization, and who gets to define the rules of the leading AI labs. It belongs in the newsletter only when tied to vendor risk and market power.",
+          "url": "https://youtu.be/Jg2jJH1K0o8"
+        },
+        {
+          "title": "Anthropic and SpaceX made an unlikely alliance",
+          "text": "Musk's companies and Anthropic have not looked like natural allies, yet Anthropic now gets Colossus 1 capacity from SpaceX. That is the power move: compute scarcity can override public rivalries.",
+          "url": "https://www.anthropic.com/news/higher-limits-spacex"
+        },
+        {
+          "title": "OpenAI's countermove is developer loyalty",
+          "text": "Codex is becoming OpenAI's wedge into everyday technical work: app, CLI, IDE extension, browser, local workflows, and faster model lanes. That makes it harder for developers to judge vendors only by chat-model quality.",
+          "url": "https://openai.com/index/codex-for-almost-everything/"
+        },
+        {
+          "title": "ChatGPT ads changed the incentive picture",
+          "text": "OpenAI's self-serve ChatGPT ads, CPC bidding, and measurement stack mean assistant surfaces are becoming monetized distribution channels. Boards should watch whether answer quality, trust, and commercial placement stay clearly separated.",
+          "url": "https://openai.com/index/new-ways-to-buy-chatgpt-ads/"
+        },
+        {
+          "title": "Google and SpaceX point to the next infrastructure frontier",
+          "text": "The podcast notes that Google already owns a SpaceX stake, has Project Suncatcher in motion, and is reportedly discussing TPU launches with SpaceX. If this proceeds, AI infrastructure politics expands from chips and clouds to launch capacity, satellites, solar power, and orbital operations.",
+          "url": "https://www.tomshardware.com/tech-industry/artificial-intelligence/google-reportedly-in-talks-with-spacex-to-launch-its-orbital-data-centers-partnership-could-mark-a-historic-turning-point-and-boost-upcoming-ipo"
+        }
       ]
     }
   ],
@@ -2237,8 +2349,8 @@
         {
           "order": 4,
           "id": "theme-infra",
-          "title": "New and Interesting",
-          "summary": "Interesting announcements.",
+          "title": "AI Infrastructure",
+          "summary": "Compute access, chips, power, memory, and data-center capacity became product strategy this week.",
           "supporting_segments": [
             "pool-yt-kcupzl-5fgw-chapter-1-group-1",
             "pool-yt-mhdwmcgmoqq-signal",
@@ -2296,17 +2408,6 @@
             "pool-yt-sphghj7nwtc-topic-3",
             "pool-yt-u4g4l9pvozy-chapter-8-group-2",
             "pool-yt-u4g4l9pvozy-chapter-18-group-4"
-          ]
-        },
-        {
-          "order": 6,
-          "id": "theme-other-1778812805167",
-          "title": "Other signals to consider",
-          "summary": "Selected items that did not fit the approved theme set cleanly. Review these before final publishing.",
-          "supporting_segments": [
-            "pool-yt-jg2jjh1k0o8-topic-1",
-            "pool-yt-jg2jjh1k0o8-topic-2",
-            "pool-yt-jg2jjh1k0o8-topic-3"
           ]
         }
       ]
